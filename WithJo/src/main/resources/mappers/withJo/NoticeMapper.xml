@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withJo.notice">
+	
+	<resultMap type="noticeVo" id="noticeResultMap">
+		<id column="NOTICE_NO" property="noticeNo" />
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="NOTICE_TITLE" property="noticeTitle"/>
+		<result column="NOTICE_CONTENT" property="noticeContent"/>
+		<result column="NOTICE_IMG" property="noticeImg"/>
+		<result column="NOTICE_CREDATE" property="noticeCredate" javaType="java.util.Date" />
+		<result column="NOTICE_UPDATE" property="noticeUpdate" javaType="java.util.Date" />
+	</resultMap>
+	
+	<sql id="search">
+		<choose>
+			<when test="searchField == 'all'">
+				AND (N.NOTICE_TITLE LIKE '%' || #{searchKeyword} || '%'
+				OR N.NOTICE_CONTENT LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<when test="searchField == 'noticeTitle'">
+				AND (N.NOTICE_TITLE LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<when test="searchField == 'noticeContent'">
+				AND (N.NOTICE_CONTENT LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="noticeSelectList" parameterType="map" resultMap="noticeResultMap">
+	    SELECT * FROM (
+	        SELECT ROWNUM AS RN, TA.*
+	        FROM (
+	            SELECT N.NOTICE_NO, N.MEMBER_NO, N.NOTICE_TITLE, N.NOTICE_CONTENT, 
+	                   N.NOTICE_CREDATE, N.NOTICE_IMG, M.MEMBER_NAME 
+	            FROM NOTICE N
+	            JOIN MEMBER M ON N.MEMBER_NO = M.MEMBER_NO 
+	            <include refid="search"/> 
+	            ORDER BY N.NOTICE_NO DESC
+	        ) TA
+	    ) 
+	    WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		
+	<select id="noticeTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS totalCount
+		FROM NOTICE N
+		<where>
+			<include refid="search"/>
+		</where>
+	</select>
+	
+	<insert id="noticeInsertOne" parameterType="noticeVo">
+		INSERT INTO NOTICE(NOTICE_NO, MEMBER_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_IMG, NOTICE_CREDATE, NOTICE_UPDATE)
+		VALUES (NOTICE_NO_SEQ.NEXTVAL, #{memberNo}, #{noticeTitle}, #{noticeContent}, #{noticeImg}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<select id="noticeSelectOne" parameterType="int" resultMap="noticeResultMap">
+		SELECT N.NOTICE_NO, N.MEMBER_NO, N.NOTICE_TITLE, N.NOTICE_CONTENT, N.NOTICE_CREDATE, N.NOTICE_IMG, M.MEMBER_NAME 
+	    FROM NOTICE N
+	    JOIN MEMBER M ON N.MEMBER_NO = M.MEMBER_NO 
+		WHERE NOTICE_NO = #{no}
+	</select>
+	
+	<update id="noticeUpdateOne" parameterType="noticeVo">
+		UPDATE NOTICE
+		SET NOTICE_TITLE = #{noticeTitle}, NOTICE_CONTENT = #{noticeContent}, NOTICE_IMG = #{noticeImg}, NOTICE_UPDATE = SYSDATE
+		WHERE NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<delete id="noticeDeleteOne" parameterType="int">
+	    DELETE FROM NOTICE
+	    WHERE NOTICE_NO = #{no}
+	</delete>
+
+</mapper>

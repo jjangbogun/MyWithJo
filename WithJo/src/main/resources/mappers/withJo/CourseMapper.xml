@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.withJo.course">
+
+	<resultMap type="courseVo" id="courseResultMap">
+		<id column="COURSE_NO" property="courseNo"/>
+		<result column="CATEGORY_NO" property="categoryNo"/>
+		<result column="COURSE_NAME" property="courseName"/>
+		<result column="COURSE_TEACHER" property="courseTeacher"/>
+		<result column="COURSE_COST" property="courseCost"/>
+		<result column="COURSE_CURRENT_PEOPLE" property="courseCurrentPeople"/>
+		<result column="COURSE_MAX_PEOPLE" property="courseMaxPeople"/>
+		<result column="COURSE_GENDER_CHECK" property="courseGenderCheck"/>
+		<result column="COURSE_AGE_LIMIT" property="courseAgeLimit"/>
+		<result column="COURSE_START_DATE" property="courseStartDate"/>
+		<result column="COURSE_END_DATE" property="courseEndDate"/>
+		<result column="COURSE_START_TIME" property="courseStartTime"/>
+		<result column="COURSE_END_TIME" property="courseEndTime"/>
+		<result column="COURSE_REC_START" property="courseRecStart"/>
+		<result column="COURSE_REC_END" property="courseRecEnd"/>
+		<result column="COURSE_INFO" property="courseInfo"/>
+		<result column="COURSE_MAIN_IMAGE" property="CourseMainImage"/>
+	</resultMap>
+	
+	<sql id="age">
+		<if test="courseAgeLimit != null and courseAgeLimit != 0">
+			COURSE_AGE_LIMIT = #{courseAgeLimit}
+		</if>
+	</sql>
+	
+	<select id="getCourseList" resultMap="courseResultMap">
+		SELECT COURSE_NO, CATEGORY_NO, COURSE_NAME, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE, COURSE_MAX_PEOPLE, COURSE_GENDER_CHECK,
+			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
+			COURSE_INFO, COURSE_MAIN_IMAGE
+		FROM COURSE_LIST
+	</select>
+	
+	<select id="courseCategorySelect" parameterType="int" resultMap="courseResultMap">
+		SELECT COURSE_NO, CATEGORY_NO, COURSE_NAME, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE, COURSE_MAX_PEOPLE, COURSE_GENDER_CHECK,
+			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
+			COURSE_INFO, COURSE_MAIN_IMAGE
+		FROM COURSE_LIST
+		<where>
+			<include refid="age"></include>
+		</where>
+	</select>
+	
+	<select id="getCourseDetailList" parameterType="int" resultMap="courseResultMap">
+		SELECT COURSE_NO, CATEGORY_NO, COURSE_NAME, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE, COURSE_MAX_PEOPLE, COURSE_GENDER_CHECK,
+			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
+			COURSE_INFO, COURSE_MAIN_IMAGE
+		FROM COURSE_LIST
+		WHERE COURSE_NO = #{courseNo}
+	</select>
+	
+</mapper>

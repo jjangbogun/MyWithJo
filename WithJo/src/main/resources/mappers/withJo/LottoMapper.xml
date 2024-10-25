@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withJo.lotto">
+    
+    <resultMap type="lottoVo" id="lottoResultMap">
+        <id column="WINNING_LOTTO_NO" property="winningLottoNo" />
+        <result column="WINNING_LOTTO_ROUND" property="winningLottoRound"/>
+        <result column="WINNING_LOTTO_SEL_NO" property="winningLottoSelNo"/>
+        <result column="WINNING_LOTTO_START_DATE" property="winningLottoStartDate"/>
+        <result column="WINNING_LOTTO_END_DATE" property="winningLottoEndDate"/>
+        <result column="WINNING_LOTTO_CREDATE" property="winningLottoCredate" javaType="java.util.Date"/>
+    </resultMap>
+    
+	<select id="lottoSelectOne" parameterType="map" resultMap="lottoResultMap">
+	  <![CDATA[
+	    SELECT WINNING_LOTTO_NO, WINNING_LOTTO_ROUND, WINNING_LOTTO_SEL_NO,
+	           WINNING_LOTTO_START_DATE, WINNING_LOTTO_END_DATE
+	    FROM WINNING_LOTTO
+	    WHERE WINNING_LOTTO_START_DATE <= TO_DATE(#{date}, 'YYYY-MM-DD')
+	      AND WINNING_LOTTO_END_DATE >= TO_DATE(#{date}, 'YYYY-MM-DD')
+	  ]]>
+	</select>
+
+</mapper>
