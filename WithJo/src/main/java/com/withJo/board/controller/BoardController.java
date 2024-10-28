@@ -197,4 +197,6 @@ public class BoardController {
 
 	    return "redirect:/board/list"; 
 	}
+	
+	// 깃 테스트용 주석
 }
