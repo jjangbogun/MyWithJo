@@ -1,0 +1,86 @@
+@charset "UTF-8";
+#main-container{
+	margin-top: 120px;
+}
+.signInFlexBox{
+	display: flex;
+	height: 700px;
+}
+.signInImg{
+	position: relative;
+}
+
+.signInImg, .main_signIn{
+	width: 50%;
+}
+
+.signInImg__textContainer{
+	position: absolute;
+	top: 100px;
+	text-align: center;
+	width: 100%;
+}
+.signUp_btn:hover{
+	font-size: 22px;
+}
+.signInImg__secondText{
+	margin-top: 16px;
+}
+.signInImg__img{
+	height: 700px;
+	object-fit:cover;
+}
+.signInImg__textContainer p{
+	color: white;
+	font-size: 50px;
+	font-weight: bold;
+	text-shadow: 4px 4px 2px #0000007a;
+}
+.main_signIn{
+	background-color: #c4d0e3;
+}
+.signUp_content--signupBtn{
+	margin-top: 30px;
+}
+.signUp_btn{
+	border: none;
+	background-color: transparent;
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	text-shadow: 3px 2px 2px #0000007a;
+}
+.main_signIn{
+	text-align: center;
+}
+.main_signIn--title p{
+	font-size: 50px;
+	color: white;
+	font-weight: bold;
+	text-shadow: 3px 3px 3px #0000004a;
+}
+.main_signIn--inner{
+	padding-top: 150px;
+}
+
+.main_signIn_content_form{
+	margin-top: 90px;
+}
+.signIn_content_element--textBox input{
+	width: 430px;
+	height: 43px;
+	border-radius: 38px;
+	border: none;
+	padding: 5px 20px;
+	margin-bottom: 30px;
+	box-shadow: 3px 3px 3px #0000004a;
+}
+.signIn_content--loginBtn.signin_btn input{
+	height: 55px;
+	width: 470px;
+	font-size: 25px;
+	text-align: center;
+	background-color: #AD8080;
+	color: white;
+	font-weight: bold;
+}

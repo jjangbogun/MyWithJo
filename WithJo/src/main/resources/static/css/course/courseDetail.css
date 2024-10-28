@@ -1,0 +1,40 @@
+@charset "UTF-8";
+#mainContainer{
+	background-color: white;	
+}
+.infoBox{
+	width: 70%;
+	border: 2px solid red;
+	text-align: center;
+}
+.courseImg{
+	width: 322px;
+	height: 235px;
+	border-radius: 15px;
+}
+.courseDetailBox{
+	border: 1px solid;
+}
+.rightBox{
+	position: relative;
+	top: 30px;
+}
+.rightBoxInner{
+	position: absolute;
+}
+.courseInfoText{
+	margin-top: 50px;
+}
+.rightBoxFloat{
+	position: relative;
+	inset: 0px 0px 2971.5px 1100px;
+}
+.rightBoxInfo{
+	position: absolute;
+	width: 430px;
+	height: 612px;
+	border: 2px solid;
+	border-radius : 15px;
+	top:100px;
+	background-color: white;
+}
