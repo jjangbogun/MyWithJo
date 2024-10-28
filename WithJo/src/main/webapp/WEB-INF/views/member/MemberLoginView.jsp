@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="/css/member/memberLogin.css">
 
 <script defer src="/js/common/common.js"></script>
+<script defer src="/js/member/memberLogin.js"></script>
 </head>
 <body>
 
@@ -51,7 +52,7 @@
 						<p>로그인</p>							
 					</div>
 					<div class="main_signIn_content_form">
-						<form id="loginForm" action="./login" method="post" class="main_signIn_content">
+						<form id="loginForm" class="main_signIn_content">
 							<div class="signIn_content--memberId">								
 								<div class="signIn_content_element--textBox memberId">
 									<input id="memberId" type="text" name="memberId" value="" placeholder="아이디를를 입력해주세요">
@@ -64,7 +65,7 @@
 							</div>
 							<div class="signIn_content--loginBtn signin_btn">
 								<div class="signIn_content_element--textBox signin_btn">
-									<input type="submit" value="로그인" class="signin_btn"/>
+									<input type="button" onclick="signInFnc()" value="로그인" class="signin_btn"/>
 								</div>
 							</div>
 						</form>

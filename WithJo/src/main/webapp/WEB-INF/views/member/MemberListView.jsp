@@ -8,7 +8,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>자유계시판 목록</title>
+<title>회원 목록</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <script
   src="https://code.jquery.com/jquery-3.7.1.js"
@@ -60,8 +60,9 @@
 						<td class="information__credate"><fmt:formatDate value="${memberVo.memberCredate}" pattern="yyyy-MM-dd" /></td>
 						<td class="information__memberDelete">
 							<c:if test="${sessionScope.memberVo.authority eq 1}">
-								<input type="button" value="삭제하기" onclick='memberDeleteFnc(${memberVo.memberNo})'>
+								<input type="button" value="삭제하기" onclick='memberDeleteFnc(${memberVo.memberNo})'>								
 							</c:if>
+							<a href="/member/detail?memberNo=${memberVo.memberNo}">상세보기</a>
 						</td>
 					</tr>					
 				</c:forEach>

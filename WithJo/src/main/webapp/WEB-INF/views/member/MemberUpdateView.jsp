@@ -110,7 +110,7 @@
               </div>
             </div> 
                                
-            <div class="main">
+            <div class="main_update_content_memberAddress">
             	<label for="memberAddress">주소</label>
             	<div>            	
          	  		<input type="text" id="memberZipCode" name="memberZipCode" placeholder="우편번호" readonly value="${memberVo.memberZipCode}">
@@ -120,6 +120,13 @@
 					<input type="text" id="sample6_extraAddress" placeholder="참고항목" disabled>							
 				</div>
 			</div>	
+			
+			<div class="main_update_content_memberEMoney">
+              <label for="memberEMoney">E-Money</label>
+              <div class="update_content_memberEMoney--textBox">
+                <a class="memberId">${memberVo.memberEMoney}</a>
+              </div>
+            </div>
 					
 			
             

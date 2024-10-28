@@ -74,7 +74,7 @@
 	</insert>
 	
 	<select id="memberSelectOne" parameterType="int" resultMap="memberResultMap">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_ZIP_CODE, MEMBER_ADDRESS, MEMBER_ADDRESS_INFO, MEMBER_E_MONEY
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_GENDER, MEMBER_ZIP_CODE, MEMBER_ADDRESS, MEMBER_ADDRESS_INFO, MEMBER_E_MONEY, AUTHORITY
 		FROM MEMBER
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
@@ -85,6 +85,7 @@
 			<if test="memberZipCode != ''">MEMBER_ZIP_CODE = #{memberZipCode},</if>
 			<if test="memberAddress != ''">MEMBER_ADDRESS = #{memberAddress},</if>
 			MEMBER_ADDRESS_INFO = #{memberAddressInfo},
+			<if test="authority != null">AUTHORITY = #{authority},</if>
 			MEMBER_UPDATE = SYSDATE
 		</set>
 		WHERE MEMBER_NO = #{memberNo}

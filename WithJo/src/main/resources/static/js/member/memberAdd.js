@@ -81,45 +81,49 @@ $(document).ready(function() {
 	});
 	
 	// 생년월일 일 검사
-	$("input.birthDateDay").on("change", function(){
-		var year = $("input.birthDateYear").val();
-		var month = $("input.birthDateMonth").val();		
-		var day = $(this).val();
-		
-		function isLeafYear(year){
-			return(year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+	$("input.birthDateDay").on("change", function() {
+		var year = parseInt($("input.birthDateYear").val());
+		var month = parseInt($("input.birthDateMonth").val());
+		var day = parseInt($("input.birthDateDay").val());
+
+		function isLeapYear(year) {
+			return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 		}
-		
-		if(day >= 1 && day < 10){
-			$(this).val(day.padStart(2, "0"));
-			
-		}if (isNaN(day) || day < 1 || day > 31){
-			$(".birthDateDayMessage").text("1일부터 31일까지 입력가능합니다").css("color", "red");
-		}else if (month === 2){
-			if(isLeafYear(year)){
-				if(day > 29){
-					$(".birthDateDayMessage").text("윤년의 2월은 29일까지 입력가능합니다.").css("color", "red");
-				}else{
+
+		function validateDate() {
+			if (isNaN(day) || day < 1 || day > 31) {
+				$(".birthDateDayMessage").text("1일부터 31일까지 입력가능합니다").css("color", "red");
+			} else if (month === 2) {
+				if (isLeapYear(year)) {
+					if (day > 29) {
+						$(".birthDateDayMessage").text("윤년의 2월은 29일까지 입력가능합니다.").css("color", "red");
+					} else {
+						$(".birthDateDayMessage").text("");
+					}
+				} else {
+					if (day > 28) {
+						$(".birthDateDayMessage").text("2월은 28일까지 입력가능합니다").css("color", "red");
+					} else {
+						$(".birthDateDayMessage").text("");
+					}
+				}
+			} else if ([4, 6, 9, 11].includes(month)) {
+				if (day > 30) {
+					$(".birthDateDayMessage").text("이 달은 30일까지 입력가능합니다").css("color", "red");
+				} else {
 					$(".birthDateDayMessage").text("");
 				}
-			}else{
-				if(day > 28){
-					$(".birthDateDayMessage").text("2월은 28일까지 입력가능합니다").css("color", "red");
-				}else{
-					$(".birthDateDayMessage").text("");
-				}
+			} else {
+				$(".birthDateDayMessage").text("");
 			}
-		}else if((month === 4 || month === 6 || month === 9 || month === 11) && day > 30){
-			$(".birthDateDayMessage").text("이 달은 30일까지 입력가능합니다").css("color", "red");
-		} else {
-			$(".birthDateDayMessage").text("");
 		}
-		
-		
-		
-		
-		
-	})
+
+		if (day >= 1 && day < 10) {
+			$("input.birthDateDay").val(day.toString().padStart(2, "0"));
+		}
+
+		validateDate();
+	});
 
 function findAddress() {
        new daum.Postcode({
@@ -177,33 +181,36 @@ function signUpFnc(){
 	        { id: "memberName", name: "이름" },
 	        { id: "birthDateYear", name: "생년" },
 	        { id: "birthDateMonth", name: "생월" },
-	        { id: "birthDateDay", name: "생일" },			
+	        { id: "birthDateDay", name: "생일" },
+			{ name: "memberGender", type: "radio", errorMsg: "성별을 선택해주세요"},			
 	        { id: "memberZipCode", name: "우편번호" },
 	        { id: "memberAddress", name: "주소" },
 			{ id: "memberAddressInfo", name: "상세주소" },
 	        // 필요한 다른 필드들을 여기에 추가
 	    ];
 		
-		var formData = {};
+		var formData = {};		
 		
-		var gender = $("input[name='memberGender']:checked").val();
-		    if (!gender) {
-		        alert("성별을 선택해주세요.");
-		        return;
-		    }
-			
-		formData.memberGender = parseInt(gender); // 문자열을 정수로 변환
 
-	    for (var i = 0; i < requiredFields.length; i++) {
-	        var field = requiredFields[i];
-	        var value = $("#" + field.id).val();
-	        if (value === "") {
-	            alert(field.name + "을(를) 입력해주세요.");
-	            $("#" + field.id).focus();
-	            return;
-	        }
-			formData[field.id] = value;
-	    }
+		for (var i = 0; i < requiredFields.length; i++) {
+		        var field = requiredFields[i];
+		        if (field.type === "radio") {
+		            var radioValue = $("input[name='" + field.name + "']:checked").val();
+		            if (!radioValue) {
+		                alert(field.errorMsg);
+		                return;
+		            }
+		            formData[field.name] = parseInt(radioValue);
+		        } else {
+		            var value = $("#" + field.id).val();
+		            if (value === "") {
+		                alert(field.name + "을(를) 입력해주세요.");
+		                $("#" + field.id).focus();
+		                return;
+		            }
+		            formData[field.id] = value;
+		        }
+		    }
 		
 		var year = $("#birthDateYear").val();
 		var month = $("#birthDateMonth").val().padStart(2, '0');

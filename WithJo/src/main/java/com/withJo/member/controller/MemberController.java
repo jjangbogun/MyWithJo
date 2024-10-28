@@ -43,7 +43,16 @@ public class MemberController {
 	@GetMapping("/list")
 	public String getMemberList(@RequestParam(defaultValue = "all") String searchField, 
 			@RequestParam(defaultValue = "") String searchKeyword,
-			@RequestParam(defaultValue = "1") int curPage, Model model) {
+			@RequestParam(defaultValue = "1") int curPage, Model model, HttpSession session) {
+		
+		// 세션에서 로그인한 사용자 정보 가져오기
+	    MemberVo loggedInMember = (MemberVo) session.getAttribute("memberVo");
+	    
+	    // 로그인 상태 및 관리자 권한 확인
+	    if (loggedInMember == null || loggedInMember.getAuthority() != 1) {
+	        // 로그인하지 않았거나 관리자가 아닌 경우
+	        return "redirect:/member/login"; // 로그인 페이지로 리다이렉트
+	    }
 		
 		log.info(logTitleMsg);
 		log.info("getMemberList");
@@ -77,7 +86,38 @@ public class MemberController {
 		return "member/MemberListView";					
 	}
 	
-	// (관리자) member 삭제
+	// 회원 상세 페이지
+	@GetMapping("/detail")
+	public String memberDetail(@RequestParam int memberNo, Model model) {
+		log.info(logTitleMsg);
+		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
+		
+		MemberVo memberVo = memberService.memberSelectOne(memberNo);
+		
+		model.addAttribute("memberVo", memberVo);
+		
+		return "member/MemberDetailView";
+	}
+	
+	// 회원 상세페이지 수정
+	@PostMapping("/detail")
+	public String memberDetail(MemberVo memberVo, RedirectAttributes redirectAttributes) {
+	    log.info(logTitleMsg);
+	    log.info("@PostMapping memberMyPage memberVo: {}", memberVo);
+	    log.info("memberNo: {}", memberVo.getMemberNo());  // 추가된 로그
+	    
+	    if (memberVo.getMemberNo() != 0) {
+	        memberService.memberUpdateOne(memberVo);
+	        redirectAttributes.addAttribute("memberNo", memberVo.getMemberNo());
+	        return "redirect:/member/detail";
+	    } else {
+	        // memberNo가 0인 경우 처리
+	        log.error("Invalid memberNo: 0");
+	        return "redirect:/error";  // 또는 적절한 에러 페이지로 리다이렉트
+	    }
+	}
+	
+	// (관리자) 회원 삭제
 	@PostMapping("/delete")
 	@ResponseBody
 	public String memberDelete(@RequestParam int memberNo, HttpSession session) {
@@ -106,21 +146,22 @@ public class MemberController {
 	
 	// 로그인 회원정보 조회 및 검증
 	@PostMapping("/login")
-	public String getLogin(MemberVo membervo, HttpSession session, Model model) {
-		log.info("MemberController getLogin" + membervo);		
-		
-		MemberVo memberVo = memberService.memberExist(membervo);
-		
-		String viewUrl = "";
-		
-		if(memberVo != null) {
-			session.setAttribute("memberVo", memberVo);
-			viewUrl = "redirect:/";
-		}else {
-			viewUrl = "/member/MemberLoginView";
-		}		
-		
-		return viewUrl;
+	@ResponseBody
+	public Map<String, Object> getLogin(@RequestBody MemberVo membervo, HttpSession session) {
+	    log.info("MemberController getLogin" + membervo);        
+	    
+	    MemberVo memberVo = memberService.memberExist(membervo);
+	    
+	    Map<String, Object> response = new HashMap<>();
+	    
+	    if(memberVo != null) {
+	        session.setAttribute("memberVo", memberVo);
+	        response.put("success", true);
+	    } else {
+	        response.put("success", false);
+	    }        
+	    
+	    return response;
 	}
 	
 	// 로그아웃
