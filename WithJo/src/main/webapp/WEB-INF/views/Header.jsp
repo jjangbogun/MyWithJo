@@ -14,8 +14,8 @@
 		<div class="categoryContainer"></div>
 			<div class="navBarContainer">
 				<ul class="mainMenu">
-					<li class="navElement forShow1">
-						<button class="categoryBtn courseNavBtn" onmouseover="courseBtnFnc('course');">수강신청</button>
+					<li class="navElement">
+						<button class="categoryBtn courseNavBtn" data-target="hiddenDiv1">수강신청</button>
 						<div class="hiddenDiv hiddenDiv1 active1">
 							<ul class="subMenu" >
 								<li><a href="">submenu1</a></li>
@@ -25,8 +25,8 @@
 							<div class="ImgDiv"></div>
 						</div>
 					</li>
-					<li class="navElement forShow2">
-						<button class="categoryBtn evnetNavBtn" onmouseover="courseBtnFnc('event');">이벤트</button>
+					<li class="navElement">
+						<button class="categoryBtn evnetNavBtn" data-target="hiddenDiv2">이벤트</button>
 						<div class="hiddenDiv hiddenDiv2 active2">
 							<ul class="subMenu" >
 								<li><a href="">submenu2</a></li>
@@ -36,8 +36,8 @@
 							<div class="ImgDiv"></div>
 						</div>
 					</li>
-					<li class="navElement forShow3">
-						<button class="categoryBtn boardNavBtn" onmouseover="courseBtnFnc('board');">게시판</button>
+					<li class="navElement">
+						<button class="categoryBtn boardNavBtn" data-target="hiddenDiv3">게시판</button>
 						<div class="hiddenDiv hiddenDiv3 active3">
 							<ul class="subMenu">
 								<li><a href="">submenu3</a></li>
@@ -47,8 +47,8 @@
 							<div class="ImgDiv"></div>
 						</div>
 					</li>
-					<li class="navElement forShow4">
-						<button class="categoryBtn aboutNavBtn" onmouseover="courseBtnFnc('about');">이용안내</button>
+					<li class="navElement">
+						<button class="categoryBtn aboutNavBtn"data-target="hiddenDiv4">이용안내</button>
 						<div class="hiddenDiv hiddenDiv4 active4">
 							<ul class="subMenu">
 								<li><a href="">submenu1</a></li>
@@ -63,25 +63,18 @@
 	</nav>
 	
 	<div class="sessionContainer">
-		<p class="shoppingIcon">
-			<a href=""><img class="logoutImg" alt="." src="/img/common/shoppingCart.png"></a>
-		</p>
-		<c:if test="${sessionScope.memberVo eq null}">
-			<p class="loginIcon">
-				<img class="loginImg" alt="." src="/img/common/login.png">
-			</p>
-		</c:if> 
-		<c:if test="${sessionScope.memberVo.authority eq 0 || sessionScope.memberVo.authority eq 1}">
-			<a href="<%=request.getContextPath()%>/member/logout"><img class="logoutImg" alt="." src="/img/common/logout.png"></a>
-			<c:choose>
-				<c:when test="${sessionScope.memberVo.authority eq 0}">
-					<a href="/member/update?memberNo=${memberVo.memberNo}"><img class="mypageImg" alt="." src="/img/common/mypage.png"></a>
-				</c:when>
-				<c:when test="${sessionScope.memberVo.authority eq 1}">
-					<a href="/member/list"><img class="mypageImg" alt="." src="/img/common/mypage.png"></a>
-				</c:when>
-			</c:choose>
-		</c:if>
-	</div>
+      <p class="shoppingIcon">
+         <a href=""><img class="logoutImg" alt="." src="/img/common/shoppingCart.png"></a>
+      </p>
+      <c:if test="${sessionScope.memberVo eq null}">
+         <p class="loginIcon">
+            <img class="loginImg" alt="." src="/img/common/login.png">
+         </p>
+      </c:if> 
+      <c:if test="${sessionScope.memberVo.authority eq 0 || sessionScope.memberVo.authority eq 1}">
+         <a href="<%=request.getContextPath()%>/member/logout"><img class="logoutImg" alt="." src="/img/common/logout.png"></a>
+         <a href="/member/update?memberNo=${memberVo.memberNo}"><img class="mypageImg" alt="." src="/img/common/mypage.png"></a>
+      </c:if>
+   </div>
 	
 </header>

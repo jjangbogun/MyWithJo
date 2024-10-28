@@ -4,85 +4,124 @@ import java.util.Date;
 
 public class LottoVo {
 	
-	private int winningLottoNo;        
-	private int winningLottoRound;      
-    private String winningLottoSelNo;
-    private String winningLottoStartDate;
-    private String winningLottoEndDate;
-    private Date winningLottoCredate;
+	private int lottoNo;        
+	private int lottoRound;      
+	private int lottoMode;      
+	private int memberNo;      
+	private int lottoWinning;      
+    private String lottoSelNo;
+    private String lottoStartDate;
+    private String lottoEndDate;
+    private Date lottoCredate;
+    private String memberName;
     
 	public LottoVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LottoVo(int winningLottoNo, int winningLottoRound, String winningLottoSelNo, String winningLottoStartDate,
-			String winningLottoEndDate, Date winningLottoCredate) {
+	public LottoVo(int lottoNo, int lottoRound, int lottoMode, int memberNo, int lottoWinning, String lottoSelNo,
+			String lottoStartDate, String lottoEndDate, Date lottoCredate, String memberName) {
 		super();
-		this.winningLottoNo = winningLottoNo;
-		this.winningLottoRound = winningLottoRound;
-		this.winningLottoSelNo = winningLottoSelNo;
-		this.winningLottoStartDate = winningLottoStartDate;
-		this.winningLottoEndDate = winningLottoEndDate;
-		this.winningLottoCredate = winningLottoCredate;
+		this.lottoNo = lottoNo;
+		this.lottoRound = lottoRound;
+		this.lottoMode = lottoMode;
+		this.memberNo = memberNo;
+		this.lottoWinning = lottoWinning;
+		this.lottoSelNo = lottoSelNo;
+		this.lottoStartDate = lottoStartDate;
+		this.lottoEndDate = lottoEndDate;
+		this.lottoCredate = lottoCredate;
+		this.memberName = memberName;
 	}
 
-	public int getWinningLottoNo() {
-		return winningLottoNo;
+	public int getLottoNo() {
+		return lottoNo;
 	}
 
-	public void setWinningLottoNo(int winningLottoNo) {
-		this.winningLottoNo = winningLottoNo;
+	public void setLottoNo(int lottoNo) {
+		this.lottoNo = lottoNo;
 	}
 
-	public int getWinningLottoRound() {
-		return winningLottoRound;
+	public int getLottoRound() {
+		return lottoRound;
 	}
 
-	public void setWinningLottoRound(int winningLottoRound) {
-		this.winningLottoRound = winningLottoRound;
+	public void setLottoRound(int lottoRound) {
+		this.lottoRound = lottoRound;
 	}
 
-	public String getWinningLottoSelNo() {
-		return winningLottoSelNo;
+	public int getLottoMode() {
+		return lottoMode;
 	}
 
-	public void setWinningLottoSelNo(String winningLottoSelNo) {
-		this.winningLottoSelNo = winningLottoSelNo;
+	public void setLottoMode(int lottoMode) {
+		this.lottoMode = lottoMode;
 	}
 
-	public String getWinningLottoStartDate() {
-		return winningLottoStartDate;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setWinningLottoStartDate(String winningLottoStartDate) {
-		this.winningLottoStartDate = winningLottoStartDate;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
-	public String getWinningLottoEndDate() {
-		return winningLottoEndDate;
+	public int getLottoWinning() {
+		return lottoWinning;
 	}
 
-	public void setWinningLottoEndDate(String winningLottoEndDate) {
-		this.winningLottoEndDate = winningLottoEndDate;
+	public void setLottoWinning(int lottoWinning) {
+		this.lottoWinning = lottoWinning;
 	}
 
-	public Date getWinningLottoCredate() {
-		return winningLottoCredate;
+	public String getLottoSelNo() {
+		return lottoSelNo;
 	}
 
-	public void setWinningLottoCredate(Date winningLottoCredate) {
-		this.winningLottoCredate = winningLottoCredate;
+	public void setLottoSelNo(String lottoSelNo) {
+		this.lottoSelNo = lottoSelNo;
+	}
+
+	public String getLottoStartDate() {
+		return lottoStartDate;
+	}
+
+	public void setLottoStartDate(String lottoStartDate) {
+		this.lottoStartDate = lottoStartDate;
+	}
+
+	public String getLottoEndDate() {
+		return lottoEndDate;
+	}
+
+	public void setLottoEndDate(String lottoEndDate) {
+		this.lottoEndDate = lottoEndDate;
+	}
+
+	public Date getLottoCredate() {
+		return lottoCredate;
+	}
+
+	public void setLottoCredate(Date lottoCredate) {
+		this.lottoCredate = lottoCredate;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 	@Override
 	public String toString() {
-		return "LottoVo [winningLottoNo=" + winningLottoNo + ", winningLottoRound=" + winningLottoRound
-				+ ", winningLottoSelNo=" + winningLottoSelNo + ", winningLottoStartDate=" + winningLottoStartDate
-				+ ", winningLottoEndDate=" + winningLottoEndDate + ", winningLottoCredate=" + winningLottoCredate + "]";
-	} 
-    
+		return "LottoVo [lottoNo=" + lottoNo + ", lottoRound=" + lottoRound + ", lottoMode=" + lottoMode + ", memberNo="
+				+ memberNo + ", lottoWinning=" + lottoWinning + ", lottoSelNo=" + lottoSelNo + ", lottoStartDate="
+				+ lottoStartDate + ", lottoEndDate=" + lottoEndDate + ", lottoCredate=" + lottoCredate + ", memberName="
+				+ memberName + "]";
+	}
     
 
-    
 }

@@ -71,9 +71,12 @@ public class CourseController {
 		log.info("@GetMapping getCourseDetailList");
 		
 		CourseVo courseVo = courseService.egetCourseDetailList(courseNo);
+		Map<String, Object> courseDay = courseService.getCourseDay(courseNo);
 		
 		ModelAndView mav = new ModelAndView("course/CourseDetailView");
 		mav.addObject("courseVo", courseVo);
+		mav.addObject("courseDay", courseDay);
+		System.out.println("courseDayController"+courseDay);
 		
 		return mav;
 	}

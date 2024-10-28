@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.withJo.board.dao.BoardDao;
 import com.withJo.board.domain.BoardVo;
+import com.withJo.lotto.dao.LottoDao;
+import com.withJo.lotto.domain.LottoVo;
 import com.withJo.notice.dao.NoticeDao;
 import com.withJo.notice.domain.NoticeVo;
 
@@ -15,43 +17,43 @@ import com.withJo.notice.domain.NoticeVo;
 public class LottoServiceImpl implements LottoService{
 
 	@Autowired
-	public BoardDao boardDao;
+	public LottoDao lottoDao;
 
 	@Override
-	public List<BoardVo> boardSelectList(int start, int end, String searchField, String searchKeyword) {
+	public List<LottoVo> lottoSelectList(int start, int end, String searchField, String searchKeyword) {
 		// TODO Auto-generated method stub
-		return boardDao.boardSelectList(start, end, searchField, searchKeyword);
+		return lottoDao.lottoSelectList(start, end, searchField, searchKeyword);
 	}
 
 	@Override
-	public int boardTotalCount(String searchField, String searchKeyword) {
+	public int lottoTotalCount(String searchField, String searchKeyword) {
 		// TODO Auto-generated method stub
-		return boardDao.boardTotalCount(searchField, searchKeyword);
+		return lottoDao.lottoTotalCount(searchField, searchKeyword);
 	}
 	
 	@Override
-	public int boardInsertOne(BoardVo boardVo) {
+	public int lottoInsertOne(LottoVo lottoVo) {
 		// TODO Auto-generated method stub
-		return boardDao.boardInsertOne(boardVo);
+		return lottoDao.lottoInsertOne(lottoVo);
 	}
 	
 	@Override
-	public BoardVo boardSelectOne(int no) {
+	public LottoVo lottoSelectOne() {
 		// TODO Auto-generated method stub
-		return boardDao.boardSelectOne(no);
+		return lottoDao.lottoSelectOne();
 	}
-	
-	@Override
-	public int boardUpdateOne(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return boardDao.boardUpdateOne(boardVo);
-	}
-	
-	@Override
-	public int boardDeleteOne(int no) {
-		// TODO Auto-generated method stub
-		return boardDao.boardDeleteOne(no);
-	}
+//	
+//	@Override
+//	public int boardUpdateOne(BoardVo boardVo) {
+//		// TODO Auto-generated method stub
+//		return boardDao.boardUpdateOne(boardVo);
+//	}
+//	
+//	@Override
+//	public int boardDeleteOne(int no) {
+//		// TODO Auto-generated method stub
+//		return boardDao.boardDeleteOne(no);
+//	}
 	
 
 }

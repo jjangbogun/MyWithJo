@@ -41,3 +41,11 @@ $(window).scroll(function() {
              "top": newTop + "px"
          });
      });
+	 
+	 let courseStartTime = $('.courseStartTime').text();
+	 	let subStr1 = courseStartTime.substr(0,5);
+	 	let courseEndTime = $('.courseEndTime').text();
+	 	let subStr2 = courseEndTime.substr(0,5);
+	 	
+	 	$('.courseStartTime').text(subStr1);
+	 	$('.courseEndTime').text(subStr2);

@@ -1,5 +1,6 @@
 package com.withJo.course.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,18 @@ public class CourseServiceImpl implements CourseService{
 	public CourseVo egetCourseDetailList(int courseNo) {
 		// TODO Auto-generated method stub
 		return courseDao.getCourseDetailList(courseNo);
+	}
+
+	@Override
+	public Map<String, Object> getCourseDay(int courseNo) {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		List<CourseVo> courseDay = courseDao.getCourseDay(courseNo);
+		resultMap.put("courseDay", courseDay);
+		System.out.println("courseDay??:" + courseDay);
+		
+		return resultMap;
 	}
 
 	

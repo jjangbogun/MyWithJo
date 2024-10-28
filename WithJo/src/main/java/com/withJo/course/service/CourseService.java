@@ -10,4 +10,5 @@ public interface CourseService {
 	public List<CourseVo> getCourseList();
 	public List<CourseVo> courseCategorySelect(int courseAgeLimit);
 	public CourseVo egetCourseDetailList(int courseNo);
+	public Map<String, Object> getCourseDay(int courseNo);
 }

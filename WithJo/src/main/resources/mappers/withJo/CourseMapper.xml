@@ -19,7 +19,8 @@
 		<result column="COURSE_REC_START" property="courseRecStart"/>
 		<result column="COURSE_REC_END" property="courseRecEnd"/>
 		<result column="COURSE_INFO" property="courseInfo"/>
-		<result column="COURSE_MAIN_IMAGE" property="CourseMainImage"/>
+		<result column="COURSE_MAIN_IMAGE" property="courseMainImage"/>
+		<result column="COURSE_DAY_OF_THE_WEEK" property="courseDayOfTheWeek"/>
 	</resultMap>
 	
 	<sql id="age">
@@ -50,6 +51,12 @@
 			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
 			COURSE_INFO, COURSE_MAIN_IMAGE
 		FROM COURSE_LIST
+		WHERE COURSE_NO = #{courseNo}
+	</select>
+	
+	<select id="getCourseDay" parameterType="int" resultType="map">
+		SELECT COURSE_NO AS courseNo,COURSE_DAY_OF_THE_WEEK AS "courseDayOfTheWeek"
+		FROM COURSE_LIST_DAY
 		WHERE COURSE_NO = #{courseNo}
 	</select>
 	

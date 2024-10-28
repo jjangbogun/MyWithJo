@@ -35,5 +35,12 @@ public class CourseDaoImpl implements CourseDao{
 		return sqlSession.selectOne(namespace + "getCourseDetailList",courseNo);
 	}
 
+	@Override
+	public List<CourseVo> getCourseDay(int courseNo) {
+		// TODO Auto-generated method stub
+		System.out.println("getCourseDay??"+courseNo);
+		return sqlSession.selectList(namespace + "getCourseDay",courseNo);
+	}
+
 	
 }
