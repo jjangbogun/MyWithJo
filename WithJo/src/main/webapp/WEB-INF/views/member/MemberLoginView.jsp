@@ -32,7 +32,7 @@
   
  		<div class="signInFlexBox">
 			<div class="signInImg">
-				<img class="signInImg__img" alt="." src="/img/common/singin&up.png">
+				<img class="signInImg__img" alt="." src="/img/common/yoga_login_img.jpg">
 				<div class="signInImg__textContainer">
 					<div class="signInImg__firstText">
 						<p><span>위드조 문화센터에</span></p>

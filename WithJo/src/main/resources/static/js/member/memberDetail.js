@@ -46,6 +46,32 @@ function findAddress() {
     }).open();
 }
 
+function detailUpdateFnc(){
+	var formData = {
+		memberNo: $('input[name="memberNo"]').val(),
+		memberZipCode: $('#memberZipCode').val(),
+		memberAddress: $('#memberAddress').val(),
+		memberAddressInfo: $('#memberAddressInfo').val(),
+		authority: $('input[name="authority"]:checked').val()
+	};	
+	
+	
+	$.ajax({
+		url: '/member/detail',
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(formData),
+		success: function(response){
+			alert('성공적으로 수정되었습니다.');
+			location.reload();
+		},
+		error: function(xhr, status, error){
+			alert('업데이트 중 오류가 발생했습니다')
+		}
+	});		
+	
+}
+
 function goBack() {
     window.location.href = '/member/list';
 }

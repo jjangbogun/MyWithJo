@@ -99,21 +99,25 @@ public class MemberController {
 		return "member/MemberDetailView";
 	}
 	
-	// 회원 상세페이지 수정
+	// 회원 정보 수정
 	@PostMapping("/detail")
-	public String memberDetail(MemberVo memberVo, RedirectAttributes redirectAttributes) {
+	@ResponseBody
+	public ResponseEntity<?> memberDetail(@RequestBody MemberVo memberVo) {
 	    log.info(logTitleMsg);
-	    log.info("@PostMapping memberMyPage memberVo: {}", memberVo);
-	    log.info("memberNo: {}", memberVo.getMemberNo());  // 추가된 로그
-	    
+	    log.info("@PostMapping memberDetail memberVo: {}", memberVo);
+	    log.info("memberNo: {}", memberVo.getMemberNo());
+
 	    if (memberVo.getMemberNo() != 0) {
-	        memberService.memberUpdateOne(memberVo);
-	        redirectAttributes.addAttribute("memberNo", memberVo.getMemberNo());
-	        return "redirect:/member/detail";
+	        try {
+	            memberService.memberUpdateOne(memberVo);
+	            return ResponseEntity.ok().body("{\"message\": \"회원 정보가 성공적으로 업데이트되었습니다.\"}");
+	        } catch (Exception e) {
+	            log.error("Error updating member", e);
+	            return ResponseEntity.badRequest().body("{\"error\": \"회원 정보 업데이트 중 오류가 발생했습니다.\"}");
+	        }
 	    } else {
-	        // memberNo가 0인 경우 처리
 	        log.error("Invalid memberNo: 0");
-	        return "redirect:/error";  // 또는 적절한 에러 페이지로 리다이렉트
+	        return ResponseEntity.badRequest().body("{\"error\": \"유효하지 않은 회원 번호입니다.\"}");
 	    }
 	}
 	
@@ -260,19 +264,23 @@ public class MemberController {
 	
 	// 마에페이지 수정
 	@PostMapping(value = "/update")
-	public String memberMyPage(MemberVo memberVo, RedirectAttributes redirectAttributes) {
+	@ResponseBody
+	public ResponseEntity<?> memberMyPage(@RequestBody MemberVo memberVo) {
 	    log.info(logTitleMsg);
 	    log.info("@PostMapping memberMyPage memberVo: {}", memberVo);
-	    log.info("memberNo: {}", memberVo.getMemberNo());  // 추가된 로그
-	    
+	    log.info("memberNo: {}", memberVo.getMemberNo());
+
 	    if (memberVo.getMemberNo() != 0) {
-	        memberService.memberUpdateOne(memberVo);
-	        redirectAttributes.addAttribute("memberNo", memberVo.getMemberNo());
-	        return "redirect:/member/update";
+	        try {
+	            memberService.memberUpdateOne(memberVo);
+	            return ResponseEntity.ok().body("{\"message\": \"회원 정보가 성공적으로 업데이트되었습니다.\"}");
+	        } catch (Exception e) {
+	            log.error("Error updating member", e);
+	            return ResponseEntity.badRequest().body("{\"error\": \"회원 정보 업데이트 중 오류가 발생했습니다.\"}");
+	        }
 	    } else {
-	        // memberNo가 0인 경우 처리
 	        log.error("Invalid memberNo: 0");
-	        return "redirect:/error";  // 또는 적절한 에러 페이지로 리다이렉트
+	        return ResponseEntity.badRequest().body("{\"error\": \"유효하지 않은 회원 번호입니다.\"}");
 	    }
 	}
 	
