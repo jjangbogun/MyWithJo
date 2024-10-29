@@ -48,6 +48,12 @@ public class LottoDaoImpl implements LottoDao{
 	}
 	
 	@Override
+	public int lottoInsertOne2(LottoVo lottoVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + "lottoInsertOne2", lottoVo);
+	}
+	
+	@Override
 	public LottoVo lottoSelectOne() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "lottoSelectOne");

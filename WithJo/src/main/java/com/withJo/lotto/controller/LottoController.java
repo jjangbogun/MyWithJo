@@ -122,6 +122,21 @@ public class LottoController {
 	    return "redirect:/lotto/list";
 	}
 	
+	@PostMapping("/add2")
+	public String lottoAdd2(@RequestBody LottoVo lottoVo) {
+	    log.info("lottoAdd2");
+	    
+	    lottoService.lottoInsertOne2(lottoVo);
+
+	    return "redirect:/lotto/list";
+	}
+	
+	@GetMapping("/test")
+	public String eventList() {
+	    log.info("eventList");
+
+	    return "/EventListView";
+	}
 //	@PostMapping("/add")
 //	public String lottoAdd(HttpServletRequest request, Model model) throws ServletException, IOException {
 //		log.info("lottoAdd");

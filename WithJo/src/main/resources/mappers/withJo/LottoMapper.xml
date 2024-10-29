@@ -72,5 +72,10 @@
 		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE ,LOTTO_CREDATE)
 		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lottoSelNo}, #{lottoStartDate}, #{lottoEndDate}, SYSDATE)
 	</insert>
+	
+	<insert id="lottoInsertOne2" parameterType="lottoVo">
+		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_WINNING, LOTTO_SEL_NO, LOTTO_CREDATE)
+		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lottoWinning}, #{lottoSelNo}, SYSDATE)
+	</insert>
 
 </mapper>

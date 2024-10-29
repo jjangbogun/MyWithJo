@@ -54,7 +54,11 @@
 }
 
 .detailBody {
-	min-height: 500px;
+	min-height: 150px;
+	margin-top: 20px;
+}
+
+.reminderDiv {
 	margin-top: 20px;
 }
 
@@ -84,4 +88,35 @@
 
 .commentsList {
 	margin-bottom: 30px;
+}
+
+/* 스타일 추가 */
+.winningLottoSelNo {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    gap: 15px; /* 동그라미 간격 */
+}
+
+.memberLottoSelNo {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    gap: 15px; /* 동그라미 간격 */
+}
+
+.lottoNumber {
+    width: 100px; /* 원의 너비 */
+    height: 100px; /* 원의 높이 */
+    border-radius: 50%; /* 동그라미 */
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    color: white; /* 글자 색 */
+    font-weight: bold; /* 글자 두껍게 */
+    font-size: 50px;
+}
+
+.reminderDiv li{
+	margin-top: 15px;
+	margin-bottom: 10px;
+	color: #999;
 }
