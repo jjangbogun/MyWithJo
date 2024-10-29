@@ -10,7 +10,7 @@ header{
  	position: fixed;
  	left: 0;
     top: 0;
- 	width: 100vw;
+ 	width: 100%;
  	height: 94px;
  	transition: height .4s ease, top .3s ease;
  	transition: transform .4s;
@@ -42,7 +42,6 @@ header .logoContainer{
 	display: inline-block;
     height: 100%;
     text-align: center;
-    margin-top: 37px;
 }
 /* .headerMainContainer{
 	display: flex;
@@ -81,59 +80,43 @@ header .sessionContainer{
 	display: flex;
 	justify-content: space-between;
 	font-size: 20px;
-	position: relative;
+	height: 94px;
+	overflow: hidden;
 }
-.navElement{
+.mainMenu > li{
 	padding: 0 25px;
-	position: relative;	
+	display: flex;
+    align-items: center;
+}
+.categoryBtn{
 }
 .hiddenDiv{
 	position: absolute;
-	background-color: transparent;
-	height: 414px;	
-	text-align: left;
- 	width: 100vw;
+	display: block;
+	top: 94px;
+	height: 0;
+	width:100%;
 	transform: translateX(-50%);
-	top: 57px;
-}
-.hiddenDiv.hiddenDiv1{
-	left: 233px;
-}
-
-.hiddenDiv.hiddenDiv2{
-	left: 109px;
-}
-
-.hiddenDiv.hiddenDiv3{
-	left: 0;
-}
-
-.hiddenDiv.hiddenDiv4{
-	left: -109px;
-}
-
-.hiddenDiv{
-	height: 0px;
+	left: 50%;
+	background: #fff;
 	overflow: hidden;
-	background-color: white;
-	transition-duration: 1s;
+	transition: height .4s;
 }
-
-.hiddenDiv.showDiv{
+.active1{
 	height: 414px;
-  	transition-duration: 1s;
+	transition: height .6s;
+}
+.subMenu{
+	position: absolute;
+	border: 1px solid;	
+	transform: translateX(-50%);
+	left: 50%;
+	width: 1440px;
+	text-align: left;
 }
 
-/* 
-.hiddenDiv > li{
-	height: 0px;
-	width: 1900px;
+.subMenu > li{
 }
-
-.mainMenu > li:hover .hiddenDiv{
-  height: 414px;
-  transition-duration: 1s;
-} */
 
 .logoImg{
 	width: 90px;

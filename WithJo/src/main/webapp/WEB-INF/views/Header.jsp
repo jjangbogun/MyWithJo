@@ -14,9 +14,9 @@
 		<div class="categoryContainer"></div>
 			<div class="navBarContainer">
 				<ul class="mainMenu">
-					<li class="navElement">
-						<button class="categoryBtn courseNavBtn" data-target="hiddenDiv1">수강신청</button>
-						<div class="hiddenDiv hiddenDiv1 active1">
+					<li class="navElement1">
+						<a class="categoryBtn courseNavBtn" href="/course/list">수강신청</a>
+						<div class="hiddenDiv hiddenDiv1">
 							<ul class="subMenu" >
 								<li><a href="">submenu1</a></li>
 								<li><a href="">submenu1</a></li>
@@ -25,9 +25,9 @@
 							<div class="ImgDiv"></div>
 						</div>
 					</li>
-					<li class="navElement">
-						<button class="categoryBtn evnetNavBtn" data-target="hiddenDiv2">이벤트</button>
-						<div class="hiddenDiv hiddenDiv2 active2">
+					<li class="navElement2">
+						<a class="categoryBtn evnetNavBtn">이벤트</a>
+						<div class="hiddenDiv hiddenDiv2">
 							<ul class="subMenu" >
 								<li><a href="">submenu2</a></li>
 								<li><a href="">submenu2</a></li>
@@ -36,9 +36,9 @@
 							<div class="ImgDiv"></div>
 						</div>
 					</li>
-					<li class="navElement">
-						<button class="categoryBtn boardNavBtn" data-target="hiddenDiv3">게시판</button>
-						<div class="hiddenDiv hiddenDiv3 active3">
+					<li class="navElement3">
+						<a class="categoryBtn boardNavBtn">게시판</a>
+						<div class="hiddenDiv hiddenDiv3">
 							<ul class="subMenu">
 								<li><a href="">submenu3</a></li>
 								<li><a href="">submenu3</a></li>
@@ -47,9 +47,9 @@
 							<div class="ImgDiv"></div>
 						</div>
 					</li>
-					<li class="navElement">
-						<button class="categoryBtn aboutNavBtn"data-target="hiddenDiv4">이용안내</button>
-						<div class="hiddenDiv hiddenDiv4 active4">
+					<li class="navElement4">
+						<a class="categoryBtn aboutNavBtn">이용안내</a>
+						<div class="hiddenDiv hiddenDiv4">
 							<ul class="subMenu">
 								<li><a href="">submenu1</a></li>
 								<li><a href="">submenu1</a></li>

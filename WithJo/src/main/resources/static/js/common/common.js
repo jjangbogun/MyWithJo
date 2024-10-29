@@ -24,27 +24,34 @@
 		$('.hiddenDiv').addClass('showDiv');
 	});*/
 	
-	
-	
-	function courseBtnFnc(btn){
-		if(btn == 'course'){
-			$('.navElement').addClass('showDiv');
-		}else if(btn == 'event'){
-			$('.hiddenDiv2').addClass('showDiv2');
-		}else if(btn == 'board'){
-			$('.hiddenDiv3').addClass('showDiv3');
-		}else if(btn == 'about'){
-			$('.hiddenDiv4').addClass('showDiv4');
-		}
-	};
-/*
-	$('nav').mouseleave(function(){
-			$('.hiddenDiv').removeClass('showDiv1');
-			$('.hiddenDiv').removeClass('showDiv2');
-			$('.hiddenDiv').removeClass('showDiv3');
-			$('.hiddenDiv').removeClass('showDiv4');
+	$('.navElement1').mouseover(() => {
+		$('.hiddenDiv1').addClass('active1');
+		$('.active1').show();
 	});
-*/
+	$('.navElement1').mouseleave(() => {
+		$('.hiddenDiv1').removeClass('active1');
+	});
+	$('.navElement2').mouseover(() => {
+		$('.hiddenDiv2').addClass('active1');
+		$('.active2').show();
+	});
+	$('.navElement2').mouseleave(() => {
+		$('.hiddenDiv2').removeClass('active1');
+	});
+	$('.navElement3').mouseover(() => {
+		$('.hiddenDiv3').addClass('active1');
+		$('.active3').show();
+	});
+	$('.navElement3').mouseleave(() => {
+		$('.hiddenDiv3').removeClass('active1');
+	});
+	$('.navElement4').mouseover(() => {
+		$('.hiddenDiv4').addClass('active1');
+		$('.active4').show();
+	});
+	$('.navElement4').mouseleave(() => {
+		$('.hiddenDiv4').removeClass('active1');
+	});
 
 $('.boardNavBtn').on('click', () => {
 	location.href = "/notice/list";
