@@ -34,22 +34,30 @@
 	
 		<div class="pageContentArea">
 			<div class="pageContentAreaInner">
-
-					<div class="eventTableBox">
-							<div class="eventTableBoxContent">
-								<div class="tableTitleElement">
-									<a class="imgTag" href="/lotto/detail">
-										<img class="eventImgs" alt="" src="/img/event/lottoEvent.jpg" style="width: 350px;">
-									</a>
-									<a class="textTag" href="/lotto/detail">주간 로또 하러가기</a>
-									<div class="tableTimeElement">
-										상시
-									</div>
-								</div>
-							</div>	
-					</div> <!-- eventTableBox -->
-				
-			
+				<div class="eventTableBox">
+					<div class="eventTableBoxContent">
+						<div class="tableTitleElement">
+							<a class="imgTag" href="/lotto/detail">
+								<img class="eventImgs" alt="" src="/img/event/lottoEvent.jpg" style="width: 350px;">
+							</a>
+							<a class="textTag" href="/lotto/detail">주간 로또 하러가기</a>
+							<div class="tableTimeElement">
+								별도공지 까지
+							</div>
+						</div>
+					</div>
+					<div class="eventTableBoxContent">
+						<div class="tableTitleElement">
+							<a class="imgTag" href="/lotto/detail">
+								<img class="eventImgs" alt="" src="/img/event/drawingEvent.jpg" style="width: 350px;">
+							</a>
+							<a class="textTag" href="/drawing/list">게시판 이벤트 확인하기</a>
+							<div class="tableTimeElement">
+								별도공지 까지
+							</div>
+						</div>
+					</div>
+				</div> <!-- eventTableBox -->			
 		    </div> <!-- pageContentAreaInner -->
     	</div><!-- pageContentArea -->
     </div>

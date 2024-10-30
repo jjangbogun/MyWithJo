@@ -108,8 +108,8 @@ public class LottoController {
 	    Set<Integer> lottoNum = lottoService.lottoNum();
 	    List<Integer> tempSet = new ArrayList<>(lottoNum);
 	    String tempSetStr = "";
-	    tempSetStr = tempSet.toString();
-	    Collections.sort(tempSet);		
+	    Collections.sort(tempSet);	
+	    tempSetStr = tempSet.toString();	
 	    return ResponseEntity.ok(tempSetStr);
 	}
 	
@@ -188,15 +188,13 @@ public class LottoController {
 		
 		return ResponseEntity.ok(countMap);
 	}
+	
+	@PostMapping("/delete")
+	public String lottoDelete(@RequestParam int lottoNo) {
+	    log.info("Deleting lotto with ID: {}", lottoNo);
+	    
+	    lottoService.lottoDeleteOne(lottoNo);
 
-
-//	
-//	@PostMapping("/delete")
-//	public String boardDelete(@RequestParam int boardNo) {
-//	    log.info("Deleting board with ID: {}", boardNo);
-//	    
-//	    boardService.boardDeleteOne(boardNo);
-//
-//	    return "redirect:/board/list"; 
-//	}
+	    return "redirect:/lotto/list"; 
+	}
 }

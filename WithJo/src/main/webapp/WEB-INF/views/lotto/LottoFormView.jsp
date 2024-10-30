@@ -14,54 +14,6 @@
 <link rel="stylesheet" href="/css/event/lotto/LottoAdd.css">
 <script src="/js/event/lotto/lottoForm.js"></script>
 </head>
-<script type="text/javascript">
-function makeLottoNo() {
-    $.ajax({
-        url: '/lotto/make',
-        method: 'POST',
-        success: function (data) {
-            let htmlStr = '<div id="lottoSelNo">' + data + '</div>';
-            $('#lottoSelect').html(htmlStr);
-        },
-        error: function(xhr, status, error) {
-            alert('Error: ' + status + ' - ' + error);
-        }
-    });
-}
-
-function addLotto() {
-    var memberNo = parseInt($('#memberNo').val(), 10);
-    var lottoMode = parseInt($('#authority').val(), 10); 
-    var lottoRound = parseInt($('#lottoRound').val(), 10);
-    var lottoStartDate = $('#lottoStartDate').val();
-    var lottoEndDate = $('#lottoEndDate').val();
-    var lottoSelNo = $('#lottoSelNo').text(); 
-
-    var lottoData = {
-        memberNo: memberNo,
-        lottoMode: lottoMode, 
-        lottoRound: lottoRound,
-        lottoStartDate: lottoStartDate,
-        lottoEndDate: lottoEndDate,
-        lottoSelNo: lottoSelNo
-    };
-
-    $.ajax({
-        url: '/lotto/add',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(lottoData),
-        success: function (data) {
-            alert("등록이 완료되었습니다");
-            window.location.href = "/lotto/list";
-        },
-        error: function(xhr, status, error) {
-            alert('Error: ' + status + ' - ' + error);
-        }
-    });
-}
-</script>
-
 <body>
 	
 	<jsp:include page="/WEB-INF/views/Header.jsp"/> 
@@ -79,12 +31,12 @@ function addLotto() {
 		    
 		    <div>
 		        <label for="lottoStartDate">회차시작날짜</label><br>
-		        <input type="text" id="lottoStartDate" name="lottoStartDate"><br>
+		        <input class="dateInput" type="date" id="lottoStartDate" name="lottoStartDate"><br>
 		    </div>
 		    
 		    <div>
-		        <label for="lottoStartDate">회차종료날짜</label><br>
-		        <input type="text" id="lottoEndDate" name="lottoEndDate"><br>
+		        <label for="lottoEndDate">회차종료날짜</label><br>
+		        <input class="dateInput" type="date" id="lottoEndDate" name="lottoEndDate"><br>
 		    </div>
 		    
 		    <div id="lottoSelect">

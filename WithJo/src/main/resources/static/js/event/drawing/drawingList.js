@@ -1,4 +1,4 @@
-function lottosearch() {
+function drawingsearch() {
 	var searchNField = $("#searchNField").val();
 	var searchNKeyword = $("#searchNKeyword").val();
 	
@@ -9,20 +9,16 @@ function lottosearch() {
 	$("#pagingForm").submit();			
 }
 
-function pageMoveAdd() {
-    location.href = './add';
-}
-
 function pageMoveDetail() {
     location.href = './detail';
 }
 
-function deleteFnc(lottoNo) {        
+function deleteFnc(drawingNo) {        
     if(confirm("해당 회차를 삭제 하시겠습니까?")) {	    	
         $.ajax({
-        	url: '/lotto/delete',
+        	url: '/drawing/delete',
         	type: 'POST',
-        	data: { lottoNo: lottoNo },
+        	data: { drawingNo: drawingNo },
         	success: function(result) {
 				alert("삭제되었습니다");
 				location.reload();
@@ -31,8 +27,8 @@ function deleteFnc(lottoNo) {
 	}
 }
 /*
-function movelotto() {		
-    location.href = '/lotto/list';
+function movedrawing() {		
+    location.href = '/drawing/list';
 }
 
 function moveBoard() {		

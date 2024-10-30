@@ -2,15 +2,15 @@ package com.withJo.drawing.service;
 
 import java.util.List;
 
-import com.withJo.customer.domain.CustomerVo;
+import com.withJo.drawing.domain.DrawingVo;
 
 
 public interface DrawingService {
 	
-	List<CustomerVo> customerSelectList(int start, int end, String searchField, String searchKeyword);
-	public int customerTotalCount(String searchField, String searchKeyword);
-	public int customerInsertOne(CustomerVo customerVo);
-	public CustomerVo customerSelectOne(int customerNo);
-	public int customerUpdateOne(CustomerVo customerVo);
-	public int customerDeleteOne(int customerNo);
+	List<DrawingVo> drawingSelectList(int start, int end, String searchField, String searchKeyword);
+	public int drawingTotalCount(String searchField, String searchKeyword);
+//	public int drawingInsertOne(DrawingVo drawingVo);
+//	public DrawingVo drawingSelectOne(int drawingNo);
+//	public int drawingUpdateOne(DrawingVo drawingVo);
+//	public int drawingDeleteOne(int drawingNo);
 }

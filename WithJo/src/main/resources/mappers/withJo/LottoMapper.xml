@@ -90,4 +90,8 @@
 		AND LOTTO_ROUND = #{lottoRound}
     </select>
 
+	<delete id="lottoDeleteOne" parameterType="int">
+	    DELETE FROM LOTTO
+	    WHERE LOTTO_NO = #{lottoNo}
+	</delete>
 </mapper>

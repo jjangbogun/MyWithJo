@@ -10,6 +10,7 @@
 		<package name="com.withJo.lotto.domain"/>
 		<package name="com.withJo.course.domain"/>
 		<package name="com.withJo.comments.domain"/>
+		<package name="com.withJo.drawing.domain"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/withJo/MemberMapper.xml"/>
@@ -19,5 +20,6 @@
 		<mapper resource="mappers/withJo/LottoMapper.xml"/>
 		<mapper resource="mappers/withJo/CourseMapper.xml"/>
 		<mapper resource="mappers/withJo/CommentsMapper.xml"/>
+		<mapper resource="mappers/withJo/DrawingMapper.xml"/>
 	</mappers>
 </configuration>

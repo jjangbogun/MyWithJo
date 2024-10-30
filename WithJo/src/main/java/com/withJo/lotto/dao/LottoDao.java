@@ -15,5 +15,5 @@ public interface LottoDao {
 	public LottoVo lottoSelectOne();
 	public int lottoCountCheck(LottoVo lottoVo);
 //	public abstract int boardUpdateOne(BoardVo boardVo);
-//	public abstract int boardDeleteOne(int no);
+	public abstract int lottoDeleteOne(int lottoNo);
 }

@@ -33,12 +33,12 @@
 						<a class="categoryBtn evnetNavBtn" href="/event/list">이벤트</a>
 						<div class="hiddenDiv hiddenDiv2">
 							<ul class="subMenu" >
-								<li class="eventSubMenuLi1"><a href="">로또추첨</a></li>
-								<li class="eventSubMenuLi2"><a href="">드로잉</a></li>
+								<li class="eventSubMenuLi1"><a href="/lotto/detail">주간 포인트 로또</a></li>
+								<li class="eventSubMenuLi2"><a href="/drawing/list">게시판 행운의 3명!</a></li>
 							</ul>
 							<div class="ImgDiv">
-								<p class="img"><img class="" alt="" src="/img/common/event1.jpg"/></p>
-								<p class="img"><img class="" alt="" src="/img/common/event2.jpg"/></p>
+								<p class="img"><img class="" alt="" src="/img/event/lottoEvent.jpg"/></p>
+								<p class="img"><img class="" alt="" src="/img/event/drawingEvent.jpg/"></p>
 							</div>
 						</div>
 					</li>
@@ -46,9 +46,9 @@
 						<a class="categoryBtn boardNavBtn" href="/notice/list">커뮤니티</a>
 						<div class="hiddenDiv hiddenDiv3">
 							<ul class="subMenu">
-								<li class="noticeSubMenuLi1"><a href="">공지사항</a></li>
-								<li class="noticeSubMenuLi2"><a href="">게시판</a></li>
-								<li class="noticeSubMenuLi3"><a href="">고객센터</a></li>
+								<li class="noticeSubMenuLi1"><a href="/notice/list">공지사항</a></li>
+								<li class="noticeSubMenuLi2"><a href="/board/list">게시판</a></li>
+								<li class="noticeSubMenuLi3"><a href="/customer/list">고객센터</a></li>
 							</ul>
 							<div class="ImgDiv">
 								<p class="img"><img class="" alt="" src="/img/common/comunity1.jpg"/></p>

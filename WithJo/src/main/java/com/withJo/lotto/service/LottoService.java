@@ -34,6 +34,6 @@ public interface LottoService {
 	public int lottoInsertOne2(LottoVo lottoVo);
 	public int lottoCountCheck(LottoVo lottoVo);
 //	public int boardUpdateOne(BoardVo boardVo);
-//	public int boardDeleteOne(int no);
+	public int lottoDeleteOne(int lottoNo);
 	
 }

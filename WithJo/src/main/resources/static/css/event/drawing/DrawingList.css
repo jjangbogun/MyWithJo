@@ -19,7 +19,7 @@
 	height: 30px;
 	font-size: 20px;	
 }
-.eventTitleFont{
+.drawingTitleFont{
 	font-size: 54px;
 	font-family: "NotoSans_Light", sans-serif;
 	font-weight: lighter;
@@ -60,20 +60,20 @@
 	justify-content: space-between;
 	padding: 50px 0 20px;
 }
-.eventTable{
+.drawingTable{
 	width: 100%;
 }
 .secondTr{
 	width: 100%;
 	border: 1px solid;
 }
-.eventTableBoxContent{
+.drawingTableBoxContent{
 	display: flex;
 	justify-content: space-between;
 	padding: 26px 0 28px 4px;
 	border-bottom: 1px solid #8080804f;
 }
-.eventTableBoxContent a{
+.drawingTableBoxContent a{
 	text-decoration: none;
 	color: rgba(0, 0, 0, .7);
 }
@@ -81,25 +81,17 @@
 	font-size: 20px;
 	font-family: "NotoSans_Medium", sans-serif;
 	font-weight: bold;
-	display: flex;
-    justify-content: center; /* 수평 가운데 정렬 */
-    align-items: center; /* 수직 가운데 정렬 */
 }
-
-.tableTitleElement .textTag{
-	width: 300px;
-	margin-left: 150px;
-	font-size: 24px;
-	font-family: "NotoSans_Medium", sans-serif;
-	font-weight: bold;
-	color: black;
-}
-
 .tableTimeElement{
 	width:150px;
-	font-size: 18px;
+	font-size: 13px;
 	color: gray;
-	margin-left: 200px;
+}
+
+.tableDateElement{
+	width:180px;
+	font-size: 13px;
+	color: gray;
 }
 .totalDiv p{
 	font-family: "NotoSans_Regular", sans-serif;
@@ -120,6 +112,6 @@
     font-size: 16px; /* 글자 크기 */
 }
 
-.eventTableBox{
+.drawingTableBox{
 	margin-bottom: 60px;
 }

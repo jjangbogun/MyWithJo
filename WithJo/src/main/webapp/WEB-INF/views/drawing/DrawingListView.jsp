@@ -14,23 +14,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="/css/common/common.css">
 <script defer src="/js/common/common.js"></script>
-<link rel="stylesheet" href="/css/event/lotto/lottoList.css">
-<script src="/js/event/lotto/lottoList.js"></script>
+<link rel="stylesheet" href="/css/event/drawing/drawingList.css">
+<script src="/js/event/drawing/drawingList.js"></script>
 <script type="text/javascript">
 
-	function deleteFnc(lottoNo}) {        
-	    if(confirm("해당 공지를 삭제 하시겠습니까?")) {	    	
-	        $.ajax({
-	        	url: '/lotto/delete',
-	        	type: 'POST'
-	        	data: { lottoNo: lottoNo },
-	        	success: function(result) {
-					alert("삭제되었습니다");
-					location.reload();
-				}
-	        });        
-		}
-	}
 </script>
 </head>
 
@@ -42,17 +29,17 @@
 		<div class="topSearch">
 			<div class="topSearchInner">
 				<div class="topSearchTitle">
-					<p class="lottoTitleFont"><span>추첨번호관리</span></p>
+					<p class="drawingTitleFont"><span>게시판이벤트관리</span></p>
 				</div>
 				<div class="searchDiv">
 					<select class="searchNField" name="searchNField" id="searchNField">
 						<option value="all" <c:if test="${searchMap.searchField == 'all'}">selected</c:if>>전체</option>
-						<option value="lottoRound" <c:if test="${searchMap.searchField == 'lottoRound'}">selected</c:if>>회차</option>
-						<option value="lottoSelNo" <c:if test="${searchMap.searchField == 'lottoSelNo'}">selected</c:if>>당첨번호</option>
+						<option value="drawingRound" <c:if test="${searchMap.searchField == 'drawingRound'}">selected</c:if>>회차</option>
+						<option value="drawingSelNo" <c:if test="${searchMap.searchField == 'drawingMemberNo'}">selected</c:if>>당첨회원</option>
 					</select>
 					
 					<input class="searchInput" type="text" id="searchNKeyword" name="searchNKeyword" value="${searchMap.searchKeyword}">
-					<button type="button" class="listButton" onclick="lottosearch();">검색</button>
+					<button type="button" class="listButton" onclick="drawingsearch();">검색</button>
 				</div> <!-- searchDiv -->
 			</div>
 		</div>
@@ -69,34 +56,34 @@
 							</p> 
 						</div>
 						<div class="contentDivInner">
-							<div class="lottoAddButton" >
+							<div class="drawingAddButton" >
 								<button onclick="pageMoveAdd();" class="listButton">로또 등록</button>
-							</div> <!-- lottoAddButton -->
+							</div> <!-- drawingAddButton -->
 						</div> <!-- contentDiv -->
 					</div>	
 				</div> <!-- categoryBox -->
-					<div class="lottoTableBox">
-						<c:forEach var="lottoVo" items="${lottoList}">
-							<div class="lottoTableBoxContent">
+					<div class="drawingTableBox">
+						<c:forEach var="drawingVo" items="${drawingList}">
+							<div class="drawingTableBoxContent">
 								<div class="tableTitleElement">
-									<a href="/lotto/detail?lottoNo=${lottoVo.lottoNo}">${lottoVo.lottoRound} 회차</a>
+									<a href="/drawing/detail?drawingNo=${drawingVo.drawingNo}">${drawingVo.drawingRound} 회차</a>
 								</div>
 								<div class="tableTimeElement">
-									${lottoVo.lottoSelNo}
+									${drawingVo.drawingMemberNo}
 								</div>
 								<div class="tableDateElement">
-									${lottoVo.lottoStartDate} - ${lottoVo.lottoEndDate}
+									${drawingVo.drawingStartDate} - ${drawingVo.drawingEndDate}
 								</div>
 								<div class="tableTimeElement">
-									<fmt:formatDate value="${lottoVo.lottoCredate}" pattern="yyyy-MM-dd" />
+									<fmt:formatDate value="${drawingVo.drawingCredate}" pattern="yyyy-MM-dd" />
 								</div>
 								
 								<div class="tableTimeElement">
-									<button class="btn2" type="button" onclick="deleteFnc(${lottoVo.lottoNo});">삭제</button>
+									<button class="btn2" type="button" onclick="deleteFnc(${drawingVo.drawingNo});">삭제</button>
 								</div>
 							</div>	
 						</c:forEach>
-					</div> <!-- lottoTableBox -->
+					</div> <!-- drawingTableBox -->
 				
 			
 				<jsp:include page="/WEB-INF/views/common/Paging.jsp">

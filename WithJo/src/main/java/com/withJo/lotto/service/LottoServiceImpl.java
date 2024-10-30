@@ -61,11 +61,11 @@ public class LottoServiceImpl implements LottoService{
 //		return boardDao.boardUpdateOne(boardVo);
 //	}
 //	
-//	@Override
-//	public int boardDeleteOne(int no) {
-//		// TODO Auto-generated method stub
-//		return boardDao.boardDeleteOne(no);
-//	}
+	@Override
+	public int lottoDeleteOne(int lottoNo) {
+		// TODO Auto-generated method stub
+		return lottoDao.lottoDeleteOne(lottoNo);
+	}
 	
 
 }

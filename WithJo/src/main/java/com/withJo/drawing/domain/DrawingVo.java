@@ -4,60 +4,55 @@ import java.util.Date;
 
 public class DrawingVo {
 	
-	private int customerNo;           
-	private int memberQNo;      
-	private int memberANo;      
+	private int drawingNo;           
+	private int drawingRound;      
+	private int memberNo;      
     private String memberName;
-    private String customerTitle;
-    private String customerQue;
-    private String customerAns;
-    private Date customerQCredate; 
-    private Date customerACredate; 
-    private String customerCheck;
+    private String drawingMemberNo;
+    private String drawingStartDate;
+    private String drawingEndDate;
+    private Date drawingCredate;
     
 	public DrawingVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public DrawingVo(int customerNo, int memberQNo, int memberANo, String memberName, String customerTitle,
-			String customerQue, String customerAns, Date customerQCredate, Date customerACredate,
-			String customerCheck) {
+	public DrawingVo(int drawingNo, int drawingRound, int memberNo, String memberName, String drawingMemberNo,
+			String drawingStartDate, String drawingEndDate, Date drawingCredate) {
 		super();
-		this.customerNo = customerNo;
-		this.memberQNo = memberQNo;
-		this.memberANo = memberANo;
+		this.drawingNo = drawingNo;
+		this.drawingRound = drawingRound;
+		this.memberNo = memberNo;
 		this.memberName = memberName;
-		this.customerTitle = customerTitle;
-		this.customerQue = customerQue;
-		this.customerAns = customerAns;
-		this.customerQCredate = customerQCredate;
-		this.customerACredate = customerACredate;
-		this.customerCheck = customerCheck;
+		this.drawingMemberNo = drawingMemberNo;
+		this.drawingStartDate = drawingStartDate;
+		this.drawingEndDate = drawingEndDate;
+		this.drawingCredate = drawingCredate;
 	}
 
-	public int getCustomerNo() {
-		return customerNo;
+	public int getDrawingNo() {
+		return drawingNo;
 	}
 
-	public void setCustomerNo(int customerNo) {
-		this.customerNo = customerNo;
+	public void setDrawingNo(int drawingNo) {
+		this.drawingNo = drawingNo;
 	}
 
-	public int getMemberQNo() {
-		return memberQNo;
+	public int getDrawingRound() {
+		return drawingRound;
 	}
 
-	public void setMemberQNo(int memberQNo) {
-		this.memberQNo = memberQNo;
+	public void setDrawingRound(int drawingRound) {
+		this.drawingRound = drawingRound;
 	}
 
-	public int getMemberANo() {
-		return memberANo;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setMemberANo(int memberANo) {
-		this.memberANo = memberANo;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getMemberName() {
@@ -68,62 +63,44 @@ public class DrawingVo {
 		this.memberName = memberName;
 	}
 
-	public String getCustomerTitle() {
-		return customerTitle;
+	public String getDrawingMemberNo() {
+		return drawingMemberNo;
 	}
 
-	public void setCustomerTitle(String customerTitle) {
-		this.customerTitle = customerTitle;
+	public void setDrawingMemberNo(String drawingMemberNo) {
+		this.drawingMemberNo = drawingMemberNo;
 	}
 
-	public String getCustomerQue() {
-		return customerQue;
+	public String getDrawingStartDate() {
+		return drawingStartDate;
 	}
 
-	public void setCustomerQue(String customerQue) {
-		this.customerQue = customerQue;
+	public void setDrawingStartDate(String drawingStartDate) {
+		this.drawingStartDate = drawingStartDate;
 	}
 
-	public String getCustomerAns() {
-		return customerAns;
+	public String getDrawingEndDate() {
+		return drawingEndDate;
 	}
 
-	public void setCustomerAns(String customerAns) {
-		this.customerAns = customerAns;
+	public void setDrawingEndDate(String drawingEndDate) {
+		this.drawingEndDate = drawingEndDate;
 	}
 
-	public Date getCustomerQCredate() {
-		return customerQCredate;
+	public Date getDrawingCredate() {
+		return drawingCredate;
 	}
 
-	public void setCustomerQCredate(Date customerQCredate) {
-		this.customerQCredate = customerQCredate;
-	}
-
-	public Date getCustomerACredate() {
-		return customerACredate;
-	}
-
-	public void setCustomerACredate(Date customerACredate) {
-		this.customerACredate = customerACredate;
-	}
-
-	public String getCustomerCheck() {
-		return customerCheck;
-	}
-
-	public void setCustomerCheck(String customerCheck) {
-		this.customerCheck = customerCheck;
+	public void setDrawingCredate(Date drawingCredate) {
+		this.drawingCredate = drawingCredate;
 	}
 
 	@Override
 	public String toString() {
-		return "CustomerVo [customerNo=" + customerNo + ", memberQNo=" + memberQNo + ", memberANo=" + memberANo
-				+ ", memberName=" + memberName + ", customerTitle=" + customerTitle + ", customerQue=" + customerQue
-				+ ", customerAns=" + customerAns + ", customerQCredate=" + customerQCredate + ", customerACredate="
-				+ customerACredate + ", customerCheck=" + customerCheck + "]";
-	}
-    
-    
+		return "DrawingVo [drawingNo=" + drawingNo + ", drawingRound=" + drawingRound + ", memberNo=" + memberNo
+				+ ", memberName=" + memberName + ", drawingMemberNo=" + drawingMemberNo + ", drawingStartDate="
+				+ drawingStartDate + ", drawingEndDate=" + drawingEndDate + ", drawingCredate=" + drawingCredate + "]";
+	} 
+
 
 }

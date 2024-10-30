@@ -71,10 +71,10 @@ public class LottoDaoImpl implements LottoDao{
 //		return sqlSession.update(namespace + "boardUpdateOne", boardVo);
 //	}
 //	
-//	@Override
-//	public int boardDeleteOne(int no) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.delete(namespace + "boardDeleteOne", no);
-//	}
+	@Override
+	public int lottoDeleteOne(int lottoNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "lottoDeleteOne", lottoNo);
+	}
 	
 }

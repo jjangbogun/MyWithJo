@@ -54,11 +54,6 @@
 	            </div>           
             </c:if>
             <div class="btnDiv">
-            	<c:if test="${memberVo.memberNo == null}">
-            		<div class="loginNotice">
-            			<p>로그인이 필요합니다.</p>
-            		</div>
-            	</c:if>
                 <c:if test="${memberVo.authority == 0}">
                     <button class="btn2" type="button" onclick="memberCountCheck();">뽑기</button>
                 </c:if>    
