@@ -124,13 +124,16 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						</div>
 
 						<div class="memberDetail_update_content_authority">
-							<label for="authority">권한</label>
-							<div class="update_content_authority--textBox">
-								<input type="radio" id="authority0" name="authority" value="0" ${memberVo.authority == 0 ? 'checked' : ''}> 
-								<label for="authority0">일반 사용자</label> 
-								<input type="radio"	id="authority1" name="authority" value="1" ${memberVo.authority == 1 ? 'checked' : ''}>
-								<label for="authority1">관리자</label>
-							</div>
+ 						    <label for="authority">권한</label>
+    						<div class="update_content_authority--textBox">
+      							  <input type="radio" id="authority0" name="authority" value="0" 
+            						   ${memberVo.authority == 0 ? 'checked' : ''} 
+           							   ${memberVo.authority == 1 ? 'disabled' : ''}> 
+       							  <label for="authority0">일반 사용자</label> 
+      							  <input type="radio" id="authority1" name="authority" value="1" 
+             						   ${memberVo.authority == 1 ? 'checked' : ''}>
+       							  <label for="authority1">관리자</label>
+   							</div>
 						</div>
 
 

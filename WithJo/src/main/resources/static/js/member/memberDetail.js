@@ -75,3 +75,7 @@ function detailUpdateFnc(){
 function goBack() {
     window.location.href = '/member/list';
 }
+
+// 만약 수정 대상 회원이 관리자라면 라디오 버튼을 비활성화
+
+

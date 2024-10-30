@@ -35,10 +35,10 @@
 				<img class="signInImg__img" alt="." src="/img/common/yoga_login_img.jpg">
 				<div class="signInImg__textContainer">
 					<div class="signInImg__firstText">
-						<p><span>위드조 문화센터에</span></p>
+						<p class="signInImg__firstText--text"><span>위드조 문화센터에</span></p>
 					</div>
 					<div class="signInImg__secondText">
-						<p><span>처음 오셨나요?</span></p>
+						<p class="signInImg__secondText--text"><span>처음 오셨나요?</span></p>
 					</div>
 					<div class="signUp_content--signupBtn">
 						<button type="button" class="signUp_btn" onclick="location.href='/member/add'">가입하러가기 -></button>
@@ -49,7 +49,7 @@
 			<div class="main_signIn">
 				<div class="main_signIn--inner">
 					<div class="main_signIn--title">
-						<p>로그인</p>							
+						<p class="main_signIn--title--text">로그인</p>							
 					</div>
 					<div class="main_signIn_content_form">
 						<form id="loginForm" class="main_signIn_content">
