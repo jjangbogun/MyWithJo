@@ -16,9 +16,7 @@
 <script defer src="/js/common/common.js"></script>
 <link rel="stylesheet" href="/css/event/lotto/lottoDetail.css">
 <script src="/js/event/lotto/lottoDetail.js"></script>
-<style>
 
-</style>
 <script>
     const lottoSelNoStr = "${lottoVo.lottoSelNo}";
     const lottoSelNoArray = JSON.parse(lottoSelNoStr);
@@ -47,11 +45,11 @@
 </script>
 
 <script type="text/javascript">
-let globalMatchCount = 0;
-let lottoSelNoArray2 = 0;
+let globalMatchCount = 0; //lottoWinning
+let lottoSelNoArray2 = 0; //비교할 배열
 function makeLottoNo() {
     $.ajax({
-        url: '/lotto/make',
+        url: '/event/lotto/make',
         method: 'POST',
         success: function (data) {
             let memberSelNo = data;
@@ -159,11 +157,39 @@ function insertMemberLotto() {
     });
 }
 
+function memberCountCheck() {
+    var memberNo = parseInt($('#memberNo').val(), 10);
+    var lottoRound = parseInt($('#lottoRound').val(), 10);
 
+    var lottoData = {
+        memberNo: memberNo,
+        lottoRound: lottoRound,
+    };
 
+    $.ajax({
+        url: '/lotto/check',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(lottoData),
+        success: function (data) {
+            // 서버에서 반환된 data를 숫자로 변환
+            var count = parseInt(data.lottoCount, 10); // data.lottoCount가 숫자일 경우
+
+            if (count === 1) {
+                alert("횟수를 모두 소진하셨습니다.");
+            } else if (count === 0) {
+                makeLotto(); // makeLotto 함수 호출
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            alert('Error: ' + status + ' - ' + error);
+        }
+    });
+}
 
 </script>	
-<script src="/js/event/lotto/lottoDetail.js"></script>
+
 </head>
 
 <body>
@@ -205,12 +231,10 @@ function insertMemberLotto() {
    			</div>
             <div class="btnDiv">
             	<c:if test="${memberVo.authority == 0}">
-            		<button class="btn2" type="button" onclick="makeLottoNo();">뽑기</button>
+            		<button class="btn2" type="button" onclick="memberCountCheck();">뽑기</button>
             	</c:if>                
                 <button class="btn2" type="button" onclick="pageMoveList();">돌아가기</button>
-            </div>
-            
-           
+            </div>      
         </div>
     </div>
 

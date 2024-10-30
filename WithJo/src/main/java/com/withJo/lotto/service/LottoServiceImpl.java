@@ -48,6 +48,12 @@ public class LottoServiceImpl implements LottoService{
 		// TODO Auto-generated method stub
 		return lottoDao.lottoInsertOne2(lottoVo);
 	}
+	
+	@Override
+	public int lottoCountCheck(LottoVo lottoVo) {
+		// TODO Auto-generated method stub
+		return lottoDao.lottoCountCheck(lottoVo);
+	}
 //	
 //	@Override
 //	public int boardUpdateOne(BoardVo boardVo) {

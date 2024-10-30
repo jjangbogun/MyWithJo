@@ -59,6 +59,12 @@ public class LottoDaoImpl implements LottoDao{
 		return sqlSession.selectOne(namespace + "lottoSelectOne");
 	}
 	
+	@Override
+	public int lottoCountCheck(LottoVo lottoVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "lottoCountCheck", lottoVo);
+	}
+	
 //	@Override
 //	public int boardUpdateOne(BoardVo boardVo) {
 //		// TODO Auto-generated method stub

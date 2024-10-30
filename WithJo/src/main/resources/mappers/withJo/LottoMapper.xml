@@ -78,4 +78,16 @@
 		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lottoWinning}, #{lottoSelNo}, SYSDATE)
 	</insert>
 
+
+    <select id="lottoCountCheck" resultType="int">
+		SELECT 
+		CASE 
+		WHEN COUNT(*) >= 5 THEN 1
+		ELSE 0
+		END AS MEMBER_COUNT_CHECK
+		FROM LOTTO
+		WHERE MEMBER_NO = #{memberNo}
+		AND LOTTO_ROUND = #{lottoRound}
+    </select>
+
 </mapper>

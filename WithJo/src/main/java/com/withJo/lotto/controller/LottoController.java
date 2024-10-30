@@ -172,65 +172,24 @@ public class LottoController {
 		
 		return "lotto/LottoDetailView";
 	}
-//	
-//	@GetMapping("/update")
-//	public String boardUpdate(@RequestParam int boardNo, Model model) {
-//		log.info(logTitleMsg);
-//		log.info("@GetMapping boardUpdate boardNo: {}", boardNo);
-//		
-//		BoardVo boardVo = boardService.boardSelectOne(boardNo);
-//		
-//		model.addAttribute("boardVo", boardVo);
-//		
-//		return "board/BoardUpdateView";
-//	}
-//	
-//	@PostMapping("/update")
-//	public String boardUpdate(HttpServletRequest request, Model model) throws ServletException, IOException {
-//	    log.info(logTitleMsg);
-//
-//	    String boardNo = null; // boardNo 변수를 메서드 시작 부분에서 선언
-//
-//	    try {
-//	        Part filePart1 = request.getPart("boardImg");
-//
-//	        String boardImg = "";
-//	        String boardImgName = request.getParameter("boardImgName");
-//	        boardNo = request.getParameter("boardNo"); // boardNo 값을 요청에서 가져오기
-//	        String boardTitle = request.getParameter("boardTitle");
-//	        String boardContent = request.getParameter("boardContent");
-//	        String boardImgDelete = request.getParameter("boardImgDelete");
-//
-//	        log.info("@GetMapping boardImgName: {}", boardImgName);
-//
-//	        if (filePart1.getSize() > 0) {
-//	            FileUpload fileUpload = new FileUpload();
-//	            boardImg = fileUpload.getFileUpload(filePart1, boardImgName);
-//	        } else {
-//	            if (Integer.parseInt(boardImgDelete) == 0) {
-//	                boardImg = boardImgName;
-//	            } else {
-//	                FileUpload fileUpload = new FileUpload();
-//	                boardImg = fileUpload.getFileDelete(boardImgName);
-//	            }
-//	        }
-//
-//	        BoardVo boardVo = new BoardVo();
-//	        boardVo.setBoardNo(Integer.parseInt(boardNo));
-//	        boardVo.setBoardTitle(boardTitle);
-//	        boardVo.setBoardContent(boardContent);
-//	        boardVo.setBoardImg(boardImg);
-//	        log.info("@GetMapping boardVo: {}", boardVo);
-//
-//	        boardService.boardUpdateOne(boardVo);
-//
-//	    } catch (Exception e) {
-//	        log.error("업데이트 중 오류 발생", e);
-//	        return "redirect:/board/list"; // 예외 발생 시 리다이렉트
-//	    }
-//
-//	    return "redirect:/board/detail?boardNo=" + boardNo; // boardNo를 사용하여 리다이렉트
-//	}
+	
+	@PostMapping("/check")
+	public ResponseEntity<Map<String, Object>> lottoCheck(@RequestBody LottoVo lottoVo, Model model) {
+		log.info(logTitleMsg);
+		log.info("@GetMapping lottoDetail today: {}");
+		
+		int lottoCount = lottoService.lottoCountCheck(lottoVo);
+		
+		Map<String, Object> countMap = new HashMap<>();
+		countMap.put("lottoCount", lottoCount);
+		log.info("로또카운트: {}", lottoCount);
+		
+		model.addAttribute("lottoCount", lottoCount);
+		
+		return ResponseEntity.ok(countMap);
+	}
+
+
 //	
 //	@PostMapping("/delete")
 //	public String boardDelete(@RequestParam int boardNo) {
