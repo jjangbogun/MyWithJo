@@ -83,6 +83,10 @@ header .sessionContainer{
 	height: 94px;
 	overflow: hidden;
 }
+.mainMenu a{
+	text-decoration: none;
+	color: black;
+}
 .mainMenu > li{
 	padding: 0 25px;
 	display: flex;
