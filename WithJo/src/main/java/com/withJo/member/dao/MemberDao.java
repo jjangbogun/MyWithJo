@@ -5,6 +5,7 @@ import java.util.List;
 import com.withJo.member.domain.MemberVo;
 
 public interface MemberDao {
+	
 	List<MemberVo> memberSelectList(int start, int end, String searchField, String searchKeyword);
 	public int memberTotalCount(String searchField, String searchKeyword);	
 	
@@ -15,4 +16,6 @@ public interface MemberDao {
 	
 	public int countByMemberId(String memberId);
 	public int memberDeleteOne(int memberNo);
+	
+	public String memberfindIdByName(String memberName);
 }

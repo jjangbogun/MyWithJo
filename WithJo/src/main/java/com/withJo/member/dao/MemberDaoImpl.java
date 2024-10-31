@@ -75,4 +75,10 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.delete(namespace + "memberDeleteOne", memberNo);
 	}
 
+	@Override
+	public String memberfindIdByName(String memberName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "memberfindIdByName", memberName);
+	}
+
 }

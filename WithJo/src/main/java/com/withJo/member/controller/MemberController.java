@@ -284,11 +284,34 @@ public class MemberController {
 	    }
 	}
 	
+	// 아이디 찾기
+	@PostMapping("/findId")
+	@ResponseBody
+	public ResponseEntity<?> memberIdFind(@RequestBody Map<String, String> payload){
+		String memberName = payload.get("memberName");
+		
+		if (memberName == null || memberName.trim().isEmpty()) {
+	        return ResponseEntity.badRequest().body("{\"error\": \"이름을 입력해주세요.\"}");
+	    }
 
+	    try {
+	        String foundId = memberService.memberFindIdByName(memberName);
+	        if (foundId != null) {
+	            return ResponseEntity.ok().body("{\"success\": true, \"memberId\": \"" + foundId + "\"}");
+	        } else {
+	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"일치하는 정보가 없습니다.\"}");
+	        }
+	    } catch (Exception e) {
+	        log.error("Error finding ID", e);
+	        return ResponseEntity.badRequest().body("{\"error\": \"아이디 찾기 중 오류가 발생했습니다.\"}");
+	    }
+	}
+
+	}
 	
 	
 	
 	
 	
 
-}
+

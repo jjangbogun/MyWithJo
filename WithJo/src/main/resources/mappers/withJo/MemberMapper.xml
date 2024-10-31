@@ -102,6 +102,12 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</delete>
 	
+	<select id="memberfindIdByName" parameterType="string" resultType="string">
+		SELECT MEMBER_ID
+ 	    FROM MEMBER
+  	    WHERE MEMBER_NAME = #{memberName}
+	</select>
+	
 	
 	
 	

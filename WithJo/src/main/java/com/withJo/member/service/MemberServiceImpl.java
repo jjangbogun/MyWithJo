@@ -62,6 +62,12 @@ public class MemberServiceImpl implements MemberService{
 		
         return memberDao.memberDeleteOne(memberNo);
     }
+
+	@Override
+	public String memberFindIdByName(String memberName) {
+		// TODO Auto-generated method stub
+		return memberDao.memberfindIdByName(memberName);
+	}
 	
 
 }
