@@ -54,7 +54,7 @@
 }
 
 .detailBody {
-	min-height: 500px;
+	min-height: 350px;
 	margin-top: 20px;
 }
 
@@ -70,6 +70,7 @@
     padding: 10px 10px; /* 내부 여백 */
     cursor: pointer; /* 커서 포인터로 변경 */
     font-size: 12px; /* 글자 크기 */
+    margin-top: 30px;
 }
 
 #commentsContent {
@@ -139,4 +140,10 @@
 
 .commentsList {
 	margin-bottom: 30px;
+}
+
+.detailImg {
+	width: 100%;       
+    max-width: 600px;
+	max-height: 800px;
 }

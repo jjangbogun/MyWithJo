@@ -66,9 +66,11 @@
 							</p> 
 						</div>
 						<div class="contentDivInner">
-							<div class="customerAddButton" >
-								<button onclick="pageMoveAdd();" class="listButton">질문하기</button>
-							</div> <!-- customerAddButton -->
+							<c:if test="${memberVo.authority >= 0}">
+								<div class="customerAddButton" >
+									<button onclick="pageMoveAdd();" class="listButton">질문하기</button>
+								</div> <!-- customerAddButton -->
+							</c:if>
 						</div> <!-- contentDiv -->
 					</div>
 				</div> <!-- categoryBox -->

@@ -54,18 +54,18 @@
 		</where>
 	</select>
     
-	<select id="selectRandomMembers" resultType="int">
+	<select id="drawingSelect" parameterType="map" resultType="map">
 	    <![CDATA[
-		    SELECT MEMBER_NO
-		    FROM (
-		        SELECT DISTINCT M.MEMBER_NO
-		        FROM BOARD B
-		        JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
-		        WHERE M.AUTHORITY != 1
-		        AND B.BOARD_CREDATE > TO_DATE('${date}', 'YYYY-MM-DD')
-		        ORDER BY DBMS_RANDOM.VALUE
-		    )
-		    WHERE ROWNUM <= ${no}
+	        SELECT MEMBER_NO, MEMBER_NAME
+	        FROM (
+	            SELECT DISTINCT M.MEMBER_NO, M.MEMBER_NAME
+	            FROM BOARD B
+	            JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+	            WHERE M.AUTHORITY != 1
+	            AND B.BOARD_CREDATE > TO_DATE(#{date}, 'YYYY-MM-DD')
+	            ORDER BY DBMS_RANDOM.VALUE
+	        )
+	        WHERE ROWNUM <= #{no} 
 	    ]]>
 	</select>
     

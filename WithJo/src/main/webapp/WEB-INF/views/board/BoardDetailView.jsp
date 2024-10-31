@@ -37,7 +37,7 @@
 	        </div>
 	        <div class="detailBody">
 	            <c:if test="${boardVo.boardImg ne null}">
-					<img alt="" src="/upload/${boardVo.boardImg}" id="boardImg">
+					<img alt="" src="/upload/${boardVo.boardImg}" id="boardImg" class="detailImg">
 	            </c:if>
 	            <div class="contentBox" id="divBoardContent">
 	                
@@ -55,23 +55,38 @@
 	    	</div>
 	    	
 	        <div class="commentsBody">
-	        	<div class="commentsHeader">
-	            	<p>댓글 쓰기</p>
-	        	</div>
-	        	<form action="/comments/add" method="post">
-	        		<input type="hidden" id="memberNo" name="memberNo" value="${memberVo.memberNo}">
-	        		<input type="hidden" id="boardNo" name="boardNo" value="${boardVo.boardNo}">
-	        		<div class="reminderDiv">
-		        		<ul>
-			   				<li>광고, 욕설, 악의적 비방, 허위사실 기재 등의 내용 등록 시 관리자에 의해 삭제 될 수 있습니다.</li>
-			   				<li>회원님의 소중한 개인정보 보호를 위하여 별도 연락처 등의 기재를 삼가해주시기 바랍니다.</li>
-			   			</ul>
-		   			</div>
-		   			<div style="display: flex; align-items: stretch;">
-	        			<textarea id="commentsContent" name="commentsContent" rows="5"></textarea>
-	       				 <button id="contentSubmit">작성</button> 
-	    			</div>
-    			</form>
+<%-- 	        	<c:if test="${memberVo.memberNo >= 0}">
+
+    			</c:if> --%>
+    			
+    			<c:choose>
+				    <c:when test="${memberVo.memberNo >= 0}">
+					    <div class="commentsHeader">
+			            	<p>댓글 쓰기</p>
+			        	</div>
+			        	<form action="/comments/add" method="post">
+			        		<input type="hidden" id="memberNo" name="memberNo" value="${memberVo.memberNo}">
+			        		<input type="hidden" id="boardNo" name="boardNo" value="${boardVo.boardNo}">
+			        		<div class="reminderDiv">
+				        		<ul>
+					   				<li>광고, 욕설, 악의적 비방, 허위사실 기재 등의 내용 등록 시 관리자에 의해 삭제 될 수 있습니다.</li>
+					   				<li>회원님의 소중한 개인정보 보호를 위하여 별도 연락처 등의 기재를 삼가해주시기 바랍니다.</li>
+					   			</ul>
+				   			</div>
+				   			<div style="display: flex; align-items: stretch;">
+			        			<textarea id="commentsContent" name="commentsContent" rows="5"></textarea>
+			       				 <button id="contentSubmit">작성</button> 
+			    			</div>
+		    			</form>
+				    </c:when>
+				    <c:otherwise>
+					    <div class="reminderDiv">
+			        		<ul>
+				   				<li>댓글작성은 로그인이 필요합니다.</li>
+				   			</ul>
+			   			</div>
+				    </c:otherwise>
+				</c:choose>
 	        	<div class="commentsHeader">
 	            	<p>댓글</p>
 	        	</div>

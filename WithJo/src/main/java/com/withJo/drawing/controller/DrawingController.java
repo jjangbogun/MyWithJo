@@ -8,12 +8,14 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.withJo.customer.domain.CustomerVo;
 import com.withJo.customer.service.CustomerService;
@@ -75,44 +77,43 @@ public class DrawingController {
 		
 	}
 	
-//	@GetMapping("/add")
-//	public String customerAdd(Model model) {
-//		log.info(logTitleMsg);
-//		log.info("@GetMapping customerAdd");
-//
-//		return "customer/CustomerFormView";
-//	}
-//	
-//	@PostMapping("/add")
-//	public String customerAdd(HttpServletRequest request, Model model) throws ServletException, IOException{
-//	    log.info(logTitleMsg);
-//
-//    	String memberQNo = request.getParameter("memberQNo");
-//    	String customerTitle = request.getParameter("customerTitle");
-//    	String customerQue = request.getParameter("customerQue");
-//    	
-//    	CustomerVo customerVo = new CustomerVo();
-//    	
-//    	customerVo.setMemberQNo(Integer.parseInt(memberQNo));
-//    	customerVo.setCustomerTitle(customerTitle);
-//    	customerVo.setCustomerQue(customerQue);	
-//    		  
-//		customerService.customerInsertOne(customerVo);
-//	    
-//	    return "redirect:/customer/list";
-//	}
-//	
-//	@GetMapping("/detail")
-//	public String customerDetail(@RequestParam int customerNo, Model model) {
-//		log.info(logTitleMsg);
-//		log.info("@GetMapping customerDetail customerNo: {}", customerNo);
-//		
-//		CustomerVo customerVo = customerService.customerSelectOne(customerNo);
-//		
-//		model.addAttribute("customerVo", customerVo);
-//		
-//		return "customer/CustomerDetailView";
-//	}
+	@GetMapping("/add")
+	public String drawingAdd(Model model) {
+		log.info(logTitleMsg);
+		log.info("@GetMapping drawingAdd");
+
+		return "drawing/DrawingFormView";
+	}
+	
+	@PostMapping("/make")
+	@ResponseBody
+	public ResponseEntity<?> drawingAdd(@RequestParam(required = true) String boardCredate, 
+	                                    @RequestParam(required = true) Integer personnel) 
+	                                    throws ServletException, IOException {
+	    log.info(logTitleMsg);
+	    log.info("boardCredate: {}, personnel: {}", boardCredate, personnel);
+	     
+	    List<Map<String, Object>> selectedMembers = drawingService.drawingSelect(boardCredate, personnel);
+	    
+	    log.info("selectedMembers: {}", selectedMembers);  // 이 로그를 추가
+
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("selectedMembers", selectedMembers);
+	    
+	    log.info("response: {}", response);  // 로그 메시지 수정
+	    return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/detail")
+	public String drawingDetail(Model model) {
+		log.info(logTitleMsg);
+		
+		DrawingVo drawingVo = drawingService.drawingSelectOne();
+		
+		model.addAttribute("drawingVo", drawingVo);
+		
+		return "drawing/DrawingDetailView";
+	}
 //
 //	@GetMapping("/update")
 //	public String customerUpdate(@RequestParam int customerNo, Model model) {

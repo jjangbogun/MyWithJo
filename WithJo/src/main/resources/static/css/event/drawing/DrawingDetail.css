@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#lottoContainer {
+#drawingContainer {
     max-width: 1000px; /* 최대 너비 설정 */
     margin: 100px auto; /* 중앙 정렬 */
     padding: 40px; /* 내부 여백 */
@@ -62,7 +62,7 @@
 	margin-top: 20px;
 }
 
-#lottoImg {
+#drawingImg {
 	margin-bottom: 20px;
 }
 
@@ -91,19 +91,19 @@
 }
 
 /* 스타일 추가 */
-.winningLottoSelNo {
+.winningdrawingSelNo {
     display: flex;
     justify-content: center; /* 가운데 정렬 */
     gap: 15px; /* 동그라미 간격 */
 }
 
-.memberLottoSelNo {
+.memberdrawingSelNo {
     display: flex;
     justify-content: center; /* 가운데 정렬 */
     gap: 15px; /* 동그라미 간격 */
 }
 
-.lottoNumber {
+.drawingNumber {
     width: 100px; /* 원의 너비 */
     height: 100px; /* 원의 높이 */
     border-radius: 50%; /* 동그라미 */
@@ -119,4 +119,9 @@
 	margin-top: 15px;
 	margin-bottom: 10px;
 	color: #999;
+}
+
+.drawingMember p {
+	margin: 10px;
+	font-size: 16px;
 }

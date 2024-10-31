@@ -68,10 +68,12 @@
 							</p> 
 						</div>
 						<div class="contentDivInner">
-							<div class="boardAddButton" >
-								<button onclick="pageMoveAdd();" class="listButton">게시글 등록</button>
-							</div> <!-- boardAddButton -->
-						</div> <!-- contentDiv -->
+							<c:if test="${memberVo.authority >= 0}">
+								<div class="boardAddButton" >
+									<button onclick="pageMoveAdd();" class="listButton">게시글 등록</button>
+								</div> <!-- boardAddButton -->
+							</c:if>
+							</div> <!-- contentDiv -->
 					</div>
 				</div> <!-- categoryBox -->
 					<div class="boardTableBox">

@@ -85,3 +85,9 @@
 .commentsList {
 	margin-bottom: 30px;
 }
+
+.detailImg {
+	width: 100%;       
+    max-width: 600px;
+	max-height: 400px;
+}

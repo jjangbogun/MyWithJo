@@ -48,17 +48,20 @@ public class DrawingDaoImpl implements DrawingDao{
 //		return sqlSession.insert(namespace + "customerInsertOne", customerVo);
 //	}
 //	
-//	@Override
-//	public CustomerVo customerSelectOne(int customerNo) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.selectOne(namespace + "customerSelectOne", customerNo);
-//	}
-//	
-//	@Override
-//	public int customerUpdateOne(CustomerVo customerVo) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.update(namespace + "customerUpdateOne", customerVo);
-//	}
+	@Override
+	public DrawingVo drawingSelectOne() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "drawingSelectOne");
+	}
+	
+	@Override
+	public List<Map<String, Object>> drawingSelect(String date, int no) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("date", date);
+		map.put("no", no);
+		return sqlSession.selectList(namespace + "drawingSelect", map);
+	}
 //	
 //	@Override
 //	public int customerDeleteOne(int customerNo) {

@@ -33,7 +33,7 @@
             </div>
             <div class="detailBody">
                 <c:if test="${noticeVo.noticeImg ne null}">
-                    <img alt="" src="/upload/${noticeVo.noticeImg}" id="noticeImg">
+                    <img alt="" src="/upload/${noticeVo.noticeImg}" id="noticeImg" class="detailImg">
                 </c:if>
                 <div class="content" id="divnoticeContent">
                     
