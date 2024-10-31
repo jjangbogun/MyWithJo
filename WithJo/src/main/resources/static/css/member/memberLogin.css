@@ -91,7 +91,8 @@
 .signIn_content_element--textBox input::placeholder{
 	text-align: center;
 }
-.signIn_content--loginBtn.signin_btn input{
+.signIn_content--loginBtn_signin_btn input,
+.signIn_content--loginBtn_signinFind_btn input{
 	height: 55px;
 	width: 470px;
 	font-size: 25px;

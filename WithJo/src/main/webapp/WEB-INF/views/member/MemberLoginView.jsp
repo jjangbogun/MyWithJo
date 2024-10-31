@@ -63,9 +63,14 @@
 									<input id="memberPw" type="password" name="memberPw" value="" placeholder="비밀번호를 입력해주세요">
 								</div>
 							</div>
-							<div class="signIn_content--loginBtn signin_btn">
+							<div class="signIn_content--loginBtn_signin_btn">
 								<div class="signIn_content_element--textBox signin_btn">
 									<input type="button" onclick="signInFnc()" value="로그인" class="signin_btn"/>
+								</div>
+							</div>
+							<div class="signIn_content--loginBtn_signinFind_btn">
+								<div class="signIn_content_element--textBox signinFind_btn">
+									<input type="button"  value="아이디/비밀번호 찾기" class="signinFind_btn"/>
 								</div>
 							</div>
 						</form>
@@ -76,6 +81,21 @@
 	</div> 
 	
 	<jsp:include page="/WEB-INF/views/Footer.jsp"/>
+	
+	<!-- 아이디/비밀번호 찾기 모달 -->
+    <div id="findAccountModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>아이디/비밀번호 찾기</h2>
+            <div id="findAccountForm">
+                <input type="text" id="findName" placeholder="이름">
+                <input type="text" id="findId" placeholder="아이디 (비밀번호 찾기 시)">
+                <button onclick="findAccount('id')">아이디 찾기</button>
+                <button onclick="findAccount('password')">비밀번호 찾기</button>
+            </div>
+            <div id="findResult"></div>
+        </div>
+    </div>
   
 </body>
 

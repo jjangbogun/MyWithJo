@@ -59,7 +59,7 @@
 						<!-- 아이디 -->
 						<span><label for="memberId" class="label__memberId">아이디</label></span>						
 						<span><input id="memberId" class="memberId" type="text"  placeholder="영어 + 숫자" name="memberId"></span>		
-						<span><input type="button" class="checkIdBtn"	value="중복 체크"></span>		
+						<span><input type="button" class="checkIdBtn" value="중복 체크"></span>		
 					</div>
 
 

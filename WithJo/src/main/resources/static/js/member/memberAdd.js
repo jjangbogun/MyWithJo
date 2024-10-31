@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function() {	
+
     // 아이디 중복 검사
     $(".checkIdBtn").on("click", function() {
         var memberId = $(".memberId").val(); // 앞뒤 공백 제거
@@ -19,6 +20,7 @@ $(document).ready(function() {
 			alert("아이디는 영어와 숫자만 사용 가능합니다.");
 			return;
 		}
+	
         
      // 아이디가 입력되었을 때만 AJAX 요청 실행
         $.ajax({
@@ -30,6 +32,8 @@ $(document).ready(function() {
                     alert("이미 사용 중인 아이디입니다.");
                 } else {
                     alert("사용 가능한 아이디입니다.");
+					$(".memberId").prop("disabled", true);
+					$(".checkIdBtn").prop("disabled", true);
                 }
             },
             error: function() {
@@ -174,6 +178,12 @@ function findAddress() {
 	}
 	
 function signUpFnc(){
+	
+	if(!$("#memberId").prop("disabled")){
+		alert("아이디 중복 체크를 완료해주세요.");
+		return;
+	}
+	
 	var requiredFields = [
 	        { id: "memberId", name: "아이디" },
 	        { id: "memberPw", name: "비밀번호" },

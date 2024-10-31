@@ -1,3 +1,39 @@
+$(document).ready(function() {
+    // 모달 관련 변수
+    var $modal = $("#findAccountModal");
+    var $btn = $(".signinFind_btn");
+    var $span = $(".close");
+
+    // 아이디/비밀번호 찾기 버튼 클릭 시 모달 열기
+    $btn.on("click", function() {
+        $modal.css("display", "block");
+    });
+
+    // 모달 닫기
+    $span.on("click", function() {
+        $modal.css("display", "none");
+    });
+
+    // 모달 외부 클릭 시 닫기
+    $(window).on("click", function(event) {
+        if (event.target == $modal[0]) {
+            $modal.css("display", "none");
+        }
+    });
+
+    // 엔터 키 이벤트 처리
+    $("#memberPw").keypress(function(e) {
+        if (e.which == 13) { // 엔터 키 코드
+            signInFnc();
+        }
+    });
+
+    // signInFindFnc 함수를 버튼 클릭 이벤트에 직접 연결
+    $(".signinFind_btn").on("click", function() {
+        $modal.css("display", "block");
+    });
+});
+
 function signInFnc() {
     var memberId = $("#memberId").val();
     var memberPw = $("#memberPw").val();
@@ -26,11 +62,43 @@ function signInFnc() {
     });
 }
 
-$(document).ready(function() {
-    // 엔터 키 이벤트 처리
-    $("#memberPw").keypress(function(e) {
-        if (e.which == 13) { // 엔터 키 코드
-            signInFnc();
+
+
+// 아이디/비밀번호 찾기 함수
+function findAccount(type) {
+  var name = $("#findName").val();
+  var id = $("#findId").val();
+
+  if (!name) {
+    alert("이름을 입력해주세요.");
+    return;
+  }
+
+  if (type === 'password' && !id) {
+    alert("아이디를 입력해주세요.");
+    return;
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "/member/find" + (type === 'id' ? "Id" : "Password"),
+    data: JSON.stringify({ memberName: name, memberId: id }),
+    contentType: "application/json",
+    dataType: "json",
+    success: function(response) {
+      if (response.success) {
+        if (type === 'id') {
+          $("#findResult").html("찾은 아이디: " + response.memberId);
+        } else {
+          $("#findResult").html("임시 비밀번호가 이메일로 전송되었습니다.");
         }
-    });
-});
+      } else {
+        $("#findResult").html("일치하는 정보가 없습니다.");
+      }
+    },
+    error: function() {
+      $("#findResult").html("오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  });
+}
+
