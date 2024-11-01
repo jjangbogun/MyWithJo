@@ -102,13 +102,23 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</delete>
 	
-	<select id="memberfindIdByName" parameterType="string" resultType="string">
+	<select id="memberFindIdByName" parameterType="string" resultType="string">
 		SELECT MEMBER_ID
  	    FROM MEMBER
   	    WHERE MEMBER_NAME = #{memberName}
 	</select>
 	
-	
+	<select id="memberFindByNameAndId" resultMap="memberResultMap">
+        SELECT * FROM MEMBER 
+        WHERE MEMBER_NAME = #{memberName} AND MEMBER_ID = #{memberId}
+    </select>
+
+    <update id="memberPwUpdate">
+        UPDATE MEMBER 
+        SET MEMBER_PW = #{memberPw, jdbcType=VARCHAR}
+  		WHERE MEMBER_ID = #{memberId, jdbcType=VARCHAR}
+   		AND MEMBER_NAME = #{memberName, jdbcType=VARCHAR}
+    </update>
 	
 	
 

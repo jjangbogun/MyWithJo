@@ -76,9 +76,26 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public String memberfindIdByName(String memberName) {
+	public String memberFindIdByName(String memberName) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "memberfindIdByName", memberName);
+		return sqlSession.selectOne(namespace + "memberFindIdByName", memberName);
 	}
+
+	@Override
+    public MemberVo memberFindByNameAndId(String memberName, String memberId) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("memberName", memberName);
+        paramMap.put("memberId", memberId);
+        return sqlSession.selectOne(namespace + "memberFindByNameAndId", paramMap);
+    }
+
+    @Override
+    public int memberPwUpdate(String memberId, String newPassword, String memberName) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("memberId", memberId != null ? memberId : "");
+        paramMap.put("memberPw", newPassword != null ? newPassword : "");
+        paramMap.put("memberName", memberName != null ? memberName : "");
+        return sqlSession.update(namespace + "memberPwUpdate", paramMap);
+    }
 
 }

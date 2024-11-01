@@ -81,24 +81,23 @@ function findAccount(type) {
 
   $.ajax({
     type: "POST",
-    url: "/member/find" + (type === 'id' ? "Id" : "Password"),
+    url: "/member/find" + (type === 'id' ? "Id" : "Pw"),
     data: JSON.stringify({ memberName: name, memberId: id }),
     contentType: "application/json",
     dataType: "json",
     success: function(response) {
-      if (response.success) {
-        if (type === 'id') {
-          $("#findResult").html("찾은 아이디: " + response.memberId);
-        } else {
-          $("#findResult").html("임시 비밀번호가 이메일로 전송되었습니다.");
-        }
-      } else {
-        $("#findResult").html("일치하는 정보가 없습니다.");
-      }
-    },
-    error: function() {
-      $("#findResult").html("오류가 발생했습니다. 다시 시도해주세요.");
-    }
-  });
+		if (response.success) {
+			if (type === 'id') {
+		        $("#findResult").html("찾은 아이디: " + response.memberId);
+		    } else {
+		        $("#findResult").html("비밀번호가 초기화되었습니다. 로그인 후 변경해주세요.");
+		    }
+		} else {
+		    $("#findResult").html("일치하는 정보가 없습니다.");
+		}
+		},error: function() {
+			$("#findResult").html("오류가 발생했습니다. 다시 시도해주세요.");
+		}
+	});
 }
 

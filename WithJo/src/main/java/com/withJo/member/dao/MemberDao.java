@@ -17,5 +17,8 @@ public interface MemberDao {
 	public int countByMemberId(String memberId);
 	public int memberDeleteOne(int memberNo);
 	
-	public String memberfindIdByName(String memberName);
+	public String memberFindIdByName(String memberName);
+	public MemberVo memberFindByNameAndId(String memberName, String memberId);
+    public int memberPwUpdate(String memberId, String newPassword, String memberName);
+
 }

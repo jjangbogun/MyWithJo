@@ -15,5 +15,5 @@ public interface MemberService {
 	public boolean isDuplicateId(String memberId);
 	public int memberDeleteOne(int memberNo);
 	public String memberFindIdByName(String memberName);
-
+	public String memberPwUpdate(String memberName, String memberId);
 }

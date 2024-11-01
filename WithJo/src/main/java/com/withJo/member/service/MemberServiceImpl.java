@@ -66,8 +66,21 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String memberFindIdByName(String memberName) {
 		// TODO Auto-generated method stub
-		return memberDao.memberfindIdByName(memberName);
+		return memberDao.memberFindIdByName(memberName);
 	}
+
+	@Override
+    public String memberPwUpdate(String memberName, String memberId) {
+        MemberVo member = memberDao.memberFindByNameAndId(memberName, memberId);
+        if (member != null) {
+            String newPassword = "with123456789";
+            int result = memberDao.memberPwUpdate(memberId, newPassword, memberName);
+            if (result > 0) {
+                return newPassword;
+            }
+        }
+        return null;
+    }
 	
 
 }

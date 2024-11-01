@@ -306,9 +306,33 @@ public class MemberController {
 	        return ResponseEntity.badRequest().body("{\"error\": \"아이디 찾기 중 오류가 발생했습니다.\"}");
 	    }
 	}
+	
+	// 비밀번호 찾기
+	@PostMapping("/findPw")
+	@ResponseBody
+	public ResponseEntity<?> memberPwFind(@RequestBody Map<String, String> payload){
+		String memberName = payload.get("memberName");
+		String memberId = payload.get("memberId");
+		
+		if (memberName == null || memberName.trim().isEmpty() || memberId == null || memberId.trim().isEmpty()) {
+	        return ResponseEntity.badRequest().body("{\"error\": \"이름과 ID를 입력해주세요.\"}");
+	    }
+		
+		try {
+	        String result = memberService.memberPwUpdate(memberName, memberId);
+	        if (result != null) {
+	            return ResponseEntity.ok().body("{\"success\": true, \"memberPw\": \"" + result + "\"}");
+	        } else {
+	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"일치하는 정보가 없습니다.\"}");
+	        }
+	    } catch (Exception e) {
+	        log.error("Error resetting password", e);
+	        return ResponseEntity.badRequest().body("{\"error\": \"비밀번호 재설정 중 오류가 발생했습니다.\"}");
+	    }
+	
 
 	}
-	
+}	
 	
 	
 	
