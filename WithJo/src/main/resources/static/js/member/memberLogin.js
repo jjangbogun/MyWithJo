@@ -90,7 +90,8 @@ function findAccount(type) {
 			if (type === 'id') {
 		        $("#findResult").html("찾은 아이디: " + response.memberId);
 		    } else {
-		        $("#findResult").html("비밀번호가 초기화되었습니다. 로그인 후 변경해주세요.");
+		        $("#findResult").html("비밀번호가 초기화되었습니다.<br>" + "로그인 후 변경해주세요.<br>" + "임시 비밀번호: " + response.memberPw);
+		       
 		    }
 		} else {
 		    $("#findResult").html("일치하는 정보가 없습니다.");
