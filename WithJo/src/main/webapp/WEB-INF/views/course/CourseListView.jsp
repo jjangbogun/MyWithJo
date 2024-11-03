@@ -45,6 +45,12 @@
 					<div class="ageElement adult">
 						<span><button class="ageCategoryBtn" name="adult" onclick="moveCategoryFnc(20);">성인</button></span>
 					</div>
+					<div class="categorySelectList">
+						<div class="categoryList"><button onclick="">전체</button></div>
+						<c:forEach var="categoryList" items="${categoryList}">
+							<div class="categoryList"><button onclick="moveCourseCategoryFnc(${categoryList.categoryNo},${categoryList.courseAgeLimit});">${categoryList.categoryName}</button></div>
+						</c:forEach>
+					</div>
 			</div><!-- ageCategory -->
 			<div class="courseCategory">
 				<div class="courseFlexBox">

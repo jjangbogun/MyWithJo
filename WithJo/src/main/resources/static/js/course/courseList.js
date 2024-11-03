@@ -42,9 +42,13 @@
 				contentType: 'application/json',
 				dataType: 'json',
 				success: function (data) {
-					var courseVo = data;
-				
+					console.log(data);
+			
 				let htmlStr = '';
+					if(data.length == 0){
+						htmlStr += '<div><p>등록된강의가없습니다</p></div>';
+						$('.courseFlexBox').html(htmlStr);
+					}
 					data.forEach(course => {
 						
 							htmlStr += '<div class="courseBox">';
@@ -71,9 +75,28 @@
 			
 	};
 	
-	$('.courseBox').on('click', () => {
+/*	$('.courseBox').on('click', () => {
 		let courseNo = $('.numHidden').val();
 		alert(courseNo);
-		/*location.href = "/course/courseNo?=" + courseNo;*/
+		location.href = "/course/courseNo?=" + courseNo;
 		location.href = "/course/detail?courseNo=" + courseNo;
+	});*/
+	
+	$('.courseBox').on('click', function() {
+	    let courseNo = $(this).find('.numHidden').val();
+	    alert(courseNo);
+	    location.href = "/course/detail?courseNo=" + courseNo;
 	});
+
+	function moveCourseCategoryFnc(categoryNo, courseAgeLimit){
+		$.ajax({
+				url: '/course/' + categoryNo + '?courseAgeLimit=' + courseAgeLimit,
+				method: 'GET',
+				contentType: 'application/json',
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+					
+				}		
+		});
+	}

@@ -140,3 +140,10 @@
  		$('.navElement2 .ImgDiv p:eq(1)').addClass('On');
  		$('.navElement2 .ImgDiv p:eq(0)').removeClass('On');
 	});*/
+	
+	function AddComma(courseCost) {
+		console.log('skdkwqdk');
+	 	courseCost = courseCost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	 	
+	 	return courseCost;
+	}

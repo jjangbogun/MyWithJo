@@ -1,7 +1,9 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.*" %>    
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +19,7 @@
  <!-- 페이지 css -->
 <link rel="stylesheet" href="/css/common/common.css">
 <link rel="stylesheet" href="/css/course/courseDetail.css">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400&display=swap" rel="stylesheet">
 <!--  페이지 js -->
 <script defer src="/js/common/common.js"></script>
 <script defer src="/js/course/courseDetail.js"></script>
@@ -26,7 +29,7 @@
 		<div id="mainContainer">
 			<div class="courseDetailBox">
 				<div class="courseDetailInnerBox">
-					<div class="inner">
+					<div class="courseInner">
 						<div class="rightBox">
 							<div class="rightBoxFloat">
 								<div class="rightBoxInfo">
@@ -150,8 +153,11 @@
 											</div>
 										</div><!-- rightBoxInfoInner -->
 										<div class="courseReservation">
-											
+											<div>
+												<a class="courseResBtn" href="javascript:courseRes(${courseVo.courseNo})"><span>수강신청하기</span></a>
+											</div>
 										</div>
+										</div><!-- rightBoxInfoInner -->
 								</div> <!-- rightBoxInfo -->
 							</div>
 							<div class="infoBox">
@@ -211,7 +217,8 @@
 					</div>
 				</div>
 			</div>
-		
+			<input type="hidden" value="${sessionScope.memberVo.authority}" class="memberVo">
+			<input type="hidden" value="${sessionScope.memberVo.memberNo}" class="memberNo">
 		</div> <!--mainContainer-->
 	<jsp:include page="/WEB-INF/views/Footer.jsp"/>
 </body>

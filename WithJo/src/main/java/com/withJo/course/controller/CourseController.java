@@ -1,5 +1,6 @@
 package com.withJo.course.controller;
 
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,12 +43,14 @@ public class CourseController {
 		log.info(logTitleMsg);
 		log.info("@GetMapping getCourseList");
 		
+		List<CourseVo> categoryList = courseService.getCategory();
 		List<CourseVo> courseList = courseService.getCourseList();
 		
 //		model.addAttribute("courseList", couseList);
 //		model.addAttribute("courseVo", courseVo);
 		ModelAndView mav = new ModelAndView("course/CourseListView");
 		mav.addObject("courseList", courseList);
+		mav.addObject("categoryList", categoryList);
 		
 		return mav;
 	}
@@ -58,8 +62,7 @@ public class CourseController {
 		log.info("@GetMapping courseCategorySelect", courseAgeLimit);
 		
 		List<CourseVo> courseList = courseService.courseCategorySelect(courseAgeLimit);
-		log.info("test",courseList);
-		
+		System.out.println("courseList?!" + courseList);
 		
 		return ResponseEntity.ok(courseList);
 	}
@@ -76,9 +79,43 @@ public class CourseController {
 		ModelAndView mav = new ModelAndView("course/CourseDetailView");
 		mav.addObject("courseVo", courseVo);
 		mav.addObject("courseDay", courseDay);
-		System.out.println("courseDayController"+courseDay);
 		
 		return mav;
+	}
+	
+//	강의 디테일 예약화면
+	@GetMapping("/detail/{courseNo}")
+	public ResponseEntity<CourseVo> getCourseRes(@PathVariable int courseNo){
+		log.info(logTitleMsg);
+		log.info("@GetMapping getCourseDetailList",courseNo);
+		
+		CourseVo courseVo = courseService.egetCourseDetailList(courseNo);
+		System.out.println(courseVo);
+		
+		return ResponseEntity.ok(courseVo);
+	}
+	
+//	강의 리스트 카테고리 분류
+	/*
+	 * @GetMapping("/list/{categoryNo}") public ResponseEntity<List<CourseVo>>
+	 * getCategory(@PathVariable int categoryNo, @RequestParam int courseAgeLimit){
+	 * log.info(logTitleMsg); log.info("@GetMapping getCategory",categoryNo,
+	 * courseAgeLimit);
+	 * 
+	 * List<CourseVo> categoryList = courseService.getCategory(categoryNo,
+	 * courseAgeLimit);
+	 * 
+	 * return ResponseEntity.ok(categoryList); }
+	 */
+	@GetMapping("/{categoryNo}")
+	public ResponseEntity<List<CourseVo>> getCategoryNo(@PathVariable int categoryNo, @RequestParam int courseAgeLimit){
+		log.info(logTitleMsg); 
+		log.info("@GetMapping getCategory",categoryNo, courseAgeLimit);
+		
+		
+		List<CourseVo> categoryList = courseService.getCategoryNo(categoryNo);
+		
+		return ResponseEntity.ok(categoryList);
 	}
 
 }

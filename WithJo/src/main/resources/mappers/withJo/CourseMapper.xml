@@ -5,6 +5,7 @@
 	<resultMap type="courseVo" id="courseResultMap">
 		<id column="COURSE_NO" property="courseNo"/>
 		<result column="CATEGORY_NO" property="categoryNo"/>
+		<result column="CATEGORY_NAME" property="categoryName"/>
 		<result column="COURSE_NAME" property="courseName"/>
 		<result column="COURSE_TEACHER" property="courseTeacher"/>
 		<result column="COURSE_COST" property="courseCost"/>
@@ -21,11 +22,17 @@
 		<result column="COURSE_INFO" property="courseInfo"/>
 		<result column="COURSE_MAIN_IMAGE" property="courseMainImage"/>
 		<result column="COURSE_DAY_OF_THE_WEEK" property="courseDayOfTheWeek"/>
+		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
 	
 	<sql id="age">
 		<if test="courseAgeLimit != null and courseAgeLimit != 0">
-			COURSE_AGE_LIMIT = #{courseAgeLimit}
+			CL.COURSE_AGE_LIMIT = #{courseAgeLimit}
+		</if>
+	</sql>
+	<sql id="categoryNo">
+		<if test="categoryNo != null and courseAgeLimit != 0">
+			CATEGORY_NO = #{categoryNo}
 		</if>
 	</sql>
 	
@@ -37,13 +44,16 @@
 	</select>
 	
 	<select id="courseCategorySelect" parameterType="int" resultMap="courseResultMap">
-		SELECT COURSE_NO, CATEGORY_NO, COURSE_NAME, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE, COURSE_MAX_PEOPLE, COURSE_GENDER_CHECK,
-			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
-			COURSE_INFO, COURSE_MAIN_IMAGE
-		FROM COURSE_LIST
+		SELECT C.CATEGORY_NO, C.CATEGORY_NAME, CL.COURSE_NO, CL.COURSE_NAME, CL.COURSE_TEACHER, CL.COURSE_COST, CL.COURSE_CURRENT_PEOPLE, CL.COURSE_MAX_PEOPLE, CL.COURSE_GENDER_CHECK,
+			CL.COURSE_AGE_LIMIT, CL.COURSE_START_DATE, CL.COURSE_END_DATE, CL.COURSE_START_TIME, CL.COURSE_END_TIME, CL.COURSE_REC_START, CL.COURSE_REC_END,
+			CL.COURSE_INFO, CL.COURSE_MAIN_IMAGE
+		FROM CATEGORY C
+		INNER JOIN COURSE_LIST CL
+		ON C.CATEGORY_NO = CL.CATEGORY_NO
 		<where>
 			<include refid="age"></include>
 		</where>
+		<!--AND C.CATEGORY_NO = #{categoryNo}-->
 	</select>
 	
 	<select id="getCourseDetailList" parameterType="int" resultMap="courseResultMap">
@@ -58,6 +68,35 @@
 		SELECT COURSE_NO AS courseNo,COURSE_DAY_OF_THE_WEEK AS "courseDayOfTheWeek"
 		FROM COURSE_LIST_DAY
 		WHERE COURSE_NO = #{courseNo}
+	</select>
+	
+	<!--<select id="getCategory" parameterType="int" resultMap="courseResultMap">
+		SELECT C.CATEGORY_NO, C.CATEGORY_NAME, CL.COURSE_NO, CL.CATEGORY_NO, CL.COURSE_NAME, CL.COURSE_TEACHER, CL.COURSE_COST,
+			CL.COURSE_AGE_LIMIT, CL.COURSE_START_TIME, CL.COURSE_END_TIME, CL.COURSE_REC_START, CL.COURSE_REC_END,
+			CL.COURSE_INFO, CL.COURSE_MAIN_IMAGE
+		FROM CATEGORY C, COURSE_LIST CL
+		WHERE C.CATEGORY_NO = #{categoryNo}
+		AND C.CATEGORY_NO = CL.CATEGORY_NO
+		AND CL.COURSE_AGE_LIMIT = #{courseAgeLimit}
+	</select>-->
+	<select id="getCategory" resultMap="courseResultMap">
+		SELECT C.CATEGORY_NO, C.CATEGORY_NAME, CL.COURSE_NO, CL.COURSE_AGE_LIMIT
+		FROM CATEGORY C
+		INNER JOIN COURSE_LIST CL
+		ON C.CATEGORY_NO = CL.CATEGORY_NO
+	</select>
+	
+	<select id="getCategoryNo" parameterType="int" resultMap="courseResultMap">
+		SELECT C.CATEGORY_NO, C.CATEGORY_NAME, CL.COURSE_NO, CL.COURSE_NAME, CL.COURSE_TEACHER, CL.COURSE_COST, CL.COURSE_CURRENT_PEOPLE, CL.COURSE_MAX_PEOPLE, CL.COURSE_GENDER_CHECK,
+			CL.COURSE_AGE_LIMIT, CL.COURSE_START_DATE, CL.COURSE_END_DATE, CL.COURSE_START_TIME, CL.COURSE_END_TIME, CL.COURSE_REC_START, CL.COURSE_REC_END,
+			CL.COURSE_INFO, CL.COURSE_MAIN_IMAGE
+		FROM CATEGORY C
+		INNER JOIN COURSE_LIST CL
+		ON C.CATEGORY_NO = CL.CATEGORY_NO
+		WHERE CL.COURSE_AGE_LIMIT = #{courseAgeLimit}
+		<where>
+			<include refid="categoryNo"></include>
+		</where>
 	</select>
 	
 </mapper>

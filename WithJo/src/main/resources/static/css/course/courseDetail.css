@@ -12,10 +12,10 @@
 	border-radius: 15px;
 }
 .courseDetailBox{
+	margin-top: 80px;
 }
 .rightBox{
 	position: relative;
-	top: 80px;
 	/*overflow-x: hidden;*/
 }
 .rightBoxInner{
@@ -35,6 +35,7 @@
 	border-radius : 15px;
 	top:100px;
 	background-color: white;
+	transition: top .4s ease, left .4s ease;
 }
 .course-Ing{
 	margin-top: 10px;
@@ -50,12 +51,14 @@
 }
 .courseReservation{
 	border-top: 1px solid rgb(0 0 0 / 61%);
+	padding: 30px 31px 40px;
 }
 .rightBoxInfoInner{
 	/*overflow-y: auto;*/
 	position:relative;
 	padding: 40px 10px 0 40px;
 	height: 450px;
+	
 }
 .scrollArea::-webkit-scrollbar {
   /* 스크롤바의 너비 */
@@ -146,4 +149,67 @@
 }
 .courseInfoSubElement--flex.detail{
 	margin-left: 40px;
+}
+.courseResBtn{
+	display: inline-block;
+    padding: 18px;
+    width: 330px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #000;
+    border: 1px solid #000;
+    transition: all .4s ease;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+.popHead{
+	border: 1px solid;
+	padding: 0 0 40px 0;
+}
+.popTopArea{
+	display: flex;
+}
+.costArea{
+	border: 1px solid red;
+}
+.back_course{
+	display: block;
+    width: 32px;
+    height: 32px;
+}
+.courseText{
+	margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 26px;
+    font-family: "NotoSans_Medium", sans-serif;
+    color: rgba(0, 0, 0, .9);
+}
+.selectedBox{
+	padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f8f8;
+}
+.courseResBtnBox{
+	display: flex;
+}
+.courseResBtnBox img{
+	border: 1px solid rgb(0 0 0 / 61%);
+	border-radius: 8px;
+	padding: 12px;
+}
+.courseResCostBox{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0 20px;
+	align-items: flex-end;
+}
+.courseResCost p{
+	font-size: 18px;
+}
+.courseResTotalCost p{
+	font-size: 32px;
+	font-family: 'General Sans', sans-serif;
 }

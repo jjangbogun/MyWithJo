@@ -26,7 +26,6 @@ public class CourseServiceImpl implements CourseService{
 	public List<CourseVo> courseCategorySelect(int courseAgeLimit) {
 		// TODO Auto-generated method stub
 		List<CourseVo> courseVo = courseDao.courseCategorySelect(courseAgeLimit);
-		System.out.println("courseVo? " + courseVo);
 		
 		return courseVo;
 	}
@@ -44,9 +43,26 @@ public class CourseServiceImpl implements CourseService{
 		
 		List<CourseVo> courseDay = courseDao.getCourseDay(courseNo);
 		resultMap.put("courseDay", courseDay);
-		System.out.println("courseDay??:" + courseDay);
 		
 		return resultMap;
+	}
+
+	@Override
+	public List<CourseVo> getCategory() {
+		// TODO Auto-generated method stub
+		
+		List<CourseVo> categoryList = courseDao.getCategory();
+		
+		return categoryList;
+	}
+
+	@Override
+	public List<CourseVo> getCategoryNo(int categoryNo) {
+		// TODO Auto-generated method stub
+		
+		List<CourseVo> categoryVo = courseDao.getCategoryNo(categoryNo);
+		
+		return categoryVo;
 	}
 
 	

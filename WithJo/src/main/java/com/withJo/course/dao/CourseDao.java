@@ -11,4 +11,6 @@ public interface CourseDao {
 	public List<CourseVo> courseCategorySelect(int courseAgeLimit);
 	public CourseVo getCourseDetailList(int courseNo);
 	public List<CourseVo> getCourseDay(int courseNo);
+	public List<CourseVo> getCategory();
+	public List<CourseVo> getCategoryNo(int categoryNo);
 }

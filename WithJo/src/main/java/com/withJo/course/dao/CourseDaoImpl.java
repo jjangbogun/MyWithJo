@@ -1,8 +1,11 @@
 package com.withJo.course.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.util.ParameterMap;
+import org.apache.ibatis.binding.MapperMethod.ParamMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,5 +45,17 @@ public class CourseDaoImpl implements CourseDao{
 		return sqlSession.selectList(namespace + "getCourseDay",courseNo);
 	}
 
-	
+	@Override
+	public List<CourseVo> getCategory() {
+		// TODO Auto-generated method stub
+	    
+		return sqlSession.selectList(namespace + "getCategory");
+	}
+
+	@Override
+	public List<CourseVo> getCategoryNo(int categoryNo) {
+	    
+		return sqlSession.selectList(namespace + "getCourseDay",categoryNo);
+	}
+
 }
