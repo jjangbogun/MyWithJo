@@ -246,7 +246,8 @@ public class MemberController {
 	    log.info(logTitleMsg);
 	    log.info("GetMapping showUpdateForm memberNo: {}", memberNo);
 	    
-	    if (memberNo != 0) {
+	    if (memberNo != 0) {	    	
+	    	
 	        MemberVo memberVo = memberService.memberSelectOne(memberNo);
 	        if (memberVo != null) {
 	            model.addAttribute("memberVo", memberVo);
@@ -272,8 +273,12 @@ public class MemberController {
 
 	    if (memberVo.getMemberNo() != 0) {
 	        try {
+	        	if(memberVo.getMemberPw() != null && memberVo.getMemberPw().isEmpty()) {
+	        		memberVo.setMemberPw(null);
+	        	}
+	        	
 	            memberService.memberUpdateOne(memberVo);
-	            return ResponseEntity.ok().body("{\"message\": \"회원 정보가 성공적으로 업데이트되었습니다.\"}");
+	            return ResponseEntity.ok().body(Map.of("success", true, "message", "회원 정보가 성공적으로 업데이트되었습니다."));
 	        } catch (Exception e) {
 	            log.error("Error updating member", e);
 	            return ResponseEntity.badRequest().body("{\"error\": \"회원 정보 업데이트 중 오류가 발생했습니다.\"}");

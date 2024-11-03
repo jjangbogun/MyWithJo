@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 <!-- css 초기화 -->
 <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
 <!-- 페이지 css -->
+<link rel="stylesheet" href="/css/member/memberUpdate.css">
 <link rel="stylesheet" href="/css/common/common.css">
 <script defer src="/js/common/common.js"></script>
 <script defer src="/js/member/memberUpdate.js"></script>
@@ -53,15 +55,31 @@
               <div class="update_content_memberId--textBox">
                 <a class="memberId">${memberVo.memberId}</a>             
               </div>
-            </div>
+            </div>           
             
-                     
+            
+            <div class="main_update_content_memberNewPw">
+              <label for="memberNewPw">새 비밀번호</label>
+              <div class="update_content_memberNewPw--textBox">
+                <input type="password" class="memberNewPw" placeholder="변경하실 비밀번호를 입력해주세요">           
+              </div>
+              <div class="memberNewPwMessage"></div>
+            </div>                   
                     
             <!-- 이름 -->
             <div class="main_update_content_memberName">
               <label for="memberName">이름</label>
               <div class="update_content_memberName--textBox">
                 <a class="memberId">${memberVo.memberName}</a>
+              </div>
+            </div> 
+            
+            <div class="main_update_content_memberBirthDate">
+              <label for="memberBirthDate">생년월일</label>
+              <div class="update_content_memberBirthDate--textBox">
+                <fmt:parseDate value="${memberVo.memberBirthDate}" pattern="yyyyMMdd" var="parsedDate" />
+				<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" var="formattedDate" />
+				<a class="memberId">${formattedDate}</a>
               </div>
             </div> 
                                
@@ -71,8 +89,7 @@
          	  		<input type="text" id="memberZipCode" name="memberZipCode" placeholder="우편번호" readonly value="${memberVo.memberZipCode}">
 					<input type="button" onclick="findAddress()" value="우편번호 찾기"><br>
 					<input type="text" id="memberAddress" name="memberAddress" placeholder="주소" readonly value="${memberVo.memberAddress}"><br>
-					<input type="text" id="memberAddressInfo" name=memberAddressInfo placeholder="상세주소" value="${memberVo.memberAddressInfo}">
-					<input type="text" id="sample6_extraAddress" placeholder="참고항목" disabled>							
+					<input type="text" id="memberAddressInfo" name=memberAddressInfo placeholder="상세주소" value="${memberVo.memberAddressInfo}">											
 				</div>
 			</div>	
 			

@@ -81,7 +81,8 @@
 	
 	<update id="memberUpdateOne" parameterType="memberVo">
 		UPDATE MEMBER
-		<set>			
+		<set>		
+			<if test="memberPw != null">MEMBER_PW= #{memberPw},</if>	
 			<if test="memberZipCode != ''">MEMBER_ZIP_CODE = #{memberZipCode},</if>
 			<if test="memberAddress != ''">MEMBER_ADDRESS = #{memberAddress},</if>
 			MEMBER_ADDRESS_INFO = #{memberAddressInfo},
