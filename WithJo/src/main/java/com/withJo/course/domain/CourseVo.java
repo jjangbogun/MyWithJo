@@ -28,7 +28,7 @@ public class CourseVo extends MemberVo{
 	private Date courseRecStart;
 	private Date courseRecEnd;
 	private String courseInfo;
-	private String CourseMainImage;
+	private String courseMainImage;
 	private int courseDayOfTheWeek;
 	
 	
