@@ -57,7 +57,7 @@
 						</div>
 						<div class="contentDivInner">
 							<div class="drawingAddButton" >
-								<button onclick="pageMoveAdd();" class="listButton">로또 등록</button>
+								<button onclick="pageMoveAdd();" class="listButton">게시글 추첨하기</button>
 							</div> <!-- drawingAddButton -->
 						</div> <!-- contentDiv -->
 					</div>	
@@ -72,12 +72,11 @@
 									${drawingVo.drawingMemberNo}
 								</div>
 								<div class="tableDateElement">
-									${drawingVo.drawingStartDate} - ${drawingVo.drawingEndDate}
+									${drawingVo.drawingMemberName}
 								</div>
-								<div class="tableTimeElement">
-									<fmt:formatDate value="${drawingVo.drawingCredate}" pattern="yyyy-MM-dd" />
-								</div>
-								
+								<div class="tableDateElement">
+									${drawingVo.drawingStartDate} / ${drawingVo.drawingEndDate}
+								</div>								
 								<div class="tableTimeElement">
 									<button class="btn2" type="button" onclick="deleteFnc(${drawingVo.drawingNo});">삭제</button>
 								</div>

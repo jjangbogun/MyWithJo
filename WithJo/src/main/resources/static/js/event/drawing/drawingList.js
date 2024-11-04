@@ -13,6 +13,10 @@ function pageMoveDetail() {
     location.href = './detail';
 }
 
+function pageMoveAdd() {
+    location.href = './add';
+}
+
 function deleteFnc(drawingNo) {        
     if(confirm("해당 회차를 삭제 하시겠습니까?")) {	    	
         $.ajax({

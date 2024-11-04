@@ -7,8 +7,11 @@ public class DrawingVo {
 	private int drawingNo;           
 	private int drawingRound;      
 	private int memberNo;      
+	private int drawingPersonnel;      
     private String memberName;
     private String drawingMemberNo;
+    private String drawingMemberId;
+    private String drawingMemberName;
     private String drawingStartDate;
     private String drawingEndDate;
     private Date drawingCredate;
@@ -18,14 +21,18 @@ public class DrawingVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DrawingVo(int drawingNo, int drawingRound, int memberNo, String memberName, String drawingMemberNo,
-			String drawingStartDate, String drawingEndDate, Date drawingCredate) {
+	public DrawingVo(int drawingNo, int drawingRound, int memberNo, int drawingPersonnel, String memberName,
+			String drawingMemberNo, String drawingMemberId, String drawingMemberName, String drawingStartDate,
+			String drawingEndDate, Date drawingCredate) {
 		super();
 		this.drawingNo = drawingNo;
 		this.drawingRound = drawingRound;
 		this.memberNo = memberNo;
+		this.drawingPersonnel = drawingPersonnel;
 		this.memberName = memberName;
 		this.drawingMemberNo = drawingMemberNo;
+		this.drawingMemberId = drawingMemberId;
+		this.drawingMemberName = drawingMemberName;
 		this.drawingStartDate = drawingStartDate;
 		this.drawingEndDate = drawingEndDate;
 		this.drawingCredate = drawingCredate;
@@ -55,6 +62,14 @@ public class DrawingVo {
 		this.memberNo = memberNo;
 	}
 
+	public int getDrawingPersonnel() {
+		return drawingPersonnel;
+	}
+
+	public void setDrawingPersonnel(int drawingPersonnel) {
+		this.drawingPersonnel = drawingPersonnel;
+	}
+
 	public String getMemberName() {
 		return memberName;
 	}
@@ -69,6 +84,22 @@ public class DrawingVo {
 
 	public void setDrawingMemberNo(String drawingMemberNo) {
 		this.drawingMemberNo = drawingMemberNo;
+	}
+
+	public String getDrawingMemberId() {
+		return drawingMemberId;
+	}
+
+	public void setDrawingMemberId(String drawingMemberId) {
+		this.drawingMemberId = drawingMemberId;
+	}
+
+	public String getDrawingMemberName() {
+		return drawingMemberName;
+	}
+
+	public void setDrawingMemberName(String drawingMemberName) {
+		this.drawingMemberName = drawingMemberName;
 	}
 
 	public String getDrawingStartDate() {
@@ -98,9 +129,11 @@ public class DrawingVo {
 	@Override
 	public String toString() {
 		return "DrawingVo [drawingNo=" + drawingNo + ", drawingRound=" + drawingRound + ", memberNo=" + memberNo
-				+ ", memberName=" + memberName + ", drawingMemberNo=" + drawingMemberNo + ", drawingStartDate="
-				+ drawingStartDate + ", drawingEndDate=" + drawingEndDate + ", drawingCredate=" + drawingCredate + "]";
-	} 
+				+ ", drawingPersonnel=" + drawingPersonnel + ", memberName=" + memberName + ", drawingMemberNo="
+				+ drawingMemberNo + ", drawingMemberId=" + drawingMemberId + ", drawingMemberName=" + drawingMemberName
+				+ ", drawingStartDate=" + drawingStartDate + ", drawingEndDate=" + drawingEndDate + ", drawingCredate="
+				+ drawingCredate + "]";
+	}
 
 
 }

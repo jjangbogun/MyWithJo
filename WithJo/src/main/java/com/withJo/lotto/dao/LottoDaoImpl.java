@@ -65,12 +65,18 @@ public class LottoDaoImpl implements LottoDao{
 		return sqlSession.selectOne(namespace + "lottoCountCheck", lottoVo);
 	}
 	
-//	@Override
-//	public int boardUpdateOne(BoardVo boardVo) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.update(namespace + "boardUpdateOne", boardVo);
-//	}
-//	
+	@Override
+	public int lottoInsertEMoney(int emoney, int memberNo) {
+		// TODO Auto-generated method stub
+		String detail = "로또 이벤트 보상입니다.";
+		Map<String, Object> map = new HashMap<>();
+		map.put("eMoney", emoney);
+		map.put("memberNo", memberNo);
+		map.put("detail", detail);
+		
+		return sqlSession.delete(namespace + "lottoInsertEMoney", map);
+	}
+	
 	@Override
 	public int lottoDeleteOne(int lottoNo) {
 		// TODO Auto-generated method stub

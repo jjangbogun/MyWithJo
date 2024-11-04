@@ -41,13 +41,13 @@ public class DrawingDaoImpl implements DrawingDao{
 		map.put("searchKeyword", searchKeyword);
 		return sqlSession.selectOne(namespace + "drawingTotalCount", map);
 	}
-//	
-//	@Override
-//	public int customerInsertOne(CustomerVo customerVo) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.insert(namespace + "customerInsertOne", customerVo);
-//	}
-//	
+	
+	@Override
+	public int drawingInsertOne(DrawingVo drawingVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace + "drawingInsertOne", drawingVo);
+	}
+	
 	@Override
 	public DrawingVo drawingSelectOne() {
 		// TODO Auto-generated method stub
@@ -55,17 +55,18 @@ public class DrawingDaoImpl implements DrawingDao{
 	}
 	
 	@Override
-	public List<Map<String, Object>> drawingSelect(String date, int no) {
+	public List<Map<String, Object>> drawingSelect(String startDate, String endDate, int no) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
-		map.put("date", date);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
 		map.put("no", no);
 		return sqlSession.selectList(namespace + "drawingSelect", map);
 	}
-//	
-//	@Override
-//	public int customerDeleteOne(int customerNo) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.delete(namespace + "customerDeleteOne", customerNo);
-//	}
+	
+	@Override
+	public int drawingDeleteOne(int drawingNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace + "drawingDeleteOne", drawingNo);
+	}
 }

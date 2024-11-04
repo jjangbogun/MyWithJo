@@ -54,13 +54,13 @@ public class LottoServiceImpl implements LottoService{
 		// TODO Auto-generated method stub
 		return lottoDao.lottoCountCheck(lottoVo);
 	}
-//	
-//	@Override
-//	public int boardUpdateOne(BoardVo boardVo) {
-//		// TODO Auto-generated method stub
-//		return boardDao.boardUpdateOne(boardVo);
-//	}
-//	
+
+	@Override
+	public int lottoInsertEMoney(int emoney, int memberNo) {
+		// TODO Auto-generated method stub
+		return lottoDao.lottoInsertEMoney(emoney, memberNo);
+	}
+	
 	@Override
 	public int lottoDeleteOne(int lottoNo) {
 		// TODO Auto-generated method stub

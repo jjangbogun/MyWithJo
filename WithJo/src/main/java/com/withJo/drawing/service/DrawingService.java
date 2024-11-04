@@ -10,8 +10,8 @@ public interface DrawingService {
 	
 	List<DrawingVo> drawingSelectList(int start, int end, String searchField, String searchKeyword);
 	public int drawingTotalCount(String searchField, String searchKeyword);
-//	public int drawingInsertOne(DrawingVo drawingVo);
+	public int drawingInsertOne(DrawingVo drawingVo);
 	public DrawingVo drawingSelectOne();
-	public List<Map<String, Object>> drawingSelect(String date, int no);
-//	public int drawingDeleteOne(int drawingNo);
+	public List<Map<String, Object>> drawingSelect(String startDate, String endDate, int no);
+	public int drawingDeleteOne(int drawingNo);
 }

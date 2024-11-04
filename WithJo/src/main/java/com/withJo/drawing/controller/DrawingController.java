@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ import com.withJo.customer.domain.CustomerVo;
 import com.withJo.customer.service.CustomerService;
 import com.withJo.drawing.domain.DrawingVo;
 import com.withJo.drawing.service.DrawingService;
+import com.withJo.lotto.domain.LottoVo;
 import com.withJo.notice.domain.NoticeVo;
 import com.withJo.util.FileUpload;
 import com.withJo.util.Paging;
@@ -85,15 +87,25 @@ public class DrawingController {
 		return "drawing/DrawingFormView";
 	}
 	
+	@PostMapping("/add")
+	public String drawingAdd(@RequestBody DrawingVo drawingVo) {
+	    log.info("drawingAdd");
+	    
+	    drawingService.drawingInsertOne(drawingVo);
+
+	    return "redirect:/drawing/list";
+	}
+	
 	@PostMapping("/make")
 	@ResponseBody
-	public ResponseEntity<?> drawingAdd(@RequestParam(required = true) String boardCredate, 
+	public ResponseEntity<?> drawingAdd(@RequestParam(required = true) String boardStartDate,
+										@RequestParam(required = true) String boardEndDate, 
 	                                    @RequestParam(required = true) Integer personnel) 
 	                                    throws ServletException, IOException {
 	    log.info(logTitleMsg);
-	    log.info("boardCredate: {}, personnel: {}", boardCredate, personnel);
+	    log.info("boardCredate: {}, personnel: {}", boardStartDate, boardEndDate, personnel);
 	     
-	    List<Map<String, Object>> selectedMembers = drawingService.drawingSelect(boardCredate, personnel);
+	    List<Map<String, Object>> selectedMembers = drawingService.drawingSelect(boardStartDate, boardEndDate, personnel);
 	    
 	    log.info("selectedMembers: {}", selectedMembers);  // 이 로그를 추가
 
@@ -159,13 +171,13 @@ public class DrawingController {
 //	    return "redirect:/customer/detail?customerNo=" + customerNo; 
 //	}
 //	
-//	@PostMapping("/delete")
-//	public String customerDelete(@RequestParam int customerNo) {
-//	    log.info("Deleting customer with ID: {}", customerNo);
-//	    
-//	    customerService.customerDeleteOne(customerNo);
-//
-//	    return "redirect:/customer/list"; 
-//	}
+	@PostMapping("/delete")
+	public String drawingDelete(@RequestParam int drawingNo) {
+	    log.info("Deleting drawing with ID: {}", drawingNo);
+	    
+	    drawingService.drawingDeleteOne(drawingNo);
+
+	    return "redirect:/drawing/list"; 
+	}
 	
 }

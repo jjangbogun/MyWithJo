@@ -1,4 +1,4 @@
-let globalMatchCount = 0;
+/*let globalMatchCount = 0;
 let lottoSelNoArray2 = 0;
 
 $(document).ready(function() {
@@ -152,4 +152,4 @@ function pageMoveLottoList() {
 
 function pageMoveEventList() {
 	location.href = '/event/list';
-}
+}*/

@@ -12,10 +12,32 @@
 <link rel="stylesheet" href="/css/event/drawing/drawingDetail.css">
 <script defer src="/js/common/common.js"></script>
 <script src="/js/event/drawing/drawingDetail.js"></script>
+
+<script type="text/javascript">
+	function divInMember() {
+		var drawingMembers = $("#drawingMembers").val();
+		var drawingMemberIds = $("#drawingMemberIds").val();
+
+		var namesArray = JSON.parse(drawingMembers);
+		var idsArray = JSON.parse(drawingMemberIds);
+		
+		var htmlStr = "";
+		
+		for (var i = 0; i < namesArray.length; i++) {
+			htmlStr += '<p>' + namesArray[i] + '(' + idsArray[i] + ')' + '</p>';
+		}
+		
+		$("#divMemberContainer").html(htmlStr);		
+	}
+	
+</script>
+
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/Header.jsp"/>
 
+    <input type="hidden" id="drawingMembers" name="drawingMembers" value='${drawingVo.drawingMemberName}'>
+	<input type="hidden" id="drawingMemberIds" name="drawingMemberIds" value='${drawingVo.drawingMemberId}'> 
     <div id="drawingContainer">
         <div>
         	<div class="btnDiv">
@@ -34,12 +56,12 @@
                 		<p>해당기한내에 게시글을 작성하신분들중 랜덤으로 3명에게 포인트를 드립니다.</p>
                 		<p>당첨되신분들 축하합니다!</p>
                 	</div>
-                	<div>
-                		<p>${drawingVo.drawingMemberNo}</p>
+                	<div id="divMemberContainer">
+
                 	</div>
                 </div>
             </div>        
-               
+
             <div class="reminderDiv">
                 <ul>
                     <li>※본 이벤트 기한은 변경될 수 있습니다.</li>
@@ -53,4 +75,9 @@
     </div>
     <jsp:include page="/WEB-INF/views/Footer.jsp"/>
 </body>
+<script type="text/javascript">
+	divInMember();
+</script>
 </html>
+
+

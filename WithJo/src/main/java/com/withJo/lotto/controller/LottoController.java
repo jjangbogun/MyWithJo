@@ -90,18 +90,6 @@ public class LottoController {
 		return "lotto/LottoFormView";
 	}
 	
-//	@RequestMapping(value = "/make", method = { RequestMethod.GET, RequestMethod.POST })
-//	public ResponseEntity<String> lottoSelect() {
-//	    Set<Integer> lottoNum = lottoService.lottoNum();
-//	    List<Integer> tempSet = new ArrayList<>(lottoNum);
-//	    Collections.sort(tempSet);
-//	    
-//	    String tempSetStr = "[" + tempSet.stream()
-//	                                     .map(String::valueOf)
-//	                                     .collect(Collectors.joining(", ")) + "]";
-//	    
-//	    return ResponseEntity.ok(tempSetStr);
-//	}
 	
 	@RequestMapping(value = "/make", method = { RequestMethod.GET, RequestMethod.POST })
 	public ResponseEntity<String> lottoSelect() {
@@ -129,6 +117,19 @@ public class LottoController {
 	    lottoService.lottoInsertOne2(lottoVo);
 
 	    return "redirect:/lotto/list";
+	}
+	
+	@PostMapping("/emoney")
+	public String lottoEmoney(@RequestBody Map<String, Object> payload) {
+	    log.info("lottoEmoney");
+	    
+	    int eMoney = (Integer) payload.get("eMoney");
+	    int memberNo = (Integer) payload.get("memberNo");
+
+	    // 필요한 서비스 호출
+	    lottoService.lottoInsertEMoney(eMoney, memberNo);
+
+	    return "redirect:/lotto/detail";
 	}
 	
 	@GetMapping("/test")

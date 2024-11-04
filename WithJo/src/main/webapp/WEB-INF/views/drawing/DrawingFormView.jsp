@@ -16,10 +16,11 @@
 </head>
 <script type="text/javascript">
 function makeDrawingMember() {
-    var boardCredate = $('#boardCredate').val();
+    var boardStartDate = $('#drawingStartDate').val();
+    var boardEndDate = $('#drawingEndDate').val();
     var personnel = $('#personnel').val();
 
-    if (!boardCredate || !personnel) {
+    if (!boardStartDate || !boardEndDate || !personnel) {
         alert("기간과 인원을 설정해주세요");
         return;
     }
@@ -28,16 +29,21 @@ function makeDrawingMember() {
         url: '/drawing/make',
         method: 'POST',
         data: {
-            "boardCredate": boardCredate,
+            "boardStartDate": boardStartDate,
+            "boardEndDate": boardEndDate,
             "personnel": personnel
         },
         success: function (response) {
             let htmlStr = '<div id="drawingMemberNo">';
             let selectedMemberNos = []; // 선택된 회원 번호를 저장할 배열            
+            let selectedMemberNames = []; // 선택된 회원 번호를 저장할 배열            
+            let selectedMemberIds = []; // 선택된 회원 번호를 저장할 배열            
             
             response.selectedMembers.forEach(function(member) {
-                htmlStr += '<p>번호: ' + member.MEMBER_NO + ', 이름: ' + member.MEMBER_NAME + '</p>';
+                htmlStr += '<p>번호: ' + member.MEMBER_NO + ', 이름: ' + member.MEMBER_NAME + ', 이름: ' + member.MEMBER_ID + '</p>';
                 selectedMemberNos.push(member.MEMBER_NO); // 회원 번호를 배열에 추가
+                selectedMemberNames.push(member.MEMBER_NAME); // 회원 번호를 배열에 추가
+                selectedMemberIds.push(member.MEMBER_ID); // 회원 번호를 배열에 추가
             });          
 
             htmlStr += '</div>';
@@ -45,8 +51,11 @@ function makeDrawingMember() {
 
             // 선택된 회원 번호 배열을 hidden input의 value로 설정
             $('#drawingMemberNo').val(JSON.stringify(selectedMemberNos));
+            $('#drawingMemberName').val(JSON.stringify(selectedMemberNames));
+            $('#drawingMemberId').val(JSON.stringify(selectedMemberIds));
 
             console.log("선택된 회원 번호:", selectedMemberNos); // 콘솔에 로그 출력
+            console.log("drawingMemberNo의 값:", $('#drawingMemberNo').val());
         },
         error: function(xhr, status, error) {
             alert('Error: ' + error);
@@ -58,6 +67,9 @@ function makeDrawingMember() {
 	
 	<jsp:include page="/WEB-INF/views/Header.jsp"/> 
 	<input type="hidden" id="drawingMemberNo" name="drawingMemberNo" value="">
+	<input type="hidden" id="drawingMemberName" name="drawingMemberName" value="">
+	<input type="hidden" id="drawingMemberId" name="drawingMemberId" value="">
+	<input type="hidden" id="memberNo" name="memberNo" value="${memberVo.memberNo}">
 	<div id="drawingAddContainer">
 		<h1>게시글 추첨 등록</h1>
 		    
@@ -77,11 +89,6 @@ function makeDrawingMember() {
 		    </div>
 		    
 		    <div>
-		        <label for="boardCredate">게시글 추첨 기간</label><br>
-		        <input class="dateInput" type="date" id="boardCredate" name="boardCredate"><br>
-		    </div>
-		    
-		    <div>
 		        <label for="personnel">추첨 인원</label><br>
 		        <input type="number" id="personnel" name="personnel"><br>
 		    </div>
@@ -92,7 +99,7 @@ function makeDrawingMember() {
 		    
 		    <div id="btnDiv">
 		        <input class="drawingBtn3" type="button" value="게시글 회원추첨" onclick="makeDrawingMember();">
-		        <input class="drawingBtn3" type="button" value="등록" onclick="adddrawing();">
+		        <input class="drawingBtn3" type="button" value="등록" onclick="addDrawing();">
 				<input class="drawingBtn3" type="button" value="뒤로가기" onclick="pageMoveList();">
 		    </div>
 	</div>

@@ -1,5 +1,6 @@
 let globalMatchCount = 0;
 let lottoSelNoArray2 = 0;
+let eMoney = 0;
 
 $(document).ready(function() {
     const lottoSelNoStr = $("#lottoSelNoStr").val();
@@ -77,10 +78,13 @@ function displayMatchResult(matchingNumbers) {
     let resultText;
     if (globalMatchCount > 3) {
         resultText = "축하합니다! 1등입니다: " + matchingNumbers.join(", ");
+		eMoney = 10000;
     } else if (globalMatchCount == 2) {
         resultText = "축하합니다! 2등입니다: " + matchingNumbers.join(", ");
+		eMoney = 5000;
     } else if (globalMatchCount == 1) {
         resultText = "축하합니다! 3등입니다: " + matchingNumbers.join(", ");
+		eMoney = 3000;
     } else {
         resultText = "아쉽지만 다음기회에~";
     }
@@ -94,6 +98,32 @@ function displayMatchResult(matchingNumbers) {
         });
     
     insertMemberLotto();
+	
+	if(eMoney > 1) {
+		insertMemberEMoney(eMoney)
+	};
+}
+
+function insertMemberEMoney(eMoney){
+	console.log(eMoney);
+	var emoneyData = {
+		eMoney: eMoney,
+		memberNo: parseInt($("#memberNo").val(), 10)
+	};
+	$.ajax({
+	    url: '/lotto/emoney',
+	    method: 'POST',
+	    contentType: 'application/json',
+	    data: JSON.stringify(emoneyData),
+	    success: function (data) {
+			eMoney = 0;
+	    },
+	    error: function(xhr, status, error) {
+	        console.error('Error:', error);
+	        alert('Error: ' + status + ' - ' + error);
+	    }
+	});
+	
 }
 
 function insertMemberLotto() {

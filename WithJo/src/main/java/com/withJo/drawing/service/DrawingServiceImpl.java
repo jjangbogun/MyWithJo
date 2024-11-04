@@ -32,13 +32,13 @@ public class DrawingServiceImpl implements DrawingService{
 		// TODO Auto-generated method stub
 		return drawingDao.drawingTotalCount(searchField, searchKeyword);
 	}
-//	
-//	@Override
-//	public int customerInsertOne(CustomerVo customerVo) {
-//		// TODO Auto-generated method stub
-//		return customerDao.customerInsertOne(customerVo);
-//	}
-//	
+	
+	@Override
+	public int drawingInsertOne(DrawingVo drawingVo) {
+		// TODO Auto-generated method stub
+		return drawingDao.drawingInsertOne(drawingVo);
+	}
+	
 	@Override
 	public DrawingVo drawingSelectOne() {
 		// TODO Auto-generated method stub
@@ -46,14 +46,14 @@ public class DrawingServiceImpl implements DrawingService{
 	}
 	
 	@Override
-	public List<Map<String, Object>> drawingSelect(String date, int no) {
+	public List<Map<String, Object>> drawingSelect(String startDate, String endDate, int no) {
 		// TODO Auto-generated method stub
-		return drawingDao.drawingSelect(date, no);
+		return drawingDao.drawingSelect(startDate, endDate, no);
 	}
 	
-//	@Override
-//	public int customerDeleteOne(int customerNo) {
-//		// TODO Auto-generated method stub
-//		return customerDao.customerDeleteOne(customerNo);
-//	}
+	@Override
+	public int drawingDeleteOne(int drawingNo) {
+		// TODO Auto-generated method stub
+		return drawingDao.drawingDeleteOne(drawingNo);
+	}
 }
