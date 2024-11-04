@@ -85,7 +85,7 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						<div class="memberDetail_update_content_memberBirthDate">
 							<label for="memberBirthDate">생년월일</label>
 							<div class="update_content_memberBirthDate--textBox">
-								<fmt:parseDate value="${memberVo.memberBirthDate}" pattern="yyyyMMdd" var="parsedDate" />
+								<fmt:parseDate value="${memberVo.memberBirthDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate" />
 								<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" var="formattedDate" />
 								<a class="memberId">${formattedDate}</a>
 							</div>

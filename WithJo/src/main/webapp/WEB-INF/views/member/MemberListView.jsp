@@ -55,14 +55,14 @@
 				</tr>	
 				<c:forEach var="memberVo" items="${memberList}">					
 					<tr class="firstInformation">	
-						<td class="information__id">${memberVo.memberId}</td>					
+						<td class="information__id"><a href="/member/detail?memberNo=${memberVo.memberNo}">${memberVo.memberId}</a></td>					
 						<td class="information__name">${memberVo.memberName}</td>
 						<td class="information__credate"><fmt:formatDate value="${memberVo.memberCredate}" pattern="yyyy-MM-dd" /></td>
 						<td class="information__memberDelete">
 							<c:if test="${sessionScope.memberVo.authority eq 1}">
 								<input type="button" value="삭제하기" onclick='memberDeleteFnc(${memberVo.memberNo})'>								
 							</c:if>
-							<a href="/member/detail?memberNo=${memberVo.memberNo}">상세보기</a>
+							
 						</td>
 					</tr>					
 				</c:forEach>

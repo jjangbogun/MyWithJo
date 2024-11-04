@@ -1,73 +1,121 @@
 @charset "UTF-8";
 
-.informationSearch{
-	margin-top: 150px;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-.information .informationTable{
-	border: 1px solid black;
-	border-collapse: collapse;
-	width: 100%;
+.informationSearch {
+    margin: 50px auto;
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.information .informationTable .tableBody .informationTitle{
-	border: 1px solid black;
-	border-collapse: collapse;
+.searchNField {
+	margin-top: 50px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
-.information .informationTable .tableBody .informationTitle .informationTitle_memberId{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+#searchNKeyword {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 250px;
 }
 
-.information .informationTable .tableBody .informationTitle .informationTitle_memberName{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.information .informationTable .tableBody .informationTitle .informationTitle_memberCredate{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+button:hover {
+    background-color: #0056b3;
 }
 
-.information .informationTable .tableBody .informationTitle .informationTitle_memberDelete{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+.information {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
 }
 
-
-
-.information .informationTable .tableBody .firstInformation{
-	border: 1px solid black;
-	border-collapse: collapse;
+.informationTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
-.information .informationTable .tableBody .firstInformation .information__name{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
- }
-
-
-.information .informationTable .tableBody .firstInformation .information__id{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+.tableBody .informationTitle td {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px;
 }
 
-.information .informationTable .tableBody .firstInformation .information__credate{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+.firstInformation td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.information .informationTable .tableBody .firstInformation .information__memberDelete{
-	border: 1px solid black;
-	border-collapse: collapse;
-	text-align: center;
+.firstInformation:last-child td {
+    border-bottom: none;
 }
 
+.firstInformation:hover {
+    background-color: #f8f9fa;
+}
+
+.information__id a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.information__id a:hover {
+    text-decoration: underline;
+}
+
+.information__memberDelete input[type="button"] {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.information__memberDelete input[type="button"]:hover {
+    background-color: #c82333;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .informationTable {
+        font-size: 14px;
+    }
+    
+    .informationSearch {
+        padding: 15px;
+    }
+    
+    #searchNKeyword {
+        width: 200px;
+    }
+}
