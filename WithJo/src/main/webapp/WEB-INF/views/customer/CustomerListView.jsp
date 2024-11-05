@@ -66,7 +66,7 @@
 							</p> 
 						</div>
 						<div class="contentDivInner">
-							<c:if test="${memberVo.authority >= 0}">
+							<c:if test="${memberVo.authority == 0}">
 								<div class="customerAddButton" >
 									<button onclick="pageMoveAdd();" class="listButton">질문하기</button>
 								</div> <!-- customerAddButton -->
@@ -76,20 +76,38 @@
 				</div> <!-- categoryBox -->
 					<div class="customerTableBox">
 						<c:forEach var="customerVo" items="${customerList}">
-							<div class="customerTableBoxContent">
-								<div class="tableTitleElement">
-									<a href="/customer/detail?customerNo=${customerVo.customerNo}">${customerVo.customerTitle}</a>
-								</div>
-								<div class="tableNameElement">
-									${customerVo.memberName}
-								</div>															
-								<div class="tableCheckElement">
-									${customerVo.customerCheck}
-								</div>
-								<div class="tableTimeElement">
-									<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd" />
-								</div>
-							</div>	
+							<c:choose>
+								<c:when test="${customerVo.memberQNo == memberVo.memberNo || memberVo.authority >= 1}">
+									<div class="customerTableBoxContent">
+										<div class="tableTitleElement">
+											<a href="/customer/detail?customerNo=${customerVo.customerNo}">${customerVo.customerTitle}</a>
+										</div>
+										<div class="tableNameElement">
+											${customerVo.memberName}
+										</div>															
+										<div class="tableCheckElement">
+											${customerVo.customerCheck}
+										</div>
+										<div class="tableTimeElement">
+											<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd" />
+										</div>
+									</div>
+								</c:when>
+							    <c:otherwise>
+									<div class="customerTableBoxContent">
+										<div class="tableTitleElement">
+											다른 회원님의 질문입니다.
+										</div>
+										<div class="tableNameElement">
+										</div>															
+										<div class="tableCheckElement">
+										</div>
+										<div class="tableTimeElement">
+											<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd" />
+										</div>
+									</div>
+	   							</c:otherwise>
+   							</c:choose>
 						</c:forEach>
 					</div> <!-- customerTableBox -->
 				

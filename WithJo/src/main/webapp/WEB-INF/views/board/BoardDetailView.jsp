@@ -21,7 +21,9 @@
     window.currentUserAuthority = ${memberVo.authority};
 </script>
 <script src="/js/forum/board/boardDetail.js"></script>
-
+<script>
+    var prevPage = ${prevPage != null ? prevPage : 1};
+</script>
 </head>
 
 <body>

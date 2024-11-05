@@ -47,6 +47,14 @@
 #btnDiv .customerBtn3:hover{
     background-color: #0056b3; /* 호버 시 배경색 변경 */
 }
+.userQueDiv div{
+    border-bottom: 1px solid #ccc; /* 테두리 */
+    padding-bottom: 15px;
+}
+.userQueDiv .divTitle{
+	font-weight: bold;
+	font-size: 18px;
+}
 
 #customerAddContainer textarea {
     height: 400px; /* 높이 설정 */

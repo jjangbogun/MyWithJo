@@ -32,9 +32,16 @@
 		<input type="hidden" id="memberANo" name="memberANo" value="${memberVo.memberNo}">
 		<input type="hidden" id="customerCheck" name="customerCheck" value="답변완료">
 		    
+
+		    <div class="userQueDiv">
+		    	<div class="divTitle">질문 제목</div>
+				<div>${customerVo.customerTitle}</div>
+		        <div class="divTitle">질문 내용</div>
+		        <div>${customerVo.customerQue}</div>
+		    </div>
 		    <div>
 		        <label for="customerAns">답변 내용</label><br>
-		        <textarea id="customerAns2" name="customerAns2" rows="5"></textarea><br>
+		        <textarea id="customerAns2" name="customerAns2" rows="5">${customerVo.customerAns}</textarea><br>
 		    </div>
 		    
 		    <div id="btnDiv">

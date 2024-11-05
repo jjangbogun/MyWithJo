@@ -37,12 +37,17 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String getBoardList(@RequestParam(defaultValue = "all") String searchField,
-			@RequestParam(defaultValue = "") String searchKeyword,
-			@RequestParam(defaultValue = "1") int curPage, Model model) {
+	        @RequestParam(defaultValue = "") String searchKeyword,
+	        @RequestParam(defaultValue = "1") int curPage,
+	        @RequestParam(required = false) Integer prevPage, Model model) {
 		log.info(logTitleMsg);
 		log.info("getBoardList");
 		log.info("searchField: {}", searchField);
 		log.info("searchKeyword: {}", searchKeyword);
+		
+	    if (prevPage != null) {
+	        curPage = prevPage;
+	    }
 		
 		int totalCount = boardService.boardTotalCount(searchField, searchKeyword);
 		
@@ -67,7 +72,8 @@ public class BoardController {
 		model.addAttribute("pagingMap", pagingMap);
 		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("totalCount", totalCount);
-
+		model.addAttribute("curPage", curPage);
+		
 		log.info("카운트: {}", totalCount);
 		log.info("searchMap: {}", searchMap);
 		return "board/BoardListView";
@@ -119,13 +125,15 @@ public class BoardController {
 	}
 	
 	@GetMapping("/detail")
-	public String boardDetail(@RequestParam int boardNo, Model model) {
+	public String boardDetail(@RequestParam int boardNo,
+			@RequestParam(required = false) Integer prevPage, Model model) {
 		log.info(logTitleMsg);
 		log.info("@GetMapping boardDetail boardNo: {}", boardNo);
 		
 		BoardVo boardVo = boardService.boardSelectOne(boardNo);
 		
 		model.addAttribute("boardVo", boardVo);
+		model.addAttribute("prevPage", prevPage);
 		
 		return "board/BoardDetailView";
 	}
@@ -158,7 +166,7 @@ public class BoardController {
 	        String boardContent = request.getParameter("boardContent");
 	        String boardImgDelete = request.getParameter("boardImgDelete");
 
-	        log.info("@GetMapping boardImgName: {}", boardImgName);
+	        log.info("머냐@GetMapping boardImgName: {}", boardContent);
 
 	        if (filePart1.getSize() > 0) {
 	            FileUpload fileUpload = new FileUpload();

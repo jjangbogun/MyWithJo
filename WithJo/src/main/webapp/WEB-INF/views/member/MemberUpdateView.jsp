@@ -98,10 +98,10 @@
 							</div>
 						</div>
 
-						<div class="main_update_content_memberBirthDate">
+						<div class="memberDetail_update_content_memberBirthDate">
 							<label for="memberBirthDate">생년월일</label>
-							<div class="update_content_memberBirthDate--textBox">								
-								<p class="memberBirthDate">${memberVo.memberBirthDate}</p>
+							<div class="update_content_memberBirthDate--textBox">
+								<p class="memberBirthDate">${memberVo.memberBirthDate}</p>								
 							</div>
 						</div>
 						
