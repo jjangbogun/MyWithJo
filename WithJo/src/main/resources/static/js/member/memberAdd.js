@@ -230,6 +230,13 @@ function signUpFnc(){
 		var birthDate = year + month + day; // YYYYMMDD 형식
 
 		formData.memberBirthDate = birthDate;
+		 
+		var firstPhoneNum = $("#memberPhoneNumFirst").val();
+		var secondPhoneNum = $("#memberPhoneNumSecond").val();
+		var thirdPhoneNum = $("#memberPhoneNumThird").val();
+		var phoneNum = firstPhoneNum + secondPhoneNum + thirdPhoneNum
+		
+		formData.memberPhoneNum = phoneNum;
 		
 	    // 모든 필드가 채워졌다면, AJAX를 사용하여 서버로 데이터 전송
 	    $.ajax({

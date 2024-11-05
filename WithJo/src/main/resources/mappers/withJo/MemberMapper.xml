@@ -70,7 +70,7 @@
 	<insert id="memberInsertOne" parameterType="memberVo">
 		INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_GENDER, MEMBER_PHONE_NUM, MEMBER_ZIP_CODE,
 							MEMBER_ADDRESS, MEMBER_ADDRESS_INFO)
-		VALUES(MEMBER_NO_SEQ.NEXTVAL, #{memberId}, #{memberPw}, #{memberName}, #{memberBirthDate}, #{memberGender}, #{memberPhoneNum}
+		VALUES(MEMBER_NO_SEQ.NEXTVAL, #{memberId}, #{memberPw}, #{memberName}, #{memberBirthDate}, #{memberGender}, #{memberPhoneNum},
 							#{memberZipCode}, #{memberAddress}, #{memberAddressInfo})
 	</insert>
 	
