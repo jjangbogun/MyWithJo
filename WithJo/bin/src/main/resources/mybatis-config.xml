@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<typeAliases>
+		<package name="com.withJo.member.domain"/>
+		<package name="com.withJo.board.domain"/>
+		<package name="com.withJo.notice.domain"/>
+		<package name="com.withJo.customer.domain"/>
+		<package name="com.withJo.lotto.domain"/>
+		<package name="com.withJo.course.domain"/>
+		<package name="com.withJo.comments.domain"/>
+		<package name="com.withJo.drawing.domain"/>
+		<package name="com.withJo.reservation.domain"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/withJo/MemberMapper.xml"/>
+		<mapper resource="mappers/withJo/BoardMapper.xml"/>
+		<mapper resource="mappers/withJo/NoticeMapper.xml"/>
+		<mapper resource="mappers/withJo/CustomerMapper.xml"/>
+		<mapper resource="mappers/withJo/LottoMapper.xml"/>
+		<mapper resource="mappers/withJo/CourseMapper.xml"/>
+		<mapper resource="mappers/withJo/CommentsMapper.xml"/>
+		<mapper resource="mappers/withJo/DrawingMapper.xml"/>
+		<mapper resource="mappers/withJo/ReservationMapper.xml"/>
+	</mappers>
+</configuration>

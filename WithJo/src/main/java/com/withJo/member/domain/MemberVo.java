@@ -10,6 +10,7 @@ public class MemberVo {
 	private String memberName;
 	private String memberBirthDate;
 	private int memberGender;
+	private String memberPhoneNum;
 	private String memberZipCode;
 	private String memberAddress;
 	private String memberAddressInfo;	
@@ -23,7 +24,7 @@ public class MemberVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVo(int memberNo, String memberId, String memberPw, String memberName, String memberBirthDate,
+	public MemberVo(int memberNo, String memberId, String memberPw, String memberName, String memberBirthDate, String memberPhoneNum,
 			String memberZipCode, String memberAddress, String memberAddressInfo, int memberGender, Date memberCredate,
 			Date memberUpdate, int memberEMoney, int authority) {
 		super();
@@ -33,6 +34,7 @@ public class MemberVo {
 		this.memberName = memberName;
 		this.memberBirthDate = memberBirthDate;
 		this.memberGender = memberGender;
+		this.memberPhoneNum = memberPhoneNum;
 		this.memberZipCode = memberZipCode;
 		this.memberAddress = memberAddress;
 		this.memberAddressInfo = memberAddressInfo;		
@@ -156,10 +158,18 @@ public class MemberVo {
 	@Override
 	public String toString() {
 		return "MemberVo [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
-				+ memberName + ", memberBirthDate=" + memberBirthDate + ", memberZipCode=" + memberZipCode + ", memberAddress="
+				+ memberName + ", memberBirthDate=" + memberBirthDate + ", memberPhoneNum" + memberPhoneNum +", memberZipCode=" + memberZipCode + ", memberAddress="
 				+ memberAddress + ", memberAddressInfo=" + memberAddressInfo + ", memberGender=" + memberGender
 				+ ", memberCredate=" + memberCredate + ", memberUpdate=" + memberUpdate + ", memberEMoney="
 				+ memberEMoney + ", authority=" + authority + "]";
+	}
+
+	public String getMemberPhoneNum() {
+		return memberPhoneNum;
+	}
+
+	public void setMemberPhoneNum(String memberPhoneNum) {
+		this.memberPhoneNum = memberPhoneNum;
 	}
 	
 	

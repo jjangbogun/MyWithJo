@@ -79,3 +79,32 @@ function goBack() {
 // 만약 수정 대상 회원이 관리자라면 라디오 버튼을 비활성화
 
 
+
+function formatDate() {
+	let dateString = $('.memberBirthDate').text();
+  // 년(4자리), 월(2자리), 일(2자리)로 분리
+  const year = dateString.slice(0, 4);
+  const month = dateString.slice(4, 6);
+  const day = dateString.slice(6, 8);
+  
+  let formDateSrting = `${year}년 ${month}월 ${day}일`;
+  
+  // 형식에 맞게 조합
+  return formDateSrting;
+}
+
+function formatPhoneNum(){
+	let phoneNumString = $(".memberPhoneNum").text();
+		
+		const firstNum = phoneNumString.slice(0, 3);
+		const secondNum = phoneNumString.slice(3, 7);
+		const thirdNum = phoneNumString.slice(7, 11);
+		 
+	let formphoneNumString = `${firstNum} - ${secondNum} - ${thirdNum}` ;
+	
+	
+	return formphoneNumString;
+}
+
+$('.memberBirthDate').text(formatDate());
+$('.memberPhoneNum').text(formatPhoneNum());

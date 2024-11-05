@@ -80,6 +80,7 @@ input[type="button"]:hover {
 .update_content_memberName--textBox,
 .update_content_memberBirthDate--textBox,
 .update_content_memberGender--textBox,
+.update_content_memberPhoneNum--textBox,
 .update_content_memberEMoney--textBox {
     background-color: #e9e9e9;
     padding: 10px;

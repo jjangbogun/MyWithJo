@@ -96,6 +96,13 @@
   						<span><input type="radio" id="genderFemale" name="memberGender" value="2"></span>
   						<span><label for="genderFemale" class="genderFemale">여성</label></span>  			
 					</div>
+					
+					<div class="main_signUp_content__memberPhoneNum">
+						<span><label for="memberPhoneNum" class="label__memberPhoneNum">휴대폰</label></span>
+						<span><input type="text" id="memberPhoneNumFirst" class="memberPhoneNumFirst" name="memberPhoneNumFirst" maxlength="3" placeholder="010"></span>
+						<span><input type="text" id="memberPhoneNumSecond" class="memberPhoneNumSecond" name="memberPhoneNumSecond" maxlength="4"></span>
+						<span><input type="text" id="memberPhoneNumThird" class="memberPhoneNumThird" name="memberPhoneNumThird" maxlength="4"></span>
+					</div>
 
 					<div class="main_signUp_content__memberAddress">
 						<span><label for="memberAddress" class="label__memberAddress">주소</label></span>

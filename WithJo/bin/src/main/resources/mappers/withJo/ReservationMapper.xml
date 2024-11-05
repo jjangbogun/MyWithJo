@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.reservation">
+
+	<resultMap type="reservationVo" id="reservationResultMap">
+		<id column="MEMBER_COURSE_RESERVE_NO" property="memberCourseReserveNo"/>
+		<result column="COURSE_NO" property="courseNo"/>
+		<result column="MEMBER_NO" property="memberNo"/>
+		<result column="CATEGORY_NO" property="categoryNo"/>
+	</resultMap>
+
+
+	<insert id="getCourseReservation" parameterType="map">
+		INSERT INTO MEMBER_COURSE_RESERVE 
+		(MEMBER_COURSE_RESERVE_NO, COURSE_NO, MEMBER_NO, CATEGORY_NO)
+		VALUES(MEMBER_COURSE_RESERVE_NO_SEQ.NEXTVAL, #{courseNo}, #{memberNo}, #{categoryNo})
+	</insert>
+
+</mapper>

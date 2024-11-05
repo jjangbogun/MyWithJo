@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+#mainContainer{
+	background-color: white;	
+}
+
+.ageCategory{
+	border: 1px solid;
+	height: 120px;
+	display: flex;
+	/* justify-content: space-between; */
+	padding: 50px 90px;
+    font-size: 25px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.ageElement{
+	width: calc(100% / 4);
+	border-bottom: 1px solid;
+	height: 40px;
+}
+.ageElement:hover{
+	border-bottom: 3px solid;
+}
+.mainImg{
+	border: 1px solid;
+	width: 400px;
+    height: 400px;
+}
+.courseListBox{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100vw;
+	border-bottom: 1px solid;
+}
+.courseFlexBox{
+	width: 90%;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	padding-left: 120px;
+	border: 1px solid;
+}
+.courseBox{
+	margin-left: 100px;
+}
+.ageCategoryBtn{
+	border: none;
+	background-color: transparent;
+	font-size: 24px;	
+	width: 400px;
+    height: 40px;
+}
+.categorySelectList{
+	display: flex;
+}
+.categoryList{
+	border: 1px solid;
+	margin-left: 20px;
+}
+.admin{
+	display: flex;
+    justify-content: right;
+    padding: 30px;
+}
+.admin button{
+	border: 1px solid #6495ED;
+    background: #6495ED;
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+	margin-left: 20px;
+}
+.lineHover{
+	border-bottom: 3px solid;
+}

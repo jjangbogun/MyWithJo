@@ -112,6 +112,7 @@
 .label__memberBirthDate,
 .label__memberGender,
 .label__memberAddress,
+.label__memberPhoneNum,
 .genderFemale,
 .genderMale {	
 	display: inline-block;
@@ -151,6 +152,19 @@
 	font-size: 16px;
 	text-align: center;
 	margin: 5px 0 5px 0;
+}
+
+.memberPhoneNumFirst,
+.memberPhoneNumSecond,
+.memberPhoneNumThird{
+	height: 40px;
+	border: none;
+	border-radius: 38px;
+	box-shadow: 3px 3px 3px #0000004a;
+	font-size: 16px;
+	text-align: center;
+	margin: 5px 0 5px 0;
+	width: 135px; 
 }
 
 .memberId,

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withJo.lotto">
+    
+    <resultMap type="lottoVo" id="lottoResultMap">
+        <id column="LOTTO_NO" property="lottoNo" />
+        <result column="LOTTO_ROUND" property="lottoRound"/>
+        <result column="LOTTO_MODE" property="lottoMode"/>
+        <result column="MEMBER_NO" property="memberNo"/>
+        <result column="MEMBER_NAME" property="memberName"/>
+        <result column="LOTTO_WINNING" property="lottoWinning"/>
+        <result column="LOTTO_SEL_NO" property="lottoSelNo"/>
+        <result column="LOTTO_START_DATE" property="lottoStartDate"/>
+        <result column="LOTTO_END_DATE" property="lottoEndDate"/>
+        <result column="LOTTO_CREDATE" property="lottoCredate" javaType="java.util.Date"/>
+    </resultMap>
+    
+    <sql id="search">
+		<choose>
+			<when test="searchField == 'all'">
+				AND (L.LOTTO_ROUND LIKE '%' || #{searchKeyword} || '%'
+				OR L.LOTTO_SEL_NO LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<when test="searchField == 'lottoRound'">
+				AND (L.LOTTO_ROUND LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<when test="searchField == 'lottoSelNo'">
+				AND (L.LOTTO_SEL_NO LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="lottoSelectList" parameterType="map" resultMap="lottoResultMap">
+	    SELECT * FROM (
+	        SELECT ROWNUM AS RN, TA.*
+	        FROM (
+	            SELECT L.LOTTO_NO, L.LOTTO_ROUND, L.LOTTO_MODE, L.MEMBER_NO, L.LOTTO_SEL_NO, 
+	                   L.LOTTO_START_DATE, L.LOTTO_END_DATE, L.LOTTO_CREDATE, M.MEMBER_NAME
+	            FROM LOTTO L
+	            JOIN MEMBER M ON L.MEMBER_NO = M.MEMBER_NO 
+	            <include refid="search"/>
+	            AND LOTTO_MODE = 1
+	            ORDER BY L.LOTTO_NO DESC
+	        ) TA
+	    ) 
+	    WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		
+	<select id="lottoTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS totalCount
+		FROM LOTTO L
+		<where>
+			<include refid="search"/>
+		</where>
+		AND LOTTO_MODE = 1
+	</select>
+    
+	<select id="lottoSelectOne" parameterType="map" resultMap="lottoResultMap">
+	  <![CDATA[
+			SELECT LOTTO_NO, LOTTO_ROUND, 
+		   		MEMBER_NO, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE 
+			FROM LOTTO
+			WHERE LOTTO_START_DATE <= TRUNC(SYSDATE)
+			AND LOTTO_END_DATE >= TRUNC(SYSDATE)
+			AND LOTTO_MODE = 1
+	  ]]>
+	</select>
+	
+	<insert id="lottoInsertOne" parameterType="lottoVo">
+		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE ,LOTTO_CREDATE)
+		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lottoSelNo}, #{lottoStartDate}, #{lottoEndDate}, SYSDATE)
+	</insert>
+	
+	<insert id="lottoInsertOne2" parameterType="lottoVo">
+		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_WINNING, LOTTO_SEL_NO, LOTTO_CREDATE)
+		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lottoWinning}, #{lottoSelNo}, SYSDATE)
+	</insert>
+
+
+    <select id="lottoCountCheck" resultType="int">
+		SELECT 
+		CASE 
+		WHEN COUNT(*) >= 5 THEN 1
+		ELSE 0
+		END AS MEMBER_COUNT_CHECK
+		FROM LOTTO
+		WHERE MEMBER_NO = #{memberNo}
+		AND LOTTO_ROUND = #{lottoRound}
+    </select>
+
+	<delete id="lottoDeleteOne" parameterType="int">
+	    DELETE FROM LOTTO
+	    WHERE LOTTO_NO = #{lottoNo}
+	</delete>
+	
+	<insert id="lottoInsertEMoney" parameterType="map">
+		INSERT INTO MEMBER_E_MONEY(MEMBER_NO, MEMBER_E_MONEY_NO, MEMBER_E_MONEY_PLUS, MEMBER_E_MONEY_PLUS_DETAIL)
+		VALUES(#{memberNo}, MEMBER_E_MONEY_NO_SEQ.NEXTVAL, #{eMoney}, #{detail})
+	</insert>
+</mapper>

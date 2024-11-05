@@ -45,8 +45,37 @@ function findAddress() {
 	}).open();
 }
 
-$(document).ready(function() {
+function formatDate() {
+	let dateString = $('.memberBirthDate').text();
+ 	 // 년(4자리), 월(2자리), 일(2자리)로 분리
+ 	 const year = dateString.slice(0, 4);
+ 	 const month = dateString.slice(4, 6);
+ 	 const day = dateString.slice(6, 8);
+  
+ 	let formDateSrting = `${year}년 ${month}월 ${day}일`;
+  
+	$('.memberBirthDate').text(formDateSrting);
+    	
+}
 
+function formatPhoneNum(){
+	let phoneNumString = $(".memberPhoneNum").text();
+		
+		const firstNum = phoneNumString.slice(0, 3);
+		const secondNum = phoneNumString.slice(3, 7);
+		const thirdNum = phoneNumString.slice(7, 11);
+		 
+	let formphoneNumString = `${firstNum} - ${secondNum} - ${thirdNum}` ;
+	
+	$('.memberPhoneNum').text(formphoneNumString);
+	
+}
+
+$(document).ready(function() {
+	
+	formatDate();
+	formatPhoneNum();
+	
 	// 새 비밀번호 유효성 검사
 	$(".memberNewPw").on("input", function() {
 		var password = $(this).val();
@@ -117,3 +146,4 @@ $(document).ready(function() {
 		return regex.test(password) && !/\s/.test(password);
 	}
 });
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.withJo.drawing">
+    
+    <resultMap type="drawingVo" id="drawingResultMap">
+        <id column="DRAWING_NO" property="drawingNo" />
+        <result column="DRAWING_ROUND" property="drawingRound"/>
+        <result column="MEMBER_NO" property="memberNo"/>
+        <result column="MEMBER_NAME" property="memberName"/>
+        <result column="DRAWING_PERSONNEL" property="drawingPersonnel"/>
+        <result column="DRAWING_MEMBER_NO" property="drawingMemberNo"/>
+        <result column="DRAWING_MEMBER_NAME" property="drawingMemberName"/>
+        <result column="DRAWING_MEMBER_ID" property="drawingMemberId"/>
+        <result column="DRAWING_START_DATE" property="drawingStartDate"/>
+        <result column="DRAWING_END_DATE" property="drawingEndDate"/>
+        <result column="DRAWING_CREDATE" property="drawingCredate" javaType="java.util.Date"/>
+    </resultMap>
+    
+    <sql id="search">
+		<choose>
+			<when test="searchField == 'all'">
+				AND (D.DRAWING_ROUND LIKE '%' || #{searchKeyword} || '%'
+				OR D.DRAWING_MEMBER_NO LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<when test="searchField == 'drawingRound'">
+				AND (D.DRAWING_ROUND LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<when test="searchField == 'drawingMemberNo'">
+				AND (D.DRAWING_MEMBER_NO LIKE '%' || #{searchKeyword} || '%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="drawingSelectList" parameterType="map" resultMap="drawingResultMap">
+		SELECT * FROM (
+		    SELECT ROWNUM AS RN, TA.*
+		    FROM (
+		        SELECT D.DRAWING_NO, D.DRAWING_ROUND, D.MEMBER_NO, D.DRAWING_MEMBER_NO, D.DRAWING_MEMBER_NAME, 
+		               D.DRAWING_START_DATE, D.DRAWING_END_DATE, D.DRAWING_CREDATE, 
+		               M.MEMBER_NAME
+		        FROM DRAWING D
+		        JOIN MEMBER M ON D.MEMBER_NO = M.MEMBER_NO
+		        <include refid="search"/>
+		        ORDER BY D.DRAWING_NO DESC
+		    ) TA
+		) 
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		
+	<select id="drawingTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS totalCount
+		FROM DRAWING D
+		<where>
+			<include refid="search"/>
+		</where>
+	</select>
+    
+	<select id="drawingSelect" parameterType="map" resultType="map">
+	    <![CDATA[
+			SELECT MEMBER_NO, MEMBER_NAME, MEMBER_ID
+			FROM (
+			    SELECT DISTINCT M.MEMBER_NO, M.MEMBER_NAME, M.MEMBER_ID
+			    FROM BOARD B
+			    JOIN MEMBER M ON B.MEMBER_NO = M.MEMBER_NO
+			    WHERE M.AUTHORITY != 1
+			    AND B.BOARD_CREDATE >= TO_DATE(#{startDate}, 'YYYY-MM-DD')
+			    AND B.BOARD_CREDATE <= TO_DATE(#{endDate}, 'YYYY-MM-DD')
+			    ORDER BY DBMS_RANDOM.VALUE
+			)
+			WHERE ROWNUM <= #{no}
+	    ]]>
+	</select>
+    
+	<select id="drawingSelectOne" parameterType="map" resultMap="drawingResultMap">
+	    SELECT DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_MEMBER_NO, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE
+	    FROM (
+	        SELECT DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_MEMBER_NO, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE
+	        FROM DRAWING
+	        ORDER BY DRAWING_CREDATE DESC
+	    )
+	    WHERE ROWNUM = 1
+	</select>
+	
+	<insert id="drawingInsertOne" parameterType="map">
+	    INSERT INTO DRAWING (DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_PERSONNEL, DRAWING_MEMBER_NO, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE)
+	    VALUES (DRAWING_NO_SEQ.NEXTVAL, #{drawingRound}, #{memberNo}, #{drawingPersonnel}, #{drawingMemberNo}, #{drawingMemberId}, #{drawingMemberName}, #{drawingStartDate}, #{drawingEndDate}, SYSDATE)
+	</insert>
+
+	<delete id="drawingDeleteOne" parameterType="int">
+	    DELETE FROM DRAWING
+	    WHERE DRAWING_NO = #{drawingNo}
+	</delete>
+</mapper>

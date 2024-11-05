@@ -60,7 +60,7 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						<div class="memberDetail_update_content_memberNo">
 							<label for="memberNo">회원 No</label>
 							<div class="update_content_memberNo--textBox">
-								<a class="memberId">${memberVo.memberNo}</a>
+								<p class="memberId">${memberVo.memberNo}</p>
 							</div>
 						</div>
 
@@ -69,7 +69,7 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						<div class="memberDetail_update_content_memberId">
 							<label for="memberId">회원 ID</label>
 							<div class="update_content_memberId--textBox">
-								<a class="memberId">${memberVo.memberId}</a>
+								<p class="memberId">${memberVo.memberId}</p>
 							</div>
 						</div>
 
@@ -78,16 +78,14 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						<div class="memberDetail_update_content_memberName">
 							<label for="memberName">이름</label>
 							<div class="update_content_memberName--textBox">
-								<a class="memberId">${memberVo.memberName}</a>
+								<p class="memberId">${memberVo.memberName}</p>
 							</div>
 						</div>
 
 						<div class="memberDetail_update_content_memberBirthDate">
 							<label for="memberBirthDate">생년월일</label>
 							<div class="update_content_memberBirthDate--textBox">
-								<fmt:parseDate value="${memberVo.memberBirthDate}" pattern="yyyy-MM-dd HH:mm:ss" var="parsedDate" />
-								<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" var="formattedDate" />
-								<a class="memberId">${formattedDate}</a>
+								<p class="memberBirthDate">${memberVo.memberBirthDate}</p>								
 							</div>
 						</div>
 
@@ -96,12 +94,19 @@ var userAuthority = ${sessionScope.memberVo.authority};
 							<div class="update_content_memberGender--textBox">
 								<c:choose>
 									<c:when test="${memberVo.memberGender == 1}">
-										<a class="memberId">남자</a>
+										<p class="memberId">남자</p>
 									</c:when>
 									<c:otherwise>
-										<a class="memberId">여자</a>
+										<p class="memberId">여자</p>
 									</c:otherwise>
 								</c:choose>
+							</div>
+						</div>
+						
+						<div class="memberDetail_update_content_memberPhoneNum">
+							<label for="memberPhoneNum">휴대폰번호</label>
+							<div class="update_content_memberPhoneNum--textBox">
+								<p class="memberPhoneNum">${memberVo.memberPhoneNum}</p>
 							</div>
 						</div>
 
@@ -119,7 +124,7 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						<div class="memberDetail_update_content_memberEMoney">
 							<label for="memberEMoney">E-Money</label>
 							<div class="update_content_memberEMoney--textBox">
-								<a class="memberId">${memberVo.memberEMoney}</a>
+								<p class="memberId">${memberVo.memberEMoney}</p>
 							</div>
 						</div>
 

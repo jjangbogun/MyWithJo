@@ -9,6 +9,7 @@
 		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="MEMBER_BIRTH_DATE" property="memberBirthDate"/>
 		<result column="MEMBER_GENDER" property="memberGender"/>
+		<result column="MEMBER_PHONE_NUM" property="memberPhoneNum"/>
 		<result column="MEMBER_ZIP_CODE" property="memberZipCode"/>
 		<result column="MEMBER_ADDRESS" property="memberAddress"/>
 		<result column="MEMBER_ADDRESS_INFO" property="memberAddressInfo"/>		
@@ -39,7 +40,7 @@
 	   SELECT * FROM (
 	        SELECT ROWNUM AS RN, TA.*
 	        FROM (
-	            SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_ZIP_CODE, MEMBER_ADDRESS,
+	            SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_PHONE_NUM, MEMBER_ZIP_CODE, MEMBER_ADDRESS,
 				MEMBER_ADDRESS_INFO, MEMBER_GENDER, MEMBER_CREDATE, MEMBER_UPDATE, MEMBER_E_MONEY, AUTHORITY
 				FROM MEMBER	            
 	            <where>
@@ -67,14 +68,14 @@
 	</select>
 	
 	<insert id="memberInsertOne" parameterType="memberVo">
-		INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_GENDER, MEMBER_ZIP_CODE,
+		INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_GENDER, MEMBER_PHONE_NUM, MEMBER_ZIP_CODE,
 							MEMBER_ADDRESS, MEMBER_ADDRESS_INFO)
-		VALUES(MEMBER_NO_SEQ.NEXTVAL, #{memberId}, #{memberPw}, #{memberName}, #{memberBirthDate}, #{memberGender},
+		VALUES(MEMBER_NO_SEQ.NEXTVAL, #{memberId}, #{memberPw}, #{memberName}, #{memberBirthDate}, #{memberGender}, #{memberPhoneNum}
 							#{memberZipCode}, #{memberAddress}, #{memberAddressInfo})
 	</insert>
 	
 	<select id="memberSelectOne" parameterType="int" resultMap="memberResultMap">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_GENDER, MEMBER_ZIP_CODE, MEMBER_ADDRESS, MEMBER_ADDRESS_INFO, MEMBER_E_MONEY, AUTHORITY
+		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, MEMBER_BIRTH_DATE, MEMBER_GENDER, MEMBER_PHONE_NUM, MEMBER_ZIP_CODE, MEMBER_ADDRESS, MEMBER_ADDRESS_INFO, MEMBER_E_MONEY, AUTHORITY
 		FROM MEMBER
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
