@@ -15,7 +15,7 @@ function pageMoveUpdate() {
 }
 
 function pageMoveList() {
-    location.href = '/board/list';
+    location.href = '/board/list?curPage=' + prevPage;
 }
 
 function commentsList(boardNo) {
@@ -37,7 +37,7 @@ function commentsList(boardNo) {
                 }
                 
                 htmlStr += '</div>'; 
-                htmlStr += '<div class="commentsCt">' + data.commentsList[i].commentsContent + '</div>';
+                htmlStr += '<div class="commentsCt">' + data.commentsList[i].commentsContent.replace(/\n/g, '<br>') + '</div>';
                 htmlStr += '</div>'; 
             }
             $('#commentsList').html(htmlStr);

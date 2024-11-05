@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/common/common.css">
 <script defer src="/js/common/common.js"></script>
 <link rel="stylesheet" href="/css/forum/board/BoardAdd.css"> 
-<script src="/js/forum/board/boarUpdate.js"></script>
+<script src="/js/forum/board/boardUpdate.js"></script>
 </head>
 
 <body>
@@ -25,8 +25,8 @@
 	<div id="boardAddContainer">
 		<h1>게시글 등록</h1>
 		
-		<form id="boardForm" action="update" method="post" enctype="multipart/form-data" onsubmit="boardCheck(); return false;">
-		<input type="hidden" id="boardContent" name="boardContent">
+		<form id="boardForm" action="update" method="post" enctype="multipart/form-data" onsubmit="return false;">
+		<input type="hidden" id="boardContent" name="boardContent" value="">
 		<input type="hidden" id="boardNo" name="boardNo" value="${boardVo.boardNo}">
 		<input type="hidden" id="boardImgName" name="boardImgName" value="${boardVo.boardImg}">
 		<input type="hidden" id="boardImgDelete" name="boardImgDelete" value="0">
@@ -37,7 +37,7 @@
 		    </div>
 		    
 		    <div>
-		        <label for="boardContent">게시글 내용</label><br>
+		        <label for="boardContent2">게시글 내용</label><br>
 		        <textarea id="boardContent2" name="boardContent2" rows="5">${boardVo.boardContent}</textarea><br>
 		    </div>
 		    
@@ -51,7 +51,7 @@
 		    </div>
 		    
 		    <div id="btnDiv">
-		        <input class="boardBtn3" type="submit" value="수정">
+		        <input class="boardBtn3" type="button" value="수정" onclick="boardCheck()">
 		        <input class="boardBtn3" type="reset" value="취소">
 				<input class="boardBtn3" type="button" value="뒤로가기" onclick="history.back();">
 		    </div>

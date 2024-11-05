@@ -52,9 +52,12 @@
             </div>
             
             <div class="btnDiv">       
-                <c:if test="${memberVo.authority >= 1}">
+                <c:if test="${memberVo.authority >= 1 && customerVo.customerAns == null}">
                     <button type="button" onclick="pageMoveAnswer();" class="btn2">답변하기</button>
-                </c:if>                        
+                </c:if>
+                <c:if test="${memberVo.authority >= 1 && customerVo.customerAns != null}">
+                    <button type="button" onclick="pageMoveAnswer();" class="btn2">답변수정</button>
+                </c:if>                         
                 <c:if test="${customerVo.memberQNo eq memberVo.memberNo or memberVo.authority >= 1}">
                     <button class="btn2" type="button" onclick="deleteFnc();">삭제</button>
                 </c:if>
