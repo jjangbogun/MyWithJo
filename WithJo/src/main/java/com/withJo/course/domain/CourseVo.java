@@ -19,7 +19,6 @@ public class CourseVo extends MemberVo{
 	private int courseCost;
 	private int courseCurrentPeople;
 	private int courseMaxPeople;
-	private int courseGenderCheck;
 	private int courseAgeLimit;
 	private Date courseStartDate;
 	private Date courseEndDate;
