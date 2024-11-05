@@ -77,6 +77,17 @@
 						</div>
 					</div> <!-- categoryBox -->
 						<div class="boardTableBox">
+								<div class="boardTableBoxContent1">
+									<div class="tableTitleElement1">
+										제목
+									</div>
+									<div class="tableNameElement1">
+										작성자
+									</div>	
+									<div class="tableTimeElement1">
+										날짜
+									</div>
+								</div>	
 							<c:forEach var="boardVo" items="${boardList}">
 								<div class="boardTableBoxContent">
 									<div class="tableTitleElement">

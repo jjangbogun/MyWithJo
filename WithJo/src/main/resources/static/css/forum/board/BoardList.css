@@ -3,7 +3,7 @@
 #mainContainer {
 	background-color: white;
 	height: 1100px;
-	padding-bottom: 300px;
+	padding-bottom: 400px;
 }
 
 .topSearch{
@@ -114,4 +114,29 @@
 
 .boardTableBox{
 	margin-bottom: 60px;
+}
+
+.boardTableBoxContent1{
+	display: flex;
+	justify-content: space-between;
+	padding: 26px 0 34px 4px;
+	border-bottom: 1px solid #8080804f;
+}
+
+.tableTitleElement1{
+	width: 860px;
+	font-size: 22px;
+	font-family: "NotoSans_Medium", sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+.tableNameElement1{
+	width:150px;
+	font-size: 22px;
+	font-weight: bold;
+}
+.tableTimeElement1{
+	width:150px;
+	font-size: 22px;
+	font-weight: bold;
 }
