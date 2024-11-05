@@ -34,7 +34,6 @@ header nav{
 
 header .logoContainer{
 	position: absolute;
-	top: 5px;
 	z-index: 5;
 }
 
@@ -63,7 +62,7 @@ header .sessionContainer{
     align-items: center;
     position: absolute;
     z-index: 2;
-    right: 0;
+    right: 30px;
     top: 30px;
 }
 .navElement > button{
@@ -155,8 +154,9 @@ header .sessionContainer{
 }
 
 .logoImg{
-	width: 90px;
-	height: 90px;
+	margin-left: 20px;
+    width: 130px;
+    height: 100px;
 }
 .shoppingCartImg, .loginImg, .logoutImg, .mypageImg{
 	width: 30px;
@@ -171,7 +171,6 @@ header .sessionContainer{
 	height: auto;
 	min-height: 100%;
 	/* height : 2000px; */
-	padding-bottom: 300px;
 	padding-top: 94px;
 	background-color: #c4d0e3;
 }

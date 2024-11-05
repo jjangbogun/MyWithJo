@@ -162,5 +162,7 @@ $(window).scroll(function() {
 	 	
 	 	return courseCost;
 	}*/
-	
+	function moveCourseList(){
+		location.href="/course/list";
+	}
 	

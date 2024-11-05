@@ -8,9 +8,8 @@ import com.withJo.course.domain.CourseVo;
 public interface CourseService {
 
 	public List<CourseVo> getCourseList();
-	public List<CourseVo> courseCategorySelect(int courseAgeLimit);
+	public List<CourseVo> courseCategorySelect(int courseAgeLimit, int categoryNo);
 	public CourseVo egetCourseDetailList(int courseNo);
 	public Map<String, Object> getCourseDay(int courseNo);
 	public List<CourseVo> getCategory();
-	public List<CourseVo> getCategoryNo(int categoryNo);
 }

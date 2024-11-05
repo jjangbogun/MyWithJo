@@ -57,11 +57,11 @@ public class CourseController {
 	
 // 강의 카테고리 리스트 
 	@GetMapping("/list/{courseAgeLimit}")
-	public ResponseEntity<List<CourseVo>> courseCategorySelect(@PathVariable int courseAgeLimit){
+	public ResponseEntity<List<CourseVo>> courseCategorySelect(@PathVariable int courseAgeLimit ,@RequestParam int categoryNo){
 		log.info(logTitleMsg);
-		log.info("@GetMapping courseCategorySelect", courseAgeLimit);
+		log.info("@GetMapping courseCategorySelect", courseAgeLimit, categoryNo);
 		
-		List<CourseVo> courseList = courseService.courseCategorySelect(courseAgeLimit);
+		List<CourseVo> courseList = courseService.courseCategorySelect(courseAgeLimit, categoryNo);
 		System.out.println("courseList?!" + courseList);
 		
 		return ResponseEntity.ok(courseList);
@@ -107,15 +107,13 @@ public class CourseController {
 	 * 
 	 * return ResponseEntity.ok(categoryList); }
 	 */
-	@GetMapping("/{categoryNo}")
-	public ResponseEntity<List<CourseVo>> getCategoryNo(@PathVariable int categoryNo, @RequestParam int courseAgeLimit){
-		log.info(logTitleMsg); 
-		log.info("@GetMapping getCategory",categoryNo, courseAgeLimit);
+	
+//	강의추가화면
+	@GetMapping("/insert")
+	public ModelAndView courseInsertView(){
+		ModelAndView mav = new ModelAndView("course/CourseInsertView");
 		
-		
-		List<CourseVo> categoryList = courseService.getCategoryNo(categoryNo);
-		
-		return ResponseEntity.ok(categoryList);
+		return mav;
 	}
 
 }

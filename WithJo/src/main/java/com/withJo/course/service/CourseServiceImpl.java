@@ -23,9 +23,9 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public List<CourseVo> courseCategorySelect(int courseAgeLimit) {
+	public List<CourseVo> courseCategorySelect(int courseAgeLimit,int categoryNo) {
 		// TODO Auto-generated method stub
-		List<CourseVo> courseVo = courseDao.courseCategorySelect(courseAgeLimit);
+		List<CourseVo> courseVo = courseDao.courseCategorySelect(courseAgeLimit, categoryNo);
 		
 		return courseVo;
 	}
@@ -56,14 +56,4 @@ public class CourseServiceImpl implements CourseService{
 		return categoryList;
 	}
 
-	@Override
-	public List<CourseVo> getCategoryNo(int categoryNo) {
-		// TODO Auto-generated method stub
-		
-		List<CourseVo> categoryVo = courseDao.getCategoryNo(categoryNo);
-		
-		return categoryVo;
-	}
-
-	
 }

@@ -216,10 +216,19 @@
 						</div>
 					</div>
 				</div>
+				<input type="hidden" value="${sessionScope.memberVo.authority}" class="memberVo">
+				<input type="hidden" value="${sessionScope.memberVo.memberNo}" class="memberNo">
+				<c:if test="${sessionScope.memberVo.authority eq 1}">
+					<div class="admin">
+						<div>
+							<button>강의수정</button>
+						</div>
+						<div>
+							<button>돌아가기</button>
+						</div>
+					</div>
+				</c:if>
 			</div>
-			<input type="hidden" value="${sessionScope.memberVo.authority}" class="memberVo">
-			<input type="hidden" value="${sessionScope.memberVo.memberNo}" class="memberNo">
-		</div> <!--mainContainer-->
 	<jsp:include page="/WEB-INF/views/Footer.jsp"/>
 </body>
 </html>

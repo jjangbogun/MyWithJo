@@ -27,9 +27,13 @@ public class CourseDaoImpl implements CourseDao{
 	}
 
 	@Override
-	public List<CourseVo> courseCategorySelect(int courseAgeLimit) {
+	public List<CourseVo> courseCategorySelect(int courseAgeLimit, int categoryNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + "courseCategorySelect",courseAgeLimit);
+		Map<String, Integer> paramMap = new HashMap<>();
+		paramMap.put("courseAgeLimit", courseAgeLimit);
+		paramMap.put("categoryNo", categoryNo);
+		
+		return sqlSession.selectList(namespace + "courseCategorySelect",paramMap);
 	}
 
 	@Override
@@ -52,10 +56,5 @@ public class CourseDaoImpl implements CourseDao{
 		return sqlSession.selectList(namespace + "getCategory");
 	}
 
-	@Override
-	public List<CourseVo> getCategoryNo(int categoryNo) {
-	    
-		return sqlSession.selectList(namespace + "getCourseDay",categoryNo);
-	}
-
+	
 }
