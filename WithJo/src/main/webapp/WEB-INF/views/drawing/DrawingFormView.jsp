@@ -15,53 +15,7 @@
 <script src="/js/event/drawing/drawingForm.js"></script>
 </head>
 <script type="text/javascript">
-function makeDrawingMember() {
-    var boardStartDate = $('#drawingStartDate').val();
-    var boardEndDate = $('#drawingEndDate').val();
-    var personnel = $('#personnel').val();
 
-    if (!boardStartDate || !boardEndDate || !personnel) {
-        alert("기간과 인원을 설정해주세요");
-        return;
-    }
-
-    $.ajax({
-        url: '/drawing/make',
-        method: 'POST',
-        data: {
-            "boardStartDate": boardStartDate,
-            "boardEndDate": boardEndDate,
-            "personnel": personnel
-        },
-        success: function (response) {
-            let htmlStr = '<div id="drawingMemberNo">';
-            let selectedMemberNos = []; // 선택된 회원 번호를 저장할 배열            
-            let selectedMemberNames = []; // 선택된 회원 번호를 저장할 배열            
-            let selectedMemberIds = []; // 선택된 회원 번호를 저장할 배열            
-            
-            response.selectedMembers.forEach(function(member) {
-                htmlStr += '<p>번호: ' + member.MEMBER_NO + ', 이름: ' + member.MEMBER_NAME + ', 이름: ' + member.MEMBER_ID + '</p>';
-                selectedMemberNos.push(member.MEMBER_NO); // 회원 번호를 배열에 추가
-                selectedMemberNames.push(member.MEMBER_NAME); // 회원 번호를 배열에 추가
-                selectedMemberIds.push(member.MEMBER_ID); // 회원 번호를 배열에 추가
-            });          
-
-            htmlStr += '</div>';
-            $('#drawingSelect').html(htmlStr);
-
-            // 선택된 회원 번호 배열을 hidden input의 value로 설정
-            $('#drawingMemberNo').val(JSON.stringify(selectedMemberNos));
-            $('#drawingMemberName').val(JSON.stringify(selectedMemberNames));
-            $('#drawingMemberId').val(JSON.stringify(selectedMemberIds));
-
-            console.log("선택된 회원 번호:", selectedMemberNos); // 콘솔에 로그 출력
-            console.log("drawingMemberNo의 값:", $('#drawingMemberNo').val());
-        },
-        error: function(xhr, status, error) {
-            alert('Error: ' + error);
-        }
-    });
-}
 </script>
 <body>
 	
@@ -89,10 +43,15 @@ function makeDrawingMember() {
 		    </div>
 		    
 		    <div>
+		        <label for="eMoneyVal">지급 포인트</label><br>
+		        <input type="number" id="eMoneyVal" name="eMoneyVal"><br>
+		    </div>
+		    
+		    <div>
 		        <label for="personnel">추첨 인원</label><br>
 		        <input type="number" id="personnel" name="personnel"><br>
 		    </div>
-		    
+    
 		    <div id="drawingSelect">
 		    
 		    </div>

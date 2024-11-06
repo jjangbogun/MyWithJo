@@ -132,12 +132,6 @@ public class LottoController {
 	    return "redirect:/lotto/detail";
 	}
 	
-	@GetMapping("/test")
-	public String eventList() {
-	    log.info("eventList");
-
-	    return "/EventListView";
-	}
 //	@PostMapping("/add")
 //	public String lottoAdd(HttpServletRequest request, Model model) throws ServletException, IOException {
 //		log.info("lottoAdd");

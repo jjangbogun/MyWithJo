@@ -92,4 +92,9 @@
 	    DELETE FROM DRAWING
 	    WHERE DRAWING_NO = #{drawingNo}
 	</delete>
+	
+	<insert id="drawingInsertEMoney" parameterType="map">
+		INSERT INTO MEMBER_E_MONEY(MEMBER_NO, MEMBER_E_MONEY_NO, MEMBER_E_MONEY_PLUS, MEMBER_E_MONEY_PLUS_DETAIL)
+		VALUES(#{memberNo}, MEMBER_E_MONEY_NO_SEQ.NEXTVAL, #{eMoney}, #{detail})
+	</insert>
 </mapper>

@@ -1,7 +1,9 @@
 package com.withJo.drawing.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -126,18 +128,22 @@ public class DrawingController {
 		
 		return "drawing/DrawingDetailView";
 	}
-//
-//	@GetMapping("/update")
-//	public String customerUpdate(@RequestParam int customerNo, Model model) {
-//		log.info(logTitleMsg);
-//		log.info("@GetMapping noticeUpdate noticeNo: {}", customerNo);
-//		
-//		CustomerVo customerVo =customerService.customerSelectOne(customerNo);
-//		
-//		model.addAttribute("customerVo", customerVo);
-//		
-//		return "customer/CustomerUpdateView";
-//	}
+	
+	@PostMapping("/emoney")
+	public ResponseEntity<?> drawingEmoney(@RequestBody Map<String, Object> payload) {
+	    log.info("lottoEmoney");
+	    
+	    Map<String, String> resultMap = new HashMap<>();
+	    
+	    int eMoney = (int) payload.get("eMoney");	    
+	    ArrayList<Integer> memberNos = (ArrayList<Integer>) payload.get("memberNos");
+
+	    for (Integer memberNo : memberNos) {
+	    	drawingService.drawingInsertEMoney(eMoney, (int) memberNo);
+		}
+
+	    return ResponseEntity.ok().body(resultMap);
+	}
 //	
 //	@PostMapping("/update")
 //	public String customerUpdate(HttpServletRequest request, Model model) throws ServletException, IOException {

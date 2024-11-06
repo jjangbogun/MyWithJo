@@ -69,4 +69,16 @@ public class DrawingDaoImpl implements DrawingDao{
 		// TODO Auto-generated method stub
 		return sqlSession.delete(namespace + "drawingDeleteOne", drawingNo);
 	}
+	
+	@Override
+	public int drawingInsertEMoney(int emoney, int memberNo) {
+		// TODO Auto-generated method stub
+		String detail = "게시글 추첨 이벤트 보상입니다.";
+		Map<String, Object> map = new HashMap<>();
+		map.put("eMoney", emoney);
+		map.put("memberNo", memberNo);
+		map.put("detail", detail);
+		
+		return sqlSession.delete(namespace + "drawingInsertEMoney", map);
+	}
 }

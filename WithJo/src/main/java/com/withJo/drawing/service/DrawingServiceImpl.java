@@ -56,4 +56,10 @@ public class DrawingServiceImpl implements DrawingService{
 		// TODO Auto-generated method stub
 		return drawingDao.drawingDeleteOne(drawingNo);
 	}
+	
+	@Override
+	public int drawingInsertEMoney(int emoney, int memberNo) {
+		// TODO Auto-generated method stub
+		return drawingDao.drawingInsertEMoney(emoney, memberNo);
+	}
 }
