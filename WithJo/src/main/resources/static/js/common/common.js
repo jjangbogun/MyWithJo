@@ -62,10 +62,15 @@
 		location.href = "/notice/list";
 	});
 
-/*로그인 페이지 move*/
+	/*로그인 페이지 move*/
    $('.loginImg').on("click", () => {
       location.href = "/member/login";
    });
+   
+   /*로그아웃*/
+   $('.logoutImg').on("click", () => {
+		alert("로그아웃 되었습니다. 메인페이지로 이동합니다");		
+   })
    
    $(".ImgDiv p:first")
    
