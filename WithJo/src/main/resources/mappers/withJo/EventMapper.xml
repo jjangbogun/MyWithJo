@@ -13,7 +13,7 @@
 	
 	<select id="eventSelectList" parameterType="map" resultMap="eventResultMap">
 		SELECT EVENT_NO, EVENT_LOTTO, EVENT_DRAWING, EVENT_LOTTO_UPDATE, EVENT_DRAWING_UPDATE
-		FROM EVENT;
+		FROM EVENT
 	</select>
 	
 	<update id="eventUpdateLotto" parameterType="eventVo">

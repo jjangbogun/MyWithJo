@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.withJo.event.dao.EventDao;
 import com.withJo.event.domain.EventVo;
+import com.withJo.notice.domain.NoticeVo;
 
 
 @Service
@@ -20,8 +21,12 @@ public class EventServiceImpl implements EventService{
 		// TODO Auto-generated method stub
 		return eventDao.eventSelectList();
 	}
-
-
 	
+	@Override
+	public int eventUpdateOne(EventVo eventVo) {
+		// TODO Auto-generated method stub
+		return eventDao.eventUpdateOne(eventVo);
+	}
+
 
 }
