@@ -12,6 +12,7 @@
 		<package name="com.withJo.comments.domain"/>
 		<package name="com.withJo.drawing.domain"/>
 		<package name="com.withJo.reservation.domain"/>
+		<package name="com.withJo.event.domain"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/withJo/MemberMapper.xml"/>
@@ -23,5 +24,6 @@
 		<mapper resource="mappers/withJo/CommentsMapper.xml"/>
 		<mapper resource="mappers/withJo/DrawingMapper.xml"/>
 		<mapper resource="mappers/withJo/ReservationMapper.xml"/>
+		<mapper resource="mappers/withJo/EventMapper.xml"/>
 	</mappers>
 </configuration>

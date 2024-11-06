@@ -1,0 +1,27 @@
+package com.withJo.event.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.withJo.event.dao.EventDao;
+import com.withJo.event.domain.EventVo;
+
+
+@Service
+public class EventServiceImpl implements EventService{
+
+	@Autowired
+	public EventDao eventDao;
+
+	@Override
+	public List<EventVo> eventSelectList() {
+		// TODO Auto-generated method stub
+		return eventDao.eventSelectList();
+	}
+
+
+	
+
+}

@@ -16,7 +16,17 @@
 <script defer src="/js/common/common.js"></script>
 <link rel="stylesheet" href="/css/event/EventList.css">
 <script src="/js/event/eventList.js"></script>
-
+<script type="text/javascript">
+	function lottoHide() {
+	    // 로또 이벤트 요소 숨기기
+	    $('#lottoDiv').css('display', 'none');
+	}
+	
+	function drawingtHide() {
+	    // 게시판 추첨 이벤트 요소 숨기기
+	    $('#drawingDiv').css('display', 'none');
+	}
+</script>
 </head>
 
 <body>
@@ -35,25 +45,35 @@
 		<div class="pageContentArea">
 			<div class="pageContentAreaInner">
 				<div class="eventTableBox">
-					<div class="eventTableBoxContent">
-						<div class="tableTitleElement">
-							<a class="imgTag" href="/lotto/detail">
-								<img class="eventImgs" alt="" src="/img/event/lottoEvent.jpg" style="width: 350px;">
-							</a>
-							<a class="textTag" href="/lotto/detail">주간 로또 하러가기</a>
-							<div class="tableTimeElement">
-								별도공지 까지
+					<div id="lottoDiv">
+						<div class="eventTableBoxContent">
+							<div class="tableTitleElement">
+								<a class="imgTag" href="/lotto/detail">
+									<img class="eventImgs" alt="" src="/img/event/lottoEvent.jpg" style="width: 350px;">
+								</a>
+								<a class="textTag" href="/lotto/detail">주간 로또 하러가기</a>
+								<div class="tableTimeElement">
+									별도공지 까지
+									<c:if test="${memberVo.authority >= 1}">
+										<button class="btn2" type="button" onclick="lottoHide();">이벤트 숨기기</button>
+		           					</c:if>	 
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="eventTableBoxContent">
-						<div class="tableTitleElement">
-							<a class="imgTag" href="/drawing/detail">
-								<img class="eventImgs" alt="" src="/img/event/drawingEvent.jpg" style="width: 350px;">
-							</a>
-							<a class="textTag" href="/drawing/list">게시판 이벤트 확인하기</a>
-							<div class="tableTimeElement">
-								별도공지 까지
+					<div id="drawingDiv">
+						<div class="eventTableBoxContent">
+							<div class="tableTitleElement">
+								<a class="imgTag" href="/drawing/detail">
+									<img class="eventImgs" alt="" src="/img/event/drawingEvent.jpg" style="width: 350px;">
+								</a>
+								<a class="textTag" href="/drawing/detail">게시판 이벤트 확인하기</a>
+								<div class="tableTimeElement">
+									별도공지 까지
+									<c:if test="${memberVo.authority >= 1}">
+										<button class="btn2" type="button" onclick="drawingtHide();">이벤트 숨기기</button>
+		           					</c:if>	 
+								</div>
 							</div>
 						</div>
 					</div>
