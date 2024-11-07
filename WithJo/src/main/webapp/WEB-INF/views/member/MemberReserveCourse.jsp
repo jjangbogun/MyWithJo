@@ -61,7 +61,8 @@
 			</div>
 		</div>
 		
-		<div>			
+		<div class="myReserveList">		
+						
 			<c:forEach var="reserve" items="${reserveList}">
   				  <p>${reserve.courseName}</p>
   				  <p>${reserve.courseStartDate}</p>
@@ -71,7 +72,9 @@
    			      <p>${reserve.courseDayOfTheWeek}</p>
   				  <p>${reserve.courseTeacher}</p>
 			</c:forEach>
+			
 		</div>
+		
 
 		
 
