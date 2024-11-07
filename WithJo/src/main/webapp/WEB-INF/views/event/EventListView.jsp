@@ -17,51 +17,12 @@
 <link rel="stylesheet" href="/css/event/EventList.css">
 <script src="/js/event/eventList.js"></script>
 <script type="text/javascript">
-	function lottoHide() {
-		var hideData = {
-	        eventLotto: 0, // 배열을 JSON 문자열로 변환
-		};
-		
-	    $.ajax({
-	        url: '/event/update',
-	        method: 'POST',
-	        contentType: 'application/json',
-	        data: JSON.stringify(hideData),
-	        success: function (data) {
-	            console.log('처리 성공:', data);
-	        },
-	        error: function(xhr, status, error) {
-	            console.error('Error:', error);
-	            alert('처리 실패: ' + status + ' - ' + error);
-	        }
-	    });
-	}
-	
-	function drawingHide() {
-		var hideData = {
-	        eventDrawing: 0, // 배열을 JSON 문자열로 변환
-		};
-		
-	    $.ajax({
-	        url: '/event/update',
-	        method: 'POST',
-	        contentType: 'application/json',
-	        data: JSON.stringify(hideData),
-	        success: function (data) {
-	            console.log('처리 성공:', data);
-	        },
-	        error: function(xhr, status, error) {
-	            console.error('Error:', error);
-	            alert('처리 실패: ' + status + ' - ' + error);
-	        }
-	    });
-	}
+
+
 </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/Header.jsp"/> 
-	<input type="hidden" name="lottoVal" id="lottoVal" value="${eventVo.eventLotto}">
-	<input type="hidden" name="drawingVal" id="drawingVal" value="${eventVo.eventDrawing}">
 	<div id="mainContainer">
 	
 		<div class="topSearch">
@@ -76,6 +37,8 @@
 			<div class="pageContentAreaInner">
 				<div class="eventTableBox">
 					<c:forEach var="eventVo" items="${eventList}">
+						<input type="hidden" name="lottoVal" id="lottoVal" value="${eventVo.eventLotto}">
+						<input type="hidden" name="drawingVal" id="drawingVal" value="${eventVo.eventDrawing}">
 						<c:if test="${eventVo.eventLotto == 1}">
 							<div id="lottoDiv">
 								<div class="eventTableBoxContent">
@@ -94,6 +57,22 @@
 								</div>
 							</div>
 						</c:if>	
+						<c:if test="${eventVo.eventLotto == 0 && memberVo.authority >= 1}">
+							<div id="lottoDiv">
+								<div class="eventTableBoxContent">
+									<div class="tableTitleElement">
+										<a class="imgTag" href="/lotto/detail">
+											<img class="eventImgs" alt="" src="/img/event/lottoHide.jpg" style="width: 350px;">
+										</a>
+										<a class="textTag" href="/lotto/detail">비활성화된 이벤트 입니다.</a>
+										<div class="tableTimeElement">
+											별도공지 까지
+											<button onclick="lottoHide();" class="eventBtn">로또이벤트 보이기</button>	           					 
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
 						<c:if test="${eventVo.eventDrawing == 1}">
 							<div id="drawingDiv">
 								<div class="eventTableBoxContent">
@@ -106,7 +85,23 @@
 											별도공지 까지
 											<c:if test="${memberVo.authority >= 1}">
 												<button onclick="drawingHide();" class="eventBtn">추첨이벤트 숨기기</button>
-											</c:if>
+											</c:if>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${eventVo.eventDrawing == 0 && memberVo.authority >= 1}">
+							<div id="drawingDiv">
+								<div class="eventTableBoxContent">
+									<div class="tableTitleElement">
+										<a class="imgTag" href="/drawing/detail">
+											<img class="eventImgs" alt="" src="/img/event/drawingHide.jpg" style="width: 350px;">
+										</a>
+										<a class="textTag" href="/drawing/detail">비활성화된 이벤트 입니다.</a>
+										<div class="tableTimeElement">
+											별도공지 까지
+											<button onclick="drawingHide();" class="eventBtn">추첨이벤트 보이기</button>
 										</div>
 									</div>
 								</div>

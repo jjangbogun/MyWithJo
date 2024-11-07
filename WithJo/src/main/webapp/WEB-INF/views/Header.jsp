@@ -34,7 +34,7 @@
 						<div class="hiddenDiv hiddenDiv2">
 							<ul class="subMenu" >
 								<li class="eventSubMenuLi1"><a href="/lotto/detail">주간 포인트 로또</a></li>
-								<li class="eventSubMenuLi2"><a href="/drawing/list">게시판 행운의 3명!</a></li>
+								<li class="eventSubMenuLi2"><a href="/drawing/detail">게시판 행운의 3명!</a></li>
 							</ul>
 							<div class="ImgDiv">
 								<p class="img"><img class="" alt="" src="/img/event/lottoEvent.jpg"/></p>

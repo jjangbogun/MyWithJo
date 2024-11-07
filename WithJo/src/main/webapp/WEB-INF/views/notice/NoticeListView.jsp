@@ -78,7 +78,7 @@
 						<c:forEach var="noticeVo" items="${noticeList}">
 							<div class="noticeTableBoxContent">
 								<div class="tableTitleElement">
-									<a href="/notice/detail?noticeNo=${noticeVo.noticeNo}">${noticeVo.noticeTitle}</a>
+									<a href="/notice/detail?noticeNo=${noticeVo.noticeNo}&prevPage=${curPage}">${noticeVo.noticeTitle}</a>
 								</div>
 								<div class="tableTimeElement">
 									<fmt:formatDate value="${noticeVo.noticeCredate}" pattern="yyyy-MM-dd" />

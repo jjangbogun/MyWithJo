@@ -19,13 +19,13 @@
 	<update id="eventUpdateLotto" parameterType="eventVo">
 		UPDATE EVENT
 		SET EVENT_LOTTO = #{eventLotto}, EVENT_LOTTO_UPDATE = SYSDATE
-		WHERE EVENT_NO = #{eventNo}
+		WHERE EVENT_NO = 1
 	</update>
 	
 	<update id="eventUpdateDrawing" parameterType="eventVo">
 		UPDATE EVENT
 		SET EVENT_DRAWING = #{eventDrawing}, EVENT_DRAWING_UPDATE = SYSDATE
-		WHERE EVENT_NO = #{eventNo}
+		WHERE EVENT_NO = 1
 	</update>
 
 </mapper>

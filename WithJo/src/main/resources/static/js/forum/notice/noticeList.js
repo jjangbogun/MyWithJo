@@ -12,15 +12,3 @@ function noticesearch() {
 function pageMoveAdd() {
     location.href = './add';
 }
-/*
-function moveNotice() {		
-    location.href = '/notice/list';
-}
-
-function moveBoard() {		
-    location.href = '/board/list';
-}
-
-function moveCustomer() {		
-    location.href = '/customer/list';
-}*/

@@ -26,10 +26,17 @@ public class EventDaoImpl implements EventDao{
 	}
 	
 	@Override
-	public int eventUpdateOne(EventVo eventVo) {
+	public int eventUpdateLotto(EventVo eventVo) {
 		// TODO Auto-generated method stub
 		System.out.println("오는지 체크");
-		return sqlSession.update(namespace + "noticeUpdateOne", eventVo);
+		return sqlSession.update(namespace + "eventUpdateLotto", eventVo);
+	}
+	
+	@Override
+	public int eventUpdateDrawing(EventVo eventVo) {
+		// TODO Auto-generated method stub
+		System.out.println("오는지 체크");
+		return sqlSession.update(namespace + "eventUpdateDrawing", eventVo);
 	}
 
 

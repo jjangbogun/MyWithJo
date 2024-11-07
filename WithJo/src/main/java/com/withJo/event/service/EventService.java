@@ -8,7 +8,7 @@ import com.withJo.event.domain.EventVo;
 public interface EventService {
 	
 	List<EventVo> eventSelectList();
-
-	int eventUpdateOne(EventVo eventVo);	
+	int eventUpdateLotto(EventVo eventVo);	
+	int eventUpdateDrawing(EventVo eventVo);	
 	
 }

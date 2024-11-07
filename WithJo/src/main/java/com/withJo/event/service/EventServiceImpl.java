@@ -23,9 +23,15 @@ public class EventServiceImpl implements EventService{
 	}
 	
 	@Override
-	public int eventUpdateOne(EventVo eventVo) {
+	public int eventUpdateLotto(EventVo eventVo) {
 		// TODO Auto-generated method stub
-		return eventDao.eventUpdateOne(eventVo);
+		return eventDao.eventUpdateLotto(eventVo);
+	}
+	
+	@Override
+	public int eventUpdateDrawing(EventVo eventVo) {
+		// TODO Auto-generated method stub
+		return eventDao.eventUpdateDrawing(eventVo);
 	}
 
 

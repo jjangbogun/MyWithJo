@@ -19,6 +19,9 @@
     window.noticeNo = ${noticeVo.noticeNo};
 </script>
 <script src="/js/forum/notice/noticeDetail.js"></script>
+<script>
+    var prevPage = ${prevPage != null ? prevPage : 1};
+</script>
 </head>
 
 <body>

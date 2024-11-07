@@ -1,6 +1,5 @@
 package com.withJo.event.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,13 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.withJo.event.domain.EventVo;
 import com.withJo.event.service.EventService;
-import com.withJo.lotto.domain.LottoVo;
-import com.withJo.notice.domain.NoticeVo;
-import com.withJo.util.FileUpload;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Part;
 
 
 @RequestMapping("/event")
@@ -44,15 +36,22 @@ public class EventController {
 	    return "/event/EventListView";
 	}
 	
-	@PostMapping("/hide")
-	public String eventHide(@RequestBody EventVo eventVo) {
-	    log.info("lottoAdd");
+	@PostMapping("/update1")
+	public String eventHideLotto(@RequestBody EventVo eventVo) {
+	    log.info("eventHideLotto");
 	    
-	    eventService.eventUpdateOne(eventVo);
+	    eventService.eventUpdateLotto(eventVo);
 
 	    return "redirect:/event/list";
 	}
 	
+	@PostMapping("/update2")
+	public String eventHideDrawing(@RequestBody EventVo eventVo) {
+	    log.info("eventHideDrawing");
+	    
+	    eventService.eventUpdateDrawing(eventVo);
 
-
+	    return "redirect:/event/list";
+	}
+	
 }

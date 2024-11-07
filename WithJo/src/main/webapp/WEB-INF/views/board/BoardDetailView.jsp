@@ -57,9 +57,6 @@
 	    	</div>
 	    	
 	        <div class="commentsBody">
-<%-- 	        	<c:if test="${memberVo.memberNo >= 0}">
-
-    			</c:if> --%>
     			
     			<c:choose>
 				    <c:when test="${memberVo.memberNo >= 0}">

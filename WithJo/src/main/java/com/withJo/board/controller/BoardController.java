@@ -55,8 +55,7 @@ public class BoardController {
 		Paging pagingVo = new Paging(totalCount, curPage);
 		
 		int start = pagingVo.getPageBegin();
-		int end = pagingVo.getPageEnd();
-		
+		int end = pagingVo.getPageEnd();	
 		
 		List<BoardVo> boardList = boardService.boardSelectList(start, end, searchField, searchKeyword);
 		model.addAttribute("boardList", boardList);
@@ -129,6 +128,7 @@ public class BoardController {
 			@RequestParam(required = false) Integer prevPage, Model model) {
 		log.info(logTitleMsg);
 		log.info("@GetMapping boardDetail boardNo: {}", boardNo);
+		log.info("aa@GetMapping boardDetail boardNo: {}", prevPage);
 		
 		BoardVo boardVo = boardService.boardSelectOne(boardNo);
 		
