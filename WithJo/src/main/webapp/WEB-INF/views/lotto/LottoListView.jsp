@@ -16,22 +16,7 @@
 <script defer src="/js/common/common.js"></script>
 <link rel="stylesheet" href="/css/event/lotto/lottoList.css">
 <script src="/js/event/lotto/lottoList.js"></script>
-<script type="text/javascript">
 
-	function deleteFnc(lottoNo}) {        
-	    if(confirm("해당 공지를 삭제 하시겠습니까?")) {	    	
-	        $.ajax({
-	        	url: '/lotto/delete',
-	        	type: 'POST'
-	        	data: { lottoNo: lottoNo },
-	        	success: function(result) {
-					alert("삭제되었습니다");
-					location.reload();
-				}
-	        });        
-		}
-	}
-</script>
 </head>
 
 <body>

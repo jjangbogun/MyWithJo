@@ -13,13 +13,13 @@
 <script defer src="/js/common/common.js"></script>
 <link rel="stylesheet" href="/css/event/lotto/LottoAdd.css">
 <script src="/js/event/lotto/lottoForm.js"></script>
+
 </head>
 <body>
 	
 	<jsp:include page="/WEB-INF/views/Header.jsp"/> 
 	
 	<div id="lottoAddContainer">
-		<h1>로또 등록</h1>
 		
 		<input type="hidden" id="memberNo" name="memberNo" value="${memberVo.memberNo}">
 		<input type="hidden" id="authority" name="authority" value="${memberVo.authority}">
@@ -37,6 +37,32 @@
 		    <div>
 		        <label for="lottoEndDate">회차종료날짜</label><br>
 		        <input class="dateInput" type="date" id="lottoEndDate" name="lottoEndDate"><br>
+		    </div>
+		    
+		    <div>
+		        <label for="lottoEndDate">당첨금액설정</label><br>
+		        <div>
+		        	<table class="lottoRankTb">
+		        		<tr class="lottoRankTr">
+		        			<td class="lottoRankTdHead">1등</td>
+		        			<td class="lottoRankTd">
+		        				<input class="pointInput" type="number" id="lotto1st" name="lotto1st">
+		        			</td>
+		        		</tr>
+		        		<tr>
+		        			<td class="lottoRankTdHead">2등</td>
+		        			<td class="lottoRankTd">
+		        				<input class="pointInput" type="number" id="lotto2nd" name="lotto2nd">
+		        			</td>
+		        		</tr>
+		        		<tr>
+		        			<td class="lottoRankTdHead">3등</td>
+		        			<td class="lottoRankTd">
+		        				<input class="pointInput" type="number" id="lotto3rd" name="lotto3rd">
+		        			</td>	        		
+		        		</tr>
+		        	</table>
+		        </div>
 		    </div>
 		    
 		    <div id="lottoSelect">

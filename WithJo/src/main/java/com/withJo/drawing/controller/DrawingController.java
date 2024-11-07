@@ -135,11 +135,15 @@ public class DrawingController {
 	    
 	    Map<String, String> resultMap = new HashMap<>();
 	    
-	    int eMoney = (int) payload.get("eMoney");	    
+	    int eMoney = (int) payload.get("eMoney");
+	    int round = (int) payload.get("round");
+	    
+	    String detail = round + "회차 게시판 이벤트 보상입니다.";
+	    
 	    ArrayList<Integer> memberNos = (ArrayList<Integer>) payload.get("memberNos");
 
 	    for (Integer memberNo : memberNos) {
-	    	drawingService.drawingInsertEMoney(eMoney, (int) memberNo);
+	    	drawingService.drawingInsertEMoney(eMoney, (int) memberNo , detail);
 		}
 
 	    return ResponseEntity.ok().body(resultMap);

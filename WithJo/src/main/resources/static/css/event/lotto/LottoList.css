@@ -2,7 +2,8 @@
 
 #mainContainer{
 	background-color: white;
-	height: 1100px;
+	height: 1100px;	
+	padding-bottom: 300px;
 }
 
 .topSearch{

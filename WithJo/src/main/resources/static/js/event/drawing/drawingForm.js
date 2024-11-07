@@ -97,7 +97,8 @@ function addDrawing() {
 function insertMemberEMoney(memberNos) {
     var emoneyData = {
         memberNos: memberNos, // 배열을 JSON 문자열로 변환
-		eMoney: parseInt($('#eMoneyVal').val(), 10)
+		eMoney: parseInt($('#eMoneyVal').val(), 10),
+		round: parseInt($('#drawingRound').val(), 10)
     };
 
     $.ajax({

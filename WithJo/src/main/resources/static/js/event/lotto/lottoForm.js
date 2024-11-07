@@ -22,12 +22,19 @@ function addLotto() {
     var lottoStartDate = $('#lottoStartDate').val().trim();
     var lottoEndDate = $('#lottoEndDate').val().trim();
     var lottoSelNo = $('#lottoSelNo').text().trim();
+	var lotto1st = parseInt($('#lotto1st').val(), 10);
+	var lotto2nd = parseInt($('#lotto2nd').val(), 10);
+	var lotto3rd = parseInt($('#lotto3rd').val(), 10);
 
-    if (!lottoRound || !lottoStartDate || !lottoEndDate || !lottoSelNo) {
+	console.log(lotto1st);
+	console.log(lotto2nd);
+	console.log(lotto3rd);
+	
+    if (!lottoRound || !lottoStartDate || !lottoEndDate || !lottoSelNo || !lotto1st || !lotto2nd || !lotto3rd) {
         alert("모든 필드를 입력해주세요.");
         return;
     }
-
+	
     var memberNo = parseInt($('#memberNo').val(), 10);
     var lottoMode = parseInt($('#authority').val(), 10); 
 
@@ -37,7 +44,10 @@ function addLotto() {
         lottoRound: parseInt(lottoRound, 10),
         lottoStartDate: lottoStartDate,
         lottoEndDate: lottoEndDate,
-        lottoSelNo: lottoSelNo
+        lottoSelNo: lottoSelNo,
+		lotto1st: lotto1st,
+		lotto2nd: lotto2nd,
+		lotto3rd: lotto3rd
     };
 
     $.ajax({

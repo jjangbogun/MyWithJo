@@ -125,36 +125,17 @@ public class LottoController {
 	    
 	    int eMoney = (Integer) payload.get("eMoney");
 	    int memberNo = (Integer) payload.get("memberNo");
+	    int round = (int) payload.get("round");
+	    
+	    log.info("넘어와라searchMap: {}", round);
+	    
+	    String detail = round + "회차 로또 이벤트 보상입니다.";
 
-	    // 필요한 서비스 호출
-	    lottoService.lottoInsertEMoney(eMoney, memberNo);
+	    lottoService.lottoInsertEMoney(eMoney, memberNo, detail);
 
 	    return "redirect:/lotto/detail";
 	}
 	
-//	@PostMapping("/add")
-//	public String lottoAdd(HttpServletRequest request, Model model) throws ServletException, IOException {
-//		log.info("lottoAdd");
-//		
-//		String memberNo = request.getParameter("memberNo");
-//		String lottoMode = request.getParameter("lottoMode");
-//		String lottoRound = request.getParameter("lottoRound");
-//		String lottoStartDate = request.getParameter("lottoStartDate");
-//		String lottoEndDate = request.getParameter("lottoEndDate");
-//		String lottoSelNo = request.getParameter("lottoSelNo");
-//
-//		LottoVo lottoVo = new LottoVo();
-//		lottoVo.setMemberNo(Integer.parseInt(memberNo));
-//		lottoVo.setLottoMode(Integer.parseInt(lottoMode));
-//		lottoVo.setLottoRound(Integer.parseInt(lottoRound));
-//		lottoVo.setLottoStartDate(lottoStartDate);
-//		lottoVo.setLottoEndDate(lottoEndDate);
-//		lottoVo.setLottoSelNo(lottoSelNo);
-//
-//		lottoService.lottoInsertOne(lottoVo);
-//
-//		return "redirect:/lotto/list";
-//	}
 	
 	@GetMapping("/detail")
 	public String lottoDetail(Model model) {

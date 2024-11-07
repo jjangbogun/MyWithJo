@@ -19,6 +19,9 @@
     <input type="hidden" id="authority" name="authority" value="${memberVo.authority}">
     <input type="hidden" id="lottoRound" name="lottoRound" value="${lottoVo.lottoRound}">
     <input type="hidden" id="lottoSelNoStr" name="lottoSelNoStr" value="${lottoVo.lottoSelNo}">
+    <input type="hidden" id="lotto1st" name="lotto1st" value="${lottoVo.lotto1st}">
+    <input type="hidden" id="lotto2nd" name="lotto2nd" value="${lottoVo.lotto2nd}">
+    <input type="hidden" id="lotto3rd" name="lotto3rd" value="${lottoVo.lotto3rd}">
     <div id="lottoContainer">
         <div>
         	<div class="btnDiv">
@@ -27,7 +30,7 @@
 	            </c:if>	            
 	    	</div>
             <div class="detailHeader">
-                <p>${lottoVo.lottoRound} 회차
+                <p>${lottoVo.lottoRound} 회차 
                     <span class="dateSpan">${lottoVo.lottoStartDate} / ${lottoVo.lottoEndDate}</span>
                 </p>
             </div>
@@ -46,10 +49,10 @@
 	            </div>  
 	            <div class="reminderDiv">
 	                <ul>
-	                    <li>※3개이상 맞추시면 1등! 1만 포인트 증정입니다.</li>
-	                    <li>※2개이상 맞추시면 2등! 5천 포인트 증정입니다.</li>
-	                    <li>※1개이상 맞추시면 3등! 3천 포인트 증정입니다.</li>
-	                    <li>※본 이벤트 기한은 변경될 수 있습니다.</li>
+	                    <li>※3개이상 맞추시면 1등! 1만 포인트 드립니다.</li>
+	                    <li>※2개이상 맞추시면 2등! 5천 포인트 드립니다.</li>
+	                    <li>※1개이상 맞추시면 3등! 3천 포인트 드립니다.</li>
+	                    <li>※본 이벤트의 기한은 변경될 수 있습니다.</li>
 	                    <li>※본 이벤트는 회차당 다섯번 가능합니다.</li>
 	                </ul>
 	            </div>           

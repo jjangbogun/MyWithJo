@@ -90,12 +90,6 @@
 	margin-bottom: 30px;
 }
 
-/* 스타일 추가 */
-.winningdrawingSelNo {
-    display: flex;
-    justify-content: center; /* 가운데 정렬 */
-    gap: 15px; /* 동그라미 간격 */
-}
 
 .memberdrawingSelNo {
     display: flex;
@@ -115,13 +109,38 @@
     font-size: 50px;
 }
 
-.reminderDiv li{
-	margin-top: 15px;
-	margin-bottom: 10px;
+.reminderDiv{
+	margin-top: 20px;
+	margin-bottom: 20px;
 	color: #999;
 }
 
-.drawingMember p {
-	margin: 10px;
-	font-size: 16px;
+.drawingNotice {
+	margin-bottom: 30px;
 }
+
+.drawingMember p {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.eventImgs {
+	width: 900px;
+	height: 500px;
+}
+
+#divMemberContainer {
+    display: flex; /* p 태그들이 한 줄로 배치되도록 flex 사용 */
+    justify-content: space-between; /* p 태그들 사이에 간격을 넣음 */
+    width: 80%; /* div의 너비를 적당히 설정 */
+    padding: 20px; /* div에 패딩 추가 */
+    border: 1px solid #ccc; /* border로 구분 */
+}
+
+#divMemberContainer p {
+	margin-left: 30px;
+}
+
+
+

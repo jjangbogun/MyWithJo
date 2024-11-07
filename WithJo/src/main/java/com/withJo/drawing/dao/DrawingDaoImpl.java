@@ -71,9 +71,8 @@ public class DrawingDaoImpl implements DrawingDao{
 	}
 	
 	@Override
-	public int drawingInsertEMoney(int emoney, int memberNo) {
+	public int drawingInsertEMoney(int emoney, int memberNo, String detail) {
 		// TODO Auto-generated method stub
-		String detail = "게시글 추첨 이벤트 보상입니다.";
 		Map<String, Object> map = new HashMap<>();
 		map.put("eMoney", emoney);
 		map.put("memberNo", memberNo);
