@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#mainContainer {       
+    background-color: white;
+}
+
+.myPageCategory{	
+	height: 15px;
+	display: flex;
+	/* justify-content: space-between; */
+	padding: 50px 90px;
+    font-size: 25px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.myPageCategory__element{
+	width: calc(100% / 4);
+	border-bottom: 1px solid;
+	height: 40px;
+}
+
+.myPageCategory__element:hover{
+	border-bottom: 3px solid;
+}
+
+.myPageCategoryBtn{
+	border: none;
+	background-color: transparent;
+	font-size: 24px;	
+	width: 400px;
+    height: 40px;
+}

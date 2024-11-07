@@ -19,9 +19,9 @@
 	rel="stylesheet">
 <!-- 페이지 css -->
 <link rel="stylesheet" href="/css/common/common.css">
-<link rel="stylesheet" href="/css/member/memberUpdate.css">
+<link rel="stylesheet" href="/css/member/memberReserve.css">
 <script defer src="/js/common/common.js"></script>
-<script defer src="/js/member/memberUpdate.js"></script>
+<script defer src="/js/member/memberReserve.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
