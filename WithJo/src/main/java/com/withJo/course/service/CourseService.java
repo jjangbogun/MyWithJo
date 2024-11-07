@@ -12,4 +12,5 @@ public interface CourseService {
 	public CourseVo egetCourseDetailList(int courseNo);
 	public Map<String, Object> getCourseDay(int courseNo);
 	public List<CourseVo> getCategory();
+	public void courseInsert(CourseVo courseVo);
 }

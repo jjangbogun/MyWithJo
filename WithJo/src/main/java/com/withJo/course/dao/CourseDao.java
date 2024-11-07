@@ -12,4 +12,5 @@ public interface CourseDao {
 	public CourseVo getCourseDetailList(int courseNo);
 	public List<CourseVo> getCourseDay(int courseNo);
 	public List<CourseVo> getCategory();
+	public void courseInsert(CourseVo courseVo);
 }

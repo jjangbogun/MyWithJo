@@ -56,4 +56,10 @@ public class CourseServiceImpl implements CourseService{
 		return categoryList;
 	}
 
+	@Override
+	public void courseInsert(CourseVo courseVo) {
+		// TODO Auto-generated method stub
+		courseDao.courseInsert(courseVo);
+	}
+
 }

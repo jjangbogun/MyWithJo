@@ -30,7 +30,7 @@
 }
 .rightBoxInfo{
 	position: absolute;
-	width: 460px;
+	width: 485px;
 	height: 612px;
 	border-radius : 15px;
 	top:100px;
@@ -204,7 +204,7 @@
 	font-family: 'General Sans', sans-serif;
 }
 input{
-	width: 100px;
+	width: 120px;
 	height: 30px;
 }
 .courseInfoTitleSub input{

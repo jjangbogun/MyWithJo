@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.withJo.course.domain.CourseVo;
 import com.withJo.course.service.CourseService;
+
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/course")
@@ -114,6 +118,19 @@ public class CourseController {
 		ModelAndView mav = new ModelAndView("course/CourseInsertView");
 		
 		return mav;
+	}
+	
+	@PostMapping("/insert")
+	public ResponseEntity<String> courseInsert(@RequestBody HashMap<String, Object> map,
+			HttpServletRequest request){
+		log.info(logTitleMsg);
+		log.info("@GetMapping courseInsert",map);
+		
+		System.out.println("map: " + map);
+		
+		
+		
+		return ResponseEntity.ok("");
 	}
 
 }

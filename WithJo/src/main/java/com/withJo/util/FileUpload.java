@@ -26,7 +26,7 @@ public class FileUpload {
         if (os.contains("win")) {
             saveDirectory = "C:/upload";
         } else if (os.contains("mac") || os.contains("nux")) {
-            saveDirectory = "/Users/username/upload"; // 적절한 Mac 경로로 변경
+            saveDirectory = "/Users/kimyk/upload"; // 적절한 Mac 경로로 변경
         } else {
             throw new UnsupportedOperationException("지원하지 않는 운영체제입니다: " + os);
         }

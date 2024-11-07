@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
         if (os.contains("win")) {
             resourcePath = "file:///C:/upload/";
         } else if (os.contains("mac") || os.contains("nux")) {
-            resourcePath = "file:///Users/username/upload/"; // Mac의 경우 적절한 경로로 변경
+            resourcePath = "file:///Users/kimyk/upload/"; // Mac의 경우 적절한 경로로 변경
         } else {
             throw new UnsupportedOperationException("지원하지 않는 운영체제입니다: " + os);
         }

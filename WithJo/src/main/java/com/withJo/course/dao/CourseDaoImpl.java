@@ -56,5 +56,11 @@ public class CourseDaoImpl implements CourseDao{
 		return sqlSession.selectList(namespace + "getCategory");
 	}
 
+	@Override
+	public void courseInsert(CourseVo courseVo) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + "courseInsert", courseVo);
+	}
+
 	
 }
