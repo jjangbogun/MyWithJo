@@ -19,10 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.withJo.course.domain.CourseVo;
 import com.withJo.course.service.CourseService;
+import com.withJo.util.FileUpload;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -120,17 +124,21 @@ public class CourseController {
 		return mav;
 	}
 	
+	
 	@PostMapping("/insert")
-	public ResponseEntity<String> courseInsert(@RequestBody HashMap<String, Object> map,
-			HttpServletRequest request){
+	public ResponseEntity<String> courseInsert(@RequestParam("params") String formData,
+												MultipartHttpServletRequest mhr) throws Exception{
 		log.info(logTitleMsg);
-		log.info("@GetMapping courseInsert",map);
+		log.info("@GetMapping courseInsert",formData, mhr);
 		
-		System.out.println("map: " + map);
+		System.out.println("formData: " + formData);
+		System.out.println("file: " + mhr);
+		ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> courseData = mapper.readValue(formData, Map.class);
+		courseService.courseInsert(courseData, mhr);
 		
 		
-		
-		return ResponseEntity.ok("");
+		return ResponseEntity.ok("강의등록 성공");
 	}
 
 }

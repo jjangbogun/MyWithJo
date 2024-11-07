@@ -6,15 +6,22 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.withJo.course.dao.CourseDao;
 import com.withJo.course.domain.CourseVo;
+import com.withJo.util.FileUtils;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class CourseServiceImpl implements CourseService{
 	
 	@Autowired
 	private CourseDao courseDao;
+	
+	@Autowired
+	private FileUtils fileUtils;
 
 	@Override
 	public List<CourseVo> getCourseList() {
@@ -56,10 +63,22 @@ public class CourseServiceImpl implements CourseService{
 		return categoryList;
 	}
 
+	@Transactional
 	@Override
-	public void courseInsert(CourseVo courseVo) {
+	public void courseInsert(Map<String, Object>map, MultipartHttpServletRequest mhr) throws Exception{
 		// TODO Auto-generated method stub
-		courseDao.courseInsert(courseVo);
+		
+		Map<String, Object> fileList =
+				fileUtils.insertFileInfo(mhr);
+		
+		
+		map.put("courseMainImage", fileList.get("storedFileName"));
+		
+		courseDao.courseInsert(map);
+		map.get("courseNo");
+		System.out.println("map.get(\"courseNo\")" + map.get("courseNo"));
+		courseDao.courseDayInsert(map);
 	}
+
 
 }

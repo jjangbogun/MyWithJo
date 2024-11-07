@@ -9,6 +9,7 @@ import org.apache.ibatis.binding.MapperMethod.ParamMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.withJo.course.domain.CourseVo;
 
@@ -55,12 +56,18 @@ public class CourseDaoImpl implements CourseDao{
 	    
 		return sqlSession.selectList(namespace + "getCategory");
 	}
-
 	@Override
-	public void courseInsert(CourseVo courseVo) {
+	public void courseInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(namespace + "courseInsert", courseVo);
+		System.out.println("daomap:" + map);
+		sqlSession.insert(namespace + "courseInsert", map);
 	}
 
+	@Override
+	public void courseDayInsert(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + "courseDayInsert", map);
+	}
+	
 	
 }

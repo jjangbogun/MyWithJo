@@ -30,7 +30,6 @@
 <body>
 <jsp:include page="/WEB-INF/views/Header.jsp"/>
 		<div id="mainContainer">
-		<form action="">
 			<div class="courseDetailBox">
 				<div class="courseDetailInnerBox">
 					<div class="courseInner">
@@ -180,7 +179,6 @@
 						</div>
 					</div>
 				</c:if>
-			</form>
 		</div> <!-- mainContainer -->
 	<jsp:include page="/WEB-INF/views/Footer.jsp"/>
 </body>

@@ -83,13 +83,28 @@
 		FROM CATEGORY
 	</select>
 	
-	<insert id="courseInsert" parameterType="courseVo">
-		INSERT INTO COURSE_LIST(COURSE_NO, CATEGORY_NO, COURSE_NAME, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE, COURSE_MAX_PEOPLE,
-			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
-			COURSE_INFO, COURSE_MAIN_IMAGE)
-		VALUES(COURSE_NO_SEQ.NEXTVAL, #{categoryNo}, #{courseName}, #{courseTeacher}, #{courseCost}, 0, #{courseMaxPeople}, #{courseAgeLimit}, TO_DATE(#{courseStartDate}, 'YYYY-MM-DD')
+	<insert id="courseInsert" parameterType="map" useGeneratedKeys="true" keyProperty="courseNo">
+	<selectKey keyProperty="courseNo" resultType="int" order="BEFORE">
+		SELECT COURSE_NO_SEQ.NEXTVAL
+		FROM DUAL
+	</selectKey>
+		INSERT INTO COURSE_LIST(COURSE_NO, CATEGORY_NO, COURSE_NAME
+							, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE
+							, COURSE_MAX_PEOPLE,COURSE_AGE_LIMIT, COURSE_START_DATE
+							, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME
+							, COURSE_REC_START, COURSE_REC_END,COURSE_INFO
+							, COURSE_MAIN_IMAGE)
+		VALUES(#{courseNo}, #{categoryNo}, #{courseName}
+			, #{courseTeacher}, #{courseCost}, 0
+			, #{courseMaxPeople}, #{courseAgeLimit}, TO_DATE(#{courseStartDate}, 'YYYY-MM-DD')
 		    , TO_DATE(#{courseEndDate}, 'YYYY-MM-DD'), #{courseStartTime}, #{courseEndTime}
-		    , TO_DATE(#{courseRecStart}, 'YYYY-MM-DD'), TO_DATE(#{courseRecEnd}, 'YYYY-MM-DD'), #{courseInfo}, #{courseMainImage});
+		    , TO_DATE(#{courseRecStart}, 'YYYY-MM-DD'), TO_DATE(#{courseRecEnd}, 'YYYY-MM-DD'), #{courseInfo}
+		    , #{courseMainImage})
+	</insert>
+	
+	<insert id="courseDayInsert" parameterType="map">
+		INSERT INTO COURSE_LIST_DAY(COURSE_LIST_DAY_NO, COURSE_NO, COURSE_DAY_OF_THE_WEEK)
+		VALUES(COURSE_LIST_DAY_NO_SEQ.NEXTVAL, #{courseNo}, #{courseDayOfTheWeek})
 	</insert>
 	
 </mapper>

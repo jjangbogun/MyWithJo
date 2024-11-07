@@ -18,9 +18,24 @@ $(document).ready(function () {
 	$('.timeOption').html(htmlStr);
 	console.log($('.courseNo').val());
 
-function courseInsertPost(){
+function getSelectedOptions() {
+        var selectedOptions = [];
+        $('.sumoselect_multiple option:selected').each(function() {
+            selectedOptions.push($(this).val());
+        });
+        return selectedOptions;
+    }
 	
-	/*const courseTitle = $('.courseTitle').val();
+function courseInsertPost(){
+	/*let selectedOptions = [];
+			
+	selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+	let selectedSub = $('.selectedSub');
+	selectedSub.value = selectedOptions;*/
+	
+	var selectedOptions = getSelectedOptions();
+	
+	const courseTitle = $('.courseTitle').val();
 	const courseTeacher = $('.courseTeacher').val();
 	const courseStartDate = $('.courseStartDate').val();
 	const courseEndDate = $('.courseEndDate').val();
@@ -37,61 +52,36 @@ function courseInsertPost(){
 	let formData = new FormData();
 	let file = $("#fileData")[0].files[0];
 	let params = {
+		categoryNo: parseInt(courseSubject),
 		courseName : courseTitle,
 		courseTeacher: courseTeacher,
+		courseCost: parseInt(courseCost),
 		courseStartDate: courseStartDate,
 		courseEndDate: courseEndDate,
 		courseStartTime: courseStartTime,
 		courseEndTime: courseEndTime,
-		courseCost: courseCost,
-		courseMaxPeople: courseMax,
-		categoryNo: courseSubject,
-		courseAgeLimit: courseAge,
+		courseMaxPeople: parseInt(courseMax),
+		courseAgeLimit: parseInt(courseAge),
 		courseRecStart: courseRecStart,
 		courseRecEnd: courseRecEnd,
-		courseDayOfTheWeek: selectedOptions,
+		courseDayOfTheWeek: parseInt(selectedOptions),
 		courseInfo: courseSubInfo
 	}
 	
 	formData.append("file", file);
 	formData.append("params", JSON.stringify(params));
-	console.log(file);
-
-
-	console.log("courseTitle: " + courseTitle);
-	console.log("courseTeacher: " + courseTeacher);
-	console.log("courseStartDate: " + courseStartDate);
-	console.log("courseStartDate형식: " + courseStartDate);
-	console.log("courseEndDate: " + courseEndDate);
-	console.log("courseStartTime: " + courseStartTime);
-	console.log("courseEndTime: " + courseEndTime);
-	console.log("courseCost: " + courseCost);
-	console.log("courseMax: " + courseMax);
-	console.log("courseSubject: " +typeof(courseSubject));
-	console.log("courseAge: " + courseAge);
-	console.log("courseRecStart: " + courseRecStart);
-	console.log("courseRecEnd: " + courseRecEnd);
-	console.log("selectedOptions: " + typeof(selectedOptions));
-	console.log("formData: " + formData);*/
-	
-						/*
+		
 		$.ajax({
 				url: '/course/insert',
 				method: 'POST',
 				data: formData,
-				enctype: 'multipart/form-data',
 				dataType: 'json',
 				contentType : false,
 				processData : false, 
 				success: function (data) {
-					console.log(data);
+					alert(data);
+					return "course/list";
 				}
-		});*/
-		let selectedOptions = [];
+		});
 		
-		selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
-		let selectedSub = $('.selectedSub');
-		selectedSub.value = selectedOptions;
-		
-		document.getElementById("sumoSelectId").submit(); 
 };
