@@ -37,7 +37,7 @@ public class MemberController {
 	private final String logTitleMsg = "==MemberController==";
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberService memberService;	
 	
 	// 회원 리스트
 	@GetMapping("/list")
@@ -119,6 +119,18 @@ public class MemberController {
 	        log.error("Invalid memberNo: 0");
 	        return ResponseEntity.badRequest().body("{\"error\": \"유효하지 않은 회원 번호입니다.\"}");
 	    }
+	}
+	
+	// 회원 수강신청한 목록
+	@GetMapping("/test")	
+	public String memberReserve(@RequestParam int memberNo, Model model) {
+		log.info(logTitleMsg);
+		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
+		
+		List<MemberVo> reserveList = memberService.memberReserveOne(memberNo);
+	    model.addAttribute("reserveList", reserveList);	
+		
+		return "member/MemberReserveCourse";
 	}
 	
 	// (관리자) 회원 삭제
@@ -337,6 +349,8 @@ public class MemberController {
 	
 
 	}
+	
+	
 }	
 	
 	
