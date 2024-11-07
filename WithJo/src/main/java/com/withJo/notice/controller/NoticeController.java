@@ -41,11 +41,16 @@ public class NoticeController {
 	@GetMapping("/list")
 	public String getNoticeList(@RequestParam(defaultValue = "all") String searchField,
 			@RequestParam(defaultValue = "") String searchKeyword,
-			@RequestParam(defaultValue = "1") int curPage, Model model) {
+			@RequestParam(defaultValue = "1") int curPage, 
+			@RequestParam(required = false) Integer prevPage, Model model) {
 		log.info(logTitleMsg);
 		log.info("getNoticeList");
 		log.info("searchField: {}", searchField);
 		log.info("searchKeyword: {}", searchKeyword);
+		
+	    if (prevPage != null) {
+	        curPage = prevPage;
+	    }
 		
 		int totalCount = noticeService.noticeTotalCount(searchField, searchKeyword);
 		
@@ -57,7 +62,6 @@ public class NoticeController {
 		
 		
 		List<NoticeVo> noticeList = noticeService.noticeSelectList(start, end, searchField, searchKeyword);
-		System.out.println(noticeList);
 		model.addAttribute("noticeList", noticeList);
 		
 		Map<String, Object> pagingMap = new HashMap<>();
@@ -70,7 +74,7 @@ public class NoticeController {
 		
 		model.addAttribute("pagingMap", pagingMap);
 		model.addAttribute("searchMap", searchMap);
-		
+		model.addAttribute("curPage", curPage);
 		log.info("searchMap: {}", searchMap);
 		return "notice/NoticeListView";
 		
@@ -121,13 +125,16 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/detail")
-	public String noticeDetail(@RequestParam int noticeNo, Model model) {
+	public String noticeDetail(@RequestParam int noticeNo,
+			@RequestParam(required = false) Integer prevPage, Model model) {
 		log.info(logTitleMsg);
 		log.info("@GetMapping noticeDetail noticeNo: {}", noticeNo);
+		log.info("aa@GetMapping boardDetail boardNo: {}", prevPage);
 		
 		NoticeVo noticeVo = noticeService.noticeSelectOne(noticeNo);
 		
 		model.addAttribute("noticeVo", noticeVo);
+		model.addAttribute("prevPage", prevPage);
 		
 		return "notice/NoticeDetailView";
 	}

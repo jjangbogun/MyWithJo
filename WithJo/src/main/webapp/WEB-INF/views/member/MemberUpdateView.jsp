@@ -25,7 +25,7 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	
+	var memberNo = ${sessionScope.memberVo.memberNo};	
 </script>
 
 
@@ -46,18 +46,18 @@
 		</div>
 		<!-- aboutPage -->
 
-		<div class="myPagetCategory">
-			<div class="myPagetCategory__element">
-				<span><button class="myPagetCategoryBtn">내 수강 목록</button></span>
+		<div class="myPageCategory">
+			<div class="myPageCategory__element">
+				<span><button class="myPageCategoryBtn">내 수강 목록</button></span>
 			</div>
-			<div class="myPagetCategory__element">
-				<span><button class="myPagetCategoryBtn">포인트 내역</button></span>
+			<div class="myPageCategory__element">
+				<span><button class="myPageCategoryBtn">포인트 내역</button></span>
 			</div>
-			<div class="myPagetCategory__element">
-				<span><button class="myPagetCategoryBtn">회원정보변경</button></span>
+			<div class="myPageCategory__element">
+				<span><button class="myPageCategoryBtn">회원정보변경</button></span>
 			</div>
-			<div class="myPagetCategory__element">
-				<span><button class="myPagetCategoryBtn">장바구니</button></span>
+			<div class="myPageCategory__element">
+				<span><button class="myPageCategoryBtn">장바구니</button></span>
 			</div>
 		</div>
 

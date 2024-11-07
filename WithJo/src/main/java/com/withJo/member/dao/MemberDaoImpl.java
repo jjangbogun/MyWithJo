@@ -98,4 +98,10 @@ public class MemberDaoImpl implements MemberDao{
         return sqlSession.update(namespace + "memberPwUpdate", paramMap);
     }
 
+	@Override
+	public List<MemberVo> memberReserveOne(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "memberReserveOne", memberNo);
+	}
+
 }

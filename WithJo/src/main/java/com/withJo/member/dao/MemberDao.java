@@ -20,5 +20,7 @@ public interface MemberDao {
 	public String memberFindIdByName(String memberName);
 	public MemberVo memberFindByNameAndId(String memberName, String memberId);
     public int memberPwUpdate(String memberId, String newPassword, String memberName);
+    
+    List<MemberVo> memberReserveOne(int memberNo);
 
 }

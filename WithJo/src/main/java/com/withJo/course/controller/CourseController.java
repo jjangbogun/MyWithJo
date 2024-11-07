@@ -137,8 +137,8 @@ public class CourseController {
         Map<String, Object> courseData = mapper.readValue(formData, Map.class);
 		courseService.courseInsert(courseData, mhr);
 		
-		
 		return ResponseEntity.ok("강의등록 성공");
 	}
+
 
 }

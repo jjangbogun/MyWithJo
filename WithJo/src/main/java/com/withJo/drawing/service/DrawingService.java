@@ -14,5 +14,5 @@ public interface DrawingService {
 	public DrawingVo drawingSelectOne();
 	public List<Map<String, Object>> drawingSelect(String startDate, String endDate, int no);
 	public int drawingDeleteOne(int drawingNo);
-	public int drawingInsertEMoney(int eMoney, int memberNo);
+	public int drawingInsertEMoney(int eMoney, int memberNo, String detail);
 }

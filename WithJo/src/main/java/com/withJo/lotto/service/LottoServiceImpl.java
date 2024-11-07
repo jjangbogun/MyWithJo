@@ -56,9 +56,9 @@ public class LottoServiceImpl implements LottoService{
 	}
 
 	@Override
-	public int lottoInsertEMoney(int emoney, int memberNo) {
+	public int lottoInsertEMoney(int emoney, int memberNo, String detail) {
 		// TODO Auto-generated method stub
-		return lottoDao.lottoInsertEMoney(emoney, memberNo);
+		return lottoDao.lottoInsertEMoney(emoney, memberNo, detail);
 	}
 	
 	@Override

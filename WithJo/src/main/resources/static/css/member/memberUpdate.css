@@ -4,7 +4,7 @@
     background-color: white;
 }
 
-.myPagetCategory{	
+.myPageCategory{	
 	height: 15px;
 	display: flex;
 	/* justify-content: space-between; */
@@ -14,17 +14,17 @@
     text-align: center;
 }
 
-.myPagetCategory__element{
+.myPageCategory__element{
 	width: calc(100% / 4);
 	border-bottom: 1px solid;
 	height: 40px;
 }
 
-.myPagetCategory__element:hover{
+.myPageCategory__element:hover{
 	border-bottom: 3px solid;
 }
 
-.myPagetCategoryBtn{
+.myPageCategoryBtn{
 	border: none;
 	background-color: transparent;
 	font-size: 24px;	

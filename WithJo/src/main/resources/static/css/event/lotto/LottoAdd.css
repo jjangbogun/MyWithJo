@@ -63,3 +63,15 @@
 	font-size: 24px;
 }
 
+.lottoRankTdHead {
+	padding-right: 20px;
+}
+
+.lottoRankTd {
+	padding: 10px;
+}
+
+.lottoRankTd .pointInput {
+	height: 50px;
+}
+

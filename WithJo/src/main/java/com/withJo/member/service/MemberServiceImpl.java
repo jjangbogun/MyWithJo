@@ -113,6 +113,12 @@ public class MemberServiceImpl implements MemberService{
 
 	    return new String(passwordArray);
 	}
+
+	@Override
+	public List<MemberVo> memberReserveOne(int memberNo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberReserveOne(memberNo);
+	}
 	
 
 }

@@ -33,7 +33,7 @@ public interface LottoService {
 	public LottoVo lottoSelectOne();
 	public int lottoInsertOne2(LottoVo lottoVo);
 	public int lottoCountCheck(LottoVo lottoVo);
-	public int lottoInsertEMoney(int eMoney, int memberNo);
+	public int lottoInsertEMoney(int eMoney, int memberNo, String detail);
 	public int lottoDeleteOne(int lottoNo);
 	
 }

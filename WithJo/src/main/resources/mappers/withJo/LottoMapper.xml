@@ -9,6 +9,9 @@
         <result column="MEMBER_NO" property="memberNo"/>
         <result column="MEMBER_NAME" property="memberName"/>
         <result column="LOTTO_WINNING" property="lottoWinning"/>
+        <result column="LOTTO_1ST" property="lotto1st"/>
+        <result column="LOTTO_2ND" property="lotto2nd"/>
+        <result column="LOTTO_3RD" property="lotto3rd"/>
         <result column="LOTTO_SEL_NO" property="lottoSelNo"/>
         <result column="LOTTO_START_DATE" property="lottoStartDate"/>
         <result column="LOTTO_END_DATE" property="lottoEndDate"/>
@@ -60,7 +63,7 @@
 	<select id="lottoSelectOne" parameterType="map" resultMap="lottoResultMap">
 	  <![CDATA[
 			SELECT LOTTO_NO, LOTTO_ROUND, 
-		   		MEMBER_NO, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE 
+		   		MEMBER_NO, LOTTO_1ST, LOTTO_2ND, LOTTO_3RD, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE 
 			FROM LOTTO
 			WHERE LOTTO_START_DATE <= TRUNC(SYSDATE)
 			AND LOTTO_END_DATE >= TRUNC(SYSDATE)
@@ -69,8 +72,8 @@
 	</select>
 	
 	<insert id="lottoInsertOne" parameterType="lottoVo">
-		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE ,LOTTO_CREDATE)
-		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lottoSelNo}, #{lottoStartDate}, #{lottoEndDate}, SYSDATE)
+		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_1ST, LOTTO_2ND, LOTTO_3RD, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE ,LOTTO_CREDATE)
+		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lotto1st}, #{lotto2nd}, #{lotto3rd}, #{lottoSelNo}, #{lottoStartDate}, #{lottoEndDate}, SYSDATE)
 	</insert>
 	
 	<insert id="lottoInsertOne2" parameterType="lottoVo">

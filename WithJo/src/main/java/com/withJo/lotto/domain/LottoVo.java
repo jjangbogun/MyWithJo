@@ -9,6 +9,9 @@ public class LottoVo {
 	private int lottoMode;      
 	private int memberNo;      
 	private int lottoWinning;      
+	private int lotto1st;      
+	private int lotto2nd;      
+	private int lotto3rd;      
     private String lottoSelNo;
     private String lottoStartDate;
     private String lottoEndDate;
@@ -20,14 +23,18 @@ public class LottoVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LottoVo(int lottoNo, int lottoRound, int lottoMode, int memberNo, int lottoWinning, String lottoSelNo,
-			String lottoStartDate, String lottoEndDate, Date lottoCredate, String memberName) {
+	public LottoVo(int lottoNo, int lottoRound, int lottoMode, int memberNo, int lottoWinning, int lotto1st,
+			int lotto2nd, int lotto3rd, String lottoSelNo, String lottoStartDate, String lottoEndDate,
+			Date lottoCredate, String memberName) {
 		super();
 		this.lottoNo = lottoNo;
 		this.lottoRound = lottoRound;
 		this.lottoMode = lottoMode;
 		this.memberNo = memberNo;
 		this.lottoWinning = lottoWinning;
+		this.lotto1st = lotto1st;
+		this.lotto2nd = lotto2nd;
+		this.lotto3rd = lotto3rd;
 		this.lottoSelNo = lottoSelNo;
 		this.lottoStartDate = lottoStartDate;
 		this.lottoEndDate = lottoEndDate;
@@ -75,6 +82,30 @@ public class LottoVo {
 		this.lottoWinning = lottoWinning;
 	}
 
+	public int getLotto1st() {
+		return lotto1st;
+	}
+
+	public void setLotto1st(int lotto1st) {
+		this.lotto1st = lotto1st;
+	}
+
+	public int getLotto2nd() {
+		return lotto2nd;
+	}
+
+	public void setLotto2nd(int lotto2nd) {
+		this.lotto2nd = lotto2nd;
+	}
+
+	public int getLotto3rd() {
+		return lotto3rd;
+	}
+
+	public void setLotto3rd(int lotto3rd) {
+		this.lotto3rd = lotto3rd;
+	}
+
 	public String getLottoSelNo() {
 		return lottoSelNo;
 	}
@@ -118,10 +149,13 @@ public class LottoVo {
 	@Override
 	public String toString() {
 		return "LottoVo [lottoNo=" + lottoNo + ", lottoRound=" + lottoRound + ", lottoMode=" + lottoMode + ", memberNo="
-				+ memberNo + ", lottoWinning=" + lottoWinning + ", lottoSelNo=" + lottoSelNo + ", lottoStartDate="
-				+ lottoStartDate + ", lottoEndDate=" + lottoEndDate + ", lottoCredate=" + lottoCredate + ", memberName="
-				+ memberName + "]";
+				+ memberNo + ", lottoWinning=" + lottoWinning + ", lotto1st=" + lotto1st + ", lotto2nd=" + lotto2nd
+				+ ", lotto3rd=" + lotto3rd + ", lottoSelNo=" + lottoSelNo + ", lottoStartDate=" + lottoStartDate
+				+ ", lottoEndDate=" + lottoEndDate + ", lottoCredate=" + lottoCredate + ", memberName=" + memberName
+				+ "]";
 	}
+    
+    
     
 
 }

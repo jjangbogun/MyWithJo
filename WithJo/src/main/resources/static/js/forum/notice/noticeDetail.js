@@ -17,7 +17,7 @@ function pageMoveUpdate() {
 }
 
 function pageMoveList() {
-    location.href = '/board/list';
+    location.href = '/notice/list?curPage=' + prevPage;
 }
 
 $(document).ready(function() {

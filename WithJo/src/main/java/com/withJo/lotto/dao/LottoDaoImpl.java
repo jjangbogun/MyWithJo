@@ -66,9 +66,8 @@ public class LottoDaoImpl implements LottoDao{
 	}
 	
 	@Override
-	public int lottoInsertEMoney(int emoney, int memberNo) {
+	public int lottoInsertEMoney(int emoney, int memberNo, String detail) {
 		// TODO Auto-generated method stub
-		String detail = "로또 이벤트 보상입니다.";
 		Map<String, Object> map = new HashMap<>();
 		map.put("eMoney", emoney);
 		map.put("memberNo", memberNo);

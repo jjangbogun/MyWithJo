@@ -71,20 +71,26 @@ function compareLottoNumbers(winningNumbers, userNumbers) {
 
 function displayMatchResult(matchingNumbers) {
     const resultDiv = $("#matchResult");
+    const lotto1st = parseInt($('#lotto1st').val(), 10);
+    const lotto2nd = parseInt($('#lotto2nd').val(), 10);
+    const lotto3rd = parseInt($('#lotto3rd').val(), 10);
     resultDiv.empty();
 
     globalMatchCount = matchingNumbers.length;
 
     let resultText;
-    if (globalMatchCount > 3) {
+    if (globalMatchCount >= 3) {
         resultText = "축하합니다! 1등입니다: " + matchingNumbers.join(", ");
-		eMoney = 10000;
+		eMoney = lotto1st;
+		console.log(eMoney);
     } else if (globalMatchCount == 2) {
         resultText = "축하합니다! 2등입니다: " + matchingNumbers.join(", ");
-		eMoney = 5000;
+		eMoney = lotto2nd;
+		console.log(eMoney);
     } else if (globalMatchCount == 1) {
         resultText = "축하합니다! 3등입니다: " + matchingNumbers.join(", ");
-		eMoney = 3000;
+		eMoney = lotto3rd;
+		console.log(eMoney);
     } else {
         resultText = "아쉽지만 다음기회에~";
     }
@@ -99,7 +105,7 @@ function displayMatchResult(matchingNumbers) {
     
     insertMemberLotto();
 	
-	if(eMoney > 1) {
+	if(eMoney > 0) {
 		insertMemberEMoney(eMoney)
 	};
 }
@@ -108,7 +114,8 @@ function insertMemberEMoney(eMoney){
 	console.log(eMoney);
 	var emoneyData = {
 		eMoney: eMoney,
-		memberNo: parseInt($("#memberNo").val(), 10)
+		memberNo: parseInt($("#memberNo").val(), 10),
+		round: parseInt($('#lottoRound').val(), 10)
 	};
 	$.ajax({
 	    url: '/lotto/emoney',
