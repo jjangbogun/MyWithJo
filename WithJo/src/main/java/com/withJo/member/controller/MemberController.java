@@ -122,7 +122,7 @@ public class MemberController {
 	}
 	
 	// 회원 수강신청한 목록
-	@GetMapping("/test")	
+	@GetMapping("/reserve")	
 	public String memberReserve(@RequestParam int memberNo, Model model) {
 		log.info(logTitleMsg);
 		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
@@ -133,13 +133,49 @@ public class MemberController {
 		return "member/MemberReserveCourse";
 	}
 	
+	//회원 수강신청 취소
+	@PostMapping("/reserve/cancel")
+	@ResponseBody
+	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, HttpSession session) {									
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+		if(memberVo == null) {
+			return "fail";			
+		}
+		int memberNo = memberVo.getMemberNo();
+		
+		try {
+		      int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo);
+		      if (result > 0) {
+		          return "success";
+		      } else {
+		          return "not_found"; // 취소할 예약이 없는 경우
+		      }
+		    } catch (Exception e) {
+		        // 로깅 추가
+		      log.error("예약 취소 중 오류 발생", e);
+		      return "error";
+		    }		
+	}
+	
+	@GetMapping("eMoney")
+	public String memberEMoneyDetail(@RequestParam int memberNo, Model model) {
+		log.info(logTitleMsg);
+		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
+		
+		List<MemberVo> eMoneyList = memberService.memberEMoneyDetail(memberNo);
+	    model.addAttribute("eMoneyList", eMoneyList);	
+		
+		return "member/MemberEMoney";		
+	}
+	
 	// (관리자) 회원 삭제
 	@PostMapping("/delete")
 	@ResponseBody
 	public String memberDelete(@RequestParam int memberNo, HttpSession session) {
-		MemberVo loggedInMember = (MemberVo) session.getAttribute("memberVo");
+		MemberVo memberVo = (MemberVo) session.getAttribute("memberVo");
 		
-		if (loggedInMember == null || loggedInMember.getAuthority() != 1) {
+		if (memberVo == null || memberVo.getAuthority() != 1) {
 	        return "unauthorized";
 	    }
 	    

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>정보수정</title>
+<title>회원정보변경</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"
@@ -25,7 +25,6 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	var memberNo = ${sessionScope.memberVo.memberNo};	
 </script>
 
 
@@ -48,16 +47,16 @@
 
 		<div class="myPageCategory">
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">내 수강 목록</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},1);" value="1">내 수강 목록</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">포인트 내역</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},2);" value="2">EMoney</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">회원정보변경</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},3);" value="3">회원정보변경</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">장바구니</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},4);" value="4">장바구니</button></span>
 			</div>
 		</div>
 

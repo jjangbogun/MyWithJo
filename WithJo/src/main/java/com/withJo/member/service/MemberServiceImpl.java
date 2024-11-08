@@ -119,6 +119,18 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.memberReserveOne(memberNo);
 	}
+
+	@Override
+	public int memberReserveCancel(int memberCourseReserveNo, int memberNo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberCourseReserveNo(memberCourseReserveNo, memberNo);
+	}
+
+	@Override
+	public List<MemberVo> memberEMoneyDetail(int memberNo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberEMoneyDetail(memberNo);
+	}
 	
 
 }

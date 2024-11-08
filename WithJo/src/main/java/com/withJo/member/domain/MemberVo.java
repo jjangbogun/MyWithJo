@@ -34,5 +34,10 @@ public class MemberVo {
 	private String courseEndTime;	
 	private String courseMainImage;
 	private int courseDayOfTheWeek;	
+	private int memberEMoneyPlus;
+	private String memberEMoneyPlusDetail;
+	private int memberEMoneyMinus;
+	private String memberEMoneyMinusDetail;
+	private Date memberEMoneyUpdate;
 
 }

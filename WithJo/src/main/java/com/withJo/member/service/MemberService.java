@@ -17,4 +17,6 @@ public interface MemberService {
 	public String memberFindIdByName(String memberName);
 	public String memberPwUpdate(String memberName, String memberId);
 	List<MemberVo> memberReserveOne(int memberNo);
+	public int memberReserveCancel(int memberCourseReserveNo, int memberNo);
+	List<MemberVo> memberEMoneyDetail(int memberNo);
 }

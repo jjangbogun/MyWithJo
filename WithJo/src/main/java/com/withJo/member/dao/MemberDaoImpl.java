@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.aspectj.weaver.IntMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -102,6 +103,23 @@ public class MemberDaoImpl implements MemberDao{
 	public List<MemberVo> memberReserveOne(int memberNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "memberReserveOne", memberNo);
+	}
+
+	@Override
+	public int memberCourseReserveNo(int memberCourseReserveNo, int memberNo) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("memberCourseReserveNo", memberCourseReserveNo);
+		paramMap.put("memberNo", memberNo);
+		
+		return sqlSession.delete(namespace + "memberCourseReserveNo", paramMap);
+	}
+
+	@Override
+	public List<MemberVo> memberEMoneyDetail(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "memberEMoneyDetail", memberNo);
 	}
 
 }

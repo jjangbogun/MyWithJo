@@ -24,9 +24,7 @@
 <script defer src="/js/member/memberReserve.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	var memberNo = ${sessionScope.memberVo.memberNo};	
-</script>
+
 
 
 </head>
@@ -45,38 +43,65 @@
 
 		</div>
 		<!-- aboutPage -->
-
 		<div class="myPageCategory">
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">내 수강 목록</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},1);" value="1">내 수강 목록</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">포인트 내역</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},2);" value="2">EMoney</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">회원정보변경</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},3);" value="3">회원정보변경</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn">장바구니</button></span>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},4);" value="4">장바구니</button></span>
 			</div>
 		</div>
-		
-		<div class="myReserveList">		
-						
-			<c:forEach var="reserve" items="${reserveList}">
-  				  <p>${reserve.courseName}</p>
-  				  <p>${reserve.courseStartDate}</p>
-  				  <p>${reserve.courseEndDate}</p>
-  				  <p>${reserve.courseStartTime}</p>
-  				  <p>${reserve.courseEndTime}</p>
-   			      <p>${reserve.courseDayOfTheWeek}</p>
-  				  <p>${reserve.courseTeacher}</p>
-			</c:forEach>
-			
-		</div>
-		
 
-		
+		<div class="myReserveList">
+			<div class="myReserveList-header">
+				<div class="header-item">강의명</div>
+				<div class="header-item">강의시간/기간</div>
+				<div class="header-item">강사명</div>
+				<div class="header-item">수강취소</div>
+			</div>
+
+			<c:forEach var="reserve" items="${reserveList}">
+				<div class="myReserveList-item">
+					<div class="item-content">
+						<div class="course-name">
+							<img src="${reserve.courseMainImage}" alt="강의 이미지">
+							${reserve.courseName}
+						</div>
+					</div>
+					<div class="item-content">
+						[
+						<c:choose>
+							<c:when test="${reserve.courseDayOfTheWeek == '1'}">월</c:when>
+							<c:when test="${reserve.courseDayOfTheWeek == '2'}">화</c:when>
+							<c:when test="${reserve.courseDayOfTheWeek == '3'}">수</c:when>
+							<c:when test="${reserve.courseDayOfTheWeek == '4'}">목</c:when>
+							<c:when test="${reserve.courseDayOfTheWeek == '5'}">금</c:when>
+							<c:when test="${reserve.courseDayOfTheWeek == '6'}">토</c:when>
+							<c:when test="${reserve.courseDayOfTheWeek == '7'}">일</c:when>
+							<c:otherwise>${reserve.courseDayOfTheWeek}</c:otherwise>
+						</c:choose>
+						]
+						<fmt:formatDate value="${reserve.courseStartDate}" pattern="yyyy.MM.dd" />
+						~
+						<fmt:formatDate value="${reserve.courseEndDate}" pattern="yyyy.MM.dd" />
+						<br> ${reserve.courseStartTime} ~ ${reserve.courseEndTime}
+					</div>
+					<div class="item-content">${reserve.courseTeacher} 강사</div>
+					<div class="item-content">
+						<button class="reserveCancel" onclick="cancelCourse(${reserve.memberCourseReserveNo})">수강취소</button>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+
+
+
 
 	</div>
 	<!-- main-container -->

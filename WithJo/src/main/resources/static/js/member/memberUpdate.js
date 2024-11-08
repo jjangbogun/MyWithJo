@@ -71,23 +71,21 @@ function formatPhoneNum(){
 	
 }
 
-$(document).ready(function() {
+function myPageCategoryBtnFnc(memberNo, categoryNo){
 	
-	$(".myPageCategoryBtn").on("click", function(){
-		var buttonText = $(this).text();
-		if(buttonText === "내 수강 목록"){
-			window.location.href = "/member/test?memberNo=" + memberNo;	
-		}
-		if(buttonText === " 포인트 내역"){
-			
-		}
-		if(buttonText === "회원정보변경"){
-			window.location.href = "/member/update?memberNo=" + memberNo;	
-		}				
-		if(buttonText === "장바구니"){
-			window.location.href = "/member/test?memberNo=" + memberNo;	
-		}
-	})
+	if(categoryNo == 1){
+		location.href = "/member/reserve?memberNo=" + memberNo;	
+	}else if(categoryNo == 2){
+		location.href = "/member/eMoney?memberNo=" + memberNo;
+	}else if(categoryNo == 3){
+		location.href = "/member/update?memberNo=" + memberNo;	
+	}else if(categoryNo == 4){
+		location.href = "/member/test?memberNo=" + memberNo;	
+	}
+}
+
+
+$(document).ready(function() {
 	
 	formatDate();
 	formatPhoneNum();

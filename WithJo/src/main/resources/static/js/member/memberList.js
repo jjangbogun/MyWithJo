@@ -1,6 +1,6 @@
 
 
-function membersearch() {
+	function membersearch() {
 		var searchNField = $("#searchNField").val();
 		var searchNKeyword = $("#searchNKeyword").val();
 		

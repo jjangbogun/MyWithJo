@@ -24,7 +24,12 @@
 		<result column="COURSE_END_DATE" property="courseEndDate"/>		
 		<result column="COURSE_START_TIME" property="courseStartTime"/>		
 		<result column="COURSE_END_TIME" property="courseEndTime"/>		
-		<result column="COURSE_TEACHER" property="courseTeacher"/>		
+		<result column="COURSE_TEACHER" property="courseTeacher"/>
+		<result column="MEMBER_E_MONEY_PLUS" property="memberEMoneyPlus"/>
+		<result column="MEMBER_E_MONEY_PLUS_DETAIL" property="memberEMoneyPlusDetail"/>
+		<result column="MEMBER_E_MONEY_MINUS" property="memberEMoneyMinus"/>
+		<result column="MEMBER_E_MONEY_MINUS_DETAIL" property="memberEMoneyMinusDetail"/>
+		<result column="MEMBER_E_MONEY_UPDATE" property="memberEMoneyUpdate"/>		
 	</resultMap>
 	
 	<sql id="search">
@@ -148,7 +153,25 @@
 		WHERE M.MEMBER_NO = #{memberNo}
 	</select>
 	
+	<delete id="memberCourseReserveNo" parameterType="map">
+		DELETE FROM MEMBER_COURSE_RESERVE
+		WHERE MEMBER_NO = #{memberNo}
+		AND MEMBER_COURSE_RESERVE_NO = #{memberCourseReserveNo}
+	</delete>
 	
-
+	<select id="memberEMoneyDetail" parameterType="int" resultMap="memberResultMap">
+		SELECT M.MEMBER_NO
+			  ,M.MEMBER_E_MONEY
+			  ,MONEY.MEMBER_E_MONEY_NO
+			  ,MONEY.MEMBER_E_MONEY_PLUS
+			  ,MONEY.MEMBER_E_MONEY_PLUS_DETAIL
+			  ,MONEY.MEMBER_E_MONEY_MINUS
+			  ,MONEY.MEMBER_E_MONEY_MINUS_DETAIL			  
+			  ,MONEY.MEMBER_E_MONEY_UPDATE
+		FROM MEMBER M
+		LEFT JOIN MEMBER_E_MONEY MONEY ON M.MEMBER_NO = MONEY.MEMBER_NO
+		WHERE M.MEMBER_NO = #{memberNo}
+		ORDER BY MONEY.MEMBER_E_MONEY_UPDATE DESC	
+	</select>
 
 </mapper>
