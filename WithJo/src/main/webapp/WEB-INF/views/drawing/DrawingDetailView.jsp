@@ -35,6 +35,9 @@
                 <div class="drawingMember" id="drawingMember">
                 	<img class="eventImgs" alt="" src="/img/event/gifts.jpg" >
                 	<div class="drawingNotice">
+                		<div class="boardPeriod">
+                			<p class="boardPeriodP">게시글 추첨 기간 : ${drawingVo.drawingStartDate} ~ ${drawingVo.drawingEndDate}</p>
+                		</div>
                 		<p>해당 기한내에 게시글을 작성하신분들중 </p>
                 		<p>랜덤으로 ${drawingVo.drawingPersonnel}명에게 3천 포인트를 드립니다.</p>
                 		<p>당첨되신분들 축하합니다!</p>

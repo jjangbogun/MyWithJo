@@ -4,28 +4,27 @@
 	
 	<resultMap type="eventVo" id="eventResultMap">
 		<id column="EVENT_NO" property="eventNo" />
-		<result column="EVENT_LOTTO" property="eventLotto"/>
-		<result column="EVENT_DRAWING" property="eventDrawing"/>
-		<result column="EVENT_LOTTO_UPDATE" property="eventLottoUpdate" javaType="java.util.Date" />
-		<result column="EVENT_DRAWING_UPDATE" property="eventDrawingUpdate" javaType="java.util.Date" />
+		<result column="EVENT_CATEGORY_NO" property="eventCategoryNo"/>
+		<result column="EVENT_HIDE_SHOW" property="eventHideShow"/>
+		<result column="EVENT_CREADATE" property="eventCreadate" javaType="java.util.Date" />
+		<result column="EVENT_UPDATE" property="eventUpdate" javaType="java.util.Date" />
 	</resultMap>
 	
-	
-	<select id="eventSelectList" parameterType="map" resultMap="eventResultMap">
-		SELECT EVENT_NO, EVENT_LOTTO, EVENT_DRAWING, EVENT_LOTTO_UPDATE, EVENT_DRAWING_UPDATE
+	<select id="eventSelectList" resultMap="eventResultMap">
+		SELECT EVENT_NO, EVENT_CATEGORY_NO, EVENT_HIDE_SHOW, EVENT_CREADATE, EVENT_UPDATE
 		FROM EVENT
 	</select>
 	
 	<update id="eventUpdateLotto" parameterType="eventVo">
 		UPDATE EVENT
-		SET EVENT_LOTTO = #{eventLotto}, EVENT_LOTTO_UPDATE = SYSDATE
-		WHERE EVENT_NO = 1
+		SET EVENT_HIDE_SHOW = #{eventHideShow}, EVENT_UPDATE = SYSDATE
+		WHERE EVENT_CATEGORY_NO = 1
 	</update>
 	
 	<update id="eventUpdateDrawing" parameterType="eventVo">
 		UPDATE EVENT
-		SET EVENT_DRAWING = #{eventDrawing}, EVENT_DRAWING_UPDATE = SYSDATE
-		WHERE EVENT_NO = 1
+		SET EVENT_HIDE_SHOW = #{eventHideShow}, EVENT_UPDATE = SYSDATE
+		WHERE EVENT_CATEGORY_NO = 2
 	</update>
 
 </mapper>

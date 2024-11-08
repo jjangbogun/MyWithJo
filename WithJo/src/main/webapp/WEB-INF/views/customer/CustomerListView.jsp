@@ -31,7 +31,7 @@
 				</div>
 				<div class="searchDiv">
 					<select class="searchNField" name="searchNField" id="searchNField">
-						<option value="all" <c:if test="${searchMap.searchField == 'all'}">selected</c:if>>전체</option>
+						<option value="all" <c:if test="${searchMap.searchField == 'all'}">selected</c:if>>제목 + 내용</option>
 						<option value="customerTitle" <c:if test="${searchMap.searchField == 'customerTitle'}">selected</c:if>>제목</option>
 						<option value="customerQue" <c:if test="${searchMap.searchField == 'customerQue'}">selected</c:if>>내용</option>
 					</select>
@@ -101,6 +101,7 @@
 										<div class="tableNameElement">
 										</div>															
 										<div class="tableCheckElement">
+											${customerVo.customerCheck}
 										</div>
 										<div class="tableTimeElement">
 											<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd" />

@@ -33,7 +33,7 @@
 					</div>
 					<div class="searchDiv">
 						<select class="searchNField" name="searchNField" id="searchNField">
-							<option value="all" <c:if test="${searchMap.searchField == 'all'}">selected</c:if>>전체</option>
+							<option value="all" <c:if test="${searchMap.searchField == 'all'}">selected</c:if>>제목 + 내용</option>
 							<option value="boardTitle" <c:if test="${searchMap.searchField == 'boardTitle'}">selected</c:if>>제목</option>
 							<option value="boardContent" <c:if test="${searchMap.searchField == 'boardContent'}">selected</c:if>>내용</option>
 						</select>

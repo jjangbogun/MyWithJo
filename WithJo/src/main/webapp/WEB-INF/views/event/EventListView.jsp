@@ -37,9 +37,7 @@
 			<div class="pageContentAreaInner">
 				<div class="eventTableBox">
 					<c:forEach var="eventVo" items="${eventList}">
-						<input type="hidden" name="lottoVal" id="lottoVal" value="${eventVo.eventLotto}">
-						<input type="hidden" name="drawingVal" id="drawingVal" value="${eventVo.eventDrawing}">
-						<c:if test="${eventVo.eventLotto == 1}">
+						 <c:if test="${eventVo.eventCategoryNo == 1 && eventVo.eventHideShow == 1}">
 							<div id="lottoDiv">
 								<div class="eventTableBoxContent">
 									<div class="tableTitleElement">
@@ -56,24 +54,36 @@
 									</div>
 								</div>
 							</div>
-						</c:if>	
-						<c:if test="${eventVo.eventLotto == 0 && memberVo.authority >= 1}">
+						</c:if>
+						<c:if test="${eventVo.eventCategoryNo == 1 && eventVo.eventHideShow == 0}">
 							<div id="lottoDiv">
 								<div class="eventTableBoxContent">
 									<div class="tableTitleElement">
-										<a class="imgTag" href="/lotto/detail">
+										<c:if test="${memberVo.authority >= 1}">
+											<a class="imgTag" href="/lotto/detail">
+												<img class="eventImgs" alt="" src="/img/event/lottoHide.jpg" style="width: 350px;">
+											</a>
+										</c:if>
+										<c:if test="${memberVo.authority == 0}">
 											<img class="eventImgs" alt="" src="/img/event/lottoHide.jpg" style="width: 350px;">
-										</a>
-										<a class="textTag" href="/lotto/detail">비활성화된 이벤트 입니다.</a>
+										</c:if>
+										<c:if test="${memberVo.authority >= 1}">
+											<a class="textTag" href="/lotto/detail">비활성화된 이벤트 입니다.</a>
+										</c:if>
+										<c:if test="${memberVo.authority == 0}">
+											<div class="textTag">이벤트를 준비중 입니다.</div>
+										</c:if>
 										<div class="tableTimeElement">
 											별도공지 까지
-											<button onclick="lottoHide();" class="eventBtn">로또이벤트 보이기</button>	           					 
+											<c:if test="${memberVo.authority >= 1}">
+												<button onclick="lottoShow();" class="eventBtn">로또이벤트 보이기</button>
+											</c:if>	           					 
 										</div>
 									</div>
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${eventVo.eventDrawing == 1}">
+ 						<c:if test="${eventVo.eventCategoryNo == 2 && eventVo.eventHideShow == 1}">
 							<div id="drawingDiv">
 								<div class="eventTableBoxContent">
 									<div class="tableTitleElement">
@@ -91,23 +101,35 @@
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${eventVo.eventDrawing == 0 && memberVo.authority >= 1}">
+						<c:if test="${eventVo.eventCategoryNo == 2 && eventVo.eventHideShow == 0}">
 							<div id="drawingDiv">
 								<div class="eventTableBoxContent">
 									<div class="tableTitleElement">
-										<a class="imgTag" href="/drawing/detail">
+										<c:if test="${memberVo.authority >= 1}">
+											<a class="imgTag" href="/drawing/detail">
+												<img class="eventImgs" alt="/drawing/detail" src="/img/event/drawingHide.jpg" style="width: 350px;">
+											</a>
+										</c:if>
+										<c:if test="${memberVo.authority == 0}">
 											<img class="eventImgs" alt="" src="/img/event/drawingHide.jpg" style="width: 350px;">
-										</a>
-										<a class="textTag" href="/drawing/detail">비활성화된 이벤트 입니다.</a>
+										</c:if>
+										<c:if test="${memberVo.authority >= 1}">
+											<a class="textTag" href="/drawing/detail">비활성화된 이벤트 입니다.</a>
+										</c:if>
+										<c:if test="${memberVo.authority == 0}">
+											<div class="textTag">이벤트를 준비중 입니다.</div>
+										</c:if>
 										<div class="tableTimeElement">
 											별도공지 까지
-											<button onclick="drawingHide();" class="eventBtn">추첨이벤트 보이기</button>
+											<c:if test="${memberVo.authority >= 1}">
+												<button onclick="drawingShow();" class="eventBtn">추첨이벤트 보이기</button>
+											</c:if>
 										</div>
 									</div>
 								</div>
 							</div>
 						</c:if>
-					</c:forEach>	
+					</c:forEach>
 				</div> <!-- eventTableBox -->			
 		    </div> <!-- pageContentAreaInner -->
     	</div><!-- pageContentArea -->

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.withJo.event.domain.EventVo;
 import com.withJo.event.service.EventService;
@@ -27,13 +28,18 @@ public class EventController {
 	private EventService eventService;
 	
 	@GetMapping("/list")
-	public String eventList(Model model) {
+	public ModelAndView eventList() {
 		log.info(logTitleMsg);
 	    log.info("eventList");
 	    
 	    List<EventVo> eventList = eventService.eventSelectList();
-	    model.addAttribute("eventList", eventList);
-	    return "/event/EventListView";
+	    
+	    ModelAndView mav = new ModelAndView("event/EventListView");
+	    
+	    System.out.println("eventList" + eventList);
+	    
+		mav.addObject("eventList", eventList);
+	    return mav;
 	}
 	
 	@PostMapping("/update1")

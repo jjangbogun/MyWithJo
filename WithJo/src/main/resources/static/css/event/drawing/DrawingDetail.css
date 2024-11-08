@@ -119,6 +119,15 @@
 	margin-bottom: 30px;
 }
 
+.drawingNotice .boardPeriod {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.drawingNotice .boardPeriod .boardPeriodP{
+	font-weight: bold;
+}
+
 .drawingMember p {
 	margin-top: 10px;
 	margin-bottom: 10px;

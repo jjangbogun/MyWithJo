@@ -71,8 +71,7 @@ nav > ul > li > a:hover {
 
 
 	<nav>
-		<ul>
-<!-- 		ㄷ 한자 -->    
+		<ul>  
 			<c:if test="${pagingMap.pagingVo.prevBlock ne 1}">
 			<li>
 				<a href="#" onclick="goPage(${pagingMap.pagingVo.prevBlock});">

@@ -22,7 +22,7 @@ public class EventDaoImpl implements EventDao{
 	public List<EventVo> eventSelectList() {
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectList(namespace + "eventSelectList");
+ 		return sqlSession.selectList(namespace + "eventSelectList");
 	}
 	
 	@Override

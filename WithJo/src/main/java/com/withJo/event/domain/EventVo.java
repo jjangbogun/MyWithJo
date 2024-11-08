@@ -5,23 +5,23 @@ import java.util.Date;
 public class EventVo {
 	
 	private int eventNo;        
-	private int eventLotto;      
-	private int eventDrawing;      
-    private Date eventLottoUpdate;
-    private Date eventDrawingUpdate;
+	private int eventCategoryNo;      
+	private int eventHideShow;      
+    private Date eventCreadate;
+    private Date eventUpdate;
     
 	public EventVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public EventVo(int eventNo, int eventLotto, int eventDrawing, Date eventLottoUpdate, Date eventDrawingUpdate) {
+	public EventVo(int eventNo, int eventCategoryNo, int eventHideShow, Date eventCreadate, Date eventUpdate) {
 		super();
 		this.eventNo = eventNo;
-		this.eventLotto = eventLotto;
-		this.eventDrawing = eventDrawing;
-		this.eventLottoUpdate = eventLottoUpdate;
-		this.eventDrawingUpdate = eventDrawingUpdate;
+		this.eventCategoryNo = eventCategoryNo;
+		this.eventHideShow = eventHideShow;
+		this.eventCreadate = eventCreadate;
+		this.eventUpdate = eventUpdate;
 	}
 
 	public int getEventNo() {
@@ -32,43 +32,44 @@ public class EventVo {
 		this.eventNo = eventNo;
 	}
 
-	public int getEventLotto() {
-		return eventLotto;
+	public int getEventCategoryNo() {
+		return eventCategoryNo;
 	}
 
-	public void setEventLotto(int eventLotto) {
-		this.eventLotto = eventLotto;
+	public void setEventCategoryNo(int eventCategoryNo) {
+		this.eventCategoryNo = eventCategoryNo;
 	}
 
-	public int getEventDrawing() {
-		return eventDrawing;
+	public int getEventHideShow() {
+		return eventHideShow;
 	}
 
-	public void setEventDrawing(int eventDrawing) {
-		this.eventDrawing = eventDrawing;
+	public void setEventHideShow(int eventHideShow) {
+		this.eventHideShow = eventHideShow;
 	}
 
-	public Date getEventLottoUpdate() {
-		return eventLottoUpdate;
+	public Date getEventCreadate() {
+		return eventCreadate;
 	}
 
-	public void setEventLottoUpdate(Date eventLottoUpdate) {
-		this.eventLottoUpdate = eventLottoUpdate;
+	public void setEventCreadate(Date eventCreadate) {
+		this.eventCreadate = eventCreadate;
 	}
 
-	public Date getEventDrawingUpdate() {
-		return eventDrawingUpdate;
+	public Date getEventUpdate() {
+		return eventUpdate;
 	}
 
-	public void setEventDrawingUpdate(Date eventDrawingUpdate) {
-		this.eventDrawingUpdate = eventDrawingUpdate;
+	public void setEventUpdate(Date eventUpdate) {
+		this.eventUpdate = eventUpdate;
 	}
 
 	@Override
 	public String toString() {
-		return "EventVo [eventNo=" + eventNo + ", eventLotto=" + eventLotto + ", eventDrawing=" + eventDrawing
-				+ ", eventLottoUpdate=" + eventLottoUpdate + ", eventDrawingUpdate=" + eventDrawingUpdate + "]";
+		return "EventVo [eventNo=" + eventNo + ", eventCategoryNo=" + eventCategoryNo + ", eventHideShow="
+				+ eventHideShow + ", eventCreadate=" + eventCreadate + ", eventUpdate=" + eventUpdate + "]";
 	}
+    
     
     
     
