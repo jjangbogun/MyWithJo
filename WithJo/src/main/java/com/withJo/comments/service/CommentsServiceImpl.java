@@ -36,5 +36,11 @@ public class CommentsServiceImpl implements CommentsService{
 		// TODO Auto-generated method stub
 		return commentsDao.commentsDeleteOne(commentsNo);
 	}
+	
+	@Override
+	public int commentsUpdateOne(CommentsVo commentsVo) {
+		// TODO Auto-generated method stub
+		return commentsDao.commentsUpdateOne(commentsVo);
+	}
 
 }

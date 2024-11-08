@@ -38,4 +38,10 @@ public class CommentsDaoImpl implements CommentsDao{
 		return sqlSession.delete(namespace + "commentsDeleteOne", commentsNo);
 	}
 	
+	@Override
+	public int commentsUpdateOne(CommentsVo commentsVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "commentsUpdateOne", commentsVo);
+	}
+	
 }

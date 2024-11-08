@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +80,14 @@ public class CommentsController {
 		return "redirect:/board/detail?boardNo=" + boardNo;
 	}
 
+	@PostMapping("/update")
+	public ResponseEntity<Void> commentsUpdate(@RequestBody CommentsVo commentsVo) {
+	    log.info("Updating comment with ID: {}", commentsVo.getCommentsNo());
+	    
+	    commentsService.commentsUpdateOne(commentsVo);
+
+	    return ResponseEntity.ok().build();
+	}
 	
 	@PostMapping("/delete")
 	public ResponseEntity<Void> commentsDelete(@RequestParam int commentsNo) {
@@ -86,7 +95,6 @@ public class CommentsController {
 	    
 	    commentsService.commentsDeleteOne(commentsNo);
 
-	    // 성공 시 204 No Content 반환
 	    return ResponseEntity.noContent().build();
 	}
 	 

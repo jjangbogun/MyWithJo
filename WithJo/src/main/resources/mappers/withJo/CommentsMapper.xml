@@ -26,6 +26,12 @@
 		VALUES (COMMENTS_NO_SEQ.NEXTVAL, #{boardNo}, #{memberNo}, #{commentsContent}, SYSDATE, SYSDATE)
 	</insert>
 	
+	<update id="commentsUpdateOne" parameterType="commentsVo">
+		UPDATE COMMENTS
+		SET COMMENTS_CONTENT = #{commentsContent}
+		WHERE COMMENTS_NO = #{commentsNo}
+	</update>
+	
 	<delete id="commentsDeleteOne" parameterType="int">
 	    DELETE FROM COMMENTS
 	    WHERE COMMENTS_NO = #{commentsNo}
