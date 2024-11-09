@@ -1,13 +1,14 @@
 @charset "UTF-8";
 #mainContainer{
 	background-color: #8392bc40;
+	min-height: 100vh;
 }
 .infoBox{
 	width: 70%;
 	text-align: center;
 }
 .courseImg{
-	width: 400px;
+	width: 450px;
 	height: 300px;
 	border-radius: 15px;
 }

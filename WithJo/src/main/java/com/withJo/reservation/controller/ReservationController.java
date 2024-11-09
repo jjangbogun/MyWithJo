@@ -31,7 +31,7 @@ public class ReservationController {
 		
 		reservationService.getCourseReservation(map);
 		
-		return ResponseEntity.ok("수강신청성공");
+		return ResponseEntity.ok("수강신청이 완료되었습니다.");
 	}
 
 }

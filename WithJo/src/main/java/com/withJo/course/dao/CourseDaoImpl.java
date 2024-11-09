@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
 import com.withJo.course.domain.CourseVo;
 
 @Repository
@@ -60,13 +61,28 @@ public class CourseDaoImpl implements CourseDao{
 	public void courseInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		System.out.println("daomap:" + map);
+		
 		sqlSession.insert(namespace + "courseInsert", map);
 	}
 
 	@Override
 	public void courseDayInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(namespace + "courseDayInsert", map);
+		
+		/*
+		 * Gson gson = new Gson(); System.out.println("gson:" +
+		 * gson.toJson(map.get("courseDayOfTheWeek")).toString());
+		 * System.out.println("gson:" + gson.toJson(map).toCharArray());
+		 */
+		
+		 List<Integer> dayOfWeekList = (List<Integer>) map.get("courseDayOfTheWeek");
+		 System.out.println("dayOfWeekList: " + dayOfWeekList);
+		 
+		 for(int i = 0; i < dayOfWeekList.size(); i++) {
+			 map.put("courseDayOfTheWeek", dayOfWeekList.get(i));
+			 sqlSession.insert(namespace + "courseDayInsert",map);
+		 }
+			
 	}
 	
 	

@@ -3,20 +3,30 @@ package com.withJo.util;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.google.gson.annotations.Until;
-
 @Component("fileUtils")
 public class FileUtils {
-	private static final String FILE_PATH = "/Users/kimyk/cUpload";
+	private static String FILE_PATH;
 	
-	public Map<String, Object> insertFileInfo(MultipartHttpServletRequest mhr) throws Exception{
+	private static final String MAC_FILE_PATH = "/Users/kimyk/cUpload";
+	private static final String WINDOWS_FILE_PATH = "C:/cUpload";
+
+	static {
+	    String os = System.getProperty("os.name").toLowerCase();
+	    if (os.contains("win")) {
+	        FILE_PATH = WINDOWS_FILE_PATH;
+	    } else if (os.contains("mac")) {
+	        FILE_PATH = MAC_FILE_PATH;
+	    } 
+	}
+	
+	public Map<String, Object> insertFileInfo(MultipartHttpServletRequest mhr)
+		throws Exception{
 		
 		Iterator<String> iterator = mhr.getFileNames();
 		MultipartFile multipartFile = null;
@@ -53,7 +63,6 @@ public class FileUtils {
 			}
 			
 		}
-		
 		return fileInfoMap;
 	}
 }

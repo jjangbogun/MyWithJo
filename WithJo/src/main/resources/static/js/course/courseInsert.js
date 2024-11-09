@@ -6,18 +6,36 @@ $(document).ready(function () {
 	
 });
 
-	const timeOptions = $('.timeOptions').val();
-	let htmlStr = '';
-	for(let i = 9; i <= 18; i++){
-		if(i == 9){
-			htmlStr += `<option>0${i}:00</option>`;
-		}else{
-		htmlStr += `<option>${i}:00</option>`;
-		}
-	}
-	$('.timeOption').html(htmlStr);
-	console.log($('.courseNo').val());
+//첨부파일 이미지 미리보기
+function readURL(input) {
+	$('#preview1').addClass('courseImg');
+	$('#preview2').addClass('courseImg');
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('preview1').src = e.target.result;
+      document.getElementById('preview2').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    document.getElementById('preview1').src = "";
+    document.getElementById('preview2').src = "";
+  }
+}
 
+//강의 시작 , 종료시간 반복
+const timeOptions = $('.timeOptions').val();
+let htmlStr = '';
+for(let i = 9; i <= 18; i++){
+	if(i == 9){
+		htmlStr += `<option>0${i}:00</option>`;
+	}else{
+	htmlStr += `<option>${i}:00</option>`;
+	}
+}
+$('.timeOption').html(htmlStr);
+
+//강의 요일 배열 변환
 function getSelectedOptions() {
         var selectedOptions = [];
         $('.sumoselect_multiple option:selected').each(function() {
@@ -26,14 +44,101 @@ function getSelectedOptions() {
         return selectedOptions;
     }
 	
-function courseInsertPost(){
-	/*let selectedOptions = [];
-			
-	selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
-	let selectedSub = $('.selectedSub');
-	selectedSub.value = selectedOptions;*/
+
+function courseDateCheck(checkDate){
+	const sysdate = new Date();
+	const courseStartDate = $('.courseStartDate').val();
+	const courseEndDate = $('.courseEndDate').val();
+	const courseRecStart = $('.courseRecStart').val();
+	const courseRecEnd = $('.courseRecEnd').val();
 	
-	var selectedOptions = getSelectedOptions();
+	const courseStartDateChange = new Date(courseStartDate);
+	const courseEndDateChange = new Date(courseEndDate);
+	const courseRecStartDateChange = new Date(courseRecStart);
+	const courseRecEndDateChange = new Date(courseRecEnd);
+	
+	console.log(checkDate.name);
+	console.log(courseStartDateChange);
+	console.log(courseEndDateChange);
+	
+	switch(checkDate.name){
+		
+		case "courseStartDate":
+			if(courseStartDateChange < sysdate){
+				alert('강의시작 날짜가 현재날짜보다 이전입니다.');
+				$('.courseStartDate').focus();
+			}else if(courseStartDateChange > courseEndDateChange){
+				alert('강의종료 날짜가 강의 시작날짜보다 이전입니다.');
+				$('.courseStartDate').focus();
+			}
+			break;
+			
+		case "courseEndDate":
+			if(courseEndDateChange < sysdate){
+				alert('강의종료 날짜가 현재날짜보다 이전입니다.');
+				$('.courseEndDate').focus();
+			}
+			break;
+			
+		case "courseRecStart":
+			if(courseRecStartDateChange < sysdate){
+				alert('접수시작 날짜가 현재날짜보다 이전입니다.');
+				$('.courseRecStart').focus();
+			}else if(courseRecStartDateChange > courseRecEndDateChange){
+				alert('접수종료 날짜가 접수시작 날짜보다 이전입니다.');
+				$('.courseRecStart').focus();
+			}
+			break;
+			
+		case "courseRecEnd":
+			if(courseRecEndDateChange < sysdate){
+				alert('접수종료 날짜가 현재날짜보다 이전입니다.');
+				$('.courseRecEnd').focus();
+			}
+			break;
+		}
+};
+
+//강의 강사명 유효성검사
+$('.courseTeacher').on("change", () => {
+	const courseTeacher = $('.courseTeacher').val();
+	
+	if (/\d/.test(courseTeacher)) {
+        alert('숫자는 입력할 수 없습니다.');
+		$('.courseTeacher').focus();
+    }else if (/\s/.test(courseTeacher)) {
+	    alert('공백은 입력할 수 없습니다.');
+		$('.courseTeacher').focus();
+	}else if(!/^[a-zA-Z가-힣]*$/.test(courseTeacher)){
+		alert('이름을 올바르게 작성해주세요.');
+		$('.courseTeacher').focus();
+	}
+});
+
+//강의 시작시간 강의 종료시간 유효성검사
+$('.timeOption').on("change", () => {
+	let startHours = $('.courseStartTime').val().split(":")[0];
+	let endHours = $('.courseEndTime').val().split(":")[0];
+
+	if(startHours == '09'){
+		startHours = '9';
+	}else if(endHours == '09'){
+		endHours = '9';
+	}
+
+	if(parseInt(startHours) == parseInt(endHours)){
+		alert('시작시간과 종료시간이 같습니다.');
+		$('.courseStartTime').focus();
+	}else if(parseInt(startHours) > parseInt(endHours)){
+		alert('시작시간이 종료시간보다 느립니다.');
+		$('.courseStartTime').focus();
+	}
+
+});
+
+function courseInsertPost(){
+	
+	let selectedOptions = getSelectedOptions();
 	
 	const courseTitle = $('.courseTitle').val();
 	const courseTeacher = $('.courseTeacher').val();
@@ -47,7 +152,7 @@ function courseInsertPost(){
 	const courseAge = $('.courseAgeSelect').val();
 	const courseRecStart = $('.courseRecStart').val();
 	const courseRecEnd = $('.courseRecEnd').val();
-	const courseSubInfo = $('.courseSubInfo').val();
+	const courseInfo = $('textarea[name="courseInfo"]').val();
 	
 	let formData = new FormData();
 	let file = $("#fileData")[0].files[0];
@@ -64,14 +169,15 @@ function courseInsertPost(){
 		courseAgeLimit: parseInt(courseAge),
 		courseRecStart: courseRecStart,
 		courseRecEnd: courseRecEnd,
-		courseDayOfTheWeek: parseInt(selectedOptions),
-		courseInfo: courseSubInfo
+		courseDayOfTheWeek: selectedOptions,
+		courseInfo: courseInfo
 	}
 	
 	formData.append("file", file);
 	formData.append("params", JSON.stringify(params));
+	
 		
-		$.ajax({
+	 $.ajax({
 				url: '/course/insert',
 				method: 'POST',
 				data: formData,

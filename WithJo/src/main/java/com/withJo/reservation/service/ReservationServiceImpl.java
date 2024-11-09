@@ -1,7 +1,6 @@
 package com.withJo.reservation.service;
 
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -10,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.withJo.course.dao.CourseDao;
-import com.withJo.course.domain.CourseVo;
 import com.withJo.member.dao.MemberDao;
-import com.withJo.member.domain.MemberVo;
 import com.withJo.reservation.dao.ReservationDao;
-import com.withJo.reservation.domain.ReservationVo;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -30,6 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private MemberDao memberDao;
 
+	@Transactional
 	@Override
 	public void getCourseReservation(Map<String, Object> map) {
 		// TODO Auto-generated method stub

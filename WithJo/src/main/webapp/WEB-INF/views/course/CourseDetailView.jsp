@@ -58,7 +58,7 @@
 													<div class="courseInfoTitleImg">
 														<p>
 															<span class="courseImBox">
-																<img class="courseImg" alt="." src="/img/course/swin.png">
+																<img class="courseImg" alt="." src="/imges/${courseVo.courseMainImage}">
 															</span>
 														</p>
 													</div>
@@ -118,7 +118,7 @@
 															<span>수강비용</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<span>${courseVo.courseCost}</span>
+															<p class="courseCostTxt">${courseVo.courseCost}</p>
 														</div>
 													</div>
 													<div class="courseInfoSubElement current">
@@ -163,53 +163,31 @@
 							<div class="infoBox">
 								<p>
 									<span class="courseImBox">
-										<img class="courseImg" alt="." src="/img/course/swin.png">
+										<img class="courseImg" alt="." src="/imges/${courseVo.courseMainImage}">
 									</span>
 								</p>
 								<div class="courseInfoText">
-									<P style="font-family: '맑은 고딕';font-size: 16pt;font-weight: 700;">
+									<P style="font-family: '맑은 고딕';font-size: 20pt;font-weight: 700;">
 										<span style="background-color:rgb(128 145 188 / 29%);">${courseVo.courseName}</span>
 									</p>
-									<p>
-										<span>${courseVo.courseTeacher}
-										</span>
-									</p>
-									<div>
-										<!--<span>${courseVo.courseInfo}</span>-->
-										<p style="text-align: center;"><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
-										<p><span>테니스를 배워봅시</span></p>
+									<div class="courseTeacherInfo">
+										<p class="">
+											<span>강사 ${courseVo.courseTeacher}
+											</span>
+										</p>
+									</div>
+									<div class="courseInfo--boxP">
+										<div class="courseInfo--box">
+											<span>${courseVo.courseInfo}</span>
+											<div class="info_dot_txt">
+												<p class="dot_txt_p">유의사항</p>
+												<p class="dot_txt">강의 취소 및 환불은 수업 참여여부와 상관없이 [평생교육법 시행령]에 의거해 처리됩니다.</p>
+												<p class="dot_txt">일반 강의는 개강 1일 전까지 취소 및 환불 가능하며, 당일 취소는 적용되지 않습니다.</p>
+												<p class="dot_txt">수강신청 인원이 미달될 경우 강좌가 폐강될 수 있으며, 수강료는 전액 환불됩니다.</p>
+												<p class="dot_txt">회원정보에서 실제수강자명과 핸드폰 번호를 반드시 확인해주세요.</p>
+												<p class="dot_txt">영유아 강좌는 아이와 보호자 1인만 참여 가능합니다.</p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

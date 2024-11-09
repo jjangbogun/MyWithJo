@@ -1,13 +1,14 @@
 @charset "UTF-8";
 #mainContainer{
 	background-color: #8392bc40;
+	min-height: 100vh;
 }
 .infoBox{
 	width: 70%;
 	text-align: center;
 }
 .courseImg{
-	width: 400px;
+	width: 450px;
 	height: 300px;
 	border-radius: 15px;
 }
@@ -212,4 +213,74 @@
 .courseResTotalCost p{
 	font-size: 32px;
 	font-family: 'General Sans', sans-serif;
+}
+.admin{
+	display: flex;
+    justify-content: right;
+    padding: 50px 80px 50px;
+}
+.admin button{
+	border: 1px solid #6495ED;
+    background: #6495ED;
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+	margin-left: 20px;
+}
+.courseTeacherInfo{
+	margin-top: 20px;
+}
+.courseTeacherInfo p{
+	font-weight: bold;
+	font-size: 18px;
+}
+.courseInfo--boxP{
+	display: flex;
+	justify-content: center;
+}
+.courseInfo--box{
+	margin-top: 20px;
+	width: 50%;
+}
+.dot_txt_p{
+	font-family: "NotoSans_Bold", sans-serif;
+    color: rgba(0, 0, 0, .9);
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -.6px;
+    margin-bottom: 20px;
+}
+.info_dot_txt{
+	margin-top: 50px;
+	text-align: left;
+}
+.info_dot_txt .dot_txt + .dot_txt {
+    margin-top: 20px;
+}
+.dot_txt{
+	position: relative;
+    padding-left: 12px;
+    font-size: 14px;
+    line-height: 22px;
+    font-family: "NotoSans_Medium", sans-serif;
+    color: rgba(0, 0, 0, .6);
+}
+.info_dot_txt .dot_txt{
+	font-size: 16px;
+    line-height: 26px;
+    font-family: "NotoSans_Regular", sans-serif;
+    color: rgba(0, 0, 0, .8);
+    letter-spacing: -.4px;
+}
+.dot_txt:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: rgba(0, 0, 0, .6);
+    border-radius: 50%;
 }

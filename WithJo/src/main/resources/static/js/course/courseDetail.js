@@ -26,6 +26,18 @@ $(window).scroll(function() {
          rightBoxInfoHeight = $rightBoxInfo.outerHeight();
          maxScroll = innerHeight - rightBoxInfoHeight;
      }
+	 
+	 function costCommaFnc(cost){
+		let courseCost = cost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return courseCost;
+	 }
+	 
+	 let courseCostTxt = $('.courseCostTxt').text();
+	 console.log(courseCostTxt);
+	 
+	 let courseCostTxtChange = costCommaFnc(courseCostTxt);
+	 console.log(courseCostTxtChange);
+	 $('.courseCostTxt').text(`${courseCostTxtChange}원`);
 
      updateDimensions();
      $(window).on('resize', updateDimensions);
@@ -77,14 +89,14 @@ $(window).scroll(function() {
 									<div class="costArea">
 										<div class="costContentArea">
 											<div class="costOption">
-												<p class="courseText">수강료/쿠폰선택</p>
+												<p class="courseText">수강료</p>
 											</div>
 											<div class="selectedBox">
 												<div>
 													<fmt:formatDate value="${courseVo.courseStartDate}" pattern="MM/dd" />
 													${courseVo.courseName}
 												</div>
-												<div>${courseVo.courseCost}</div>
+												<div class="courseCostComma">${courseVo.courseCost}</div>
 											</div>
 										</div>
 									</div>
@@ -110,9 +122,10 @@ $(window).scroll(function() {
 							</div>`
 					$('.rightBoxInfo').html(htmlStr);
 					
-					let courseCostComma = $('.courseCostComma').text();
-					courseCost = courseCostComma.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					$('.courseCostComma').text(courseCost);
+					/*let courseCostComma = $('.courseCostComma').text();
+					courseCost = courseCostComma.replace(/\B(?=(\d{3})+(?!\d))/g, ",");*/
+					
+					$('.courseCostComma').text(costCommaFnc(`${courseVo.courseCost}원`));
 				}
 				
 		});
@@ -124,9 +137,6 @@ $(window).scroll(function() {
 	}
 	
 	const memberVo = $('.memberVo').val();
-	console.log($('.memberVo').val());
-	console.log(typeof($('.memberVo').val()));
-	console.log($('.memberVo').val().length);
 	
 	function courseReserve(courseNo,categoryNo){
 		if(memberVo.length == 0){
@@ -144,10 +154,10 @@ $(window).scroll(function() {
 					url: '/reservation/insert',
 					method: 'POST',
 					data: JSON.stringify(jsonData),
-					dataType: 'json',
 					contentType: 'application/json',
 					success: function (data) {
-						ale
+						alert(data);
+						location.href = "/course/detail?courseNo=" + courseNo;
 					}
 			});
 		}

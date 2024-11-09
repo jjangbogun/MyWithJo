@@ -23,9 +23,11 @@
 	border-bottom: 3px solid;
 }
 .mainImg{
-	border: 1px solid;
 	width: 400px;
     height: 400px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  	position: relative;
 }
 .courseListBox{
 	display: flex;
@@ -40,10 +42,20 @@
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	padding-left: 120px;
-	border: 1px solid;
 }
 .courseBox{
-	margin-left: 100px;
+	margin: 0 0 20px 100px;
+	cursor: pointer;
+}
+.mainImgHover{
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+}
+.mainImgHover:hover{
+	transform: scale(1.1);
 }
 .ageCategoryBtn{
 	border: none;
@@ -75,4 +87,36 @@
 }
 .lineHover{
 	border-bottom: 3px solid;
+}
+
+.adminCourseInsertBtn,.adminCourseDeleteBtn{
+	cursor: pointer;
+}
+.adminCourseInsertBtn:hover,.adminCourseDeleteBtn:hover{
+	border: 1px solid #3a76e1;
+	background: #3a76e1;
+}
+.course-Ing{
+	margin-bottom: 20px;
+}
+.courseRecStartLabel{
+	background-color: #e0f55c;
+    border: 1px solid #e0f55c;
+    width: 100px;
+    padding: 0 8px;
+    border-radius: 12px;
+}
+.courseRecStartWaitLabel{
+	background-color: #e0f55c;
+    border: 1px solid #e0f55c;
+    width: 100px;
+    padding: 0 8px;
+    border-radius: 12px;
+}
+.courseRecEndWaitLabel{
+	background-color: #9e9e9e;
+    border: 1px solid #9e9e9e;
+    width: 100px;
+    padding: 0 8px;
+    border-radius: 12px;
 }

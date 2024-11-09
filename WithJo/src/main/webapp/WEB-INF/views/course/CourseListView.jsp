@@ -72,7 +72,28 @@
 						<c:forEach var="courseVo" items="${courseList}">
 								<div class="courseBox">
 									<input class="numHidden" type="hidden" value="${courseVo.courseNo}">
-									<div class="mainImg">메인이미지</div>
+									<div class="mainImg">
+										<img alt="." src="/imges/${courseVo.courseMainImage}" class="mainImgHover">
+									</div>
+									<div class="course-Ing">
+										<c:set var="now" value="<%=new java.util.Date() %>"/>
+											<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
+											<c:if test="${now > courseVo.courseRecStart and now < courseVo.courseRecEnd}">
+												<div class="courseRecStart">
+													<span class="courseRecStartLabel">접수중</span>
+												</div>
+											</c:if>
+											<c:if test="${now < courseVo.courseRecStart}">
+												<div class="courseRecStartWait">
+													<span class="courseRecStartWaitLabel">접수대기중</span>
+												</div>
+											</c:if>
+											<c:if test="${now > courseVo.courseRecEnd and now > courseVo.courseRecStart}">
+												<div class="courseRecEnd">
+													<span class="courseRecEndWaitLabel">마감</span>
+												</div>
+											</c:if>
+									</div>
 									<div>
 										<span>${courseVo.courseName}</span>
 									</div>

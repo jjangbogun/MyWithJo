@@ -40,9 +40,12 @@
 											<div class="scrollArea">
 												<div class="courseInfoTitle">
 													<div class="courseInfoTitleImg">
+														<div>
+															<img id="preview1"/>
+														</div>
 													</div>
 													<div class="courseInfoTitleSub">
-														<input type="text" class="courseTitle" name="courseName">
+														<input type="text" class="courseTitle" name="courseName" placeholder="수강명을 입력해주세요" required>
 													</div>
 												</div>
 												<div class="courseInfoSub">
@@ -51,7 +54,7 @@
 															<span>강사명</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<input type="text" class="courseTeacher" name="courseTeacher">
+															<input type="text" class="courseTeacher" name="courseTeacher" placeholder="강사명을 입력해주세요" required>
 														</div>
 													</div>
 													<div class="courseInfoSubElement aboutCourseDate">
@@ -59,29 +62,36 @@
 															<span>강의기간</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<input type="date" class="courseStartDate" name="courseStartDate">
+															<input type="date" class="courseStartDate" name="courseStartDate" onchange="courseDateCheck(this);" required>
 															<span>~</span>
-															<input type="date" class="courseEndDate" name="courseEndDate">
+															<input type="date" class="courseEndDate" name="courseEndDate" onchange="courseDateCheck(this);" required>
 														</div>
 													</div>
 													<div class="courseInfoSubElement aboutCourseDay">
 														<div class="courseInfoSubElement--flex title">
-															<span>강의시간</span>
+															<span>강의요일</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
 															<input type="hidden" value="" name="courseDayOfTheWeek" class="selectedSub">
-															<select id="sumoSelectId" name="sumoSelectName" multiple="multiple" class="sumoselect_multiple">
+															<select id="sumoSelectId" name="sumoSelectName" multiple="multiple" class="sumoselect_multiple" required>
 																<option value="1">월</option>
 																<option value="2">화</option>
 																<option value="3">수</option>
 																<option value="4">목</option>
 																<option value="5">금</option>
-															</select><br>
-															<select class="timeOption courseStartTime" name="courseStartTime">
+															</select>
+														</div>
+													</div>
+													<div class="courseInfoSubElement aboutCourseTime">
+														<div class="courseInfoSubElement--flex title">
+															<span>강의시간</span>
+														</div>
+														<div class="courseInfoSubElement--flex detail">
+															<select class="timeOption courseStartTime" name="courseStartTime" required>
 																<option class="timeOptions">09:00</option>
 															</select>
 															<span>~</span>
-															<select class="timeOption courseEndTime" name="courseEndTime">
+															<select class="timeOption courseEndTime" name="courseEndTime" required>
 																<option class="timeOption">09:00</option>
 															</select>
 														</div>
@@ -91,7 +101,7 @@
 															<span>수강비용</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<input type="text" class="courseCost" name="courseCost">
+															<input type="number" class="courseCost number" name="courseCost" placeholder="ex) 50000" required>
 														</div>
 													</div>
 													<div class="courseInfoSubElement current">
@@ -99,7 +109,7 @@
 															<span>수강정원</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<input type="text" class="courseMax" name="courseMaxPeople">
+															<input type="number" class="courseMax number" name="courseMaxPeople" placeholder="ex) 24" required>
 														</div>
 													</div>
 													<div class="courseInfoSubElement category">
@@ -107,7 +117,7 @@
 															<span>과목분류</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<select class="courseSubjectsSelect" name="categoryNo">
+															<select class="courseSubjectsSelect" name="categoryNo" required>
 																<option disabled selected>과목</option>
 																<option value="1">수영</option>
 																<option value="2">테니스</option>
@@ -122,7 +132,7 @@
 															<span>나이제한</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<select class="courseAgeSelect" name="courseAgeLimit">
+															<select class="courseAgeSelect" name="courseAgeLimit" required>
 																<option disabled selected>나이제한</option>
 																<option>13</option>
 																<option>19</option>
@@ -135,9 +145,9 @@
 															<span>접수기간</span>
 														</div>
 														<div class="courseInfoSubElement--flex detail">
-															<input type="date" class="courseRecStart" name="courseRecStart">
+															<input type="date" class="courseDate courseRecStart" name="courseRecStart" onchange="courseDateCheck(this);" required>
 															<span>~</span>
-															<input type="date" class="courseRecEnd" name="courseRecEnd">
+															<input type="date" class="courseDate courseRecEnd" name="courseRecEnd" onchange="courseDateCheck(this);" required>
 														</div>
 													</div>
 												</div>
@@ -149,7 +159,10 @@
 							</div> <!-- rightBox -->
 							<div class="infoBox">
 								<div>
-									<input type="file" id="fileData" name="courseMainImage" required>
+									<input type="file" id="fileData" name="courseMainImage" required onchange="readURL(this)">
+									<div>
+										<img id="preview2"/>
+									</div>
 								</div>
 								<div class="courseInfoText">
 									<P style="font-family: '맑은 고딕';font-size: 16pt;font-weight: 700;">
@@ -159,7 +172,7 @@
 										<span></span>
 									</p>
 									<div class="courseSubInfo">
-										<textarea rows="10" cols="90" style="height: 980px;" name="courseInfo"></textarea>										
+										<textarea rows="10" cols="90" style="height: 980px;" name="courseInfo" class="courseSubInfo"></textarea>										
 									</div>
 								</div>
 							</div> <!-- infoBox -->

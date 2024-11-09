@@ -102,7 +102,7 @@
 		    , #{courseMainImage})
 	</insert>
 	
-	<insert id="courseDayInsert" parameterType="map">
+	<insert id="courseDayInsert" parameterType="map" keyProperty="courseNo">
 		INSERT INTO COURSE_LIST_DAY(COURSE_LIST_DAY_NO, COURSE_NO, COURSE_DAY_OF_THE_WEEK)
 		VALUES(COURSE_LIST_DAY_NO_SEQ.NEXTVAL, #{courseNo}, #{courseDayOfTheWeek})
 	</insert>

@@ -75,7 +75,8 @@ public class CourseServiceImpl implements CourseService{
 		map.put("courseMainImage", fileList.get("storedFileName"));
 		
 		courseDao.courseInsert(map);
-		map.get("courseNo");
+		
+		map.put("courseNo", map.get("courseNo"));
 		System.out.println("map.get(\"courseNo\")" + map.get("courseNo"));
 		courseDao.courseDayInsert(map);
 	}
