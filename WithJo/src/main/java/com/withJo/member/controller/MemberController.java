@@ -12,6 +12,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.withJo.member.domain.MemberVo;
@@ -122,15 +124,15 @@ public class MemberController {
 	}
 	
 	// 회원 수강신청한 목록
-	@GetMapping("/reserve")	
-	public String memberReserve(@RequestParam int memberNo, Model model) {
+	@GetMapping("/reserve")
+	@ResponseBody
+	public List<MemberVo> memberReserve(@RequestParam int memberNo) {
 		log.info(logTitleMsg);
 		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
 		
-		List<MemberVo> reserveList = memberService.memberReserveOne(memberNo);
-	    model.addAttribute("reserveList", reserveList);	
+		List<MemberVo> reserveList = memberService.memberReserveOne(memberNo);	    
 		
-		return "member/MemberReserveCourse";
+		return reserveList;
 	}
 	
 	//회원 수강신청 취소
@@ -158,15 +160,23 @@ public class MemberController {
 		    }		
 	}
 	
-	@GetMapping("eMoney")
-	public String memberEMoneyDetail(@RequestParam int memberNo, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
-		
-		List<MemberVo> eMoneyList = memberService.memberEMoneyDetail(memberNo);
-	    model.addAttribute("eMoneyList", eMoneyList);	
-		
-		return "member/MemberEMoney";		
+	@GetMapping("/eMoney")
+	@ResponseBody
+	public List<MemberVo> getEMoney(@RequestParam int memberNo) {
+	    log.info("GetMapping eMoney memberNo: {}", memberNo);
+	    
+	    if (memberNo != 0) {
+	        List<MemberVo> eMoneyList = memberService.memberEMoneyDetail(memberNo);
+	        if (eMoneyList != null && !eMoneyList.isEmpty()) {
+	            return eMoneyList; // JSON 형식으로 반환
+	        } else {
+	            log.error("E-Money not found for memberNo: {}", memberNo);
+	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "E-Money not found");
+	        }
+	    } else {
+	        log.error("Invalid memberNo: 0");
+	        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid member number");
+	    }
 	}
 	
 	// (관리자) 회원 삭제
@@ -288,17 +298,18 @@ public class MemberController {
 	    return response;
 	}
 	
-	// 마이페이지 수정
-	@GetMapping("/update")
-	public String showUpdateForm(@RequestParam("memberNo") int memberNo, Model model) {
+	
+	// 마이페이지
+	@GetMapping("/myPageForm")
+	public String showUpdateFormPage(@RequestParam("memberNo") int memberNo, Model model) {
 	    log.info(logTitleMsg);
-	    log.info("GetMapping showUpdateForm memberNo: {}", memberNo);
+	    log.info("GetMapping showUpdateFormPage memberNo: {}", memberNo);
 	    
 	    if (memberNo != 0) {	    	
-	    	
 	        MemberVo memberVo = memberService.memberSelectOne(memberNo);
 	        if (memberVo != null) {
-	            model.addAttribute("memberVo", memberVo);
+	            model.addAttribute("memberVo", memberVo); // JSP에서 사용할 수 있도록 모델에 추가
+	            return "member/MemberMyPage"; // JSP 페이지 경로 반환
 	        } else {
 	            log.error("Member not found for memberNo: {}", memberNo);
 	            return "redirect:/error";
@@ -307,12 +318,10 @@ public class MemberController {
 	        log.error("Invalid memberNo: 0");
 	        return "redirect:/error";
 	    }
-	    
-	    return "member/MemberUpdateView";
 	}
 	
 	// 마에페이지 수정
-	@PostMapping(value = "/update")
+	@PostMapping(value = "/myPage")
 	@ResponseBody
 	public ResponseEntity<?> memberMyPage(@RequestBody MemberVo memberVo) {
 	    log.info(logTitleMsg);

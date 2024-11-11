@@ -9,19 +9,17 @@
 <title>회원정보변경</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<script src="https://code.jquery.com/jquery-3.7.1.js"
-	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <!-- css 초기화 -->
 <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
 	rel="stylesheet">
 <!-- 페이지 css -->
 <link rel="stylesheet" href="/css/common/common.css">
 <link rel="stylesheet" href="/css/member/memberUpdate.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
 <script defer src="/js/common/common.js"></script>
-<script defer src="/js/member/memberUpdate.js"></script>
+<script defer src="/js/member/memberMyPage.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -35,6 +33,7 @@
 
 
 	<div id="mainContainer">
+		
 
 		<div class="aboutPage">
 			<div class="pageTitle">
@@ -47,20 +46,21 @@
 
 		<div class="myPageCategory">
 			<div class="myPageCategory__element">
+				<span><button id="myPageUpdateBtn" class="myPageCategoryBtn" data-member-no="${memberVo.memberNo}" value="3">회원정보변경</button></span>
+			</div>
+			<div class="myPageCategory__element">
 				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},1);" value="1">내 수강 목록</button></span>
 			</div>
 			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},2);" value="2">EMoney</button></span>
-			</div>
-			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},3);" value="3">회원정보변경</button></span>
-			</div>
+				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},2);" value="2">E-Money</button></span>
+			</div>			
 			<div class="myPageCategory__element">
 				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},4);" value="4">장바구니</button></span>
 			</div>
-		</div>
+		</div>		
+		
 
-		<div class="main_update">
+		<div id="main_update">
 			<div class="main_update_content_form">
 				<!-- update form -->
 				<form class="mainUpdateForm" class="main_update_content" name="frm">
@@ -159,9 +159,12 @@
 
 		</div>
 		<!-- main_update -->
-
+		
+	 </div>
 	</div>
 	<!-- main-container -->
+	
+	
 
 	<jsp:include page="/WEB-INF/views/Footer.jsp" />
 
