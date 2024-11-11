@@ -1,13 +1,11 @@
 package com.withJo.lotto.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,17 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.withJo.board.domain.BoardVo;
-import com.withJo.board.service.BoardService;
-import com.withJo.comments.domain.CommentsVo;
 import com.withJo.lotto.domain.LottoVo;
 import com.withJo.lotto.service.LottoService;
-import com.withJo.util.FileUpload;
 import com.withJo.util.Paging;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Part;
 
 
 @RequestMapping("/lotto")

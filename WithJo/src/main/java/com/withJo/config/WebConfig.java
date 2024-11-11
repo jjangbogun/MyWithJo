@@ -1,12 +1,18 @@
 package com.withJo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.withJo.util.AuthInterceptor;
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+	
+	@Autowired
+	private AuthInterceptor authInterceptor;
     private String connectPath = "/upload/**";
     private String resourcePath;
 
@@ -26,5 +32,15 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(connectPath)
                 .addResourceLocations(resourcePath);
+    }
+    
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+      registry.addInterceptor(authInterceptor)
+          .addPathPatterns("/member/list", "/member/myPage", "/customer/detail", "/notice/add", "/board/add", "/customer/add"
+        		  , "/customer/update", "/notice/update", "/board/update", "/lotto/list", "/lotto/add", "/drawing/add", "/drawing/list")
+          .excludePathPatterns("/", "/member/add", "/member/login", "/board/list", "/notice/list", "/customer/list"
+        		  , "/board/detail",  "/notice/detail", "/customer/list", "/lotto/detail", "/drawing/detail"
+        		  , "/event/list", "/course/list", "/css/**", "/js/**", "/img/**");
     }
 }
