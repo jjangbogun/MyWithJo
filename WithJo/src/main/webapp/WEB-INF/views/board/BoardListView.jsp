@@ -97,7 +97,7 @@
 										${boardVo.memberName}
 									</div>	
 									<div class="tableTimeElement">
-										<fmt:formatDate value="${boardVo.boardCredate}" pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${boardVo.boardCredate}" pattern="yyyy-MM-dd HH:mm" />
 									</div>
 								</div>	
 							</c:forEach>

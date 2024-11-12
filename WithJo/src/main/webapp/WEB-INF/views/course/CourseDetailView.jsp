@@ -153,9 +153,23 @@
 											</div>
 										</div><!-- rightBoxInfoInner -->
 										<div class="courseReservation">
-											<div>
-												<a class="courseResBtn" href="javascript:courseRes(${courseVo.courseNo})"><span>수강신청하기</span></a>
-											</div>
+											<c:set var="now" value="<%=new java.util.Date() %>"/>
+												<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
+											<c:if test="${now > courseVo.courseRecStart and now < courseVo.courseRecEnd}">
+												<div>
+													<a class="courseResBtn"  href="javascript:courseRes(${courseVo.courseNo},${sessionScope.memberVo.memberEMoney})"><span>수강신청하기</span></a>
+												</div>
+											</c:if>
+											<c:if test="${now < courseVo.courseRecStart}">
+												<div>
+													<a class="courseResBtn"><span>수강신청대기중</span></a>
+												</div>
+											</c:if>
+											<c:if test="${now > courseVo.courseRecEnd and now > courseVo.courseRecStart}">
+												<div>
+													<a class="courseResBtn"><span>수강신청마감</span></a>
+												</div>
+											</c:if>
 										</div>
 										</div><!-- rightBoxInfoInner -->
 								</div> <!-- rightBoxInfo -->
@@ -178,7 +192,7 @@
 									</div>
 									<div class="courseInfo--boxP">
 										<div class="courseInfo--box">
-											<span>${courseVo.courseInfo}</span>
+											<pre><c:out value="${courseVo.courseInfo}" /></pre>
 											<div class="info_dot_txt">
 												<p class="dot_txt_p">유의사항</p>
 												<p class="dot_txt">강의 취소 및 환불은 수업 참여여부와 상관없이 [평생교육법 시행령]에 의거해 처리됩니다.</p>
@@ -196,6 +210,7 @@
 				</div>
 				<input type="hidden" value="${sessionScope.memberVo.authority}" class="memberVo">
 				<input type="hidden" value="${sessionScope.memberVo.memberNo}" class="memberNo">
+				<input type="hidden" value="${sessionScope.memberVo.memberEMoney}" class="memberEmoneyHidden">
 				<c:if test="${sessionScope.memberVo.authority eq 1}">
 					<div class="admin">
 						<div>

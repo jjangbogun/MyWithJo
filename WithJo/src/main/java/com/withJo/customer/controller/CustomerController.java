@@ -111,7 +111,7 @@ public class CustomerController {
 		
 	    MemberVo loggedInMember = (MemberVo) session.getAttribute("memberVo");
 	    
-	    if (customerVo.getMemberQNo() != loggedInMember.getMemberNo()) {
+	    if ((customerVo.getMemberQNo() != loggedInMember.getMemberNo()) && loggedInMember.getMemberNo() == 0) {
 	        // 로그인하지 않았거나 관리자가 아닌 경우
 	        return "redirect:/member/login"; // 로그인 페이지로 리다이렉트
 	    }

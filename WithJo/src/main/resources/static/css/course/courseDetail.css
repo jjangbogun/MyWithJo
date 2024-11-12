@@ -284,3 +284,9 @@
     background: rgba(0, 0, 0, .6);
     border-radius: 50%;
 }
+.memberEmoneyBox{
+	margin-top: 50px;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

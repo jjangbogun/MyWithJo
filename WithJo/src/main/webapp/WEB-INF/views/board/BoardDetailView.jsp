@@ -32,11 +32,13 @@
 	<div id="boardContainer">
 	    <div>
 
-	        <div class="detailHeader">
-	            <p>${boardVo.boardTitle}
-	            	<span class="dateSpan"><fmt:formatDate value="${boardVo.boardCredate}" pattern="yyyy-MM-dd HH:mm" /></span>
-	            </p>
-	        </div>
+			<div class="detailHeader">
+			    <p>${boardVo.boardTitle}</p>
+			    <div class="nameSpan">${boardVo.memberName}</div>
+			    <div class="dateSpan">
+			        <fmt:formatDate value="${boardVo.boardCredate}" pattern="yyyy-MM-dd HH:mm" />
+			    </div>
+			</div>
 	        <div class="detailBody">
 	            <c:if test="${boardVo.boardImg ne null}">
 					<img alt="" src="/upload/${boardVo.boardImg}" id="boardImg" class="detailImg">

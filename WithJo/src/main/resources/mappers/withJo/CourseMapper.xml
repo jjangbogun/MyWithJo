@@ -35,6 +35,7 @@
 			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
 			COURSE_INFO, COURSE_MAIN_IMAGE
 		FROM COURSE_LIST
+		ORDER BY COURSE_NO DESC
 	</select>
 	
 	<select id="courseCategorySelect" parameterType="int" resultMap="courseResultMap">
@@ -52,7 +53,7 @@
 				AND C.CATEGORY_NO = #{categoryNo}
 			</if>
 		</where>
-		<!--AND C.CATEGORY_NO = #{categoryNo}-->
+		ORDER BY COURSE_NO DESC
 	</select>
 	
 	<select id="getCourseDetailList" parameterType="int" resultMap="courseResultMap">

@@ -156,6 +156,43 @@ function courseInsertPost(){
 	
 	let formData = new FormData();
 	let file = $("#fileData")[0].files[0];
+	
+	
+	if(file == null){
+		alert('메인이미지를 등록해주세요.');
+		return false;
+	}else if(courseTitle == ''){
+		alert('강의명을 등록해주세요.');
+		return false;
+	}else if(courseTeacher == ''){
+		alert('강사명을 등록해주세요.');
+		return false;
+	}else if(courseStartDate == ''){
+		alert('강의시작 날짜를 등록해주세요.');
+		return false;
+	}else if(courseEndDate == ''){
+		alert('강의종료 날짜를 등록해주세요.');
+		return false;
+	}else if(courseCost == ''){
+		alert('수강료를 등록해주세요.');
+		return false;
+	}else if(courseMax == ''){
+		alert('강의 정원을 등록해주세요.');
+		return false;
+	}else if(courseSubject == ''){
+		alert('강의 요일을 등록해주세요.');
+		return false;
+	}else if(courseAge == ''){
+		alert('강의 대상 나이를 등록해주세요.');
+		return false;
+	}else if(courseRecStart == ''){
+		alert('수강신청 시작날짜를 등록해주세요.');
+		return false;
+	}else if(courseRecEnd == ''){
+		alert('수강신청 종료날짜를 등록해주세요.');
+		return false;
+	}
+	
 	let params = {
 		categoryNo: parseInt(courseSubject),
 		courseName : courseTitle,

@@ -126,8 +126,8 @@ function insertMemberEMoney(eMoney){
 			eMoney = 0;
 	    },
 	    error: function(xhr, status, error) {
-	        console.error('Error:', error);
-	        alert('Error: ' + status + ' - ' + error);
+	        console.error('1Error:', error);
+	        alert('1Error: ' + status + ' - ' + error);
 	    }
 	});
 	
@@ -151,8 +151,8 @@ function insertMemberLotto() {
             alert("추첨이 완료되었습니다");
         },
         error: function(xhr, status, error) {
-            console.error('Error:', error);
-            alert('Error: ' + status + ' - ' + error);
+            console.error('2Error:', error);
+            alert('2Error: ' + status + ' - ' + error);
         }
     });
 }
@@ -177,8 +177,8 @@ function memberCountCheck() {
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error:', error);
-            alert('Error: ' + status + ' - ' + error);
+            console.error('3Error:', error);
+            alert('3Error: ' + status + ' - ' + error);
         }
     });
 }
