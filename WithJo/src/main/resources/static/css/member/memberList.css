@@ -60,17 +60,26 @@ button:hover {
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
-.tableBody .informationTitle td {
+.informationTitle_memberId,
+.informationTitle_memberName,
+.informationTitle_memberCredate,
+.informationTitle_memberDelete
+ {
     background-color: #007bff;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
     padding: 15px;
+    text-align: center;
 }
 
-.firstInformation td {
+.information__id,
+.information__name,
+.information__credate,
+.information__memberDelete{
     padding: 12px 15px;
     border-bottom: 1px solid #e0e0e0;
+    text-align: center;
 }
 
 .firstInformation:last-child td {

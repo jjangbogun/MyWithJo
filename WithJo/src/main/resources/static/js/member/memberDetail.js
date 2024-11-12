@@ -73,7 +73,7 @@ function detailUpdateFnc(){
 }
 
 function goBack() {
-    window.location.href = '/member/list';
+    window.history.back();
 }
 
 // 만약 수정 대상 회원이 관리자라면 라디오 버튼을 비활성화
@@ -108,3 +108,24 @@ function formatPhoneNum(){
 
 $('.memberBirthDate').text(formatDate());
 $('.memberPhoneNum').text(formatPhoneNum());
+
+function cancelCourse(memberCourseReserveNo) {
+	if (confirm("정말로 취소하시겠습니까?")) {
+		$.ajax({
+			url: '/member/reserve/cancel',
+			type: 'POST',
+			data: { memberCourseReserveNo: memberCourseReserveNo },
+			success: function(result) {
+				if (result === 'success') {
+					alert("취소되었습니다");
+					location.reload(); // 페이지를 새로 고침하여 변경 사항 반영
+				} else {
+					alert("취소가 실패되었습니다");
+				}
+			},
+			error: function() {
+				alert("오류가 발생했습니다");
+			}
+		});
+	}
+}
