@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -128,45 +129,53 @@ var userAuthority = ${sessionScope.memberVo.authority};
 						
 						
 						<div class="memberDetial_updat_content_reserveList">
-							<label for="memberReserveList">수강목록</label>
-							<div class="myReserveList">
-							    <div class="myReserveList-header">
-							        <div class="header-item">강의명</div>
-							        <div class="header-item">강의시간/기간</div>
-							        <div class="header-item">강사명</div>
-							        <div class="header-item">수강취소</div>
-							    </div>							
-							    <c:forEach items="${reserveList}" var="reserve">
-							        <div class="myReserveList-item">
-							            <div class="item-content">
-							                <div class="course-name">
-							                    <img src="${reserve.courseMainImage}" alt="강의 이미지">
-							                    ${reserve.courseName}
-							                </div>
-							            </div>
-							            <div class="item-content">
-							                [<c:choose>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 1}">월</c:when>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 2}">화</c:when>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 3}">수</c:when>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 4}">목</c:when>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 5}">금</c:when>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 6}">토</c:when>
-							                    <c:when test="${reserve.courseDayOfTheWeek == 7}">일</c:when>
-							                    <c:otherwise>${reserve.courseDayOfTheWeek}</c:otherwise>
-							                </c:choose>]
-							                <fmt:formatDate value="${reserve.courseStartDate}" pattern="yyyy.MM.dd"/> ~
-							                <fmt:formatDate value="${reserve.courseEndDate}" pattern="yyyy.MM.dd"/><br>
-							                ${reserve.courseStartTime} ~ ${reserve.courseEndTime}
-							            </div>
-							            <div class="item-content">${reserve.courseTeacher} 강사</div>
-							            <div class="item-content">
-							                <button class="reserveCancel" onclick="cancelCourse(${reserve.memberCourseReserveNo})">수강취소</button>
-							            </div>
-							        </div>
-							    </c:forEach>
+							   <label for="memberReserveList">수강목록</label>
+							   <div class="myReserveList">
+				                    <div class="myReserveList-header">
+				                        <div class="header-item">강의명</div>
+				                        <div class="header-item">강의시간/기간</div>
+				                        <div class="header-item">강사명</div>
+				                        <div class="header-item">수강취소</div>
+				                    </div>
+
+						        <!-- 수강 목록 반복 -->
+							        <c:if test="${not empty reserveList}">
+							            <c:forEach items="${reserveList}" var="reserve">
+							                <div class="myReserveList-item">
+							                    <div class="item-content">
+							                        <div class="course-name">
+							                            <img src="/imges/${reserve.courseMainImage}" alt="강의 이미지"> ${reserve.courseName}
+							                        </div>
+							                    </div>
+							                    <div class="item-content">
+							                        [<c:choose>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 1}">월</c:when>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 2}">화</c:when>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 3}">수</c:when>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 4}">목</c:when>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 5}">금</c:when>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 6}">토</c:when>
+							                            <c:when test="${reserve.courseDayOfTheWeek == 7}">일</c:when>
+							                            <c:otherwise>${reserve.courseDayOfTheWeek}</c:otherwise>
+							                        </c:choose>]<br/>
+							                        <fmt:formatDate value="${reserve.courseStartDate}" pattern="yyyy.MM.dd"/> ~
+							                        <fmt:formatDate value="${reserve.courseEndDate}" pattern="yyyy.MM.dd"/><br/>
+							                        ${reserve.courseStartTime} ~ ${reserve.courseEndTime}
+							                    </div>
+							                    <div class="item-content">${reserve.courseTeacher} 강사</div>
+							                    <div class="item-content">
+							                        <button class="reserveCancel" onclick="cancelCourse(${reserve.memberCourseReserveNo})">수강취소</button>
+							                    </div>
+							                </div> <!-- myReserveList-item 종료 -->
+							            </c:forEach>
+							        </c:if>
+							
+							        <!-- 수강 목록이 비어 있을 때 메시지 출력 -->
+							        <c:if test="${empty reserveList}">
+							            <p>현재 수강 중인 강의가 없습니다.</p>
+							        </c:if>
+							    </div>
 							</div>
-						</div>
 
 						<div class="memberDetail_update_content_authority">
  						    <label for="authority">권한</label>

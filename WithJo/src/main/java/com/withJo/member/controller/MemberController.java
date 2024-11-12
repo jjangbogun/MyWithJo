@@ -95,8 +95,11 @@ public class MemberController {
 		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
 		
 		MemberVo memberVo = memberService.memberSelectOne(memberNo);
+		List<MemberVo> reserveList = memberService.memberReserveOne(memberNo); 
+		
 		
 		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("reserveList", reserveList);
 		
 		return "member/MemberDetailView";
 	}
