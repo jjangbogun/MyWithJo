@@ -10,6 +10,17 @@ function myPageCategoryBtnFnc(memberNo, categoryNo) {
 			type: 'GET',
 			data: { memberNo: memberNo },
 			success: function(reserveList) {
+				// 강의별로 데이터 그룹화
+				const groupedReserves = reserveList.reduce((acc, reserve) => {
+					// 여러 필드를 조합하여 고유 키 생성
+					const key = `${reserve.courseNo}-${reserve.courseStartDate}-${reserve.courseEndDate}-${reserve.courseStartTime}-${reserve.courseEndTime}`;
+					if (!acc[key]) {
+						acc[key] = { ...reserve, courseDays: [] };
+					}
+					acc[key].courseDays.push(reserve.courseDayOfTheWeek);
+					return acc;
+				}, {});
+
 				// 수강 목록이 성공적으로 로드되면 HTML 생성
 				htmlStr += '<div class="myReserveList">';
 				htmlStr += '<div class="myReserveList-header">';
@@ -19,26 +30,32 @@ function myPageCategoryBtnFnc(memberNo, categoryNo) {
 				htmlStr += '<div class="header-item">수강취소</div>';
 				htmlStr += '</div>'; // myReserveList-header 종료
 
-				// 서버에서 받은 데이터로 예약 목록을 동적으로 생성
-				reserveList.forEach(reserve => {
+				// 그룹화된 데이터로 HTML 생성
+				Object.values(groupedReserves).forEach(reserve => {
 					htmlStr += '<div class="myReserveList-item">';
 					htmlStr += '<div class="item-content">';
 					htmlStr += '<div class="course-name">';
-					htmlStr += `<img src="${reserve.courseMainImage}" alt="강의 이미지">`;
+					htmlStr += `<img src="/imges/${reserve.courseMainImage}" alt="강의 이미지">`;
 					htmlStr += `${reserve.courseName}`;
 					htmlStr += '</div>';
 					htmlStr += '</div>';
 					htmlStr += '<div class="item-content">[';
-					switch (reserve.courseDayOfTheWeek) {
-						case 1: htmlStr += '월'; break;
-						case 2: htmlStr += '화'; break;
-						case 3: htmlStr += '수'; break;
-						case 4: htmlStr += '목'; break;
-						case 5: htmlStr += '금'; break;
-						case 6: htmlStr += '토'; break;
-						case 7: htmlStr += '일'; break;
-						default: htmlStr += reserve.courseDayOfTheWeek; break;
-					}
+
+					// 요일 정보 처리
+					const daysStr = [...new Set(reserve.courseDays)].map(day => {
+						switch (parseInt(day)) {
+							case 1: return '월';
+							case 2: return '화';
+							case 3: return '수';
+							case 4: return '목';
+							case 5: return '금';
+							case 6: return '토';
+							case 7: return '일';
+							default: return day;
+						}
+					}).sort((a, b) => ['월', '화', '수', '목', '금', '토', '일'].indexOf(a) - ['월', '화', '수', '목', '금', '토', '일'].indexOf(b)).join(', ');
+
+					htmlStr += daysStr;
 
 					// 날짜 형식 포맷
 					const startDate = new Date(reserve.courseStartDate);
@@ -56,7 +73,7 @@ function myPageCategoryBtnFnc(memberNo, categoryNo) {
 						day: '2-digit'
 					}).replace(/\./g, '.');
 
-					htmlStr += `] ${formattedStartDate} ~ ${formattedEndDate}<br>`;
+					htmlStr += `] <br>${formattedStartDate} ~ ${formattedEndDate}<br>`;
 					htmlStr += `${reserve.courseStartTime} ~ ${reserve.courseEndTime}`;
 					htmlStr += '</div>';
 					htmlStr += `<div class="item-content">${reserve.courseTeacher} 강사</div>`;

@@ -100,10 +100,18 @@ var userAuthority = ${sessionScope.memberVo.authority};
 							</div>
 						</div>
 						
+						
+						
 						<div class="memberDetail_update_content_memberPhoneNum">
 							<label for="memberPhoneNum">휴대폰번호</label>
 							<div class="update_content_memberPhoneNum--textBox">
 								<p class="memberPhoneNum">${memberVo.memberPhoneNum}</p>
+							</div>
+						</div>
+						<div class="memberDetail_update_content_memberEMoney">
+							<label for="memberEMoney">E-Money</label>
+							<div class="update_content_memberEMoney--textBox">
+								<p id="memberEMoney">${memberVo.memberEMoney}</p>
 							</div>
 						</div>
 
@@ -113,17 +121,11 @@ var userAuthority = ${sessionScope.memberVo.authority};
 								<input type="text" id="memberZipCode" name="memberZipCode" placeholder="우편번호" readonly value="${memberVo.memberZipCode}">
 								<input type="button" onclick="findAddress()" value="우편번호 찾기"><br>
 								<input type="text" id="memberAddress" name="memberAddress" placeholder="주소" readonly value="${memberVo.memberAddress}"><br>
-								<input type="text" id="memberAddressInfo" name=memberAddressInfo placeholder="상세주소" value="${memberVo.memberAddressInfo}">
-								<input type="text" id="sample6_extraAddress" placeholder="참고항목" disabled>
+								<input type="text" id="memberAddressInfo" name=memberAddressInfo placeholder="상세주소" value="${memberVo.memberAddressInfo}">								
 							</div>
 						</div>
 
-						<div class="memberDetail_update_content_memberEMoney">
-							<label for="memberEMoney">E-Money</label>
-							<div class="update_content_memberEMoney--textBox">
-								<p class="memberId">${memberVo.memberEMoney}</p>
-							</div>
-						</div>
+						
 						
 						<div class="memberDetial_updat_content_reserveList">
 							<label for="memberReserveList">수강목록</label>

@@ -26,6 +26,7 @@ public class MemberVo {
 	private int memberEMoney;
 	private int authority;	
 	private int memberCourseReserveNo;	
+	private int courseNo;
 	private String courseName;
 	private String courseTeacher;	
 	private Date courseStartDate;

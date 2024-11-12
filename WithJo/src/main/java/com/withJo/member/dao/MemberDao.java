@@ -22,8 +22,10 @@ public interface MemberDao {
     public int memberPwUpdate(String memberId, String newPassword, String memberName);
     
     List<MemberVo> memberReserveOne(int memberNo);
+    List<String> memberReserveCourseDay(int courseNo);
     
     public int memberCourseReserveNo(int memberCourseReserveNo, int memberNo);
 	List<MemberVo> memberEMoneyDetail(int memberNo);
+	
 
 }

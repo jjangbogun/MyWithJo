@@ -95,10 +95,8 @@ public class MemberController {
 		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
 		
 		MemberVo memberVo = memberService.memberSelectOne(memberNo);
-		List<MemberVo> reserveList = memberService.memberReserveOne(memberNo);
 		
 		model.addAttribute("memberVo", memberVo);
-		model.addAttribute("reserveList", reserveList);
 		
 		return "member/MemberDetailView";
 	}
@@ -220,7 +218,6 @@ public class MemberController {
 	    
 	    if(memberVo != null) {
 	        session.setAttribute("memberVo", memberVo);
-	        System.out.println("유경이"  + memberVo);
 	        response.put("success", true);
 	    } else {
 	        response.put("success", false);

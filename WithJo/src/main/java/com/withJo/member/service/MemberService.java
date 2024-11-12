@@ -19,4 +19,5 @@ public interface MemberService {
 	List<MemberVo> memberReserveOne(int memberNo);
 	public int memberReserveCancel(int memberCourseReserveNo, int memberNo);
 	List<MemberVo> memberEMoneyDetail(int memberNo);
+	List<String> memberReserveCourseDay(int courseNo);
 }

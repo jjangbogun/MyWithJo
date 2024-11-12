@@ -1,103 +1,217 @@
 @charset "UTF-8";
 
-/* 회원 상세 페이지 전체 컨테이너 */
 .memberDetail-container {
-    background-color: white;
-    margin-top: 150px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+	margin-top: 150px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f9f9f9;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.memberDetail_update_content__item {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.memberDetail_update_content__item>div {
+	margin-bottom: 20px;
+}
+
+.memberDetail_update_content__item label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #333;
+}
+
+.update_content_memberNo--textBox, .update_content_memberId--textBox,
+	.update_content_memberName--textBox,
+	.update_content_memberBirthDate--textBox,
+	.update_content_memberGender--textBox,
+	.update_content_memberPhoneNum--textBox,
+	.update_content_memberEMoney--textBox {
+	background-color: #fff;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.memberDetail_update_content_memberAddress input[type="text"] {
+	width: calc(100% - 22px);
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.memberDetail_update_content_memberAddress input[type="button"] {
+	padding: 10px 15px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.update_content_authority--textBox {
+	display: flex;
+	gap: 20px;
+}
+
+.update_content_element--updateBtn {
+	grid-column: 1/-1;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.update_content_element--updateBtn input[type="button"] {
+	padding: 10px 20px;
+	margin: 0 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.memberDetial_updat_content_reserveList {
+	grid-column: 1/-1;
+}
+
+/* 회원 상세 페이지 전체 컨테이너 */
+.memberDetail-container {
+	background-color: white;
+	margin-top: 150px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.memberDetail_update_content__item {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.memberDetail_update_content__item>div {
+	margin-bottom: 20px;
+}
+
+.memberDetail_update_content_memberAddress {
+	grid-column: 1/-1;
+}
+
+/* 주소 섹션 */
+.address-inputs {
+	display: flex;
+	flex-direction: column;
+}
+
+.zipcode-container {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+#memberZipCode {
+	width: 100px;
+}
+
+#memberAddress, #memberAddressInfo {
+	width: 98%;
+	margin-bottom: 10px;
+}
 /* 수강목록 섹션 */
 .memberDetial_updat_content_reserveList {
-    margin-top: 30px;
-    margin-bottom: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .memberDetial_updat_content_reserveList label {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	display: block;
 }
 
 /* 수강목록 테이블 */
 .myReserveList {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	text-align: center;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	overflow: hidden;
 }
 
 .myReserveList-header, .myReserveList-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 0;
+	border-bottom: 1px solid #ddd;
 }
 
 .myReserveList-header {
-    font-weight: bold;
-    background-color: #f0f0f0;
+	font-weight: bold;
+	background-color: #f0f0f0;
 }
 
 .header-item, .item-content {
-    flex: 1;
-    padding: 0 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	flex: 1;
+	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 /* 강의명 및 이미지 */
 .course-name {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
 .course-name img {
-    width: 100px;
-    height: 90px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+	width: 100px;
+	height: 90px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
 }
 
 /* 수강취소 버튼 */
 .reserveCancel {
-    padding: 8px 15px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+	padding: 8px 15px;
+	background-color: #f44336;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
 }
 
 .reserveCancel:hover {
-    background-color: #d32f2f;
+	background-color: #d32f2f;
 }
 
 /* 반응형 디자인을 위한 미디어 쿼리 */
-@media (max-width: 768px) {
-    .memberDetail-container {
-        width: 95%;
-    }
-
-    .myReserveList-header, .myReserveList-item {
-        flex-direction: column;
-    }
-
-    .header-item, .item-content {
-        width: 100%;
-        padding: 10px 0;
-    }
+@media ( max-width : 768px) {
+	.memberDetail-container {
+		width: 95%;
+	}
+	.myReserveList-header, .myReserveList-item {
+		flex-direction: column;
+	}
+	.header-item, .item-content {
+		width: 100%;
+		padding: 10px 0;
+	}
 }

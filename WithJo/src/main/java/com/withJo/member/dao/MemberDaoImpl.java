@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.stream.events.Namespace;
+
 import org.apache.ibatis.session.SqlSession;
 import org.aspectj.weaver.IntMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,6 +122,12 @@ public class MemberDaoImpl implements MemberDao{
 	public List<MemberVo> memberEMoneyDetail(int memberNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "memberEMoneyDetail", memberNo);
+	}
+
+	@Override
+	public List<String> memberReserveCourseDay(int courseNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "memberReserveCourseDay", courseNo);
 	}
 
 }
