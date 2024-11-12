@@ -172,7 +172,7 @@
 										<span></span>
 									</p>
 									<div class="courseSubInfo">
-										<textarea rows="10" cols="90" style="height: 980px;" name="courseInfo" class="courseSubInfo"></textarea>										
+										<textarea rows="10" cols="90" wrap="hard" style="height: 980px;" name="courseInfo" class="courseSubInfo"></textarea>										
 									</div>
 								</div>
 							</div> <!-- infoBox -->

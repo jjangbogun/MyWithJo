@@ -46,7 +46,7 @@
 	
 	function moveCategoryFnc(courseAgeLimit, categoryNo){
 		/*console.log(courseAgeLimit);*/
-			
+		let now = new Date();
 			$.ajax({
 				url: '/course/list/' + courseAgeLimit,
 				method: 'GET',
@@ -54,18 +54,39 @@
 				contentType: 'application/json',
 				dataType: 'json',
 				success: function (data) {
-					console.log(courseAgeLimit);
-			
+				
+					
 				let htmlStr = '';
 					if(data.length == 0){
-						htmlStr += '<div><p>등록된강의가없습니다</p></div>';
+						htmlStr += '<div style="min-height: 300px;"><p>등록된강의가없습니다</p></div>';
 						$('.courseFlexBox').html(htmlStr);
 					}
+				
 					
 					data.forEach(course => {
+						let	courseRecStart = new Date(data[0].courseRecStart);
+						let	courseRecEnd = new Date(data[0].courseRecEnd);
+							
 							htmlStr += `<div class="courseBox">
 											<input class="numHidden" type="hidden" value="${course.courseNo}">
-										    <div class="mainImg">메인이미지</div>
+											<div class="mainImg">
+												<img alt="." src="/imges/${course.courseMainImage}" class="mainImgHover">
+											</div>
+											<div class="course-Ing">`;
+											if(now > courseRecStart && now < courseRecEnd){
+												htmlStr += `<div class="courseRecStart">
+																<span class="courseRecStartLabel">접수중</span>
+															</div>`;
+											}else if(now < courseRecStart){
+												htmlStr += `<div class="courseRecStartWait">
+																<span class="courseRecStartWaitLabel">접수대기중</span>
+															</div>`;
+											}else if(now > courseRecEnd && now > courseRecStart){
+												htmlStr += `<div class="courseRecEnd">
+																<span class="courseRecEndWaitLabel">마감</span>
+															</div>`;
+											}
+							htmlStr +=	`</div>
 										    <div>
 										      <span>${course.courseName}</span>
 										    </div>

@@ -33,12 +33,10 @@ $(window).scroll(function() {
 	 }
 	 
 	 let courseCostTxt = $('.courseCostTxt').text();
-	 console.log(courseCostTxt);
 	 
 	 let courseCostTxtChange = costCommaFnc(courseCostTxt);
-	 console.log(courseCostTxtChange);
 	 $('.courseCostTxt').text(`${courseCostTxtChange}원`);
-
+	 
      updateDimensions();
      $(window).on('resize', updateDimensions);
 
@@ -65,9 +63,10 @@ $(window).scroll(function() {
 		
 	let previousHTML = '';
 		
-	function courseRes(courseNo){
+	function courseRes(courseNo,memberEmoney){
 		previousHTML = $('.rightBoxInfo').html();
 		/*alert(courseNo);*/
+		console.log("memberEmoney" + memberEmoney);
 		$.ajax({
 				url: '/course/detail/' + courseNo,
 				method: 'GET',
@@ -98,6 +97,14 @@ $(window).scroll(function() {
 												</div>
 												<div class="courseCostComma">${courseVo.courseCost}</div>
 											</div>
+											<div class="memberEmoneyBox">
+												<div class="memberEmoney">
+													<p class="courseText">보유한 E-MONEY</p>
+												</div>
+												<div>
+													<p class="memberCostComma">${memberEmoney}</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div><!-- scrollArea -->
@@ -116,7 +123,8 @@ $(window).scroll(function() {
 										<a><img alt="." src="/img/common/shoppingCart.png" style="width:30px; height:30px;"/></a>
 									</div>
 									<div>
-										<a class="courseResBtn" style="margin-left: 10px; width: 267px;" href="javascript:courseReserve(${courseVo.courseNo},${courseVo.categoryNo})"><span>수강신청하기</span></a>
+										<a class="courseResBtn" style="margin-left: 10px; width: 267px;" 
+											href="javascript:courseReserve(${courseVo.courseNo},${courseVo.categoryNo},${courseVo.courseCost})"><span>수강신청하기</span></a>
 									</div>
 								</div>
 							</div>`
@@ -126,6 +134,10 @@ $(window).scroll(function() {
 					courseCost = courseCostComma.replace(/\B(?=(\d{3})+(?!\d))/g, ",");*/
 					
 					$('.courseCostComma').text(costCommaFnc(`${courseVo.courseCost}원`));
+					
+					let memberCostComma = $('.memberCostComma').text();
+					 let memberCostCommaChange = costCommaFnc(memberCostComma);
+						 $('.memberCostComma').text(`${memberCostCommaChange}원`);
 				}
 				
 		});
@@ -138,12 +150,19 @@ $(window).scroll(function() {
 	
 	const memberVo = $('.memberVo').val();
 	
-	function courseReserve(courseNo,categoryNo){
+	function courseReserve(courseNo,categoryNo,courseCost){
 		if(memberVo.length == 0){
 			alert('회원가입이 필요합니다.');
 			location.href = "/member/login";
 		}else if(memberVo == 0){
 			let memberNo = $('.memberNo').val();
+		
+		let memberEmoney = $('.memberEmoneyHidden').val();
+		
+		if(parseInt(memberEmoney) < courseCost){
+			alert('보유한 emoney가 부족합니다.');
+			return false;
+		}
 
 			let jsonData = {
 				courseNo : courseNo,
