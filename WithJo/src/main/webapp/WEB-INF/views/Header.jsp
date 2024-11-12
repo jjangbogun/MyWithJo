@@ -57,7 +57,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="navElement4">
+<!-- 					<li class="navElement4">
 						<a class="categoryBtn aboutNavBtn" href="/course/list">이용안내</a>
 						<div class="hiddenDiv hiddenDiv4">
 							<ul class="subMenu">
@@ -71,7 +71,7 @@
 								<p class="img On"><img/></p>
 							</div>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 	</nav>

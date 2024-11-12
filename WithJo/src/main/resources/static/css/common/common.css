@@ -221,7 +221,12 @@ body.scrollUp #header {
 
 .centerInfo .txt{
 	text-align: right;
+	font-size: 20px;
+	font-family: "NotoSans_Light", sans-serif;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
+
 
 .footer .txt{
 	font-size: 20px;
@@ -234,4 +239,33 @@ body.scrollUp #header {
 
 .centerInfoMent p{
 	margin: 10px;
+}
+
+.centerInfoMent a{
+	margin: 10px;
+	text-decoration: none;
+	font-family: "NotoSans_Light", sans-serif;
+	color: white;
+}
+
+.centerInfoMent div{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.bottomArea {
+    display: flex;  /* flexbox를 사용 */
+    justify-content: space-between;  /* 항목을 양쪽 끝으로 배치 */
+    align-items: center;  /* 수직 중앙 정렬 */
+}
+
+.bottomArea .txt {
+    font-family: "NotoSans_Medium", sans-serif; 
+    font-size: 16px;
+    margin: 10px;  /* p 태그 기본 여백을 없앰 */
+}
+
+.bottomArea .footerLogo {
+    width: 195px;  /* 이미지 크기 조절 */
+    height: auto;
 }
