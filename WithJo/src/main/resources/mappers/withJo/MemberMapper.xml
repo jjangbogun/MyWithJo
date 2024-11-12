@@ -74,7 +74,7 @@
 	</select>
 	
 	<select id="memberExist" parameterType="memberVo" resultMap="memberResultMap">
-		SELECT MEMBER_NO, MEMBER_ID, MEMBER_NAME, AUTHORITY
+		SELECT *
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 		AND MEMBER_PW = #{memberPw}

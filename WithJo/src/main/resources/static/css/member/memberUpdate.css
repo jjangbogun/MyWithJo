@@ -247,6 +247,73 @@ input[type="button"]:hover {
     height: 40px;
 }
 
+.eMoney-container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 잔액 표시 스타일 */
+.eMoney-balance {
+    font-size: 27px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 거래 내역 제목 스타일 */
+.eMoney-transactions-title {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+/* 개별 거래 내역 스타일 */
+.eMoney-transaction {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* 거래 날짜 스타일 */
+.eMoney-date {
+    font-weight: bold;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+/* 입금 정보 스타일 */
+.eMoney-deposit {
+    color: #27ae60;
+}
+
+/* 출금 정보 스타일 */
+.eMoney-withdrawal {
+    color: #c0392b;
+}
+
+/* 거래 금액 스타일 */
+.eMoney-amount {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 거래 상세 정보 스타일 */
+.eMoney-detail {
+    font-size: 14px;
+    color: #95a5a6;
+}
+
 /* 예약 리스트 */
 
 .myReserveList {

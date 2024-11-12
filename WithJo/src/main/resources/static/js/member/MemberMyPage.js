@@ -75,38 +75,46 @@ function myPageCategoryBtnFnc(memberNo, categoryNo) {
 		});
 	} else if (categoryNo == 2) {
 		$.ajax({
-			url: '/member/eMoney', // E-Money 정보를 가져오는 URL
+			url: '/member/eMoney',
 			type: 'GET',
 			data: { memberNo: memberNo },
 			success: function(eMoneyList) {
-				let htmlStr = '<div class="">';
-				htmlStr += `<h2>현재 잔액: ${eMoneyList[0].memberEMoney}</h2>`;
-				htmlStr += '<h3>거래 내역:</h3>';
-				htmlStr += '<div class="eMoneyTransactions">';
+				let htmlStr = '<div class="eMoney-container">';
+				htmlStr += `<h2 class="eMoney-balance">현재 잔액: ${eMoneyList[0].memberEMoney}원</h2>`;
+				htmlStr += '<h3 class="eMoney-transactions-title">거래 내역</h3>';
+				htmlStr += '<div class="eMoney-transactions">';
 
-				// 거래 내역을 동적으로 생성
 				eMoneyList.forEach(eMoney => {
-					htmlStr += '<p>날짜: ' + new Date(eMoney.memberEMoneyUpdate).toLocaleString() + '</p>';
-					htmlStr += '<p>입금: ' + eMoney.memberEMoneyPlus + '</p>';
-					htmlStr += '<p>입금 상세: ' + eMoney.memberEMoneyPlusDetail + '</p>';
-					htmlStr += '<p>출금: ' + eMoney.memberEMoneyMinus + '</p>';
-					htmlStr += '<p>출금 상세: ' + eMoney.memberEMoneyMinusDetail + '</p>';
-					htmlStr += '<hr>';
+					htmlStr += '<div class="eMoney-transaction">';
+					htmlStr += '<p class="eMoney-date">날짜: ' + new Date(eMoney.memberEMoneyUpdate).toLocaleString() + '</p>';
+
+					if (eMoney.memberEMoneyPlus !== 0) {
+						htmlStr += '<div class="eMoney-deposit">';
+						htmlStr += '<p class="eMoney-amount">입금: ' + eMoney.memberEMoneyPlus + '원</p>';
+						htmlStr += '<p class="eMoney-detail">상세: ' + eMoney.memberEMoneyPlusDetail + '</p>';
+						htmlStr += '</div>';
+					}
+
+					if (eMoney.memberEMoneyMinus !== 0) {
+						htmlStr += '<div class="eMoney-withdrawal">';
+						htmlStr += '<p class="eMoney-amount">출금: ' + eMoney.memberEMoneyMinus + '원</p>';
+						htmlStr += '<p class="eMoney-detail">상세: ' + eMoney.memberEMoneyMinusDetail + '</p>';
+						htmlStr += '</div>';
+					}
+
+					htmlStr += '</div>'; // eMoney-transaction 종료
 				});
 
-				htmlStr += '</div>'; // eMoneyTransactions 종료
-				htmlStr += '</div>'; // div 종료
+				htmlStr += '</div>'; // eMoney-transactions 종료
+				htmlStr += '</div>'; // eMoney-container 종료
 
-				containerTag.html(htmlStr); // 생성된 HTML을 mainContainer에 삽입
+				containerTag.html(htmlStr);
 			},
 			error: function(xhr, status, error) {
 				console.error('AJAX 오류:', status, error);
 				alert('E-Money 정보를 불러오는 데 오류가 발생했습니다.');
 			}
 		});
-
-	} else if (categoryNo == 4) {
-		url = "/member/test?memberNo=" + memberNo;
 	}
 
 

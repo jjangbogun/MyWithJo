@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <!-- 페이지 css -->
 <link rel="stylesheet" href="/css/common/common.css">
-<link rel="stylesheet" href="/css/member/memberList.css">
+<link rel="stylesheet" href="/css/member/memberDetail.css">
 <script defer src="/js/common/common.js"></script>
 <script defer src="/js/member/memberDetail.js"></script>
 <script>
@@ -51,9 +51,6 @@ var userAuthority = ${sessionScope.memberVo.authority};
 				<!-- update form -->
 				<form class="memberDetailUpdateForm" class="main_update_content" name="frm">
 					<input type="hidden" name="memberNo" value="${memberVo.memberNo}">
-
-
-
 
 					<div class="memberDetail_update_content__item">
 
@@ -125,6 +122,47 @@ var userAuthority = ${sessionScope.memberVo.authority};
 							<label for="memberEMoney">E-Money</label>
 							<div class="update_content_memberEMoney--textBox">
 								<p class="memberId">${memberVo.memberEMoney}</p>
+							</div>
+						</div>
+						
+						<div class="memberDetial_updat_content_reserveList">
+							<label for="memberReserveList">수강목록</label>
+							<div class="myReserveList">
+							    <div class="myReserveList-header">
+							        <div class="header-item">강의명</div>
+							        <div class="header-item">강의시간/기간</div>
+							        <div class="header-item">강사명</div>
+							        <div class="header-item">수강취소</div>
+							    </div>							
+							    <c:forEach items="${reserveList}" var="reserve">
+							        <div class="myReserveList-item">
+							            <div class="item-content">
+							                <div class="course-name">
+							                    <img src="${reserve.courseMainImage}" alt="강의 이미지">
+							                    ${reserve.courseName}
+							                </div>
+							            </div>
+							            <div class="item-content">
+							                [<c:choose>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 1}">월</c:when>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 2}">화</c:when>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 3}">수</c:when>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 4}">목</c:when>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 5}">금</c:when>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 6}">토</c:when>
+							                    <c:when test="${reserve.courseDayOfTheWeek == 7}">일</c:when>
+							                    <c:otherwise>${reserve.courseDayOfTheWeek}</c:otherwise>
+							                </c:choose>]
+							                <fmt:formatDate value="${reserve.courseStartDate}" pattern="yyyy.MM.dd"/> ~
+							                <fmt:formatDate value="${reserve.courseEndDate}" pattern="yyyy.MM.dd"/><br>
+							                ${reserve.courseStartTime} ~ ${reserve.courseEndTime}
+							            </div>
+							            <div class="item-content">${reserve.courseTeacher} 강사</div>
+							            <div class="item-content">
+							                <button class="reserveCancel" onclick="cancelCourse(${reserve.memberCourseReserveNo})">수강취소</button>
+							            </div>
+							        </div>
+							    </c:forEach>
 							</div>
 						</div>
 
