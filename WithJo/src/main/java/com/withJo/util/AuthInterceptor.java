@@ -20,15 +20,9 @@ public class AuthInterceptor implements HandlerInterceptor {
     String requestURI = request.getRequestURI();
 
     MemberVo member = (MemberVo) session.getAttribute("memberVo");
-
-    /* 회원
-     * "/member/myPage", "/customer/detail", "/board/add", "/customer/add"
-        		  ,, "/board/update",)
-     * 
-     * */
     
     // 회원 전용 페이지 체크
-    if ("/member/myPage".equals(requestURI) || "/customer/detail".equals(requestURI) || "/board/add".equals(requestURI)
+    if ("/member/myPage".equals(requestURI) || "/board/add".equals(requestURI)
     		|| "/customer/add".equals(requestURI) || "/board/update".equals(requestURI)) {
       if (member == null) {
         String message = "로그인이 필요한 서비스입니다.";
@@ -37,16 +31,9 @@ public class AuthInterceptor implements HandlerInterceptor {
         return false;
       }
     }
-
-    /* 관리자
-     * "/member/list",  "/notice/add", 
-        		  , "/customer/update", "/notice/update", "/lotto/list", "/lotto/add", "/drawing/add", "drawing/list")
-     * 
-     * */
-
     
     // 관리자 전용 페이지 체크
-    if ("/member/list".equals(requestURI) || "/notice/add".equals(requestURI) || "/customer/update".equals(requestURI)
+    if ("/member/list".equals(requestURI) || "/notice/add".equals(requestURI) || "/customer/update".equals(requestURI) || "/customer/detail".equals(requestURI)
     		|| "/notice/update".equals(requestURI) || "/lotto/list".equals(requestURI) || "/lotto/add".equals(requestURI)
     		 || "/drawing/add".equals(requestURI) || "/drawing/list".equals(requestURI)) {
       if (member == null || member.getAuthority() != 1) {

@@ -89,7 +89,7 @@
 											${customerVo.customerCheck}
 										</div>
 										<div class="tableTimeElement">
-											<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd" />
+										    <fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd HH:mm" />
 										</div>
 									</div>
 								</c:when>
@@ -104,7 +104,7 @@
 											${customerVo.customerCheck}
 										</div>
 										<div class="tableTimeElement">
-											<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd" />
+											<fmt:formatDate value="${customerVo.customerQCredate}" pattern="yyyy-MM-dd HH:mm" />
 										</div>
 									</div>
 	   							</c:otherwise>

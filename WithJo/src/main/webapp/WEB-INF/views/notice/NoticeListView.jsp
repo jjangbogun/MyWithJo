@@ -81,7 +81,7 @@
 									<a href="/notice/detail?noticeNo=${noticeVo.noticeNo}&prevPage=${curPage}">${noticeVo.noticeTitle}</a>
 								</div>
 								<div class="tableTimeElement">
-									<fmt:formatDate value="${noticeVo.noticeCredate}" pattern="yyyy-MM-dd" />
+									<fmt:formatDate value="${noticeVo.noticeCredate}" pattern="yyyy-MM-dd HH:mm" />
 								</div>
 							</div>	
 						</c:forEach>

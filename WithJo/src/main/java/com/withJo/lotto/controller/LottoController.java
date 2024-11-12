@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.withJo.lotto.domain.LottoVo;
 import com.withJo.lotto.service.LottoService;
@@ -101,11 +102,13 @@ public class LottoController {
 	}
 	
 	@PostMapping("/add2")
+	@ResponseBody
 	public String lottoAdd2(@RequestBody LottoVo lottoVo) {
 	    log.info("lottoAdd2");
 	    
 	    lottoService.lottoInsertOne2(lottoVo);
 
+	    log.info("ㅇㅇㅇ");
 	    return "redirect:/lotto/list";
 	}
 	

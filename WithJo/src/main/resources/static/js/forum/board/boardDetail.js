@@ -4,6 +4,7 @@ function deleteFnc() {
         form.action = '/board/delete';
         form.method = 'POST';
         form.submit();
+		alert("게시글이 삭제되었습니다.");     
     } else {        
         alert("게시글 삭제가 취소 되었습니다!");         
     }
