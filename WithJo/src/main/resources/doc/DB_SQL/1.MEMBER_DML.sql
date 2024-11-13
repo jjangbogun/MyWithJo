@@ -114,8 +114,6 @@ END;
 
 
 
-
-
 SELECT *
 FROM MEMBER;
 
