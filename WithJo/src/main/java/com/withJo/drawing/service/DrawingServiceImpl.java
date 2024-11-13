@@ -6,13 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.withJo.board.domain.BoardVo;
-import com.withJo.customer.dao.CustomerDao;
-import com.withJo.customer.domain.CustomerVo;
 import com.withJo.drawing.dao.DrawingDao;
 import com.withJo.drawing.domain.DrawingVo;
-import com.withJo.notice.dao.NoticeDao;
-import com.withJo.notice.domain.NoticeVo;
 
 
 @Service
@@ -40,9 +35,9 @@ public class DrawingServiceImpl implements DrawingService{
 	}
 	
 	@Override
-	public DrawingVo drawingSelectOne() {
+	public DrawingVo drawingSelectOne(int drawingNo) {
 		// TODO Auto-generated method stub
-		return drawingDao.drawingSelectOne();
+		return drawingDao.drawingSelectOne(drawingNo);
 	}
 	
 	@Override

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.withJo.event.dao.EventDao;
 import com.withJo.event.domain.EventVo;
-import com.withJo.notice.domain.NoticeVo;
 
 
 @Service

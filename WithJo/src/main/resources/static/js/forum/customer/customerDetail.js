@@ -5,7 +5,8 @@ function deleteFnc() {
         var form = document.getElementById("commonForm");
         form.action = '/customer/delete';
         form.method = 'POST';
-        form.submit();            
+        form.submit();    
+		alert("질문이 삭제되었습니다.");        
     } else {        
         alert("질문삭제가 취소 되었습니다!");            
     }

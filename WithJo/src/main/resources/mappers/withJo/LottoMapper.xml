@@ -5,6 +5,7 @@
     <resultMap type="lottoVo" id="lottoResultMap">
         <id column="LOTTO_NO" property="lottoNo" />
         <result column="LOTTO_ROUND" property="lottoRound"/>
+        <result column="LOTTO_ROUND_LIMIT" property="lottoRoundLimit"/>
         <result column="LOTTO_MODE" property="lottoMode"/>
         <result column="MEMBER_NO" property="memberNo"/>
         <result column="MEMBER_NAME" property="memberName"/>
@@ -62,7 +63,7 @@
     
 	<select id="lottoSelectOne" parameterType="map" resultMap="lottoResultMap">
 	  <![CDATA[
-			SELECT LOTTO_NO, LOTTO_ROUND, 
+			SELECT LOTTO_NO, LOTTO_ROUND, LOTTO_ROUND_LIMIT, 
 		   		MEMBER_NO, LOTTO_1ST, LOTTO_2ND, LOTTO_3RD, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE 
 			FROM LOTTO
 			WHERE LOTTO_START_DATE <= TRUNC(SYSDATE)
@@ -72,8 +73,8 @@
 	</select>
 	
 	<insert id="lottoInsertOne" parameterType="lottoVo">
-		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_MODE, MEMBER_NO, LOTTO_1ST, LOTTO_2ND, LOTTO_3RD, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE ,LOTTO_CREDATE)
-		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoMode}, #{memberNo}, #{lotto1st}, #{lotto2nd}, #{lotto3rd}, #{lottoSelNo}, #{lottoStartDate}, #{lottoEndDate}, SYSDATE)
+		INSERT INTO LOTTO(LOTTO_NO, LOTTO_ROUND, LOTTO_ROUND_LIMIT, LOTTO_MODE, MEMBER_NO, LOTTO_1ST, LOTTO_2ND, LOTTO_3RD, LOTTO_SEL_NO, LOTTO_START_DATE, LOTTO_END_DATE ,LOTTO_CREDATE)
+		VALUES(LOTTO_NO_SEQ.NEXTVAL, #{lottoRound}, #{lottoRoundLimit}, #{lottoMode}, #{memberNo}, #{lotto1st}, #{lotto2nd}, #{lotto3rd}, #{lottoSelNo}, #{lottoStartDate}, #{lottoEndDate}, SYSDATE)
 	</insert>
 	
 	<insert id="lottoInsertOne2" parameterType="lottoVo">
@@ -85,7 +86,7 @@
     <select id="lottoCountCheck" resultType="int">
 		SELECT 
 		CASE 
-		WHEN COUNT(*) >= 5 THEN 1
+		WHEN COUNT(*) >= #{lottoRoundLimit} THEN 1
 		ELSE 0
 		END AS MEMBER_COUNT_CHECK
 		FROM LOTTO

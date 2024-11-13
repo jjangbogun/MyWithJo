@@ -5,19 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.withJo.board.domain.BoardVo;
 import com.withJo.notice.domain.NoticeVo;
 import com.withJo.notice.service.NoticeService;
 import com.withJo.util.FileUpload;
@@ -31,9 +26,6 @@ import jakarta.servlet.http.Part;
 @RequestMapping("/notice")
 @Controller
 public class NoticeController {
-
-	private Logger log = LoggerFactory.getLogger(NoticeController.class);
-	private final String logTitleMsg = "==NoticeController==";
 	
 	@Autowired
 	private NoticeService noticeService;
@@ -43,10 +35,6 @@ public class NoticeController {
 			@RequestParam(defaultValue = "") String searchKeyword,
 			@RequestParam(defaultValue = "1") int curPage, 
 			@RequestParam(required = false) Integer prevPage, Model model) {
-		log.info(logTitleMsg);
-		log.info("getNoticeList");
-		log.info("searchField: {}", searchField);
-		log.info("searchKeyword: {}", searchKeyword);
 		
 	    if (prevPage != null) {
 	        curPage = prevPage;
@@ -54,7 +42,6 @@ public class NoticeController {
 		
 		int totalCount = noticeService.noticeTotalCount(searchField, searchKeyword);
 		
-		log.info("totalCount: {}", totalCount);
 		Paging pagingVo = new Paging(totalCount, curPage);
 		
 		int start = pagingVo.getPageBegin();
@@ -75,28 +62,24 @@ public class NoticeController {
 		model.addAttribute("pagingMap", pagingMap);
 		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("curPage", curPage);
-		log.info("searchMap: {}", searchMap);
+		
 		return "notice/NoticeListView";
 		
 	}
 	
 	@GetMapping("/add")
 	public String noticeAdd(Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping noticeAdd");
 
 		return "notice/NoticeFormView";
 	}
 	
 	@PostMapping("/add")
 	public String noticeAdd(HttpServletRequest request, Model model) throws ServletException, IOException{
-	    log.info(logTitleMsg);
 
 	    try {
 
 	    	Part filePart1;
 	    	filePart1 = request.getPart("noticeImg");
-			log.info("이거임filePart1: {}", filePart1.getSize());
 	    	String noticeImg = "";
 	    	String noticeImgName = "";
 			if (filePart1.getSize() > 0) {
@@ -127,9 +110,6 @@ public class NoticeController {
 	@GetMapping("/detail")
 	public String noticeDetail(@RequestParam int noticeNo,
 			@RequestParam(required = false) Integer prevPage, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping noticeDetail noticeNo: {}", noticeNo);
-		log.info("aa@GetMapping boardDetail boardNo: {}", prevPage);
 		
 		NoticeVo noticeVo = noticeService.noticeSelectOne(noticeNo);
 		
@@ -141,8 +121,6 @@ public class NoticeController {
 	
 	@GetMapping("/update")
 	public String noticeUpdate(@RequestParam int noticeNo, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping noticeUpdate noticeNo: {}", noticeNo);
 		
 		NoticeVo noticeVo =noticeService.noticeSelectOne(noticeNo);
 		
@@ -153,8 +131,6 @@ public class NoticeController {
 	
 	@PostMapping("/update")
 	public String noticeUpdate(HttpServletRequest request, Model model) throws ServletException, IOException {
-	    log.info(logTitleMsg);
-	    log.info("@GetMapping 체크11: {}");
 
 	    String noticeNo = null; // noticeNo 변수를 메서드 시작 부분에서 선언
 
@@ -162,7 +138,6 @@ public class NoticeController {
 	        // noticeNo 값을 요청에서 가져오기
 	        noticeNo = request.getParameter("noticeNo");
 	        if (noticeNo == null || noticeNo.isEmpty()) {
-	            log.error("noticeNo가 null 또는 비어있음");
 	            return "redirect:/notice/list"; // 예외 발생 시 리다이렉트
 	        }
 
@@ -174,7 +149,6 @@ public class NoticeController {
 	        String noticeContent = request.getParameter("noticeContent");
 	        String noticeImgDelete = request.getParameter("noticeImgDelete");
 
-	        log.info("@GetMapping noticeImgName: {}", noticeImgName);
 
 	        if (filePart1.getSize() > 0) {
 	            FileUpload fileUpload = new FileUpload();
@@ -183,7 +157,6 @@ public class NoticeController {
 	            if (Integer.parseInt(noticeImgDelete) == 0) {
 	                noticeImg = noticeImgName;
 	            } else {
-	                log.info("noticeImgDelete: {}", noticeImgDelete);
 	                FileUpload fileUpload = new FileUpload();
 	                noticeImg = fileUpload.getFileDelete(noticeImgName);
 	            }
@@ -194,11 +167,11 @@ public class NoticeController {
 	        noticeVo.setNoticeTitle(noticeTitle);
 	        noticeVo.setNoticeContent(noticeContent);
 	        noticeVo.setNoticeImg(noticeImg);
-	        log.info("@GetMapping 체크: {}", noticeVo);
+
 	        noticeService.noticeUpdateOne(noticeVo);
 
 	    } catch (Exception e) {
-	        log.error("업데이트 중 오류 발생", e);
+
 	        return "redirect:/notice/list"; // 예외 발생 시 리다이렉트
 	    }
 
@@ -207,7 +180,6 @@ public class NoticeController {
 	
 	@PostMapping("/delete")
 	public String noticeDelete(@RequestParam int noticeNo) {
-	    log.info("Deleting notice with ID: {}", noticeNo);
 	    
 	    noticeService.noticeDeleteOne(noticeNo);
 

@@ -19,18 +19,15 @@ function makeLottoNo() {
 
 function addLotto() {
     var lottoRound = $('#lottoRound').val().trim();
+    var lottoRoundLimit = $('#lottoRoundLimit').val().trim();
     var lottoStartDate = $('#lottoStartDate').val().trim();
     var lottoEndDate = $('#lottoEndDate').val().trim();
     var lottoSelNo = $('#lottoSelNo').text().trim();
 	var lotto1st = parseInt($('#lotto1st').val(), 10);
 	var lotto2nd = parseInt($('#lotto2nd').val(), 10);
 	var lotto3rd = parseInt($('#lotto3rd').val(), 10);
-
-	console.log(lotto1st);
-	console.log(lotto2nd);
-	console.log(lotto3rd);
 	
-    if (!lottoRound || !lottoStartDate || !lottoEndDate || !lottoSelNo || !lotto1st || !lotto2nd || !lotto3rd) {
+    if (!lottoRound || !lottoRoundLimit || !lottoStartDate || !lottoEndDate || !lottoSelNo || !lotto1st || !lotto2nd || !lotto3rd) {
         alert("모든 필드를 입력해주세요.");
         return;
     }
@@ -42,6 +39,7 @@ function addLotto() {
         memberNo: memberNo,
         lottoMode: lottoMode, 
         lottoRound: parseInt(lottoRound, 10),
+        lottoRoundLimit: parseInt(lottoRoundLimit, 10),
         lottoStartDate: lottoStartDate,
         lottoEndDate: lottoEndDate,
         lottoSelNo: lottoSelNo,

@@ -90,7 +90,7 @@
 										<a class="imgTag" href="/drawing/detail">
 											<img class="eventImgs" alt="" src="/img/event/drawingEvent.jpg" style="width: 350px;">
 										</a>
-										<a class="textTag" href="/drawing/detail">게시판 이벤트 확인하기</a>
+										<a class="textTag" href="/drawing/list">게시판 이벤트 확인하기</a>
 										<div class="tableTimeElement">
 											별도공지 까지
 											<c:if test="${memberVo.authority >= 1}">

@@ -10,7 +10,7 @@
 	crossorigin="anonymous">
 </script>
 <meta charset="UTF-8">
-<title>로또목록</title>
+<title>게시글추첨 목록</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="/css/common/common.css">
 <script defer src="/js/common/common.js"></script>
@@ -29,7 +29,7 @@
 		<div class="topSearch">
 			<div class="topSearchInner">
 				<div class="topSearchTitle">
-					<p class="drawingTitleFont"><span>게시판이벤트관리</span></p>
+					<p class="drawingTitleFont"><span>게시글추첨 이벤트</span></p>
 				</div>
 				<div class="searchDiv">
 					<select class="searchNField" name="searchNField" id="searchNField">
@@ -56,9 +56,11 @@
 							</p> 
 						</div>
 						<div class="contentDivInner">
-							<div class="drawingAddButton" >
-								<button onclick="pageMoveAdd();" class="listButton">게시글 추첨하기</button>
-							</div> <!-- drawingAddButton -->
+							<c:if test="${memberVo.authority >= 1}">
+								<div class="drawingAddButton" >
+									<button onclick="pageMoveAdd();" class="listButton">게시글 추첨하기</button>
+								</div> <!-- drawingAddButton -->
+							</c:if>
 						</div> <!-- contentDiv -->
 					</div>	
 				</div> <!-- categoryBox -->
@@ -66,20 +68,24 @@
 						<c:forEach var="drawingVo" items="${drawingList}">
 							<div class="drawingTableBoxContent">
 								<div class="tableTitleElement">
-									<a href="/drawing/detail?drawingNo=${drawingVo.drawingNo}">${drawingVo.drawingRound} 회차</a>
+									<a href="/drawing/detail?drawingNo=${drawingVo.drawingNo}&prevPage=${curPage}">${drawingVo.drawingRound} 회차</a>
 								</div>
-								<div class="tableTimeElement">
-									${drawingVo.drawingMemberNo}
-								</div>
-								<div class="tableDateElement">
-									${drawingVo.drawingMemberName}
-								</div>
+								<c:if test="${memberVo.authority >= 1}">
+									<div class="tableTimeElement">
+										${drawingVo.drawingMemberNo}
+									</div>
+									<div class="tableDateElement">
+										${drawingVo.drawingMemberName}
+									</div>
+								</c:if>
 								<div class="tableDateElement">
 									${drawingVo.drawingStartDate} / ${drawingVo.drawingEndDate}
-								</div>								
-								<div class="tableTimeElement">
-									<button class="btn2" type="button" onclick="deleteFnc(${drawingVo.drawingNo});">삭제</button>
 								</div>
+								<c:if test="${memberVo.authority >= 1}">								
+									<div class="tableTimeElement">
+										<button class="btn2" type="button" onclick="deleteFnc(${drawingVo.drawingNo});">삭제</button>
+									</div>
+								</c:if>
 							</div>	
 						</c:forEach>
 					</div> <!-- drawingTableBox -->

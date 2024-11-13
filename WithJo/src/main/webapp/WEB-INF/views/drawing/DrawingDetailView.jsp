@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="/css/event/drawing/drawingDetail.css">
 <script defer src="/js/common/common.js"></script>
 <script src="/js/event/drawing/drawingDetail.js"></script>
-
+<script>
+    var prevPage = ${prevPage != null ? prevPage : 1};
+</script>
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/Header.jsp"/>
@@ -22,9 +24,7 @@
     <div id="drawingContainer">
         <div>
         	<div class="btnDiv">
-	    		<c:if test="${memberVo.authority >= 1}">
-					<button class="btn2" type="button" onclick="pageMovedrawingList();">게시판 추첨 관리</button>
-	            </c:if>	            
+				<button class="btn2" type="button" onclick="pageMovedrawingList();">목록으로 가기</button>           
 	    	</div>
             <div class="detailHeader">
                 <p>${drawingVo.drawingRound} 회차

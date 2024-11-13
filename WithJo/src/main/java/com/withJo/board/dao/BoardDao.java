@@ -3,7 +3,6 @@ package com.withJo.board.dao;
 import java.util.List;
 
 import com.withJo.board.domain.BoardVo;
-import com.withJo.notice.domain.NoticeVo;
 
 
 public interface BoardDao {

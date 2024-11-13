@@ -30,6 +30,11 @@
 		    </div>
 		    
 		    <div>
+		        <label for="lottoRoundLimit">회차 당 뽑기제한</label><br>
+		        <input type="number" id="lottoRoundLimit" name="lottoRoundLimit"><br>
+		    </div>
+		    
+		    <div>
 		        <label for="lottoStartDate">회차시작날짜</label><br>
 		        <input class="dateInput" type="date" id="lottoStartDate" name="lottoStartDate"><br>
 		    </div>

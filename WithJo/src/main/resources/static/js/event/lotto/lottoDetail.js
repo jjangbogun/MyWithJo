@@ -2,6 +2,7 @@ let globalMatchCount = 0;
 let lottoSelNoArray2 = 0;
 let eMoney = 0;
 
+// 로또 str 배열 변환
 $(document).ready(function() {
     const lottoSelNoStr = $("#lottoSelNoStr").val();
     const lottoSelNoArray = JSON.parse(lottoSelNoStr);
@@ -9,6 +10,7 @@ $(document).ready(function() {
     displayWinningNumbers(lottoSelNoArray);
 });
 
+// 랜덤 색깔 적용
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -18,6 +20,7 @@ function getRandomColor() {
     return color;
 }
 
+// 로또 디자인 보이기
 function displayWinningNumbers(numbers) {
     const winningLottoSelNoDiv = $("#winningLottoSelNo");
     winningLottoSelNoDiv.empty();
@@ -31,6 +34,7 @@ function displayWinningNumbers(numbers) {
     });
 }
 
+// 로또 번호 생성
 function makeLottoNo() {
     $.ajax({
         url: '/lotto/make',
@@ -52,6 +56,7 @@ function makeLottoNo() {
     });
 }
 
+// 로또 css 입히기
 function displayMemberNumbers(numbers) {
     const memberLottoSelNoDiv = $("#memberLottoSelNo");
     memberLottoSelNoDiv.empty();
@@ -65,10 +70,12 @@ function displayMemberNumbers(numbers) {
     });
 }
 
+// 맞춘 숫자 반환
 function compareLottoNumbers(winningNumbers, userNumbers) {
     return winningNumbers.filter(num => userNumbers.includes(num));
 }
 
+// 맞춘 숫자만큼의 등수와 emoney 지정
 function displayMatchResult(matchingNumbers) {
     const resultDiv = $("#matchResult");
     const lotto1st = parseInt($('#lotto1st').val(), 10);
@@ -82,15 +89,12 @@ function displayMatchResult(matchingNumbers) {
     if (globalMatchCount >= 3) {
         resultText = "축하합니다! 1등입니다: " + matchingNumbers.join(", ");
 		eMoney = lotto1st;
-		console.log(eMoney);
     } else if (globalMatchCount == 2) {
         resultText = "축하합니다! 2등입니다: " + matchingNumbers.join(", ");
 		eMoney = lotto2nd;
-		console.log(eMoney);
     } else if (globalMatchCount == 1) {
         resultText = "축하합니다! 3등입니다: " + matchingNumbers.join(", ");
 		eMoney = lotto3rd;
-		console.log(eMoney);
     } else {
         resultText = "아쉽지만 다음기회에~";
     }
@@ -110,8 +114,8 @@ function displayMatchResult(matchingNumbers) {
 	};
 }
 
+// emoney 지급
 function insertMemberEMoney(eMoney){
-	console.log(eMoney);
 	var emoneyData = {
 		eMoney: eMoney,
 		memberNo: parseInt($("#memberNo").val(), 10),
@@ -126,13 +130,13 @@ function insertMemberEMoney(eMoney){
 			eMoney = 0;
 	    },
 	    error: function(xhr, status, error) {
-	        console.error('1Error:', error);
 	        alert('1Error: ' + status + ' - ' + error);
 	    }
 	});
 	
 }
 
+// 유저가 뽑은 로또 인서트
 function insertMemberLotto() {
     var lottoData = {
         memberNo: parseInt($('#memberNo').val(), 10),
@@ -151,16 +155,17 @@ function insertMemberLotto() {
             alert("추첨이 완료되었습니다");
         },
         error: function(xhr, status, error) {
-            console.error('2Error:', error);
             alert('2Error: ' + status + ' - ' + error);
         }
     });
 }
 
+// 유저의 추첨횟수가 남았는지 체크
 function memberCountCheck() {
     var lottoData = {
         memberNo: parseInt($('#memberNo').val(), 10),
         lottoRound: parseInt($('#lottoRound').val(), 10),
+        lottoRoundLimit: parseInt($('#lottoRoundLimit').val(), 10),
     };
 
     $.ajax({
@@ -177,7 +182,6 @@ function memberCountCheck() {
             }
         },
         error: function(xhr, status, error) {
-            console.error('3Error:', error);
             alert('3Error: ' + status + ' - ' + error);
         }
     });

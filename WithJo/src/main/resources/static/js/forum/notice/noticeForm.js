@@ -4,6 +4,7 @@ function noticeCheck() {
 	noticeContent2 = noticeContent2.replaceAll(/"/g, '&quot;');
 	$('#noticeContent').val(noticeContent2);		
 	document.getElementById("noticeForm").submit(); 
+	alert("공지가 등록되었습니다.");
 }
 
 function pageMoveList() {

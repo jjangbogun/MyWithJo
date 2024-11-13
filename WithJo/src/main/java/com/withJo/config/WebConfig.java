@@ -38,9 +38,9 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
       registry.addInterceptor(authInterceptor)
           .addPathPatterns("/member/list", "/member/myPage", "/notice/add", "/board/add", "/customer/add", "/customer/detail"
-        		  , "/customer/update", "/notice/update", "/board/update", "/lotto/list", "/lotto/add", "/drawing/add", "/drawing/list")
+        		  , "/customer/update", "/notice/update", "/board/update", "/lotto/list", "/lotto/add", "/drawing/add")
           .excludePathPatterns("/", "/member/add", "/member/login", "/board/list", "/notice/list", "/customer/list"
-        		  , "/board/detail",  "/notice/detail", "/customer/list", "/lotto/detail", "/drawing/detail"
+        		  , "/board/detail",  "/notice/detail", "/customer/list", "/lotto/detail", "/drawing/detail", "/drawing/list"
         		  , "/event/list", "/course/list", "/css/**", "/js/**", "/img/**");
     }
 }

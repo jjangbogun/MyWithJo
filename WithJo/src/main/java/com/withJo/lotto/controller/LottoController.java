@@ -29,9 +29,6 @@ import com.withJo.util.Paging;
 @RequestMapping("/lotto")
 @Controller
 public class LottoController {
-
-	private Logger log = LoggerFactory.getLogger(LottoController.class);
-	private final String logTitleMsg = "==LottoController==";
 	
 	@Autowired
 	private LottoService lottoService;
@@ -40,14 +37,9 @@ public class LottoController {
 	public String getLottoList(@RequestParam(defaultValue = "all") String searchField,
 			@RequestParam(defaultValue = "") String searchKeyword,
 			@RequestParam(defaultValue = "1") int curPage, Model model) {
-		log.info(logTitleMsg);
-		log.info("getLottoList");
-		log.info("searchField: {}", searchField);
-		log.info("searchKeyword: {}", searchKeyword);
 		
 		int totalCount = lottoService.lottoTotalCount(searchField, searchKeyword);
 		
-		log.info("totalCount: {}", totalCount);
 		Paging pagingVo = new Paging(totalCount, curPage);
 		
 		int start = pagingVo.getPageBegin();
@@ -68,15 +60,12 @@ public class LottoController {
 		model.addAttribute("pagingMap", pagingMap);
 		model.addAttribute("searchMap", searchMap);
 		
-		log.info("searchMap: {}", searchMap);
 		return "lotto/LottoListView";
 		
 	}
 	
 	@GetMapping("/add")
 	public String lottoAdd(Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping lottoAdd");
 
 		return "lotto/LottoFormView";
 	}
@@ -94,7 +83,6 @@ public class LottoController {
 	
 	@PostMapping("/add")
 	public String lottoAdd(@RequestBody LottoVo lottoVo) {
-	    log.info("lottoAdd");
 	    
 	    lottoService.lottoInsertOne(lottoVo);
 
@@ -104,23 +92,18 @@ public class LottoController {
 	@PostMapping("/add2")
 	@ResponseBody
 	public String lottoAdd2(@RequestBody LottoVo lottoVo) {
-	    log.info("lottoAdd2");
 	    
 	    lottoService.lottoInsertOne2(lottoVo);
 
-	    log.info("ㅇㅇㅇ");
 	    return "redirect:/lotto/list";
 	}
 	
 	@PostMapping("/emoney")
 	public String lottoEmoney(@RequestBody Map<String, Object> payload) {
-	    log.info("lottoEmoney");
 	    
 	    int eMoney = (Integer) payload.get("eMoney");
 	    int memberNo = (Integer) payload.get("memberNo");
 	    int round = (int) payload.get("round");
-	    
-	    log.info("넘어와라searchMap: {}", round);
 	    
 	    String detail = round + "회차 로또 이벤트 보상입니다.";
 
@@ -132,8 +115,6 @@ public class LottoController {
 	
 	@GetMapping("/detail")
 	public String lottoDetail(Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping lottoDetail today: {}");
 		
 		LottoVo lottoVo = lottoService.lottoSelectOne();
 		
@@ -144,14 +125,11 @@ public class LottoController {
 	
 	@PostMapping("/check")
 	public ResponseEntity<Map<String, Object>> lottoCheck(@RequestBody LottoVo lottoVo, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping lottoDetail today: {}");
 		
 		int lottoCount = lottoService.lottoCountCheck(lottoVo);
 		
 		Map<String, Object> countMap = new HashMap<>();
 		countMap.put("lottoCount", lottoCount);
-		log.info("로또카운트: {}", lottoCount);
 		
 		model.addAttribute("lottoCount", lottoCount);
 		
@@ -160,7 +138,6 @@ public class LottoController {
 	
 	@PostMapping("/delete")
 	public String lottoDelete(@RequestParam int lottoNo) {
-	    log.info("Deleting lotto with ID: {}", lottoNo);
 	    
 	    lottoService.lottoDeleteOne(lottoNo);
 

@@ -5,7 +5,8 @@ function deleteFnc() {
         var form = document.getElementById("commonForm");
         form.action = '/notice/delete';
         form.method = 'POST';
-        form.submit();        
+        form.submit();      
+		alert("공지가 삭제되었습니다.");  
     } else {        
         alert("공지삭제가 취소 되었습니다!");            
     }

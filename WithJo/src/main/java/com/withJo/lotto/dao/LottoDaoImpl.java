@@ -8,9 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.withJo.board.domain.BoardVo;
 import com.withJo.lotto.domain.LottoVo;
-import com.withJo.notice.domain.NoticeVo;
 
 
 @Repository

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,22 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.withJo.customer.domain.CustomerVo;
 import com.withJo.customer.service.CustomerService;
 import com.withJo.member.domain.MemberVo;
-import com.withJo.notice.domain.NoticeVo;
-import com.withJo.util.FileUpload;
 import com.withJo.util.Paging;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 
 
 @RequestMapping("/customer")
 @Controller
 public class CustomerController {
-
-	private Logger log = LoggerFactory.getLogger(CustomerController.class);
-	private final String logTitleMsg = "==CustomerController==";
 	
 	@Autowired
 	private CustomerService customerService;
@@ -42,14 +34,9 @@ public class CustomerController {
 	public String getCustomerList(@RequestParam(defaultValue = "all") String searchField,
 			@RequestParam(defaultValue = "") String searchKeyword,
 			@RequestParam(defaultValue = "1") int curPage, Model model) {
-		log.info(logTitleMsg);
-		log.info("getCustomerList");
-		log.info("searchField: {}", searchField);
-		log.info("searchKeyword: {}", searchKeyword);
 		
 		int totalCount = customerService.customerTotalCount(searchField, searchKeyword);
 		
-		log.info("totalCount: {}", totalCount);
 		Paging pagingVo = new Paging(totalCount, curPage);
 		
 		int start = pagingVo.getPageBegin();
@@ -69,23 +56,19 @@ public class CustomerController {
 		
 		model.addAttribute("pagingMap", pagingMap);
 		model.addAttribute("searchMap", searchMap);
-		
-		log.info("searchMap: {}", searchMap);
+
 		return "customer/CustomerListView";
 		
 	}
 	
 	@GetMapping("/add")
 	public String customerAdd(Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping customerAdd");
 
 		return "customer/CustomerFormView";
 	}
 	
 	@PostMapping("/add")
 	public String customerAdd(HttpServletRequest request, Model model) throws ServletException, IOException{
-	    log.info(logTitleMsg);
 
     	String memberQNo = request.getParameter("memberQNo");
     	String customerTitle = request.getParameter("customerTitle");
@@ -104,8 +87,6 @@ public class CustomerController {
 	
 	@GetMapping("/detail")
 	public String customerDetail(@RequestParam int customerNo, Model model, HttpSession session) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping customerDetail customerNo: {}", customerNo);
 		
 		CustomerVo customerVo = customerService.customerSelectOne(customerNo);
 		
@@ -124,8 +105,6 @@ public class CustomerController {
 
 	@GetMapping("/update")
 	public String customerUpdate(@RequestParam int customerNo, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping noticeUpdate noticeNo: {}", customerNo);
 		
 		CustomerVo customerVo =customerService.customerSelectOne(customerNo);
 		
@@ -136,8 +115,6 @@ public class CustomerController {
 	
 	@PostMapping("/update")
 	public String customerUpdate(HttpServletRequest request, Model model) throws ServletException, IOException {
-	    log.info(logTitleMsg);
-	    log.info("@GetMapping 체크11: {}");
 
 	    String customerNo = null; 
 
@@ -146,9 +123,6 @@ public class CustomerController {
 	        String customerAns = request.getParameter("customerAns");
 	        String memberANo = request.getParameter("memberANo");
 	        String customerCheck = request.getParameter("customerCheck");
-	        
-//	        log.info("@GetMapping 업데이트 체크: {}", customerNo, customerAns, memberANo, customerCheck);
-	        log.info("@GetMapping 업데이트 체크: {}", customerAns);
 
 	        CustomerVo customerVo = new CustomerVo();
 	        
@@ -160,16 +134,13 @@ public class CustomerController {
 	        customerService.customerUpdateOne(customerVo);
 
 	    } catch (Exception e) {
-	        log.error("업데이트 중 오류 발생", e);
 	        return "redirect:/customer/list"; 
 	    }
-
 	    return "redirect:/customer/detail?customerNo=" + customerNo; 
 	}
 	
 	@PostMapping("/delete")
 	public String customerDelete(@RequestParam int customerNo) {
-	    log.info("Deleting customer with ID: {}", customerNo);
 	    
 	    customerService.customerDeleteOne(customerNo);
 

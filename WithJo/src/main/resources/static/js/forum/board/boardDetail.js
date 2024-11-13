@@ -19,6 +19,7 @@ function pageMoveList() {
     location.href = '/board/list?curPage=' + prevPage;
 }
 
+// 댓글출력
 function commentsList(boardNo) {
     var currentMemberNo = window.currentMemberNo;
     var currentUserAuthority = window.currentUserAuthority;

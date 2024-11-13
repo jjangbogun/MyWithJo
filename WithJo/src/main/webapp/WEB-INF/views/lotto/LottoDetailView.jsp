@@ -18,6 +18,7 @@
     <input type="hidden" id="memberNo" name="memberNo" value="${memberVo.memberNo}">
     <input type="hidden" id="authority" name="authority" value="${memberVo.authority}">
     <input type="hidden" id="lottoRound" name="lottoRound" value="${lottoVo.lottoRound}">
+    <input type="hidden" id="lottoRoundLimit" name="lottoRoundLimit" value="${lottoVo.lottoRoundLimit}">
     <input type="hidden" id="lottoSelNoStr" name="lottoSelNoStr" value="${lottoVo.lottoSelNo}">
     <input type="hidden" id="lotto1st" name="lotto1st" value="${lottoVo.lotto1st}">
     <input type="hidden" id="lotto2nd" name="lotto2nd" value="${lottoVo.lotto2nd}">
@@ -53,7 +54,7 @@
 	                    <li>※2개이상 맞추시면 2등! ${lottoVo.lotto2nd} 포인트 드립니다.</li>
 	                    <li>※1개이상 맞추시면 3등! ${lottoVo.lotto3rd} 포인트 드립니다.</li>
 	                    <li>※본 이벤트의 기한은 변경될 수 있습니다.</li>
-	                    <li>※본 이벤트는 회차당 다섯번 가능합니다.</li>
+	                    <li>※본 이벤트는 회차당 ${lottoVo.lottoRoundLimit}번 가능합니다.</li>
 	                </ul>
 	            </div>           
             </c:if>

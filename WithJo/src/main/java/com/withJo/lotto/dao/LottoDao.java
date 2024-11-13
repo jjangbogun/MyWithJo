@@ -2,9 +2,7 @@ package com.withJo.lotto.dao;
 
 import java.util.List;
 
-import com.withJo.board.domain.BoardVo;
 import com.withJo.lotto.domain.LottoVo;
-import com.withJo.notice.domain.NoticeVo;
 
 
 public interface LottoDao {

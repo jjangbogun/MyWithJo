@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.withJo.board.domain.BoardVo;
 import com.withJo.notice.domain.NoticeVo;
 
 
@@ -55,7 +54,6 @@ public class NoticeDaoImpl implements NoticeDao{
 	@Override
 	public int noticeUpdateOne(NoticeVo noticeVo) {
 		// TODO Auto-generated method stub
-		System.out.println("오는지 체크");
 		return sqlSession.update(namespace + "noticeUpdateOne", noticeVo);
 	}
 	

@@ -9,10 +9,6 @@ function drawingsearch() {
 	$("#pagingForm").submit();			
 }
 
-function pageMoveDetail() {
-    location.href = './detail';
-}
-
 function pageMoveAdd() {
     location.href = './add';
 }
@@ -30,15 +26,3 @@ function deleteFnc(drawingNo) {
         });        
 	}
 }
-/*
-function movedrawing() {		
-    location.href = '/drawing/list';
-}
-
-function moveBoard() {		
-    location.href = '/board/list';
-}
-
-function moveCustomer() {		
-    location.href = '/customer/list';
-}*/

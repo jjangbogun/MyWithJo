@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +26,6 @@ import jakarta.servlet.http.Part;
 @RequestMapping("/board")
 @Controller
 public class BoardController {
-
-	private Logger log = LoggerFactory.getLogger(BoardController.class);
-	private final String logTitleMsg = "==BoardController==";
 	
 	@Autowired
 	private BoardService boardService;
@@ -40,10 +35,6 @@ public class BoardController {
 	        @RequestParam(defaultValue = "") String searchKeyword,
 	        @RequestParam(defaultValue = "1") int curPage,
 	        @RequestParam(required = false) Integer prevPage, Model model) {
-		log.info(logTitleMsg);
-		log.info("getBoardList");
-		log.info("searchField: {}", searchField);
-		log.info("searchKeyword: {}", searchKeyword);
 		
 	    if (prevPage != null) {
 	        curPage = prevPage;
@@ -51,7 +42,6 @@ public class BoardController {
 		
 		int totalCount = boardService.boardTotalCount(searchField, searchKeyword);
 		
-		log.info("totalCount: {}", totalCount);
 		Paging pagingVo = new Paging(totalCount, curPage);
 		
 		int start = pagingVo.getPageBegin();
@@ -73,23 +63,18 @@ public class BoardController {
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("curPage", curPage);
 		
-		log.info("카운트: {}", totalCount);
-		log.info("searchMap: {}", searchMap);
 		return "board/BoardListView";
 		
 	}
 	
 	@GetMapping("/add")
 	public String boardAdd(Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping boardAdd");
 
 		return "board/BoardFormView";
 	}
 	
 	@PostMapping("/add")
 	public String boardAdd(HttpServletRequest request, Model model) throws ServletException, IOException{
-	    log.info(logTitleMsg);
 
 	    try {
 
@@ -126,9 +111,6 @@ public class BoardController {
 	@GetMapping("/detail")
 	public String boardDetail(@RequestParam int boardNo,
 			@RequestParam(required = false) Integer prevPage, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping boardDetail boardNo: {}", boardNo);
-		log.info("aa@GetMapping boardDetail boardNo: {}", prevPage);
 		
 		BoardVo boardVo = boardService.boardSelectOne(boardNo);
 		
@@ -140,8 +122,6 @@ public class BoardController {
 	
 	@GetMapping("/update")
 	public String boardUpdate(@RequestParam int boardNo, Model model) {
-		log.info(logTitleMsg);
-		log.info("@GetMapping boardUpdate boardNo: {}", boardNo);
 		
 		BoardVo boardVo = boardService.boardSelectOne(boardNo);
 		
@@ -152,7 +132,6 @@ public class BoardController {
 	
 	@PostMapping("/update")
 	public String boardUpdate(HttpServletRequest request, Model model) throws ServletException, IOException {
-	    log.info(logTitleMsg);
 
 	    String boardNo = null; // boardNo 변수를 메서드 시작 부분에서 선언
 
@@ -165,8 +144,6 @@ public class BoardController {
 	        String boardTitle = request.getParameter("boardTitle");
 	        String boardContent = request.getParameter("boardContent");
 	        String boardImgDelete = request.getParameter("boardImgDelete");
-
-	        log.info("머냐@GetMapping boardImgName: {}", boardContent);
 
 	        if (filePart1.getSize() > 0) {
 	            FileUpload fileUpload = new FileUpload();
@@ -185,26 +162,21 @@ public class BoardController {
 	        boardVo.setBoardTitle(boardTitle);
 	        boardVo.setBoardContent(boardContent);
 	        boardVo.setBoardImg(boardImg);
-	        log.info("@GetMapping boardVo: {}", boardVo);
 
 	        boardService.boardUpdateOne(boardVo);
 
 	    } catch (Exception e) {
-	        log.error("업데이트 중 오류 발생", e);
 	        return "redirect:/board/list"; // 예외 발생 시 리다이렉트
 	    }
-
 	    return "redirect:/board/detail?boardNo=" + boardNo; // boardNo를 사용하여 리다이렉트
 	}
 	
 	@PostMapping("/delete")
 	public String boardDelete(@RequestParam int boardNo) {
-	    log.info("Deleting board with ID: {}", boardNo);
 	    
 	    boardService.boardDeleteOne(boardNo);
 
 	    return "redirect:/board/list"; 
 	}
 	
-	// 깃 테스트용 주석
 }

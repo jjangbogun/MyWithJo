@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.withJo.event.domain.EventVo;
-import com.withJo.notice.domain.NoticeVo;
 
 
 @Repository
@@ -28,14 +27,12 @@ public class EventDaoImpl implements EventDao{
 	@Override
 	public int eventUpdateLotto(EventVo eventVo) {
 		// TODO Auto-generated method stub
-		System.out.println("오는지 체크");
 		return sqlSession.update(namespace + "eventUpdateLotto", eventVo);
 	}
 	
 	@Override
 	public int eventUpdateDrawing(EventVo eventVo) {
 		// TODO Auto-generated method stub
-		System.out.println("오는지 체크");
 		return sqlSession.update(namespace + "eventUpdateDrawing", eventVo);
 	}
 

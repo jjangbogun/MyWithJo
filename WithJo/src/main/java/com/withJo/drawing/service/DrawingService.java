@@ -11,7 +11,7 @@ public interface DrawingService {
 	List<DrawingVo> drawingSelectList(int start, int end, String searchField, String searchKeyword);
 	public int drawingTotalCount(String searchField, String searchKeyword);
 	public int drawingInsertOne(DrawingVo drawingVo);
-	public DrawingVo drawingSelectOne();
+	public DrawingVo drawingSelectOne(int drawingNo);
 	public List<Map<String, Object>> drawingSelect(String startDate, String endDate, int no);
 	public int drawingDeleteOne(int drawingNo);
 	public int drawingInsertEMoney(int eMoney, int memberNo, String detail);

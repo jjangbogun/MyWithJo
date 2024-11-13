@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.withJo.board.domain.BoardVo;
 import com.withJo.notice.dao.NoticeDao;
 import com.withJo.notice.domain.NoticeVo;
 

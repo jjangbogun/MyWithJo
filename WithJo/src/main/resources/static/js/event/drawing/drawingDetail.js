@@ -15,7 +15,7 @@ function divInMember() {
 }
 
 function pageMovedrawingList() {
-	location.href = '/drawing/list';
+	location.href = '/drawing/list?curPage=' + prevPage;
 }
 
 function pageMoveEventList() {

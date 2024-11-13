@@ -30,15 +30,3 @@ function deleteFnc(lottoNo) {
         });        
 	}
 }
-/*
-function movelotto() {		
-    location.href = '/lotto/list';
-}
-
-function moveBoard() {		
-    location.href = '/board/list';
-}
-
-function moveCustomer() {		
-    location.href = '/customer/list';
-}*/

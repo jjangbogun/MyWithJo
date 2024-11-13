@@ -8,10 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.withJo.board.domain.BoardVo;
-import com.withJo.customer.domain.CustomerVo;
 import com.withJo.drawing.domain.DrawingVo;
-import com.withJo.notice.domain.NoticeVo;
 
 
 @Repository
@@ -49,9 +46,9 @@ public class DrawingDaoImpl implements DrawingDao{
 	}
 	
 	@Override
-	public DrawingVo drawingSelectOne() {
+	public DrawingVo drawingSelectOne(int drawingNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "drawingSelectOne");
+		return sqlSession.selectOne(namespace + "drawingSelectOne", drawingNo);
 	}
 	
 	@Override
