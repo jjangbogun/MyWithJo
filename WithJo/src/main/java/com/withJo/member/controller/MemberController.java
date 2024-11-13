@@ -4,7 +4,6 @@ package com.withJo.member.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.withJo.member.domain.MemberVo;
 import com.withJo.member.service.MemberService;
 import com.withJo.util.Paging;
@@ -91,15 +93,25 @@ public class MemberController {
 	// 회원 상세 페이지
 	@GetMapping("/detail")
 	public String memberDetail(@RequestParam int memberNo, Model model) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);		
+		
 		log.info(logTitleMsg);
 		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
 		
 		MemberVo memberVo = memberService.memberSelectOne(memberNo);
 		List<MemberVo> reserveList = memberService.memberReserveOne(memberNo); 
 		
-		
 		model.addAttribute("memberVo", memberVo);
-		model.addAttribute("reserveList", reserveList);
+		
+		 try {
+			 String reserveListJson = objectMapper.writeValueAsString(reserveList);
+			 model.addAttribute("reserveList", reserveListJson);
+	        } catch (JsonProcessingException e) {
+	            // 예외 처리
+	        	e.printStackTrace();
+	        }
 		
 		return "member/MemberDetailView";
 	}
@@ -141,26 +153,33 @@ public class MemberController {
 	//회원 수강신청 취소
 	@PostMapping("/reserve/cancel")
 	@ResponseBody
-	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, HttpSession session) {									
-		
-		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
-		if(memberVo == null) {
-			return "fail";			
-		}
-		int memberNo = memberVo.getMemberNo();
-		
-		try {
-		      int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo);
-		      if (result > 0) {
-		          return "success";
-		      } else {
-		          return "not_found"; // 취소할 예약이 없는 경우
-		      }
-		    } catch (Exception e) {
-		        // 로깅 추가
-		      log.error("예약 취소 중 오류 발생", e);
-		      return "error";
-		    }		
+	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, 
+	                                  @RequestParam("memberNo") int memberNo, 
+	                                  HttpSession session) {
+	    MemberVo sessionMemberVo = (MemberVo)session.getAttribute("memberVo");
+	    if(sessionMemberVo == null) {
+	        return "fail";            
+	    }
+	    
+	    // 관리자 권한 체크
+	    boolean isAdmin = sessionMemberVo.getAuthority() == 1;
+	    
+	    // 관리자가 아니고, 세션의 memberNo와 요청의 memberNo가 다르면 실패
+	    if (!isAdmin && sessionMemberVo.getMemberNo() != memberNo) {
+	        return "unauthorized";
+	    }
+	    
+	    try {
+	        int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo);
+	        if (result > 0) {
+	            return "success";
+	        } else {
+	            return "not_found";
+	        }
+	    } catch (Exception e) {
+	        log.error("예약 취소 중 오류 발생", e);
+	        return "error";
+	    }        
 	}
 	
 	@GetMapping("/eMoney")

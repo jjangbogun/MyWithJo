@@ -99,7 +99,7 @@ input[type="button"]:hover {
 }
 
 .memberNewPw{
-	width: 100%;
+	width: 98%;
 }
 
 #memberZipCode {
@@ -212,8 +212,6 @@ input[type="button"]:hover {
 }
 
 /* 이머니 css */
-
-
 
 #mainContainer {       
     background-color: white;
