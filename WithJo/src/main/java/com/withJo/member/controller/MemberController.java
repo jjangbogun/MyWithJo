@@ -153,7 +153,33 @@ public class MemberController {
 	//회원 수강신청 취소
 	@PostMapping("/reserve/cancel")
 	@ResponseBody
-	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, 
+	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, HttpSession session) {									
+
+		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+		if(memberVo == null) {
+			return "fail";			
+		}
+		int memberNo = memberVo.getMemberNo();
+
+		try {
+		      int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo);
+		      if (result > 0) {
+		          return "success";
+		      } else {
+		          return "not_found"; // 취소할 예약이 없는 경우
+		      }
+		    } catch (Exception e) {
+		        // 로깅 추가
+		      log.error("예약 취소 중 오류 발생", e);
+		      return "error";
+		    }		
+	}
+	
+	
+	//관리자회원 수강신청 취소
+	@PostMapping("/admin/reserve/cancel")
+	@ResponseBody
+	public String adminMemberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, 
 	                                  @RequestParam("memberNo") int memberNo, 
 	                                  HttpSession session) {
 	    MemberVo sessionMemberVo = (MemberVo)session.getAttribute("memberVo");

@@ -202,7 +202,7 @@ function setCourseContainerHtml() {
 function cancelCourse(memberCourseReserveNo) {
     if (confirm("정말로 취소하시겠습니까?")) {
         $.ajax({
-            url: '/member/reserve/cancel',
+            url: '/member/admin/reserve/cancel',
             type: 'POST',
             data: { memberCourseReserveNo: memberCourseReserveNo, memberNo: memberNo },
             success: function(result) {
