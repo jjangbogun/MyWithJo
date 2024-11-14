@@ -20,11 +20,17 @@
 
 ## 🛠 기술스택
 Front
+<br />
 Figma / JavaScript / CSS / html5
+<br />
 Dev tools
+<br />
 Java / Spring / json
+<br />
 Dev Ops
+<br />
 Eclipse
+<br />
 
 ## 😎 팀원 소개
 -------------------------------------------
