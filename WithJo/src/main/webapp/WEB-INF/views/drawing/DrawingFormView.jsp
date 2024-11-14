@@ -25,7 +25,6 @@
 	<input type="hidden" id="drawingMemberId" name="drawingMemberId" value="">
 	<input type="hidden" id="memberNo" name="memberNo" value="${memberVo.memberNo}">
 	<div id="drawingAddContainer">
-		<h1>게시글 추첨 등록</h1>
 		    
 		    <div>
 		        <label for="drawingRound">게시글 추첨 회차</label><br>

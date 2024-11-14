@@ -8,6 +8,7 @@ public class DrawingVo {
 	private int drawingRound;      
 	private int memberNo;      
 	private int drawingPersonnel;      
+	private int drawingPoint;      
     private String memberName;
     private String drawingMemberNo;
     private String drawingMemberId;
@@ -21,14 +22,15 @@ public class DrawingVo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DrawingVo(int drawingNo, int drawingRound, int memberNo, int drawingPersonnel, String memberName,
-			String drawingMemberNo, String drawingMemberId, String drawingMemberName, String drawingStartDate,
-			String drawingEndDate, Date drawingCredate) {
+	public DrawingVo(int drawingNo, int drawingRound, int memberNo, int drawingPersonnel, int drawingPoint,
+			String memberName, String drawingMemberNo, String drawingMemberId, String drawingMemberName,
+			String drawingStartDate, String drawingEndDate, Date drawingCredate) {
 		super();
 		this.drawingNo = drawingNo;
 		this.drawingRound = drawingRound;
 		this.memberNo = memberNo;
 		this.drawingPersonnel = drawingPersonnel;
+		this.drawingPoint = drawingPoint;
 		this.memberName = memberName;
 		this.drawingMemberNo = drawingMemberNo;
 		this.drawingMemberId = drawingMemberId;
@@ -68,6 +70,14 @@ public class DrawingVo {
 
 	public void setDrawingPersonnel(int drawingPersonnel) {
 		this.drawingPersonnel = drawingPersonnel;
+	}
+
+	public int getDrawingPoint() {
+		return drawingPoint;
+	}
+
+	public void setDrawingPoint(int drawingPoint) {
+		this.drawingPoint = drawingPoint;
 	}
 
 	public String getMemberName() {
@@ -129,11 +139,12 @@ public class DrawingVo {
 	@Override
 	public String toString() {
 		return "DrawingVo [drawingNo=" + drawingNo + ", drawingRound=" + drawingRound + ", memberNo=" + memberNo
-				+ ", drawingPersonnel=" + drawingPersonnel + ", memberName=" + memberName + ", drawingMemberNo="
-				+ drawingMemberNo + ", drawingMemberId=" + drawingMemberId + ", drawingMemberName=" + drawingMemberName
-				+ ", drawingStartDate=" + drawingStartDate + ", drawingEndDate=" + drawingEndDate + ", drawingCredate="
-				+ drawingCredate + "]";
+				+ ", drawingPersonnel=" + drawingPersonnel + ", drawingPoint=" + drawingPoint + ", memberName="
+				+ memberName + ", drawingMemberNo=" + drawingMemberNo + ", drawingMemberId=" + drawingMemberId
+				+ ", drawingMemberName=" + drawingMemberName + ", drawingStartDate=" + drawingStartDate
+				+ ", drawingEndDate=" + drawingEndDate + ", drawingCredate=" + drawingCredate + "]";
 	}
-
+    
+    
 
 }

@@ -51,13 +51,14 @@ function makeDrawingMember() {
 function addDrawing() {
     var drawingRound = $('#drawingRound').val().trim();
     var drawingPersonnel = $('#personnel').val().trim();
+    var drawingPoint = $('#eMoneyVal').val().trim();
     var drawingStartDate = $('#drawingStartDate').val().trim();
     var drawingEndDate = $('#drawingEndDate').val().trim();
     var drawingMemberNo = $('#drawingMemberNo').val().trim();
     var drawingMemberName = $('#drawingMemberName').val().trim();
     var drawingMemberId = $('#drawingMemberId').val().trim();
 
-    if (!drawingRound || !drawingStartDate || !drawingEndDate || !drawingMemberName || !drawingMemberNo) {
+    if (!drawingRound || !drawingPersonnel || !drawingStartDate || !drawingPoint ||  !drawingEndDate || !drawingMemberName || !drawingMemberNo) {
         alert("모든 필드를 입력해주세요.");
         return;
     }
@@ -67,6 +68,7 @@ function addDrawing() {
     var drawingData = {
         memberNo: memberNo,
         drawingPersonnel: drawingPersonnel,
+		drawingPoint: drawingPoint,
         drawingStartDate: drawingStartDate,
         drawingEndDate: drawingEndDate,
         drawingRound: parseInt(drawingRound, 10),

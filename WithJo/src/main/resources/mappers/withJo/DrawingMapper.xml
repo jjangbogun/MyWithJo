@@ -8,6 +8,7 @@
         <result column="MEMBER_NO" property="memberNo"/>
         <result column="MEMBER_NAME" property="memberName"/>
         <result column="DRAWING_PERSONNEL" property="drawingPersonnel"/>
+        <result column="DRAWING_POINT" property="drawingPoint"/>
         <result column="DRAWING_MEMBER_NO" property="drawingMemberNo"/>
         <result column="DRAWING_MEMBER_NAME" property="drawingMemberName"/>
         <result column="DRAWING_MEMBER_ID" property="drawingMemberId"/>
@@ -74,14 +75,14 @@
 	</select>
     
 	<select id="drawingSelectOne" parameterType="map" resultMap="drawingResultMap">
-        SELECT DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_MEMBER_NO, DRAWING_PERSONNEL, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE
+        SELECT DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_MEMBER_NO, DRAWING_PERSONNEL, DRAWING_POINT, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE
         FROM DRAWING
         WHERE DRAWING_NO = #{drawingNo}
 	</select>
 	
 	<insert id="drawingInsertOne" parameterType="map">
-	    INSERT INTO DRAWING (DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_PERSONNEL, DRAWING_MEMBER_NO, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE)
-	    VALUES (DRAWING_NO_SEQ.NEXTVAL, #{drawingRound}, #{memberNo}, #{drawingPersonnel}, #{drawingMemberNo}, #{drawingMemberId}, #{drawingMemberName}, #{drawingStartDate}, #{drawingEndDate}, SYSDATE)
+	    INSERT INTO DRAWING (DRAWING_NO, DRAWING_ROUND, MEMBER_NO, DRAWING_PERSONNEL, DRAWING_POINT, DRAWING_MEMBER_NO, DRAWING_MEMBER_ID, DRAWING_MEMBER_NAME, DRAWING_START_DATE, DRAWING_END_DATE, DRAWING_CREDATE)
+	    VALUES (DRAWING_NO_SEQ.NEXTVAL, #{drawingRound}, #{memberNo}, #{drawingPersonnel}, #{drawingPoint}, #{drawingMemberNo}, #{drawingMemberId}, #{drawingMemberName}, #{drawingStartDate}, #{drawingEndDate}, SYSDATE)
 	</insert>
 
 	<delete id="drawingDeleteOne" parameterType="int">

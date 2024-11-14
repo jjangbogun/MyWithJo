@@ -87,7 +87,7 @@
 							<div id="drawingDiv">
 								<div class="eventTableBoxContent">
 									<div class="tableTitleElement">
-										<a class="imgTag" href="/drawing/detail">
+										<a class="imgTag" href="/drawing/list">
 											<img class="eventImgs" alt="" src="/img/event/drawingEvent.jpg" style="width: 350px;">
 										</a>
 										<a class="textTag" href="/drawing/list">게시판 이벤트 확인하기</a>
