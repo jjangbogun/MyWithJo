@@ -29,8 +29,11 @@ Eclipse
 ## 😎 팀원 소개
 -------------------------------------------
 | 김보근 | https://github.com/jjangbogun |
+<br />
 | 김유경 | https://github.com/JJJbc |
+<br />
 | 조병철 | https://github.com/ktg8377 |
+
 ## 📄 프로젝트 ppt
 [팀프로젝트_WITHJO.pptx](https://github.com/jjangbogun/WITHJO/blob/main/%EB%AC%B8%EC%84%9C/%EA%B8%B0%ED%9A%8D/ERD_%EB%B3%80%EC%88%98%EB%AA%85.docx)
 ## ✒️ 프로젝트 폴더
