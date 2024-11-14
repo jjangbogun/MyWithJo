@@ -30,6 +30,7 @@
 		<result column="MEMBER_E_MONEY_MINUS" property="memberEMoneyMinus"/>
 		<result column="MEMBER_E_MONEY_MINUS_DETAIL" property="memberEMoneyMinusDetail"/>
 		<result column="MEMBER_E_MONEY_UPDATE" property="memberEMoneyUpdate"/>		
+		<result column="MEMBER_SHOPPING_CART_NO" property="memberShoppingCartNo"/>		
 	</resultMap>
 	
 	<sql id="search">
@@ -173,5 +174,28 @@
 		WHERE M.MEMBER_NO = #{memberNo}
 		ORDER BY MONEY.MEMBER_E_MONEY_UPDATE DESC	
 	</select>
-
+	
+	<select id="memberShoppingCartOne" parameterType="int" resultMap="memberResultMap">
+		SELECT MSC.MEMBER_SHOPPING_CART_NO
+			  ,CL.COURSE_MAIN_IMAGE
+		      ,CL.COURSE_NAME
+		      ,CLD.COURSE_DAY_OF_THE_WEEK
+		      ,CL.COURSE_START_DATE
+		      ,CL.COURSE_END_DATE
+		      ,CL.COURSE_START_TIME
+		      ,CL.COURSE_END_TIME
+		      ,CL.COURSE_TEACHER	
+		FROM MEMBER_SHOPPING_CART MSC
+		JOIN MEMBER M ON MSC.MEMBER_NO = M.MEMBER_NO
+		JOIN COURSE_LIST CL ON MSC.COURSE_NO = CL.COURSE_NO
+		JOIN COURSE_LIST_DAY CLD ON CL.COURSE_NO = CLD.COURSE_NO		
+		WHERE M.MEMBER_NO = #{memberNo}
+	</select>
+	
+	<delete id="membershoppingCartCancel" parameterType="map">
+		DELETE FROM MEMBER_SHOPPING_CART
+		WHERE MEMBER_NO = #{memberNo}
+		AND MEMBER_SHOPPING_CART_NO = #{memberShoppingCartNo}
+	</delete>
+		
 </mapper>

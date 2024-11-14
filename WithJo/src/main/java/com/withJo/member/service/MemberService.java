@@ -20,4 +20,6 @@ public interface MemberService {
 	public int memberReserveCancel(int memberCourseReserveNo, int memberNo);
 	List<MemberVo> memberEMoneyDetail(int memberNo);
 	List<String> memberReserveCourseDay(int courseNo);
+	List<MemberVo> memberShoppingCartOne(int memberNo);
+	public int membershoppingCartCancel(int memberNo, int memberShoppingCartNo);
 }

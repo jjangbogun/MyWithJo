@@ -130,4 +130,22 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectOne(namespace + "memberReserveCourseDay", courseNo);
 	}
 
+	@Override
+	public List<MemberVo> memberShoppingCartOne(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "memberShoppingCartOne", memberNo);
+	}
+
+	@Override
+	public int membershoppingCartCancel(int memberNo, int memberShoppingCartNo) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("memberNo", memberNo);
+		paramMap.put("memberShoppingCartNo", memberShoppingCartNo);
+		
+		
+		return sqlSession.delete(namespace + "membershoppingCartCancel", paramMap);
+	}
+
 }

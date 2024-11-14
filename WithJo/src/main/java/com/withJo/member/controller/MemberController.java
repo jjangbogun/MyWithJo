@@ -227,6 +227,49 @@ public class MemberController {
 	    }
 	}
 	
+	// 회원 장바구니
+	@GetMapping("/shoppingCart")
+	@ResponseBody
+	public List<MemberVo> memberShoppingCart(@RequestParam int memberNo) {
+		log.info(logTitleMsg);
+		log.info("@GetMapping memberDetail memberNo: {}", memberNo);
+		
+		List<MemberVo> ShoppingCart = memberService.memberShoppingCartOne(memberNo);	    
+		
+		return ShoppingCart;
+	}
+	
+	@PostMapping("/shoppingCart/cancel")
+	@ResponseBody
+	public String membershoppingCartCancel(@RequestParam("memberShoppingCartNo") int memberShoppingCartNo, HttpSession session) {									
+		
+		log.info(logTitleMsg);
+		log.info("memberShoppingCartNo: {}", memberShoppingCartNo);
+		
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+		
+		log.info("memberVo: {}", memberVo);
+		
+		if(memberVo == null) {
+			return "fail";			
+		}
+		int memberNo = memberVo.getMemberNo();
+		log.info("memberNo: {}", memberNo);
+		try {
+		      int result = memberService.membershoppingCartCancel(memberNo, memberShoppingCartNo);
+		      if (result > 0) {
+		          return "success";
+		      } else {
+		          return "not_found"; // 취소할 예약이 없는 경우
+		      }
+		    } catch (Exception e) {
+		        // 로깅 추가
+		      log.error("예약 취소 중 오류 발생", e);
+		      return "error";
+		    }		
+	}
+	
 	// (관리자) 회원 삭제
 	@PostMapping("/delete")
 	@ResponseBody

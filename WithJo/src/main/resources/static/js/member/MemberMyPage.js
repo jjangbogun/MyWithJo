@@ -132,6 +132,94 @@ function myPageCategoryBtnFnc(memberNo, categoryNo) {
 				alert('E-Money 정보를 불러오는 데 오류가 발생했습니다.');
 			}
 		});
+	} else if (categoryNo == 4) {
+		$.ajax({
+			url: '/member/shoppingCart',
+			type: 'GET',
+			data: { memberNo: memberNo },
+			success: function(shoppingCart) {
+				// 강의별로 데이터 그룹화
+				const groupedReserves = shoppingCart.reduce((acc, shoppingCart) => {
+					// 여러 필드를 조합하여 고유 키 생성
+					const key = `${shoppingCart.courseNo}-${shoppingCart.courseStartDate}-${shoppingCart.courseEndDate}-${shoppingCart.courseStartTime}-${shoppingCart.courseEndTime}`;
+					if (!acc[key]) {
+						acc[key] = { ...shoppingCart, courseDays: [] };
+					}
+					acc[key].courseDays.push(shoppingCart.courseDayOfTheWeek);
+					return acc;
+				}, {});
+
+				// 수강 목록이 성공적으로 로드되면 HTML 생성
+				htmlStr += '<div class="myReserveList">';
+				htmlStr += '<div class="myReserveList-header">';
+				htmlStr += '<div class="header-item">강의명</div>';
+				htmlStr += '<div class="header-item">강의시간/기간</div>';
+				htmlStr += '<div class="header-item">강사명</div>';
+				htmlStr += '<div class="header-item">취소 및 신청</div>';
+				htmlStr += '</div>'; // myReserveList-header 종료
+
+				// 그룹화된 데이터로 HTML 생성
+				Object.values(groupedReserves).forEach(shoppingCart => {
+					htmlStr += '<div class="myReserveList-item">';
+					htmlStr += '<div class="item-content">';
+					htmlStr += '<div class="course-name">';
+					htmlStr += `<img src="/imges/${shoppingCart.courseMainImage}" alt="강의 이미지">`;
+					htmlStr += `${shoppingCart.courseName}`;
+					htmlStr += '</div>';
+					htmlStr += '</div>';
+					htmlStr += '<div class="item-content">[';
+
+					// 요일 정보 처리
+					const daysStr = [...new Set(shoppingCart.courseDays)].map(day => {
+						switch (parseInt(day)) {
+							case 1: return '월';
+							case 2: return '화';
+							case 3: return '수';
+							case 4: return '목';
+							case 5: return '금';
+							case 6: return '토';
+							case 7: return '일';
+							default: return day;
+						}
+					}).sort((a, b) => ['월', '화', '수', '목', '금', '토', '일'].indexOf(a) - ['월', '화', '수', '목', '금', '토', '일'].indexOf(b)).join(', ');
+
+					htmlStr += daysStr;
+
+					// 날짜 형식 포맷
+					const startDate = new Date(shoppingCart.courseStartDate);
+					const endDate = new Date(shoppingCart.courseEndDate);
+
+					const formattedStartDate = startDate.toLocaleDateString('ko-KR', {
+						year: 'numeric',
+						month: '2-digit',
+						day: '2-digit'
+					}).replace(/\./g, '.');
+
+					const formattedEndDate = endDate.toLocaleDateString('ko-KR', {
+						year: 'numeric',
+						month: '2-digit',
+						day: '2-digit'
+					}).replace(/\./g, '.');
+
+					htmlStr += `] <br>${formattedStartDate} ~ ${formattedEndDate}<br>`;
+					htmlStr += `${shoppingCart.courseStartTime} ~ ${shoppingCart.courseEndTime}`;
+					htmlStr += '</div>';
+					htmlStr += `<div class="item-content">${shoppingCart.courseTeacher} 강사</div>`;
+					// 수강 취소 버튼
+					htmlStr += `<div class="item-content"><button class="reserveCancel" onclick="cancelShoppingCart(${shoppingCart.memberShoppingCartNo})">취소</button>`
+					htmlStr += '</br><button class="reserveCancel" onclick="cancelCourse(${shoppingCart.memberShoppingCartNo})">신청</button>'
+					htmlStr += '</div>';
+					htmlStr += '</div>'; // myReserveList-item 종료
+				});
+
+				htmlStr += '</div>'; // myReserveList 종료
+				containerTag.html(htmlStr); // 생성된 HTML을 mainContainer에 삽입
+			},
+			error: function(xhr, status, error) {
+				console.error('AJAX 오류:', status, error);
+				alert('수강 목록을 불러오는 데 오류가 발생했습니다.');
+			}
+		});
 	}
 
 
@@ -150,6 +238,28 @@ function cancelCourse(memberCourseReserveNo) {
 			url: '/member/reserve/cancel',
 			type: 'POST',
 			data: { memberCourseReserveNo: memberCourseReserveNo },
+			success: function(result) {
+				if (result === 'success') {
+					alert("취소되었습니다");
+					location.reload(); // 페이지를 새로 고침하여 변경 사항 반영
+				} else {
+					alert("취소가 실패되었습니다");
+				}
+			},
+			error: function() {
+				alert("오류가 발생했습니다");
+			}
+		});
+	}
+}
+
+function cancelShoppingCart(memberShoppingCartNo) {
+	console.log("Cancelling course with memberShoppingCartNo:", memberShoppingCartNo);
+	if (confirm("정말로 취소하시겠습니까?")) {
+		$.ajax({
+			url: '/member/shoppingCart/cancel',
+			type: 'POST',
+			data: { memberShoppingCartNo: memberShoppingCartNo },
 			success: function(result) {
 				if (result === 'success') {
 					alert("취소되었습니다");

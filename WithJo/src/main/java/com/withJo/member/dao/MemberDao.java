@@ -27,5 +27,7 @@ public interface MemberDao {
     public int memberCourseReserveNo(int memberCourseReserveNo, int memberNo);
 	List<MemberVo> memberEMoneyDetail(int memberNo);
 	
+	List<MemberVo> memberShoppingCartOne(int memberNo);
+	public int membershoppingCartCancel(int memberNo, int memberShoppingCartNo);
 
 }

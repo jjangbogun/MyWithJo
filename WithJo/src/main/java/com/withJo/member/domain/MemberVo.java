@@ -40,5 +40,6 @@ public class MemberVo {
 	private int memberEMoneyMinus;
 	private String memberEMoneyMinusDetail;
 	private Date memberEMoneyUpdate;
+	private int memberShoppingCartNo;
 
 }
