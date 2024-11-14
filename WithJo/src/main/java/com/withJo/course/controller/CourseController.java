@@ -40,39 +40,38 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	@GetMapping("/")
-	public String index() {
-		return "index";
-	}
-	
 //	강의 view
 	@GetMapping("/list")
 	public ModelAndView getCourseList() {
 		log.info(logTitleMsg);
 		log.info("@GetMapping getCourseList");
 		
-		List<CourseVo> categoryList = courseService.getCategory();
 		List<CourseVo> courseList = courseService.getCourseList();
 		
 //		model.addAttribute("courseList", couseList);
 //		model.addAttribute("courseVo", courseVo);
 		ModelAndView mav = new ModelAndView("course/CourseListView");
 		mav.addObject("courseList", courseList);
-		mav.addObject("categoryList", categoryList);
-		
 		return mav;
 	}
 	
 // 강의 카테고리 리스트 
 	@GetMapping("/list/{courseAgeLimit}")
-	public ResponseEntity<List<CourseVo>> courseCategorySelect(@PathVariable int courseAgeLimit ,@RequestParam int categoryNo){
+	public ResponseEntity<Map<String, Object>> courseCategorySelect(@PathVariable int courseAgeLimit ,@RequestParam int categoryNo){
 		log.info(logTitleMsg);
 		log.info("@GetMapping courseCategorySelect", courseAgeLimit, categoryNo);
 		
+		Map<String, Object> resultMap = new HashMap<>();
+		
 		List<CourseVo> courseList = courseService.courseCategorySelect(courseAgeLimit, categoryNo);
+		List<CourseVo> categoryList = courseService.getCategory(courseAgeLimit);
+		resultMap.put("courseList", courseList);
+		resultMap.put("categoryList", categoryList);
+		
 		System.out.println("courseList?!" + courseList);
 		
-		return ResponseEntity.ok(courseList);
+		
+		return ResponseEntity.ok(resultMap);
 	}
 	
 //	강의 리스트 디테일화면

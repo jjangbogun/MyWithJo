@@ -15,68 +15,54 @@
   rel="stylesheet">
 <!-- 페이지 css -->
 <link rel="stylesheet" href="/css/common/common.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://use.typekit.net/vvo0ldr.css">
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script defer src="/js/common/common.js"></script>
 </head>
 <body>
 		<jsp:include page="/WEB-INF/views/Header.jsp"/> 
 		<div id="mainContainer">
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
-			<div>d</div>
+			<div class="mainPageBox">
+				<div class="mainPageBoxFlex">
+					<div class="mainNotice">
+						<img alt="이미지 준비중" src="img/common/mainNotice.png">
+					</div>
+					<div class="course_end_box">
+						<div>
+							<p>마감임박</p>
+						</div>
+						<div>
+							<p>강의신청이 곧 마감돼요!</p>
+						</div>
+						<div class="swiperBox">
+							 <div class="swiper mySwiper">
+							    <div class="swiper-wrapper">
+							    	<c:forEach var="courseVo" items="${courseList}">
+							    	<input type="hidden" value="${courseVo.courseRecEnd}"class="courseRecEnd">
+							    	<c:set var="now" value="<%=new java.util.Date() %>"/>
+									    <div class="swiper-slide">
+									    	<div>
+									    		<img src="/imges/${courseVo.courseMainImage}" alt=""/>
+									    	</div>
+									    	<div>
+									    		<div>
+									    		</div>
+									    	</div>
+									    </div>
+							     	</c:forEach>
+							    </div>
+							    <div class="swiper-button-next"></div>
+							    <div class="swiper-button-prev"></div>
+							 </div>
+						</div>
+					</div>
+					<div>
+					
+					</div>
+				</div>
+			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/Footer.jsp"/>
 </body>

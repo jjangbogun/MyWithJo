@@ -5,18 +5,27 @@
 }
 
 .ageCategory{
-	height: 120px;
+	height: 142px;
 	display: flex;
-	/* justify-content: space-between; */
 	padding: 50px 90px;
     font-size: 25px;
     flex-wrap: wrap;
     text-align: center;
+        border-bottom: 1px solid;
+}
+.courseListInfo{
+	display: flex;
+	justify-content: center;
+	background-color: #9ba9cf4f;
+}
+.courseListInfo--flex{
+	width: calc(100% - 375px);
 }
 .ageElement{
 	width: calc(100% / 4);
 	border-bottom: 1px solid;
 	height: 40px;
+	cursor: pointer;
 }
 .ageElement:hover{
 	border-bottom: 3px solid;
@@ -31,20 +40,17 @@
 }
 .courseListBox{
 	display: flex;
-	justify-content: center;
 	flex-wrap: wrap;
-	width: 100vw;
 	border-bottom: 1px solid;
+	margin-top: 30px;
 }
 .courseFlexBox{
-	width: 90%;
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	padding-left: 120px;
 }
 .courseBox{
-	margin: 0 0 20px 100px;
+	margin: 0 0 20px 75px;
 	cursor: pointer;
 }
 .mainImgHover{
@@ -61,16 +67,38 @@
 .ageCategoryBtn{
 	border: none;
 	background-color: transparent;
-	font-size: 24px;	
-	width: 400px;
+	font-size: 20px;
     height: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: "noto-sans", sans-serif;
+	font-weight: 700;
+	font-style: normal;
 }
 .categorySelectList{
 	display: flex;
+	margin-top: 10px;
 }
 .categoryList{
-	border: 1px solid;
 	margin-left: 20px;
+}
+.categoryList img{
+	width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.categoryList a{
+	font-size: 18px;
+    color: #474444;
+}
+.categoryAll{
+	width: 100px;
+	height: 100px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;	
 }
 .admin{
 	display: flex;
@@ -108,8 +136,8 @@
     border-radius: 12px;
 }
 .courseRecStartWaitLabel{
-	background-color: #e0f55c;
-    border: 1px solid #e0f55c;
+	background-color: #9e9e9e;
+    border: 1px solid #9e9e9e;
     width: 100px;
     padding: 0 8px;
     border-radius: 12px;
@@ -125,4 +153,11 @@
 	width: 450px;
 	height: 300px;
 	border-radius: 15px;
+}
+.ageCategoryBorder{
+	border: none;
+	height: 0;
+}
+.courseListBox{
+	
 }

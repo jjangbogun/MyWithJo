@@ -56,6 +56,16 @@
 		ORDER BY COURSE_NO DESC
 	</select>
 	
+	<select id="getCategory" parameterType="int" resultMap="courseResultMap">
+		SELECT C.CATEGORY_NO, C.CATEGORY_NAME
+		FROM CATEGORY C
+		    LEFT JOIN COURSE_LIST CL
+		    ON C.CATEGORY_NO = CL.CATEGORY_NO
+		    WHERE CL.COURSE_AGE_LIMIT = #{courseAgeLimit}
+		    GROUP BY C.CATEGORY_NO, C.CATEGORY_NAME
+		    ORDER BY C.CATEGORY_NO
+	</select>
+	
 	<select id="getCourseDetailList" parameterType="int" resultMap="courseResultMap">
 		SELECT COURSE_NO, CATEGORY_NO, COURSE_NAME, COURSE_TEACHER, COURSE_COST, COURSE_CURRENT_PEOPLE, COURSE_MAX_PEOPLE,
 			COURSE_AGE_LIMIT, COURSE_START_DATE, COURSE_END_DATE, COURSE_START_TIME, COURSE_END_TIME, COURSE_REC_START, COURSE_REC_END,
@@ -79,10 +89,6 @@
 		AND C.CATEGORY_NO = CL.CATEGORY_NO
 		AND CL.COURSE_AGE_LIMIT = #{courseAgeLimit}
 	</select>-->
-	<select id="getCategory" resultMap="courseResultMap">
-		SELECT CATEGORY_NO, CATEGORY_NAME
-		FROM CATEGORY
-	</select>
 	
 	<insert id="courseInsert" parameterType="map" useGeneratedKeys="true" keyProperty="courseNo">
 	<selectKey keyProperty="courseNo" resultType="int" order="BEFORE">

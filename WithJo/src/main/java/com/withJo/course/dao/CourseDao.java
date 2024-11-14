@@ -13,7 +13,7 @@ public interface CourseDao {
 	public List<CourseVo> courseCategorySelect(int courseAgeLimit, int categoryNo);
 	public CourseVo getCourseDetailList(int courseNo);
 	public List<CourseVo> getCourseDay(int courseNo);
-	public List<CourseVo> getCategory();
+	public List<CourseVo> getCategory(int courseAgeLimit);
 	public void courseInsert(Map<String, Object>map);
 	public void courseDayInsert(Map<String, Object>map);
 }

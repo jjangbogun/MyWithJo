@@ -152,3 +152,33 @@
 	 	
 	 	return courseCost;
 	}
+	/*var swiper = new Swiper(".mySwiper", {
+	  slidesPerView: 4,
+	  centeredSlides: true,
+	  spaceBetween: 30,
+	  pagination: {
+	    el: ".swiper-pagination",
+	    type: "fraction",
+	  },
+	  navigation: {
+	    nextEl: ".swiper-button-next",
+	    prevEl: ".swiper-button-prev",
+	  },
+	});*/
+
+	var swiper = new Swiper(".mySwiper", {
+	     slidesPerView: 4,
+	     spaceBetween: 30,
+	     freeMode: true,
+	     pagination: {
+	       el: ".swiper-pagination",
+	       clickable: true,
+	     },
+		 navigation: {
+		 	    nextEl: ".swiper-button-next",
+		 	    prevEl: ".swiper-button-prev",
+		 	  },
+	   });
+	   
+	
+	console.log($('.courseRecEnd').val());

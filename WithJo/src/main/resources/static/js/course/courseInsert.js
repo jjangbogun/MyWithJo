@@ -57,41 +57,46 @@ function courseDateCheck(checkDate){
 	const courseRecStartDateChange = new Date(courseRecStart);
 	const courseRecEndDateChange = new Date(courseRecEnd);
 	
-	console.log(checkDate.name);
-	console.log(courseStartDateChange);
-	console.log(courseEndDateChange);
+	function stripTime(date) {
+	    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+	}
+	const sysdateStripped = stripTime(sysdate);
+	const courseStartDateStripped = stripTime(courseStartDateChange);
+	const courseEndDateChangeStripped = stripTime(courseEndDateChange);
+	const courseRecStartDateChangeStripped = stripTime(courseRecStartDateChange);
+	const courseRecEndDateChangeStripped = stripTime(courseRecEndDateChange);
 	
 	switch(checkDate.name){
 		
 		case "courseStartDate":
-			if(courseStartDateChange < sysdate){
+			if(courseStartDateStripped < sysdateStripped){
 				alert('강의시작 날짜가 현재날짜보다 이전입니다.');
 				$('.courseStartDate').focus();
-			}else if(courseStartDateChange > courseEndDateChange){
+			}else if(courseStartDateStripped > courseEndDateChangeStripped){
 				alert('강의종료 날짜가 강의 시작날짜보다 이전입니다.');
 				$('.courseStartDate').focus();
 			}
 			break;
 			
 		case "courseEndDate":
-			if(courseEndDateChange < sysdate){
+			if(courseEndDateChangeStripped < sysdateStripped){
 				alert('강의종료 날짜가 현재날짜보다 이전입니다.');
 				$('.courseEndDate').focus();
 			}
 			break;
 			
 		case "courseRecStart":
-			if(courseRecStartDateChange < sysdate){
+			if(courseRecStartDateChangeStripped < sysdateStripped){
 				alert('접수시작 날짜가 현재날짜보다 이전입니다.');
 				$('.courseRecStart').focus();
-			}else if(courseRecStartDateChange > courseRecEndDateChange){
+			}else if(courseRecStartDateChangeStripped > courseRecEndDateChangeStripped){
 				alert('접수종료 날짜가 접수시작 날짜보다 이전입니다.');
 				$('.courseRecStart').focus();
 			}
 			break;
 			
 		case "courseRecEnd":
-			if(courseRecEndDateChange < sysdate){
+			if(courseRecEndDateChangeStripped < sysdateStripped){
 				alert('접수종료 날짜가 현재날짜보다 이전입니다.');
 				$('.courseRecEnd').focus();
 			}
@@ -222,6 +227,7 @@ function courseInsertPost(){
 				contentType : false,
 				processData : false, 
 				success: function (data) {
+					console.log(data);
 					alert(data);
 					return "course/list";
 				}

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://use.typekit.net/vvo0ldr.css");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* header */
 /* :root {
 	--nav;  CSS 전역 변수 선언
@@ -179,8 +180,8 @@ body.scrollUp #header {
     transition-duration: .4s, .3s;
 }
 .aboutPage{
-	height: 200px;
-	background-image: linear-gradient(to left, #7e8fbb, #e1e3ea);
+	height: 300px;
+	background-color:  #7d90c0c4;
 	text-align: right;
 	font-size: 40px;
 	font-weight: bold;
@@ -190,8 +191,71 @@ body.scrollUp #header {
     
 }
 .pageTitle{
-	padding: 77px 30px;
+	padding: 130px 70px;
 }
+#mainContainer{
+	height: 2000px;
+}
+.mainPageBox{
+	display: flex;
+	justify-content: center;
+	border: 1px solid;
+}
+.mainPageBoxFlex{
+	width: calc(100% - 200px);
+	border: 1px solid;
+	text-align: center;
+}
+.mainNotice{
+	border: 1px solid;
+}
+.mainNotice img{
+	width: 1650px;
+	border-radius: 14px;
+	
+}
+.swiperBox{
+	height: 500px;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.append-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.append-buttons button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}
+
 
 /* footer */
 .footer{

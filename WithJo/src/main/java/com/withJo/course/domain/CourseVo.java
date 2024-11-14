@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-public class CourseVo extends MemberVo{
+public class CourseVo{
 
 	@Id
 	private int courseNo;

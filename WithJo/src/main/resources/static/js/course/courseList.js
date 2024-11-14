@@ -54,18 +54,24 @@
 				contentType: 'application/json',
 				dataType: 'json',
 				success: function (data) {
-				
+				// courseList 배열에 접근
+			   var courseList = data.courseList;
+
+			   // categoryList 배열에 접근
+			   var categoryList = data.categoryList;
+			   
 					
 				let htmlStr = '';
-					if(data.length == 0){
+				let categoryStr = '';
+					if(courseList.length == 0){
 						htmlStr += '<div style="min-height: 300px;"><p>등록된강의가없습니다</p></div>';
 						$('.courseFlexBox').html(htmlStr);
 					}
 				
 					
-					data.forEach(course => {
-						let	courseRecStart = new Date(data[0].courseRecStart);
-						let	courseRecEnd = new Date(data[0].courseRecEnd);
+					courseList.forEach(course => {
+						let	courseRecStart = new Date(courseList[0].courseRecStart);
+						let	courseRecEnd = new Date(courseList[0].courseRecEnd);
 							
 							htmlStr += `<div class="courseBox">
 											<input class="numHidden" type="hidden" value="${course.courseNo}">
@@ -104,9 +110,52 @@
 							
 							$('.courseFlexBox').html(htmlStr);
 							
-							
-							
 					});
+					
+					if(categoryList.length === 0){
+						$('.categorySelectList').html('');
+						$('.ageCategory').addClass('ageCategoryBorder');
+					}
+					categoryAll = `<div class="categoryList">
+									<div class="categoryAll">
+										<p>전체</p>
+									</div>
+									<div style="margin-top:4px;">
+										<a onclick="">전체</a>
+									</div>
+									</div>`;
+					categoryList.forEach(category => {
+						$('.ageCategory').removeClass('ageCategoryBorder');
+						categoryStr+= `<div class="categoryList">
+											<div>`
+						switch(category.categoryName){
+								
+							case "수영":
+								categoryStr+= `<img src="/img/common/swim.jpg"/>`;
+								break;
+							case "테니스":
+								categoryStr+= `<img src="/img/common/tenis.jpg"/>`;
+								break;
+							case "탁구":
+								categoryStr+= `<img src="/img/common/pingpong.jpg"/>`;
+								break;
+							case "골프":
+								categoryStr+= `<img src="/img/common/golf.jpg"/>`;
+								break;
+							case "요가":
+								categoryStr+= `<img src="/img/common/yoga.jpg"/>`;
+								break;
+						}
+							
+						categoryStr+=		`</div>
+											<div>
+												<a onclick="">${category.categoryName}</a>
+											</div>
+										</div>`;
+						$('.categorySelectList').html(categoryAll+categoryStr);
+						
+					})
+					
 					$('.courseBox').on('click', function() {
 					    let courseNo = $(this).find('.numHidden').val();
 					    location.href = "/course/detail?courseNo=" + courseNo;

@@ -52,10 +52,10 @@ public class CourseDaoImpl implements CourseDao{
 	}
 
 	@Override
-	public List<CourseVo> getCategory() {
+	public List<CourseVo> getCategory(int courseAgeLimit) {
 		// TODO Auto-generated method stub
 	    
-		return sqlSession.selectList(namespace + "getCategory");
+		return sqlSession.selectList(namespace + "getCategory",courseAgeLimit);
 	}
 	@Override
 	public void courseInsert(Map<String, Object> map) {

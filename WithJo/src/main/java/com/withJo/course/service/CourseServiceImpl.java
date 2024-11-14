@@ -55,10 +55,10 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public List<CourseVo> getCategory() {
+	public List<CourseVo> getCategory(int courseAgeLimit) {
 		// TODO Auto-generated method stub
 		
-		List<CourseVo> categoryList = courseDao.getCategory();
+		List<CourseVo> categoryList = courseDao.getCategory(courseAgeLimit);
 		
 		return categoryList;
 	}
