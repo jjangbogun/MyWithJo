@@ -21,7 +21,6 @@
 		<result column="COURSE_INFO" property="courseInfo"/>
 		<result column="COURSE_MAIN_IMAGE" property="courseMainImage"/>
 		<result column="COURSE_DAY_OF_THE_WEEK" property="courseDayOfTheWeek"/>
-		<result column="MEMBER_NO" property="memberNo"/>
 	</resultMap>
 	
 	<sql id="age">
