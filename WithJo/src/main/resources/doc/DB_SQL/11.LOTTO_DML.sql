@@ -57,14 +57,5 @@ AND LOTTO_MODE = 1;
   
 commit;
 ----------------------------------------------------------------------------
-SELECT *
-FROM member;
 
-SELECT MEMBER_NO
-FROM (
-    SELECT MEMBER_NO
-    FROM BOARD
-    ORDER BY DBMS_RANDOM.VALUE
-)
-WHERE ROWNUM <= 1;
   
