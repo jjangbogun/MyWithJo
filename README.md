@@ -37,17 +37,20 @@ Java / Spring / json / Eclipse
 <br />
 담당 기능: 공통 Utils, 게시판, 고객센터, 이벤트(로또, 추첨)
 <br />
+<br />
 | 김유경 | https://github.com/kykkyk96 |
 <br />
 역할: 프론트엔드 통합
 <br />
-담당 기능: 공통 UI, 메인페이지, 수강목록, 수강신청
+담당 기능: 피그마, 공통 UI, 메인페이지, 수강목록, 수강신청
+<br />
 <br />
 | 조병철 | https://github.com/JJJbc |
 <br />
 역할: DBA
 <br />
 담당 기능: DB 설계 및 ERD 제작, 회원가입, 로그인, 마이페이지
+<br />
 <br />
 ## 📄 프로젝트 ppt
 [팀프로젝트_WITHJO.pptx](https://github.com/jjangbogun/WITHJO/blob/main/%EB%AC%B8%EC%84%9C/%EA%B8%B0%ED%9A%8D/ERD_%EB%B3%80%EC%88%98%EB%AA%85.docx)
