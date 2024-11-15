@@ -25,11 +25,8 @@ Figma / JavaScript / CSS / html5
 <br />
 Dev tools
 <br />
-Java / Spring / json
+Java / Spring / json / Eclipse
 <br />
-Dev Ops
-<br />
-Eclipse
 <br />
 
 ## 😎 팀원 소개
