@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.withJo.course.domain.CourseVo;
 import com.withJo.member.domain.MemberVo;
 import com.withJo.member.service.MemberService;
 import com.withJo.util.Paging;
@@ -153,26 +154,32 @@ public class MemberController {
 	//회원 수강신청 취소
 	@PostMapping("/reserve/cancel")
 	@ResponseBody
-	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, HttpSession session) {									
+	public String memberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, 
+	                                  HttpSession session) {
+	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+	    if(memberVo == null) {
+	        return "fail";            
+	    }
+	    int memberNo = memberVo.getMemberNo();
 
-		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
-		if(memberVo == null) {
-			return "fail";			
-		}
-		int memberNo = memberVo.getMemberNo();
+	    try {
+	        // 예약 정보를 조회하여 courseCost를 가져옵니다.
+	    	memberVo = memberService.getMemberReserveOne(memberNo, memberCourseReserveNo);
+	        if (memberVo == null) {
+	            return "not_found";
+	        }
+	        int courseCost = memberVo.getCourseCost();
 
-		try {
-		      int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo);
-		      if (result > 0) {
-		          return "success";
-		      } else {
-		          return "not_found"; // 취소할 예약이 없는 경우
-		      }
-		    } catch (Exception e) {
-		        // 로깅 추가
-		      log.error("예약 취소 중 오류 발생", e);
-		      return "error";
-		    }		
+	        int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo, courseCost);
+	        if (result > 0) {
+	            return "success";
+	        } else {
+	            return "not_found";
+	        }
+	    } catch (Exception e) {
+	        log.error("예약 취소 중 오류 발생", e);
+	        return "error";
+	    }        
 	}
 	
 	
@@ -181,6 +188,7 @@ public class MemberController {
 	@ResponseBody
 	public String adminMemberReserveCancel(@RequestParam("memberCourseReserveNo") int memberCourseReserveNo, 
 	                                  @RequestParam("memberNo") int memberNo, 
+	                                  @RequestParam("courseCost") int courseCost,
 	                                  HttpSession session) {
 	    MemberVo sessionMemberVo = (MemberVo)session.getAttribute("memberVo");
 	    if(sessionMemberVo == null) {
@@ -196,7 +204,7 @@ public class MemberController {
 	    }
 	    
 	    try {
-	        int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo);
+	        int result = memberService.memberReserveCancel(memberCourseReserveNo, memberNo, courseCost);
 	        if (result > 0) {
 	            return "success";
 	        } else {

@@ -108,7 +108,7 @@ public class CourseController {
 		MemberVo memberVo = memberService.memberSelectOne(memberNo);
 		
 		resultMap.put("courseVo", courseVo);
-		resultMap.put("memberNo", memberNo);
+		resultMap.put("memberVo", memberVo);
 		
 		return ResponseEntity.ok(resultMap);
 	}

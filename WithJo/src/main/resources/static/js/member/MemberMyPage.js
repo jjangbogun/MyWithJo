@@ -246,7 +246,7 @@ function cancelCourse(memberCourseReserveNo) {
 					alert("취소가 실패되었습니다");
 				}
 			},
-			error: function() {
+			error: function() {				
 				alert("오류가 발생했습니다");
 			}
 		});

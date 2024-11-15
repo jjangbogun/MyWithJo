@@ -11,6 +11,7 @@ import org.aspectj.weaver.IntMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.withJo.course.domain.CourseVo;
 import com.withJo.member.domain.MemberVo;
 
 @Repository
@@ -109,13 +110,16 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public int memberCourseReserveNo(int memberCourseReserveNo, int memberNo) {
-		// TODO Auto-generated method stub
-		
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("memberCourseReserveNo", memberCourseReserveNo);
-		paramMap.put("memberNo", memberNo);
-		
-		return sqlSession.delete(namespace + "memberCourseReserveNo", paramMap);
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("memberCourseReserveNo", memberCourseReserveNo);
+	    paramMap.put("memberNo", memberNo);
+	    
+	    return sqlSession.delete(namespace + "memberCourseReserveNo", paramMap);
+	}
+
+	@Override
+	public int memberRefund(Map<String, Object> refundParams) {
+	    return sqlSession.insert(namespace + "memberRefund", refundParams);
 	}
 
 	@Override
@@ -129,6 +133,7 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "memberReserveCourseDay", courseNo);
 	}
+	
 
 	@Override
 	public List<MemberVo> memberShoppingCartOne(int memberNo) {
@@ -146,6 +151,19 @@ public class MemberDaoImpl implements MemberDao{
 		
 		
 		return sqlSession.delete(namespace + "membershoppingCartCancel", paramMap);
+	}
+
+	@Override
+	public MemberVo getMemberReserveOne(int memberNo, int memberCourseReserveNo) {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("memberNo", memberNo);
+	    paramMap.put("memberCourseReserveNo", memberCourseReserveNo);
+	    List<MemberVo> results = sqlSession.selectList(namespace + "memberReserveOne", paramMap);
+	    if (results.isEmpty()) {
+	        return null;
+	    } else if (results.size() > 1) {	       
+	    }
+	    return results.get(0);
 	}
 
 }

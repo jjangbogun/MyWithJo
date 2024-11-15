@@ -1,13 +1,18 @@
 package com.withJo.member.service;
 
 import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.withJo.course.domain.CourseVo;
 import com.withJo.member.dao.MemberDao;
 import com.withJo.member.domain.MemberVo;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -121,9 +126,17 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int memberReserveCancel(int memberCourseReserveNo, int memberNo) {
-		// TODO Auto-generated method stub
-		return memberDao.memberCourseReserveNo(memberCourseReserveNo, memberNo);
+	@Transactional
+	public int memberReserveCancel(int memberCourseReserveNo, int memberNo, int courseCost) {
+	    // E-Money 환불
+	    Map<String, Object> refundParams = new HashMap<>();
+	    refundParams.put("memberNo", memberNo);
+	    refundParams.put("memberEMoneyPlus", courseCost);
+	    refundParams.put("memberEMoneyPlusDetail", "수강 취소");
+	    memberDao.memberRefund(refundParams);
+
+	    // 수강 예약 삭제
+	    return memberDao.memberCourseReserveNo(memberCourseReserveNo, memberNo);
 	}
 
 	@Override
@@ -148,6 +161,12 @@ public class MemberServiceImpl implements MemberService{
 	public int membershoppingCartCancel(int memberNo, int memberShoppingCartNo) {
 		// TODO Auto-generated method stub
 		return memberDao.membershoppingCartCancel(memberNo, memberShoppingCartNo);
+	}
+
+	@Override
+	public MemberVo getMemberReserveOne(int memberNo, int memberCourseReserveNo) {
+		// TODO Auto-generated method stub
+		return memberDao.getMemberReserveOne(memberNo, memberCourseReserveNo);
 	}
 	
 

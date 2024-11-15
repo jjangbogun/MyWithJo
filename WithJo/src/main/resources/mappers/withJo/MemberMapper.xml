@@ -25,6 +25,7 @@
 		<result column="COURSE_START_TIME" property="courseStartTime"/>		
 		<result column="COURSE_END_TIME" property="courseEndTime"/>		
 		<result column="COURSE_TEACHER" property="courseTeacher"/>
+		<result column="COURSE_COST" property="courseCost"/>
 		<result column="MEMBER_E_MONEY_PLUS" property="memberEMoneyPlus"/>
 		<result column="MEMBER_E_MONEY_PLUS_DETAIL" property="memberEMoneyPlusDetail"/>
 		<result column="MEMBER_E_MONEY_MINUS" property="memberEMoneyMinus"/>
@@ -146,20 +147,26 @@
 		      ,CL.COURSE_START_TIME
 		      ,CL.COURSE_END_TIME
 		      ,CL.COURSE_TEACHER
+		      ,CL.COURSE_COST
 		FROM MEMBER_COURSE_RESERVE MCR
 		JOIN MEMBER M ON MCR.MEMBER_NO = M. MEMBER_NO
 		JOIN COURSE_LIST CL ON MCR.COURSE_NO = CL.COURSE_NO
 		JOIN COURSE_LIST_DAY CLD ON CL.COURSE_NO = CLD.COURSE_NO
 		JOIN CATEGORY C ON MCR.CATEGORY_NO = C.CATEGORY_NO
 		WHERE M.MEMBER_NO = #{memberNo}
-	</select>
+	</select>	
 	
+	<insert id="memberRefund" parameterType="map">
+	    INSERT INTO MEMBER_E_MONEY (MEMBER_E_MONEY_NO, MEMBER_NO, MEMBER_E_MONEY_PLUS, MEMBER_E_MONEY_PLUS_DETAIL) 
+	    VALUES (MEMBER_E_MONEY_NO_SEQ.NEXTVAL, #{memberNo}, #{memberEMoneyPlus}, #{memberEMoneyPlusDetail} )
+	</insert>
+
 	<delete id="memberCourseReserveNo" parameterType="map">
 		DELETE FROM MEMBER_COURSE_RESERVE
 		WHERE MEMBER_NO = #{memberNo}
-		AND MEMBER_COURSE_RESERVE_NO = #{memberCourseReserveNo}
+		AND MEMBER_COURSE_RESERVE_NO = #{memberCourseReserveNo}		
 	</delete>
-	
+
 	<select id="memberEMoneyDetail" parameterType="int" resultMap="memberResultMap">
 		SELECT M.MEMBER_NO
 			  ,M.MEMBER_E_MONEY

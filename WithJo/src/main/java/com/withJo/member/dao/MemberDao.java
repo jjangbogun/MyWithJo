@@ -1,7 +1,9 @@
 package com.withJo.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import com.withJo.course.domain.CourseVo;
 import com.withJo.member.domain.MemberVo;
 
 public interface MemberDao {
@@ -24,10 +26,13 @@ public interface MemberDao {
     List<MemberVo> memberReserveOne(int memberNo);
     List<String> memberReserveCourseDay(int courseNo);
     
-    public int memberCourseReserveNo(int memberCourseReserveNo, int memberNo);
+    public int memberCourseReserveNo(int memberCourseReserveNo, int memberNo);    
+    public int memberRefund(Map<String, Object> refundParams);
 	List<MemberVo> memberEMoneyDetail(int memberNo);
 	
 	List<MemberVo> memberShoppingCartOne(int memberNo);
 	public int membershoppingCartCancel(int memberNo, int memberShoppingCartNo);
+	public MemberVo getMemberReserveOne(int memberNo, int memberCourseReserveNo);
 
+	
 }

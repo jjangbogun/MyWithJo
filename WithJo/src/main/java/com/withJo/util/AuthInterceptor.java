@@ -31,7 +31,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
     
     // 관리자 전용 페이지 체크
-    if ("/member/list".equals(requestURI) || "/notice/add".equals(requestURI) || "/customer/update".equals(requestURI) || "/customer/detail".equals(requestURI)
+    if ("/member/list".equals(requestURI) || "/notice/add".equals(requestURI) || "/customer/update".equals(requestURI) 
     		|| "/notice/update".equals(requestURI) || "/lotto/list".equals(requestURI) || "/lotto/add".equals(requestURI)
     		 || "/drawing/add".equals(requestURI)) {
       if (member == null || member.getAuthority() != 1) {
