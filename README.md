@@ -1,17 +1,17 @@
 # WithJo_Project
 
-###INCLUDE
+팀명: INCLUDE
 
 국비지원 과정 최종 팀프로젝트.
 
 
 ## 프로젝트 소개
 
+회원가입 및 로그인, 마이페이지
+
 운동 프로그램 강의 신청
 
-게시판 기능구현
-
-이벤트 기능구현
+게시판 및 이벤트 기능구현
 
 
 ## 🗓 프로젝트 기간
@@ -54,6 +54,11 @@ Java / Spring / json / Eclipse
 <br />
 ## 📄 프로젝트 ppt
 [팀프로젝트_WITHJO.pptx](https://github.com/jjangbogun/WITHJO/blob/main/%EB%AC%B8%EC%84%9C/%EA%B8%B0%ED%9A%8D/ERD_%EB%B3%80%EC%88%98%EB%AA%85.docx)
-## ✒️ 프로젝트 폴더
-zip파일을 C드라이브에 압축을 푼다. 경로: "C:\\DEMO\\image"
-DEMO.zip
+## ✒️ 프로젝트 설정
+필요도구: SQL Developer (또는 다른 Oracle 데이터베이스 관리 도구)
+<br />
+DB사용자 이름: wing
+<br />
+DB비밀번호: 1234
+<br />
+
