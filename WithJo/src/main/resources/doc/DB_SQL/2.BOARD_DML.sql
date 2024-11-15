@@ -20,17 +20,7 @@ CREATE SEQUENCE BOARD_NO_SEQ
 INCREMENT BY 1
 START WITH 1;
 
-COMMIT;
-
-select *
-from BOARD;
-
-select *
-from member;
 
 
-
-select *
-from BOARD;
 
 commit;
