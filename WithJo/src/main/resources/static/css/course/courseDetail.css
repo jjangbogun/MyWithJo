@@ -165,14 +165,10 @@
     text-decoration: none;
 }
 .popHead{
-	border: 1px solid;
 	padding: 0 0 40px 0;
 }
 .popTopArea{
 	display: flex;
-}
-.costArea{
-	border: 1px solid red;
 }
 .back_course{
 	display: block;

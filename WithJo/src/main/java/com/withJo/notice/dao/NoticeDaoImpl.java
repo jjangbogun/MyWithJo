@@ -62,4 +62,10 @@ public class NoticeDaoImpl implements NoticeDao{
 		// TODO Auto-generated method stub
 		return sqlSession.delete(namespace + "noticeDeleteOne", no);
 	}
+
+	@Override
+	public List<NoticeVo> noticeSelectListIndex() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "noticeSelectListIndex");
+	}
 }

@@ -50,4 +50,10 @@ public class NoticeServiceImpl implements NoticeService{
 		// TODO Auto-generated method stub
 		return noticeDao.noticeDeleteOne(no);
 	}
+
+	@Override
+	public List<NoticeVo> noticeSelectListIndex() {
+		// TODO Auto-generated method stub
+		return noticeDao.noticeSelectListIndex();
+	}
 }

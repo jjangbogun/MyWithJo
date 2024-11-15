@@ -29,6 +29,7 @@ public class CourseVo{
 	private String courseInfo;
 	private String courseMainImage;
 	private int courseDayOfTheWeek;	
+	private int courseHide;	
 	
 	
 	

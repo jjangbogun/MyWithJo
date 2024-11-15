@@ -1,21 +1,3 @@
-/*var floatPosition = parseInt($(".rightBoxInfo").css('top'));
-
-// scroll 인식
-$(window).scroll(function() {
-  
-    // 현재 스크롤 위치
-    var currentTop = $(window).scrollTop();
-    var bannerTop = currentTop + floatPosition + "px";
-
-    //이동 애니메이션
-    $(".rightBoxInfo").stop().animate({
-      "top" : bannerTop
-    }, 300);
-
-});*/
-
-
-   
    var $rightBoxInfo = $(".rightBoxInfo");
      var $inner = $(".courseInner");
      var initialPosition = parseInt($rightBoxInfo.css('top'));
@@ -63,18 +45,19 @@ $(window).scroll(function() {
 		
 	let previousHTML = '';
 		
-	function courseRes(courseNo,memberEmoney){
+	function courseRes(courseNo,memberNo){
 		previousHTML = $('.rightBoxInfo').html();
+		console.log(memberNo);
 		/*alert(courseNo);*/
-		console.log("memberEmoney" + memberEmoney);
 		$.ajax({
 				url: '/course/detail/' + courseNo,
 				method: 'GET',
+				data: {memberNo : memberNo},
 				contentType: 'application/json',
-				dataType: 'json',
 				success: function (data) {
 					console.log(data);
-					let courseVo = data;
+					let courseVo = data.courseVo;
+					let memberVo = data.memberVo;
 					let htmlStr = '';
 					
 					htmlStr = `<div class="rightBoxInfoInner" style="height: 400px;">
@@ -102,7 +85,7 @@ $(window).scroll(function() {
 													<p class="courseText">보유한 E-MONEY</p>
 												</div>
 												<div>
-													<p class="memberCostComma">${memberEmoney}</p>
+													<p class="memberCostComma">${memberVo.memberEMoney}</p>
 												</div>
 											</div>
 										</div>
@@ -176,21 +159,13 @@ $(window).scroll(function() {
 					contentType: 'application/json',
 					success: function (data) {
 						alert(data);
-						location.href = "/course/detail?courseNo=" + courseNo;
+						sessionStorage.setItem('loadMemberMypage', 'true');
+						location.href = "/member/myPageForm?memberNo=" + memberNo;
 					}
 			});
 		}
 	}
 	
-	/*console.log($('.courseCostComma').text());
-	
-	function AddComma() {
-		let courseCostComma = $('.courseCostComma').text();
-		console.log(courseCostComma);
-	 	courseCost = courseCost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	 	
-	 	return courseCost;
-	}*/
 	function moveCourseList(){
 		location.href="/course/list";
 	}

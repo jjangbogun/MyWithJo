@@ -157,7 +157,7 @@
 												<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
 											<c:if test="${now > courseVo.courseRecStart and now < courseVo.courseRecEnd}">
 												<div>
-													<a class="courseResBtn"  href="javascript:courseRes(${courseVo.courseNo},${sessionScope.memberVo.memberEMoney})"><span>수강신청하기</span></a>
+													<a class="courseResBtn"  href="javascript:courseRes(${courseVo.courseNo},${sessionScope.memberVo.memberNo});"><span>수강신청하기</span></a>
 												</div>
 											</c:if>
 											<c:if test="${now < courseVo.courseRecStart}">

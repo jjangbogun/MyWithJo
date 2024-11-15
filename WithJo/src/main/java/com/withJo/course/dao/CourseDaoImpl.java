@@ -29,11 +29,10 @@ public class CourseDaoImpl implements CourseDao{
 	}
 
 	@Override
-	public List<CourseVo> courseCategorySelect(int courseAgeLimit, int categoryNo) {
+	public List<CourseVo> courseCategorySelect(int courseAgeLimit) {
 		// TODO Auto-generated method stub
 		Map<String, Integer> paramMap = new HashMap<>();
 		paramMap.put("courseAgeLimit", courseAgeLimit);
-		paramMap.put("categoryNo", categoryNo);
 		
 		return sqlSession.selectList(namespace + "courseCategorySelect",paramMap);
 	}
@@ -83,6 +82,33 @@ public class CourseDaoImpl implements CourseDao{
 			 sqlSession.insert(namespace + "courseDayInsert",map);
 		 }
 			
+	}
+
+	@Override
+	public List<CourseVo> getCourseRecEndList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "getCourseRecEndList");
+	}
+
+	@Override
+	public void courseDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		/*
+		 * List<Integer> courseNo = (List<Integer>) map.get("courseDayOfTheWeek");
+		 * System.out.println("dayOfWeekList: " + dayOfWeekList);
+		 * 
+		 * for(int i = 0; i < dayOfWeekList.size(); i++) { map.put("courseDayOfTheWeek",
+		 * dayOfWeekList.get(i)); sqlSession.update(namespace + "courseDelete",
+		 * courseNo); }
+		 */
+		System.out.println("dapMap" + map);
+		List<Integer> courseNumbers = (List<Integer>) map.get("courseNo");
+		System.out.println("courseNumbers" + courseNumbers);
+		for(int i = 0; i < courseNumbers.size(); i++) {
+				map.put("courseNo", courseNumbers.get(i));
+			 sqlSession.update(namespace + "courseDelete",map);
+		 }
+		
 	}
 	
 	

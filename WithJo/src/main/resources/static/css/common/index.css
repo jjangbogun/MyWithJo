@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.courseRecStartLabel{
+	background-color: #e0f55c;
+    border: 1px solid #e0f55c;
+    width: 100px;
+    padding: 0 8px;
+    border-radius: 12px;
+}
+.noticeBoxElement_txt.content{
+	margin-top: 20px;
+}
+.noticeBoxElement_txt.content p{
+	font-size: 20px;
+}

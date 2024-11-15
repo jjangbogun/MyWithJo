@@ -26,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.withJo.course.domain.CourseVo;
 import com.withJo.course.service.CourseService;
+import com.withJo.member.domain.MemberVo;
+import com.withJo.member.service.MemberService;
 import com.withJo.util.FileUpload;
 
 import jakarta.servlet.http.HttpServlet;
@@ -39,6 +41,9 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 //	강의 view
 	@GetMapping("/list")
@@ -57,18 +62,19 @@ public class CourseController {
 	
 // 강의 카테고리 리스트 
 	@GetMapping("/list/{courseAgeLimit}")
-	public ResponseEntity<Map<String, Object>> courseCategorySelect(@PathVariable int courseAgeLimit ,@RequestParam int categoryNo){
+	public ResponseEntity<Map<String, Object>> courseCategorySelect(@PathVariable int courseAgeLimit){
 		log.info(logTitleMsg);
-		log.info("@GetMapping courseCategorySelect", courseAgeLimit, categoryNo);
+		log.info("@GetMapping courseCategorySelect", courseAgeLimit);
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		
-		List<CourseVo> courseList = courseService.courseCategorySelect(courseAgeLimit, categoryNo);
+		List<CourseVo> courseList = courseService.courseCategorySelect(courseAgeLimit);
 		List<CourseVo> categoryList = courseService.getCategory(courseAgeLimit);
 		resultMap.put("courseList", courseList);
 		resultMap.put("categoryList", categoryList);
 		
 		System.out.println("courseList?!" + courseList);
+		System.out.println("categoryList?!" + categoryList);
 		
 		
 		return ResponseEntity.ok(resultMap);
@@ -92,14 +98,19 @@ public class CourseController {
 	
 //	강의 디테일 예약화면
 	@GetMapping("/detail/{courseNo}")
-	public ResponseEntity<CourseVo> getCourseRes(@PathVariable int courseNo){
+	public ResponseEntity<Map<String, Object>> getCourseRes(@PathVariable int courseNo, @RequestParam int memberNo){
 		log.info(logTitleMsg);
 		log.info("@GetMapping getCourseDetailList",courseNo);
 		
-		CourseVo courseVo = courseService.egetCourseDetailList(courseNo);
-		System.out.println(courseVo);
+		Map<String, Object> resultMap = new HashMap<>();
 		
-		return ResponseEntity.ok(courseVo);
+		CourseVo courseVo = courseService.egetCourseDetailList(courseNo);
+		MemberVo memberVo = memberService.memberSelectOne(memberNo);
+		
+		resultMap.put("courseVo", courseVo);
+		resultMap.put("memberNo", memberNo);
+		
+		return ResponseEntity.ok(resultMap);
 	}
 	
 //	강의 리스트 카테고리 분류
@@ -136,7 +147,17 @@ public class CourseController {
         Map<String, Object> courseData = mapper.readValue(formData, Map.class);
 		courseService.courseInsert(courseData, mhr);
 		
-		return ResponseEntity.ok("강의등록 성공");
+		return ResponseEntity.ok("강의 등록 성공");
+	}
+	
+	@PostMapping("/delete")
+	public ResponseEntity<String> courseDelete(@RequestBody Map<String, Object> jsonMap) throws Exception{
+		log.info(logTitleMsg);
+		log.info("@@PostMapping courseDelete",jsonMap);
+		
+		courseService.courseDelete(jsonMap);
+		
+		return ResponseEntity.ok("강의가 삭제되었습니다.");
 	}
 
 

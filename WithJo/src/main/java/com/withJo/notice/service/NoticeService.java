@@ -8,6 +8,7 @@ import com.withJo.notice.domain.NoticeVo;
 public interface NoticeService {
 	
 	List<NoticeVo> noticeSelectList(int start, int end, String searchField, String searchKeyword);
+	List<NoticeVo> noticeSelectListIndex();
 	public int noticeTotalCount(String searchField, String searchKeyword);
 	public int noticeInsertOne(NoticeVo noticeVo);
 	public NoticeVo noticeSelectOne(int no);

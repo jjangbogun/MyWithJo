@@ -158,6 +158,10 @@
 	border: none;
 	height: 0;
 }
-.courseListBox{
-	
+.checkbox--dis{
+	margin-left: 47px;
+}
+.checkbox--dis input{
+	width: 23px;
+	height: 23px;
 }

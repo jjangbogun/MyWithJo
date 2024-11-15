@@ -37,16 +37,16 @@
 			
 					<div class="ageCategory ageCategoryBorder">
 							<div class="ageElement All">
-								<a class="ageCategoryBtn" name="all" onclick="moveCategoryFnc(0, 0);"><span>전체</span></a>
+								<a class="ageCategoryBtn" name="all" onclick="moveCategoryFnc(0);"><span>전체</span></a>
 							</div>
 							<div class="ageElement baby">
-								<a class="ageCategoryBtn" name="baby" onclick="moveCategoryFnc(13, 0);"><span>유아</span></a>
+								<a class="ageCategoryBtn" name="baby" onclick="moveCategoryFnc(13);"><span>유아</span></a>
 							</div>
 							<div class="ageElement youth">
-								<a class="ageCategoryBtn" name="youth" onclick="moveCategoryFnc(19, 0);"><span>청소년</span></a>
+								<a class="ageCategoryBtn" name="youth" onclick="moveCategoryFnc(19);"><span>청소년</span></a>
 							</div>
 							<div class="ageElement adult">
-								<a class="ageCategoryBtn" name="adult" onclick="moveCategoryFnc(20, 0);"><span>성인</span></a>
+								<a class="ageCategoryBtn" name="adult" onclick="moveCategoryFnc(20);"><span>성인</span></a>
 							</div>
 							<div class="categorySelectList">
 							</div>
@@ -57,7 +57,7 @@
 									<button class="adminCourseInsertBtn" onclick="courseInsert();">강의등록</button>
 								</div>
 								<div class="adminCourseDelete">
-									<button class="adminCourseDeleteBtn">강의삭제</button>
+									<button class="adminCourseDeleteBtn" onclick="courseDeleteFnc();">강의삭제</button>
 								</div>
 							</div>
 					</c:if>
@@ -65,42 +65,49 @@
 						<div class="courseListBox">
 							<div class="courseFlexBox">
 								<c:forEach var="courseVo" items="${courseList}">
-										<div class="courseBox">
-											<input class="numHidden" type="hidden" value="${courseVo.courseNo}">
-											<div class="mainImg">
-												<img alt="." src="/imges/${courseVo.courseMainImage}" class="mainImgHover">
+									<c:if test="${courseVo.courseHide eq 0}">
+										<div class="courseTxtFlex">
+											<div class="checkbox--dis">
+												<input type="checkbox" value="${courseVo.courseNo}" class="checkbox">
 											</div>
-											<div class="course-Ing">
-															<c:set var="now" value="<%=new java.util.Date() %>"/>
-																<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
-																<c:if test="${now > courseVo.courseRecStart and now < courseVo.courseRecEnd}">
-																	<div class="courseRecStart">
-																		<span class="courseRecStartLabel">접수중</span>
-																	</div>
-																</c:if>
-																<c:if test="${now < courseVo.courseRecStart}">
-																	<div class="courseRecStartWait">
-																		<span class="courseRecStartWaitLabel">접수대기중</span>
-																	</div>
-																</c:if>
-																<c:if test="${now > courseVo.courseRecEnd and now > courseVo.courseRecStart}">
-																	<div class="courseRecEnd">
-																		<span class="courseRecEndWaitLabel">마감</span>
-																	</div>
-																</c:if>
-														</div>
-											<div>
-												<span>${courseVo.courseName}</span>
-											</div>
-											<div class="">
-												<span class="courseStartTime">${courseVo.courseStartTime}</span> 
-												<span>~</span>
-												<span class="courseEndTime">${courseVo.courseEndTime}</span> 
-											</div>
-											<div>
-												<span class="courseCost">${courseVo.courseCost}</span>
+											<div class="courseBox">
+												<input class="numHidden" type="hidden" value="${courseVo.courseNo}">
+												<div class="mainImg">
+													<img alt="." src="/imges/${courseVo.courseMainImage}" class="mainImgHover">
+												</div>
+												<div class="course-Ing">
+																<c:set var="now" value="<%=new java.util.Date() %>"/>
+																	<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
+																	<c:if test="${now > courseVo.courseRecStart and now < courseVo.courseRecEnd}">
+																		<div class="courseRecStart">
+																			<span class="courseRecStartLabel">접수중</span>
+																		</div>
+																	</c:if>
+																	<c:if test="${now < courseVo.courseRecStart}">
+																		<div class="courseRecStartWait">
+																			<span class="courseRecStartWaitLabel">접수대기중</span>
+																		</div>
+																	</c:if>
+																	<c:if test="${now > courseVo.courseRecEnd and now > courseVo.courseRecStart}">
+																		<div class="courseRecEnd">
+																			<span class="courseRecEndWaitLabel">마감</span>
+																		</div>
+																	</c:if>
+															</div>
+												<div>
+													<span>${courseVo.courseName}</span>
+												</div>
+												<div class="">
+													<span class="courseStartTime">${courseVo.courseStartTime}</span> 
+													<span>~</span>
+													<span class="courseEndTime">${courseVo.courseEndTime}</span> 
+												</div>
+												<div>
+													<span class="courseCost">${courseVo.courseCost}</span>
+												</div>
 											</div>
 										</div>
+									</c:if>
 								</c:forEach>
 							</div>
 						</div>

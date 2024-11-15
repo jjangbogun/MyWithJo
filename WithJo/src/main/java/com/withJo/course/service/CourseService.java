@@ -10,9 +10,11 @@ import com.withJo.course.domain.CourseVo;
 public interface CourseService {
 
 	public List<CourseVo> getCourseList();
-	public List<CourseVo> courseCategorySelect(int courseAgeLimit, int categoryNo);
+	public List<CourseVo> getCourseRecEndList();
+	public List<CourseVo> courseCategorySelect(int courseAgeLimit);
 	public CourseVo egetCourseDetailList(int courseNo);
 	public Map<String, Object> getCourseDay(int courseNo);
 	public List<CourseVo> getCategory(int courseAgeLimit);
 	public void courseInsert(Map<String, Object>map, MultipartHttpServletRequest mhr) throws Exception;
+	public void courseDelete(Map<String, Object>map) throws Exception;
 }

@@ -30,9 +30,9 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public List<CourseVo> courseCategorySelect(int courseAgeLimit,int categoryNo) {
+	public List<CourseVo> courseCategorySelect(int courseAgeLimit) {
 		// TODO Auto-generated method stub
-		List<CourseVo> courseVo = courseDao.courseCategorySelect(courseAgeLimit, categoryNo);
+		List<CourseVo> courseVo = courseDao.courseCategorySelect(courseAgeLimit);
 		
 		return courseVo;
 	}
@@ -79,6 +79,19 @@ public class CourseServiceImpl implements CourseService{
 		map.put("courseNo", map.get("courseNo"));
 		System.out.println("map.get(\"courseNo\")" + map.get("courseNo"));
 		courseDao.courseDayInsert(map);
+	}
+
+	@Override
+	public List<CourseVo> getCourseRecEndList() {
+		// TODO Auto-generated method stub
+		return courseDao.getCourseRecEndList();
+	}
+
+	@Override
+	public void courseDelete(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		
+		courseDao.courseDelete(map);
 	}
 
 

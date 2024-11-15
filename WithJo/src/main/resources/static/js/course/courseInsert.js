@@ -223,13 +223,11 @@ function courseInsertPost(){
 				url: '/course/insert',
 				method: 'POST',
 				data: formData,
-				dataType: 'json',
 				contentType : false,
 				processData : false, 
 				success: function (data) {
-					console.log(data);
 					alert(data);
-					return "course/list";
+					location.href = "/course/list";
 				}
 		});
 		
