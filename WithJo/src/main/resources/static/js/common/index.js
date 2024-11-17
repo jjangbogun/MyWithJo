@@ -13,10 +13,8 @@ var swiper = new Swiper(".mySwiper", {
 	   });
 	   
 let item = $('.item').val();
-console.log(item);
 
 let cost = $('.costCommaFnc').text();
-console.log(cost);
 
 function costCommaFnc(cost){
 	let courseCost = cost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -120,7 +120,7 @@
 													    		</div>
 													    	</div>
 													    	<div>
-												    			<p class="courseRecEnd">마감일 : <fmt:formatDate value="${courseVo.courseRecEnd}" pattern="yyyy-MM-dd"/> </p>
+												    			<p class="costCommaFnc">${courseVo.courseCost}</p>
 												    		</div>
 												    </div>
 										    	</div>

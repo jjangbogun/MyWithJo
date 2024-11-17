@@ -24,6 +24,14 @@
 		$('.ageElement.adult').addClass("lineHover");
 	});
 	
+	let cost = $('.costCommaFnc').text();
+
+	function costCommaFnc(cost){
+		let courseCost = cost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return courseCost;
+	 }
+	 $('.costCommaFnc').text(costCommaFnc(cost)+'원');
+	
 	/* 시간 문자열자름 */
 	let courseStartTime = $('.courseStartTime').text();
 	let subStr1 = courseStartTime.substr(0,5);
@@ -88,9 +96,15 @@
 												</div>
 												<div class="course-Ing">`;
 												if(now > courseRecStart && now < courseRecEnd){
-													htmlStr += `<div class="courseRecStart">
-																	<span class="courseRecStartLabel">접수중</span>
-																</div>`;
+													if(courseCurrentPeopleHidden == courseMaxPeopleHidden){
+														htmlStr += `<div class="courseRecEnd">
+																		<span class="courseRecEndWaitLabel">마감</span>
+																	</div>`;
+													}else{
+														htmlStr += `<div class="courseRecStart">
+																		<span class="courseRecStartLabel">접수중</span>
+																	</div>`;
+														}
 												}else if(now < courseRecStart){
 													htmlStr += `<div class="courseRecStartWait">
 																	<span class="courseRecStartWaitLabel">접수대기중</span>
@@ -101,22 +115,38 @@
 																</div>`;
 												}
 								htmlStr +=	`</div>
-											    <div>
-											      <span>${course.courseName}</span>
+												<div class="courseInfoElement">
+										    		<div class="courseName">
+										    			<p>${course.courseName}</p>
+										    		</div>
+										    		<div class="courseInfoElementTxt">
+										    			<div class="courseTeacher">
+											    			<p>${course.courseTeacher}강사</p>
+											    		</div>
+											    		<div class="courseTimeTxt">
+											    			<div>
+												    			<img alt="." src="/img/common/time.png">
+												    		</div>
+											    			<div>
+												    			<p>${course.courseStartTime}</p>
+												    		</div>
+												    		<div>
+												    			<p>~</p>
+												    		</div>
+												    		<div>
+												    			<p> ${course.courseEndTime}</p>
+												    		</div>
+												    	</div>
+												    	<div>
+											    			<p class="costCommaFnc">${course.courseCost}</p>
+											    		</div>
 											    </div>
-											    <div class="">
-											      <span class="courseStartTime">${course.courseStartTime}</span>
-											      <span>~</span>
-											      <span class="courseEndTime">${course.courseEndTime}</span>
-											    </div>
-											    <div>
-											      <span class="courseCost">${course.courseCost}</span>
-											    </div>
-												<input type="hidden" val="${course.courseAgeLimit}" class="hidden">
-										  	</div>
+									    	</div>
 										`;
 								
 								$('.courseFlexBox').html(htmlStr);
+								
+								$('.costCommaFnc').text(costCommaFnc(cost)+'원');
 						}	
 					});
 					
