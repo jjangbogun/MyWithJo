@@ -33,6 +33,14 @@
 	$('.courseStartTime').text(subStr1);
 	$('.courseEndTime').text(subStr2);
 	
+	let courseCurrentPeopleHidden = $('.courseCurrentPeopleHidden').val();
+	let courseMaxPeopleHidden = $('.courseMaxPeopleHidden').val();
+	
+	if(courseCurrentPeopleHidden == courseMaxPeopleHidden){
+	$('.course-Ing').html(`<div class="courseRecEnd">
+								<span class="courseRecEndWaitLabel">마감</span>
+							</div>`);
+	 }
 	/*let courseCost = $('.courseCost').text();
 	courseCost = AddComma(courseCost);
 	

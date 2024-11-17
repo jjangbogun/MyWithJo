@@ -7,7 +7,10 @@ var $rightBoxInfo = $(".rightBoxInfo");
 	 let courseMaxPeopleHidden = $('.courseMaxPeopleHidden').val();
 	 
 	 if(courseCurrentPeopleHidden == courseMaxPeopleHidden){
-		$('.courseResBtnFnc').html(`<a class="courseResBtn"><span>수강인원초과</span></a>`)
+		$('.courseResBtnFnc').html(`<a class="courseResBtn"><span>수강인원초과</span></a>`);
+		$('.course-Ing').html(`<div class="courseRecEnd">
+										<span class="courseRecEndWaitLabel">마감</span>
+									</div>`);
 	 }
      function updateDimensions() {
          innerHeight = $inner.height();
@@ -18,6 +21,10 @@ var $rightBoxInfo = $(".rightBoxInfo");
 	 function costCommaFnc(cost){
 		let courseCost = cost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		return courseCost;
+	 }
+	 
+	 function courseListReturn(){
+		location.href = "/course/list";
 	 }
 	 
 	 let courseCostTxt = $('.courseCostTxt').text();

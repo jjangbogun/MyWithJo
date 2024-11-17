@@ -165,3 +165,45 @@
 	width: 23px;
 	height: 23px;
 }
+.courseInfoElement{
+	display: flex;
+	flex-direction: column;
+}
+.costBox{
+	height: 74px;
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    align-items: center;
+}
+.costBox p{
+	font-family: "noto-sans", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+.courseTimeTxt{
+	display: flex;
+}
+.shoppingCart img{
+	width: 40px;
+	height: 40px;
+}
+.courseInfoElementTxt{
+	margin-top: 15px;
+}
+.courseInfoElementTxt div{
+	margin-top: 4px;
+}
+
+.courseTimeTxt img{
+	width: 20px;
+	height: 20px;
+}
+.courseName p{
+	margin-top: 10px;
+	font-family: "noto-sans", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 20px;
+}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,6 +76,8 @@
 												<div class="mainImg">
 													<img alt="." src="/imges/${courseVo.courseMainImage}" class="mainImgHover">
 												</div>
+												<input type="hidden" class="courseCurrentPeopleHidden" value="${courseVo.courseCurrentPeople}">
+												<input type="hidden" class="courseMaxPeopleHidden" value="${courseVo.courseMaxPeople}">
 												<div class="course-Ing">
 																<c:set var="now" value="<%=new java.util.Date() %>"/>
 																	<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
@@ -94,17 +97,33 @@
 																		</div>
 																	</c:if>
 															</div>
-												<div>
-													<span>${courseVo.courseName}</span>
-												</div>
-												<div class="">
-													<span class="courseStartTime">${courseVo.courseStartTime}</span> 
-													<span>~</span>
-													<span class="courseEndTime">${courseVo.courseEndTime}</span> 
-												</div>
-												<div>
-													<span class="courseCost">${courseVo.courseCost}</span>
-												</div>
+													<div class="courseInfoElement">
+											    		<div class="courseName">
+											    			<p>${courseVo.courseName}</p>
+											    		</div>
+											    		<div class="courseInfoElementTxt">
+											    			<div class="courseTeacher">
+												    			<p>${courseVo.courseTeacher}강사</p>
+												    		</div>
+												    		<div class="courseTimeTxt">
+												    			<div>
+													    			<img alt="." src="/img/common/time.png">
+													    		</div>
+												    			<div>
+													    			<p>${courseVo.courseStartTime}</p>
+													    		</div>
+													    		<div>
+													    			<p>~</p>
+													    		</div>
+													    		<div>
+													    			<p> ${courseVo.courseEndTime}</p>
+													    		</div>
+													    	</div>
+													    	<div>
+												    			<p class="courseRecEnd">마감일 : <fmt:formatDate value="${courseVo.courseRecEnd}" pattern="yyyy-MM-dd"/> </p>
+												    		</div>
+												    </div>
+										    	</div>
 											</div>
 										</div>
 									</c:if>

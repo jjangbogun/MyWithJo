@@ -225,6 +225,10 @@
     border-radius: 8px;
 	margin-left: 20px;
 }
+.admin button:hover{
+	border: 1px solid #3a76e1;
+	background: #3a76e1;
+}
 .courseTeacherInfo{
 	margin-top: 20px;
 }

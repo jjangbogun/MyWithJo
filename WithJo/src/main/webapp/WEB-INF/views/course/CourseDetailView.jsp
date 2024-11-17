@@ -222,7 +222,7 @@
 							<button onclick="courseUpdateFnc(${courseVo.courseNo});">강의수정</button>
 						</div>
 						<div>
-							<button>돌아가기</button>
+							<button onclick="courseListReturn();">돌아가기</button>
 						</div>
 					</div>
 				</c:if>
