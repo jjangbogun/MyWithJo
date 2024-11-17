@@ -94,5 +94,30 @@ public class CourseServiceImpl implements CourseService{
 		courseDao.courseDelete(map);
 	}
 
+	@Override
+	public void courseUpdate(Map<String, Object> map, MultipartHttpServletRequest mhr) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("mhr" + mhr);
+		/*
+		 * Map<String, Object> fileList = fileUtils.insertFileInfo(mhr);
+		 * if(fileList.get("storedFileName") != null) { map.put("courseMainImage",
+		 * fileList.get("storedFileName")); }
+		 */
+		 if (!mhr.getFileMap().isEmpty()) {
+		        Map<String, Object> fileList = fileUtils.insertFileInfo(mhr);
+		        if (fileList != null && fileList.get("storedFileName") != null) {
+		            map.put("courseMainImage", fileList.get("storedFileName"));
+		        }
+		    } else {
+		        // 파일이 업로드되지 않았다면 courseMainImage를 null로 설정
+		        // 이렇게 하면 MyBatis 쿼리에서 해당 필드를 업데이트하지 않습니다.
+		        map.put("courseMainImage", null);
+		    }
+		
+		courseDao.courseUpdate(map);
+		
+		courseDao.courseDayUpdate(map);
+	}
+
 
 }

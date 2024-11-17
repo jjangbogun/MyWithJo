@@ -20,9 +20,12 @@
 <link rel="stylesheet" href="/css/common/common.css">
 <link rel="stylesheet" href="/css/course/courseDetail.css">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/plugin/sumoselect/sumoselect.min.css"/>
 <!--  페이지 js -->
 <script defer src="/js/common/common.js"></script>
 <script defer src="/js/course/courseDetail.js"></script>
+<script defer src="/js/course/courseInsert.js"></script>
+<script defer src="/plugin/sumoselect/jquery.sumoselect.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/Header.jsp"/>
@@ -156,7 +159,9 @@
 											<c:set var="now" value="<%=new java.util.Date() %>"/>
 												<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
 											<c:if test="${now > courseVo.courseRecStart and now < courseVo.courseRecEnd}">
-												<div>
+											<input type="hidden" class="courseCurrentPeopleHidden" value="${courseVo.courseCurrentPeople}">
+											<input type="hidden" class="courseMaxPeopleHidden" value="${courseVo.courseMaxPeople}">
+												<div class="courseResBtnFnc">
 													<a class="courseResBtn"  href="javascript:courseRes(${courseVo.courseNo},${sessionScope.memberVo.memberNo});"><span>수강신청하기</span></a>
 												</div>
 											</c:if>
@@ -214,7 +219,7 @@
 				<c:if test="${sessionScope.memberVo.authority eq 1}">
 					<div class="admin">
 						<div>
-							<button>강의수정</button>
+							<button onclick="courseUpdateFnc(${courseVo.courseNo});">강의수정</button>
 						</div>
 						<div>
 							<button>돌아가기</button>

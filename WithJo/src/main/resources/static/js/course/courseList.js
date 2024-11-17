@@ -58,12 +58,11 @@
 
 			   // categoryList 배열에 접근
 			   var categoryList = data.categoryList;
-			   console.log("courseList"+ JSON.stringify(categoryList));
-			   console.log("categoryList"+ categoryList);
 					
 				let htmlStr = '';
-				let categoryStr = '';
-					if(courseList.length == 0 && courseList.courseHide === 1){
+				
+				let visibleCourses = courseList.filter(course => course.courseHide === 0);
+					if(visibleCourses.length == 0){
 						htmlStr += '<div style="min-height: 300px;"><p>등록된강의가없습니다</p></div>';
 						$('.courseFlexBox').html(htmlStr);
 					}
@@ -113,7 +112,7 @@
 						}	
 					});
 					
-					if(categoryList.length === 0 || categoryList.courseHide === 0){
+					/*if(categoryList.length === 0){
 						console.log("categoryList:" + categoryList);
 						$('.categorySelectList').html('');
 						$('.ageCategory').addClass('ageCategoryBorder');
@@ -157,7 +156,7 @@
 											</div>`;
 							$('.categorySelectList').html(categoryAll+categoryStr);
 						}
-					})
+					})*/
 					
 					$('.courseBox').on('click', function() {
 					    let courseNo = $(this).find('.numHidden').val();

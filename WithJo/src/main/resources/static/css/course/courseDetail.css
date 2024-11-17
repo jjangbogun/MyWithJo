@@ -24,6 +24,7 @@
 }
 .courseInfoText{
 	margin-top: 50px;
+	
 }
 .rightBoxFloat{
 	position: relative;
@@ -237,7 +238,6 @@
 }
 .courseInfo--box{
 	margin-top: 20px;
-	width: 50%;
 }
 .dot_txt_p{
 	font-family: "NotoSans_Bold", sans-serif;
@@ -285,4 +285,8 @@
 	display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.courseMainImage{
+	width: 120px;
+    height: 30px;
 }

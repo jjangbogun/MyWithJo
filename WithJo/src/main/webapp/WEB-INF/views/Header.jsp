@@ -18,9 +18,8 @@
 						<a class="categoryBtn courseNavBtn" href="/course/list">수강신청</a>
 						<div class="hiddenDiv hiddenDiv1">
 							<ul class="subMenu" >
-								<li class="courseSubMenuLi1"><a href="">수강검색</a></li>
+								<li class="courseSubMenuLi1"><a href="/course/list">수강목록</a></li>
 								<li class="courseSubMenuLi2"><a href="">수강신청·변경·취소안내</a></li>
-								<li class="courseSubMenuLi3"><a href="">submenu1</a></li>
 							</ul>	
 							<div class="ImgDiv">
 								<p class="img"><img class="" alt="" src="/img/common/basketball.jpg"/></p>
@@ -33,8 +32,7 @@
 						<a class="categoryBtn evnetNavBtn" href="/event/list">이벤트</a>
 						<div class="hiddenDiv hiddenDiv2">
 							<ul class="subMenu" >
-								<li class="eventSubMenuLi1"><a href="/lotto/detail">주간 포인트 로또</a></li>
-								<li class="eventSubMenuLi2"><a href="/drawing/list">게시판 행운의 당첨자!</a></li>
+								<li class="eventSubMenuLi1"><a href="/event/list">이벤트목록</a></li>
 							</ul>
 							<div class="ImgDiv">
 								<p class="img"><img class="" alt="" src="/img/event/lottoEvent.jpg"/></p>
@@ -57,21 +55,6 @@
 							</div>
 						</div>
 					</li>
-<!-- 					<li class="navElement4">
-						<a class="categoryBtn aboutNavBtn" href="/course/list">이용안내</a>
-						<div class="hiddenDiv hiddenDiv4">
-							<ul class="subMenu">
-								<li><a href="">submenu1</a></li>
-								<li><a href="">submenu1</a></li>
-								<li><a href="">submenu1</a></li>
-							</ul>
-							<div class="ImgDiv">
-								<p class="img On"><img/></p>
-								<p class="img On"><img/></p>
-								<p class="img On"><img/></p>
-							</div>
-						</div>
-					</li> -->
 				</ul>
 			</div>
 	</nav>

@@ -16,5 +16,6 @@ public interface CourseService {
 	public Map<String, Object> getCourseDay(int courseNo);
 	public List<CourseVo> getCategory(int courseAgeLimit);
 	public void courseInsert(Map<String, Object>map, MultipartHttpServletRequest mhr) throws Exception;
+	public void courseUpdate(Map<String, Object>map, MultipartHttpServletRequest mhr) throws Exception;
 	public void courseDelete(Map<String, Object>map) throws Exception;
 }

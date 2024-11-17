@@ -197,20 +197,14 @@ body.scrollUp #header {
 .mainPageBox{
 	display: flex;
 	justify-content: center;
-	border: 1px solid;
 }
 .mainPageBoxFlex{
 	width: calc(100% - 200px);
-	border: 1px solid;
 	text-align: center;
-}
-.mainNotice{
-	border: 1px solid;
 }
 .mainNotice img{
 	width: 1650px;
 	border-radius: 14px;
-	
 }
 .swiperBox{
 	height: 600px;
@@ -275,7 +269,6 @@ body.scrollUp #header {
 }
 
 .noticeBox{
-	border: 1px solid;
 	height: 500px;
 }
 .noticeBox-flex{
@@ -311,7 +304,7 @@ body.scrollUp #header {
 .noticeBoxElementTxt{
 	width: 370px;
 	height: 300px;
-	border: 1px solid;
+	border: 1px solid #00000052;
 	border-radius: 18px;
 }
 .noticeBoxElement_txt_box{

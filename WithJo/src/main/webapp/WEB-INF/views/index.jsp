@@ -48,27 +48,48 @@
 							    	<c:set var="now" value="<%=new java.util.Date() %>"/>
 									    <div class="swiper-slide">
 									    <input type="hidden" value="${courseRecList.courseRecEnd}">
-									    	<div>
-									    		<img src="/imges/${courseRecList.courseMainImage}" alt=""/>
+									    <input type="hidden" value="${courseRecList.courseNo}" class="courseNo">
+									    	<div class="mainImg">
+									    		<img class="mainImgHover" src="/imges/${courseRecList.courseMainImage}" alt=""/>
 									    	</div>
-									    	<div class="courseRecStart">
-												<span class="courseRecStartLabel">접수중</span>
-											</div>
-									    	<div>
-									    		<div>
-									    			<p>${courseRecList.courseName}</p>
-									    		</div>
-									    		<div>
-									    			<p>${courseRecList.courseTeacher}강사</p>
-									    		</div>
-									    		<div>
-									    			<p>${courseRecList.courseStartTime}</p>
-									    		</div>
-									    		<div>
-									    			<p>${courseRecList.courseEndTime}</p>
-									    		</div>
-									    		<div>
-									    			<p class="courseRecEnd"><fmt:formatDate value="${courseRecList.courseRecEnd}" pattern="yyyy-MM-dd"/> </p>
+									    	<div class="indexCourseInfoBox">
+										    	<div class="courseRecStart">
+													<span class="courseRecStartLabel">접수중</span>
+												</div>
+										    	<div class="courseInfoElement">
+										    		<div class="courseName">
+										    			<p>${courseRecList.courseName}</p>
+										    		</div>
+										    		<div class="courseInfoElementTxt">
+										    			<div class="courseTeacher">
+											    			<p>${courseRecList.courseTeacher}강사</p>
+											    		</div>
+											    		<div class="courseTimeTxt">
+											    			<div>
+												    			<img alt="." src="/img/common/time.png">
+												    		</div>
+											    			<div>
+												    			<p>${courseRecList.courseStartTime}</p>
+												    		</div>
+												    		<div>
+												    			<p>~</p>
+												    		</div>
+												    		<div>
+												    			<p> ${courseRecList.courseEndTime}</p>
+												    		</div>
+												    	</div>
+												    	<div>
+											    			<p class="courseRecEnd">마감일 : <fmt:formatDate value="${courseRecList.courseRecEnd}" pattern="yyyy-MM-dd"/> </p>
+											    		</div>
+												    </div>
+										    	</div>
+										    	<div class="costBox">
+									    			<div>
+										    			<p class="costCommaFnc">${courseRecList.courseCost}</p>
+										    		</div>
+										    		<div class="shoppingCart">
+										    			<a><img alt="." src="/img/common/shoppingCart.png"></a>
+										    		</div>
 									    		</div>
 									    	</div>
 									    </div>
@@ -83,11 +104,12 @@
 						<div class="noticeBox-flex">
 								<c:forEach var="noticeList" items="${noticeList}">
 								<div class="noticeBoxElementTxt">
+								<input type="hidden" value="${noticeList.noticeNo}" class="noticeNo">
 									<div class="noticeBoxElement_txt_box">
 										<div class="noticeBoxElement_txt title">
 											<p>[공지사항] ${noticeList.noticeTitle}</p>
 										</div>
-										<div class="noticeBoxElement_txt content">
+										<div class="noticeBoxElement_txt content txt_line">
 											<p>${noticeList.noticeContent}</p>
 										</div>
 									</div>

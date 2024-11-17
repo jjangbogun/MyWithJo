@@ -17,5 +17,7 @@ public interface CourseDao {
 	public List<CourseVo> getCategory(int courseAgeLimit);
 	public void courseInsert(Map<String, Object>map);
 	public void courseDelete(Map<String, Object>map);
+	public void courseUpdate(Map<String, Object>map);
 	public void courseDayInsert(Map<String, Object>map);
+	public void courseDayUpdate(Map<String, Object>map);
 }

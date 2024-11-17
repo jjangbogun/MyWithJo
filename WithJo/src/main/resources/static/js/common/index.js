@@ -14,3 +14,23 @@ var swiper = new Swiper(".mySwiper", {
 	   
 let item = $('.item').val();
 console.log(item);
+
+let cost = $('.costCommaFnc').text();
+console.log(cost);
+
+function costCommaFnc(cost){
+	let courseCost = cost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return courseCost;
+ }
+ 
+ $('.costCommaFnc').text(costCommaFnc(cost)+'원');
+ 
+$('.swiper-slide').on("click", () => {
+	let courseNo = $('.courseNo').val();
+	location.href = "/course/detail?courseNo=" + courseNo;
+});
+
+$('.noticeBoxElementTxt').on("click", () => {
+	let noticeNo = $('.noticeNo').val();
+	location.href = "/notice/detail?noticeNo=" + noticeNo;
+});

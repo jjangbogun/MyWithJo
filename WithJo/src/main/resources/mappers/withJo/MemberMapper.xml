@@ -199,6 +199,11 @@
 		WHERE M.MEMBER_NO = #{memberNo}
 	</select>
 	
+	<insert id="memberCartInsert" parameterType="int">
+		INSERT INTO MEMBER_E_MONEY (MEMBER_SHOPPING_CART_NO, MEMBER_NO, COURSE_NO) 
+	    VALUES (MEMBER_SHOPPING_CART_NO_SEQ.NEXTVAL, #{memberNo}, #{courseNo})
+	</insert>
+	
 	<delete id="membershoppingCartCancel" parameterType="map">
 		DELETE FROM MEMBER_SHOPPING_CART
 		WHERE MEMBER_NO = #{memberNo}

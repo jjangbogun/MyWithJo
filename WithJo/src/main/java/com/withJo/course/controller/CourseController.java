@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.withJo.course.domain.CourseVo;
 import com.withJo.course.service.CourseService;
@@ -147,17 +149,52 @@ public class CourseController {
         Map<String, Object> courseData = mapper.readValue(formData, Map.class);
 		courseService.courseInsert(courseData, mhr);
 		
-		return ResponseEntity.ok("강의 등록 성공");
+		return ResponseEntity.ok("강의가 등록되었습니다.");
 	}
 	
 	@PostMapping("/delete")
 	public ResponseEntity<String> courseDelete(@RequestBody Map<String, Object> jsonMap) throws Exception{
 		log.info(logTitleMsg);
 		log.info("@@PostMapping courseDelete",jsonMap);
+		System.out.println("jsonMap" + jsonMap);
 		
-		courseService.courseDelete(jsonMap);
+		if(jsonMap.get(getCourseList()) == null) {
+			return ResponseEntity.ok("삭제할 강의를 선택해주세요.");
+		}else {
+			courseService.courseDelete(jsonMap);
+			return ResponseEntity.ok("강의가 삭제되었습니다.");
+		}
 		
-		return ResponseEntity.ok("강의가 삭제되었습니다.");
+	}
+	
+	@GetMapping("/update/{courseNo}")
+	public ResponseEntity<Map<String, Object>> getcourseUpdate(@PathVariable int courseNo){
+		log.info(logTitleMsg);
+		log.info("@@GetMapping getcourseUpdate",courseNo);
+		
+		
+		CourseVo courseVo = courseService.egetCourseDetailList(courseNo);
+		Map<String, Object> courseDay = courseService.getCourseDay(courseNo);
+		
+		courseDay.put("courseVo", courseVo);
+		System.out.println("courseDay??" + courseDay);
+		return ResponseEntity.ok(courseDay);
+	}
+	
+	@PostMapping("/update/{courseNo}")
+	public ResponseEntity<String> courseUpdate(@RequestParam("params") String formData,
+														MultipartHttpServletRequest mhr) throws Exception{
+		log.info(logTitleMsg);
+		log.info("@GetMapping courseUpdate",formData, mhr);
+		
+		System.out.println("formData: " + formData);
+		System.out.println("file: " + mhr);
+		System.out.println("file: " + mhr.getFileNames());
+		ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> courseData = mapper.readValue(formData, Map.class);
+		courseService.courseUpdate(courseData, mhr);
+		
+		return ResponseEntity.ok("강의가 수정되었습니다.");
 	}
 
 

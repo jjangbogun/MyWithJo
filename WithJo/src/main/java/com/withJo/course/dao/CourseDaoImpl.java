@@ -75,7 +75,6 @@ public class CourseDaoImpl implements CourseDao{
 		 */
 		
 		 List<Integer> dayOfWeekList = (List<Integer>) map.get("courseDayOfTheWeek");
-		 System.out.println("dayOfWeekList: " + dayOfWeekList);
 		 
 		 for(int i = 0; i < dayOfWeekList.size(); i++) {
 			 map.put("courseDayOfTheWeek", dayOfWeekList.get(i));
@@ -107,6 +106,39 @@ public class CourseDaoImpl implements CourseDao{
 		for(int i = 0; i < courseNumbers.size(); i++) {
 				map.put("courseNo", courseNumbers.get(i));
 			 sqlSession.update(namespace + "courseDelete",map);
+		 }
+		
+	}
+
+	@Override
+	public void courseUpdate(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "courseUpdate", map);
+	}
+
+	@Override
+	public void courseDayUpdate(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		List<Integer> dayOfWeekList = (List<Integer>) map.get("courseDayOfTheWeek");
+		List<Integer> dayNoList = (List<Integer>) map.get("courseListDayNo");
+		System.out.println("dayOfWeekList"+dayOfWeekList);
+		System.out.println("dayNoList"+dayNoList);
+		 int maxSize = Math.max(dayOfWeekList.size(), dayNoList.size());
+		    
+		    // dayOfWeekList 크기 맞추기
+		    while (dayOfWeekList.size() < maxSize) {
+		        dayOfWeekList.add(0); // 0 추가
+		    }
+		    
+		    // dayNoList 크기 맞추기
+		    while (dayNoList.size() < maxSize) {
+		        dayNoList.add(0); // 0 추가
+		    }
+		for(int i = 0; i < maxSize; i++) {
+			System.out.println("dayOfWeekList.get(i)" + dayOfWeekList.get(i));
+			 map.put("courseDayOfTheWeek", dayOfWeekList.get(i));
+			 map.put("courseListDayNo", dayNoList.get(i));
+			 sqlSession.update(namespace + "courseDayUpdate",map);
 		 }
 		
 	}

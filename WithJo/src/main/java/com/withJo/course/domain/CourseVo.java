@@ -30,6 +30,7 @@ public class CourseVo{
 	private String courseMainImage;
 	private int courseDayOfTheWeek;	
 	private int courseHide;	
+	private int courseListDayNo;	
 	
 	
 	

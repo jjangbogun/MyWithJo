@@ -22,6 +22,7 @@
 		<result column="COURSE_MAIN_IMAGE" property="courseMainImage"/>
 		<result column="COURSE_DAY_OF_THE_WEEK" property="courseDayOfTheWeek"/>
 		<result column="COURSE_HIDE" property="courseHide"/>
+		<result column="COURSE_LIST_DAY_NO" property="courseListDayNo"/>
 	</resultMap>
 	
 	<sql id="age">
@@ -58,9 +59,6 @@
 			<if test="courseAgeLimit != null and courseAgeLimit != 0">
 				AND CL.COURSE_AGE_LIMIT = #{courseAgeLimit}
 			</if>
-			<if test="categoryNo != null and categoryNo != 0">
-				AND C.CATEGORY_NO = #{categoryNo}
-			</if>
 		</where>
 		ORDER BY COURSE_NO DESC
 	</select>
@@ -84,7 +82,7 @@
 	</select>
 	
 	<select id="getCourseDay" parameterType="int" resultType="map">
-		SELECT COURSE_NO AS courseNo,COURSE_DAY_OF_THE_WEEK AS "courseDayOfTheWeek"
+		SELECT COURSE_LIST_DAY_NO AS "courseListDayNo", COURSE_NO AS courseNo,COURSE_DAY_OF_THE_WEEK AS "courseDayOfTheWeek"
 		FROM COURSE_LIST_DAY
 		WHERE COURSE_NO = #{courseNo}
 	</select>
@@ -123,10 +121,45 @@
 		VALUES(COURSE_LIST_DAY_NO_SEQ.NEXTVAL, #{courseNo}, #{courseDayOfTheWeek})
 	</insert>
 	
-	<delete id="courseDelete" parameterType="map">
+	<update id="courseUpdate" parameterType="map">
+		UPDATE COURSE_LIST
+		SET COURSE_NAME = #{courseName}
+			,CATEGORY_NO = #{categoryNo}
+		    ,COURSE_TEACHER = #{courseTeacher}
+		    ,COURSE_COST = #{courseCost}
+		    ,COURSE_MAX_PEOPLE = #{courseMaxPeople}
+		    ,COURSE_AGE_LIMIT = #{courseAgeLimit}
+		    ,COURSE_START_DATE = TO_DATE(#{courseStartDate}, 'YYYY-MM-DD')
+		    ,COURSE_END_DATE = TO_DATE(#{courseEndDate}, 'YYYY-MM-DD')
+		    ,COURSE_START_TIME = #{courseStartTime}
+		    ,COURSE_END_TIME = #{courseEndTime}
+		    ,COURSE_REC_START = TO_DATE(#{courseRecStart}, 'YYYY-MM-DD')
+		    ,COURSE_REC_END = TO_DATE(#{courseRecEnd}, 'YYYY-MM-DD')
+		    ,COURSE_INFO = #{courseInfo}
+		     <if test="courseMainImage != null and courseMainImage != ''">
+            ,COURSE_MAIN_IMAGE = #{courseMainImage}
+        	</if>
+		WHERE COURSE_NO = #{courseNo}
+	</update>
+	
+	<update id="courseDayUpdate" parameterType="map" >
+		MERGE 
+		 INTO COURSE_LIST_DAY CLD
+		USING dual
+		   ON (CLD.COURSE_LIST_DAY_NO = #{courseListDayNo})
+		 WHEN MATCHED THEN
+		      UPDATE
+		         SET CLD.COURSE_DAY_OF_THE_WEEK = #{courseDayOfTheWeek}
+		        DELETE WHERE #{courseDayOfTheWeek} = 0
+		 WHEN NOT MATCHED THEN
+		    INSERT(COURSE_LIST_DAY_NO, COURSE_NO, COURSE_DAY_OF_THE_WEEK)
+			VALUES(COURSE_LIST_DAY_NO_SEQ.NEXTVAL, #{courseNo}, #{courseDayOfTheWeek})
+	</update>
+	
+	<update id="courseDelete" parameterType="map">
 		UPDATE COURSE_LIST
 		SET COURSE_HIDE = 1
 		WHERE COURSE_NO = #{courseNo} 
-	</delete>
+	</update>
 	
 </mapper>

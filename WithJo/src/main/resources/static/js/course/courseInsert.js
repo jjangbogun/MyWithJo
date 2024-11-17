@@ -1,7 +1,8 @@
 $(document).ready(function () {
 	$('.sumoselect_multiple').SumoSelect ({
 	 placeholder :  '요일선택' ,
-	 csvDispCount :  5
+	 csvDispCount :  5,
+	 showTitle: true
 	});	
 	
 });
@@ -9,12 +10,16 @@ $(document).ready(function () {
 //첨부파일 이미지 미리보기
 function readURL(input) {
 	$('#preview1').addClass('courseImg');
+	$('#preview1').addClass('courseImgAfter');
 	$('#preview2').addClass('courseImg');
+	$('#preview2').addClass('courseImgAfter');
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function(e) {
+		$('#preview1').show();
       document.getElementById('preview1').src = e.target.result;
       document.getElementById('preview2').src = e.target.result;
+	  $('.courseImgBefore').hide();
     };
     reader.readAsDataURL(input.files[0]);
   } else {
@@ -38,9 +43,19 @@ $('.timeOption').html(htmlStr);
 //강의 요일 배열 변환
 function getSelectedOptions() {
         var selectedOptions = [];
-        $('.sumoselect_multiple option:selected').each(function() {
-            selectedOptions.push($(this).val());
-        });
+		let placeholder = [];
+		placeholder = $('.placeholder').text().split(',');
+		console.log("placeholder" + placeholder);
+		if($('.sumoselect_multiple option:selected').length == 0){
+			$('.placeholder').text().split(',').forEach(function(item) {
+			       selectedOptions.push(item.trim()); // trim()을 사용하여 앞뒤 공백 제거
+			   });
+		}else{
+	        $('.sumoselect_multiple option:selected').each(function() {
+	            selectedOptions.push($(this).val());
+				console.log(selectedOptions);
+	        });
+		}
         return selectedOptions;
     }
 	
@@ -65,43 +80,32 @@ function courseDateCheck(checkDate){
 	const courseEndDateChangeStripped = stripTime(courseEndDateChange);
 	const courseRecStartDateChangeStripped = stripTime(courseRecStartDateChange);
 	const courseRecEndDateChangeStripped = stripTime(courseRecEndDateChange);
-	
-	switch(checkDate.name){
-		
-		case "courseStartDate":
-			if(courseStartDateStripped < sysdateStripped){
-				alert('강의시작 날짜가 현재날짜보다 이전입니다.');
-				$('.courseStartDate').focus();
-			}else if(courseStartDateStripped > courseEndDateChangeStripped){
-				alert('강의종료 날짜가 강의 시작날짜보다 이전입니다.');
-				$('.courseStartDate').focus();
-			}
-			break;
-			
-		case "courseEndDate":
-			if(courseEndDateChangeStripped < sysdateStripped){
-				alert('강의종료 날짜가 현재날짜보다 이전입니다.');
-				$('.courseEndDate').focus();
-			}
-			break;
-			
-		case "courseRecStart":
-			if(courseRecStartDateChangeStripped < sysdateStripped){
-				alert('접수시작 날짜가 현재날짜보다 이전입니다.');
-				$('.courseRecStart').focus();
-			}else if(courseRecStartDateChangeStripped > courseRecEndDateChangeStripped){
-				alert('접수종료 날짜가 접수시작 날짜보다 이전입니다.');
-				$('.courseRecStart').focus();
-			}
-			break;
-			
-		case "courseRecEnd":
-			if(courseRecEndDateChangeStripped < sysdateStripped){
-				alert('접수종료 날짜가 현재날짜보다 이전입니다.');
-				$('.courseRecEnd').focus();
-			}
-			break;
+	if(courseStartDateStripped < sysdateStripped){
+			alert('강의시작 날짜가 현재날짜보다 이전입니다.');
+			$('.courseStartDate').val('');
+			$('.courseStartDate').focus();
+		}else if(courseStartDateStripped > courseEndDateChangeStripped){
+			alert('강의종료 날짜가 강의 시작날짜보다 이전입니다.');
+			$('.courseEndDate').val('');
+			$('.courseEndDate').focus();
+		}else if(courseEndDateChangeStripped < sysdateStripped){
+			alert('강의종료 날짜가 현재날짜보다 이전입니다.');
+			$('.courseEndDate').val('');
+			$('.courseEndDate').focus();
+		}else if(courseRecStartDateChangeStripped < sysdateStripped){
+			alert('접수시작 날짜가 현재날짜보다 이전입니다.');
+			$('.courseRecStart').val('');
+			$('.courseRecStart').focus();
+		}else if(courseRecStartDateChangeStripped > courseRecEndDateChangeStripped){
+			alert('접수종료 날짜가 접수시작 날짜보다 이전입니다.');
+			$('.courseRecEnd').val('');
+			$('.courseRecEnd').focus();
+		}else if(courseRecEndDateChangeStripped < sysdateStripped){
+			alert('접수종료 날짜가 현재날짜보다 이전입니다.');
+			$('.courseRecEnd').val('');
+			$('.courseRecEnd').focus();
 		}
+	
 };
 
 //강의 강사명 유효성검사

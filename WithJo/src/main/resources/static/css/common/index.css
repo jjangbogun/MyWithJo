@@ -8,8 +8,106 @@
     border-radius: 12px;
 }
 .noticeBoxElement_txt.content{
-	margin-top: 20px;
+	margin-top: 30px;
 }
 .noticeBoxElement_txt.content p{
 	font-size: 20px;
+}
+.indexCourseInfoBox{
+	text-align: left;
+    height: 145px;
+    padding: 30px 0 0 40px;
+}
+.courseName p{
+	margin-top: 20px;
+	font-family: "noto-sans", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 30px;
+}
+.courseInfoElement{
+	display: flex;
+	flex-direction: column;
+}
+.costBox{
+	height: 74px;
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    align-items: center;
+}
+.costBox p{
+	font-family: "noto-sans", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+.courseTimeTxt{
+	display: flex;
+}
+.shoppingCart img{
+	width: 40px;
+	height: 40px;
+}
+.courseInfoElementTxt{
+	margin-top: 15px;
+}
+.courseInfoElementTxt div{
+	margin-top: 4px;
+}
+
+.courseTimeTxt img{
+	width: 20px;
+	height: 20px;
+}
+.mainImg{
+	overflow: hidden;
+  	position: relative;
+  	border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.mainImgHover{
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.mainImgHover:hover{
+	transform: scale(1.1);
+	border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.txt_line{
+	 width: 300px;
+     height:50px;
+     padding:0 5px;
+     overflow:hidden;
+     text-overflow:ellipsis;
+     white-space:nowrap;
+ }
+.txt_line p{
+overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   font-size: 16px;
+   line-height: 26px;
+   color: rgba(0, 0, 0, .6);
+   text-overflow: ellipsis;
+   white-space: normal;
+}
+.noticeBoxElement_txt.title{
+	height: 50px;
+}
+.swiper-slide{
+	cursor: pointer;
+}
+.noticeBoxElementTxt{
+	cursor: pointer;
+}
+.noticeBoxElementTxt:hover{
+	border: 1px solid black;
 }
