@@ -85,7 +85,7 @@
 										    	</div>
 										    	<div class="costBox">
 									    			<div>
-										    			<p class="costCommaFnc">${courseRecList.courseCost}</p>
+										    			<p class="costDetail">${courseRecList.courseCost}원</p>
 										    		</div>
 										    		<div class="shoppingCart">
 										    			<a><img alt="." src="/img/common/shoppingCart.png"></a>
