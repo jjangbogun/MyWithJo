@@ -57,8 +57,10 @@ Java / Spring / json / Eclipse
 ## ✒️ 프로젝트 설정
 필요도구: SQL Developer (또는 다른 Oracle 데이터베이스 관리 도구)
 <br />
-DB사용자 이름: wing
+DB사용자 이름: withjo
 <br />
 DB비밀번호: 1234
 <br />
-
+resources > doc > DB_SQL > allDB > withjo_db_fine.sql 구축하기
+<br />
+resources > doc > dataImgs 의 cUpoad, upload 폴더 c드라이브에 복사하기
