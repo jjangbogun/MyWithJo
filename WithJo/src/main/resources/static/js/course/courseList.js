@@ -138,7 +138,7 @@
 												    		</div>
 												    	</div>
 												    	<div>
-											    			<p class="costCommaFnc">${course.courseCost}</p>
+											    			<p class="costDetail">${course.courseCost}원</p>
 											    		</div>
 											    </div>
 									    	</div>
