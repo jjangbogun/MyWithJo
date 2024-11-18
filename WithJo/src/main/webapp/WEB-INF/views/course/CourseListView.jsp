@@ -36,7 +36,7 @@
 			<div class="courseListInfo">
 				<div class="courseListInfo--flex">
 			
-					<div class="ageCategory ageCategoryBorder">
+					<!-- <div class="ageCategory ageCategoryBorder">
 							<div class="ageElement All">
 								<a class="ageCategoryBtn" name="all" onclick="moveCategoryFnc(0);"><span>전체</span></a>
 							</div>
@@ -51,7 +51,7 @@
 							</div>
 							<div class="categorySelectList">
 							</div>
-					</div><!-- ageCategory -->
+					</div>ageCategory -->
 					<c:if test="${sessionScope.memberVo.authority eq 1}">
 							<div class="admin">
 								<div class="adminCourseInsert">
