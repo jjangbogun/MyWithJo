@@ -78,6 +78,7 @@
 												</div>
 												<input type="hidden" class="courseCurrentPeopleHidden" value="${courseVo.courseCurrentPeople}">
 												<input type="hidden" class="courseMaxPeopleHidden" value="${courseVo.courseMaxPeople}">
+												<div class="courseNotice">
 												<div class="course-Ing">
 																<c:set var="now" value="<%=new java.util.Date() %>"/>
 																	<!--<fmt:formatDate value="${courseVo.courseRecStart}" pattern="yyyy-MM-dd hh:mm:ss" var="startrRecDate"/>-->
@@ -122,6 +123,8 @@
 													    	<div>
 												    			<p class="costDetail">${courseVo.courseCost}원</p>
 												    		</div>
+												    		
+												    	</div>
 												    </div>
 										    	</div>
 											</div>

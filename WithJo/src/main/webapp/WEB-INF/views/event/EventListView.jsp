@@ -107,7 +107,7 @@
 									<div class="tableTitleElement">
 										<c:if test="${memberVo.authority >= 1}">
 											<a class="imgTag" href="/drawing/list">
-												<img class="eventImgs" alt="/drawing/detail" src="/img/event/drawingHide.jpg" style="width: 350px;">
+												<img class="eventImgs" alt="/drawing/list" src="/img/event/drawingHide.jpg" style="width: 350px;">
 											</a>
 										</c:if>
 										<c:if test="${memberVo.authority == 0}">
