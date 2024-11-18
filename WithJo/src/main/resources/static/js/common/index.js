@@ -28,7 +28,7 @@ $('.swiper-slide').on("click", () => {
 	location.href = "/course/detail?courseNo=" + courseNo;
 });
 
-$('.noticeBoxElementTxt').on("click", () => {
+/*$('.noticeBoxElementTxt').on("click", () => {
 	let noticeNo = $('.noticeNo').val();
 	location.href = "/notice/detail?noticeNo=" + noticeNo;
-});
+});*/

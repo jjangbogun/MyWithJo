@@ -102,22 +102,21 @@
 					</div>
 					<div class="noticeBox">
 						<div class="noticeBox-flex">
-								<c:forEach var="noticeList" items="${noticeList}">
-								<div class="noticeBoxElementTxt">
-								<input type="hidden" value="${noticeList.noticeNo}" class="noticeNo">
+							<c:forEach var="noticeItem" items="${noticeList}">						
+								<a class="noticeBoxElementTxt" href="/notice/detail?noticeNo=${noticeItem.noticeNo}" >
 									<div class="noticeBoxElement_txt_box">
 										<div class="noticeBoxElement_txt title">
-											<p>[공지사항] ${noticeList.noticeTitle}</p>
+											<p>[공지사항] ${noticeItem.noticeTitle}</p>
 										</div>
 										<div class="noticeBoxElement_txt content txt_line">
-											<p>${noticeList.noticeContent}</p>
+											<p>${noticeItem.noticeContent}</p>
 										</div>
 									</div>
 									<div class="noticeBoxElement_txt credate">
-										<p><fmt:formatDate value="${noticeList.noticeCredate}" pattern="yyyy.MM.dd"/></p>
+										<p><fmt:formatDate value="${noticeItem.noticeCredate}" pattern="yyyy.MM.dd"/></p>
 									</div>
-								</div>
-								</c:forEach>
+								</a>						
+							</c:forEach>
 						</div>
 					</div>
 				</div>

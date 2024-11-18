@@ -111,3 +111,9 @@ overflow: hidden;
 .noticeBoxElementTxt:hover{
 	border: 1px solid black;
 }
+
+.noticeBox-flex a {
+	text-decoration: none; 
+	color: inherit; 
+	outline: none; 
+}
