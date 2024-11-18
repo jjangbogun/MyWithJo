@@ -106,7 +106,7 @@
 								<div class="eventTableBoxContent">
 									<div class="tableTitleElement">
 										<c:if test="${memberVo.authority >= 1}">
-											<a class="imgTag" href="/drawing/detail">
+											<a class="imgTag" href="/drawing/list">
 												<img class="eventImgs" alt="/drawing/detail" src="/img/event/drawingHide.jpg" style="width: 350px;">
 											</a>
 										</c:if>
@@ -114,7 +114,7 @@
 											<img class="eventImgs" alt="" src="/img/event/drawingHide.jpg" style="width: 350px;">
 										</c:if>
 										<c:if test="${memberVo.authority >= 1}">
-											<a class="textTag" href="/drawing/detail">비활성화된 이벤트 입니다.</a>
+											<a class="textTag" href="/drawing/list">비활성화된 이벤트 입니다.</a>
 										</c:if>
 										<c:if test="${memberVo.authority == 0}">
 											<div class="textTag">이벤트를 준비중 입니다.</div>
