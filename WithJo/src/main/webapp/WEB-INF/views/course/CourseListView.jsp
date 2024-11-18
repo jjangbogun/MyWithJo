@@ -62,7 +62,7 @@
 								</div>
 							</div>
 					</c:if>
-					<div >
+					<div>
 						<div class="courseListBox">
 							<div class="courseFlexBox">
 								<c:forEach var="courseVo" items="${courseList}">
