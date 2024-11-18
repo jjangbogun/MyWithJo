@@ -38,9 +38,6 @@ Java / Spring / json / Eclipse
 담당 기능: 공통 Utils, 게시판, 고객센터, 이벤트(로또, 추첨)
 <br />
 <br />
-담당 기능: 피그마, 공통 UI, 메인페이지, 수강목록, 수강신청
-<br />
-<br />
 | 조병철 | https://github.com/JJJbc |
 <br />
 역할: DBA
