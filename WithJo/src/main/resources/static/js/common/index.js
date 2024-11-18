@@ -23,10 +23,10 @@ function costCommaFnc(cost){
  
  $('.costCommaFnc').text(costCommaFnc(cost)+'원');
  
-$('.swiper-slide').on("click", () => {
+/*$('.swiper-slide').on("click", () => {
 	let courseNo = $('.courseNo').val();
 	location.href = "/course/detail?courseNo=" + courseNo;
-});
+});*/
 
 /*$('.noticeBoxElementTxt').on("click", () => {
 	let noticeNo = $('.noticeNo').val();

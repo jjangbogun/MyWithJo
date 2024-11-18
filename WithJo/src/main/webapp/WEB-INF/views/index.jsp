@@ -45,6 +45,7 @@
 							 <div class="swiper mySwiper">
 							    <div class="swiper-wrapper">
 							    	<c:forEach var="courseRecList" items="${courseRecList}">
+							    	<a class="goCourseDetail" href="/course/detail?courseNo=${courseRecList.courseNo}" >
 							    	<c:set var="now" value="<%=new java.util.Date() %>"/>
 									    <div class="swiper-slide">
 									    <input type="hidden" value="${courseRecList.courseRecEnd}">
@@ -93,6 +94,7 @@
 									    		</div>
 									    	</div>
 									    </div>
+									    </a>
 							     	</c:forEach>
 							    </div>
 							    <div class="swiper-button-next"></div>

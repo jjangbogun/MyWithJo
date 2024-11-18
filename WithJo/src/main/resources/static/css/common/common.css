@@ -6,7 +6,11 @@
 /* :root {
 	--nav;  CSS 전역 변수 선언
 } */
-
+.swiper-wrapper a {
+	text-decoration: none; 
+	color: inherit; 
+	outline: none; 
+}
 header{
  	position: fixed;
  	left: 0;
