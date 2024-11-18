@@ -47,6 +47,7 @@ Java / Spring / json / Eclipse
 <br />
 ## 📄 프로젝트 ppt
 [팀프로젝트_WITHJO.pptx](https://github.com/jjangbogun/WITHJO/blob/main/%EB%AC%B8%EC%84%9C/%EA%B8%B0%ED%9A%8D/ERD_%EB%B3%80%EC%88%98%EB%AA%85.docx)
+https://github.com/jjangbogun/WITHJO/blob/main/%EB%AC%B8%EC%84%9C/%EA%B8%B0%ED%9A%8D/ERD_%EB%B3%80%EC%88%98%EB%AA%85.docx
 ## ✒️ 프로젝트 설정
 DB설정
 <br />
