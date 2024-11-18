@@ -54,9 +54,6 @@
 			<div class="myPageCategory__element">
 				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},2);" value="2">E-Money</button></span>
 			</div>			
-			<div class="myPageCategory__element">
-				<span><button class="myPageCategoryBtn" onclick="myPageCategoryBtnFnc(${memberVo.memberNo},4);" value="4">장바구니</button></span>
-			</div>
 		</div>		
 		
 
