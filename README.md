@@ -55,6 +55,8 @@ Java / Spring / json / Eclipse
 ## 📄 프로젝트 ppt
 [팀프로젝트_WITHJO.pptx](https://github.com/jjangbogun/WITHJO/blob/main/%EB%AC%B8%EC%84%9C/%EA%B8%B0%ED%9A%8D/ERD_%EB%B3%80%EC%88%98%EB%AA%85.docx)
 ## ✒️ 프로젝트 설정
+DB설정
+<br />
 필요도구: SQL Developer (또는 다른 Oracle 데이터베이스 관리 도구)
 <br />
 DB사용자 이름: withjo
@@ -62,5 +64,8 @@ DB사용자 이름: withjo
 DB비밀번호: 1234
 <br />
 resources > doc > DB_SQL > allDB > withjo_db_fine.sql 구축하기
+<br />
+<br />
+이미지 폴더 설정
 <br />
 resources > doc > dataImgs 의 cUpoad, upload 폴더 c드라이브에 복사하기
