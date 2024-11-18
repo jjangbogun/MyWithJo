@@ -23,9 +23,6 @@
 	<input type="hidden" id="drawingMemberIds" name="drawingMemberIds" value='${drawingVo.drawingMemberId}'> 
     <div id="drawingContainer">
         <div>
-        	<div class="btnDiv">
-				<button class="btn2" type="button" onclick="pageMovedrawingList();">목록으로 가기</button>           
-	    	</div>
             <div class="detailHeader">
                 <p>${drawingVo.drawingRound} 회차
                     <span class="dateSpan">${drawingVo.drawingStartDate} / ${drawingVo.drawingEndDate}</span>
@@ -55,7 +52,7 @@
             </div>           
 
             <div class="btnDiv">
-                <button class="btn2" type="button" onclick="pageMoveEventList();">돌아가기</button>             
+                <button class="btn2" type="button" onclick="pageMovedrawingList();">목록으로 가기</button>              
             </div>      
         </div>
     </div>
