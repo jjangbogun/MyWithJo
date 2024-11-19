@@ -59,10 +59,7 @@
 			</div>
 	</nav>
 	
-	<div class="sessionContainer">
-      <p class="shoppingIcon">
-         <a href=""><img class="logoutImg" alt="." src="/img/common/shoppingCart.png"></a>
-      </p>
+	<div class="sessionContainer">     
       <c:if test="${sessionScope.memberVo eq null}">
          <p class="loginIcon">
             <img class="loginImg" alt="." src="/img/common/login.png">

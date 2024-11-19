@@ -116,10 +116,10 @@ var $rightBoxInfo = $(".rightBoxInfo");
 								</div>
 								<div class="courseResBtnBox">
 									<div>
-										<a><img alt="." src="/img/common/shoppingCart.png" style="width:30px; height:30px;"/></a>
+										<a><!--<img alt="." src="/img/common/shoppingCart.png" style="width:30px; height:30px;"/>--></a>
 									</div>
 									<div>
-										<a class="courseResBtn" style="margin-left: 10px; width: 267px;" 
+										<a class="courseResBtn" style="margin-left: 30px; width: 267px;" 
 											href="javascript:courseReserve(${courseVo.courseNo},${courseVo.categoryNo},${courseVo.courseCost})"><span>수강신청하기</span></a>
 									</div>
 								</div>
